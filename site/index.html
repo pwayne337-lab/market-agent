@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Market agent</title>
+<title>Researcher</title>
 <style>
 :root{--bg:#f6f7fb;--card:#fff;--text:#111827;--muted:#6b7280;--line:#e5e7eb;--good:#0a7a3a;--bad:#c62828;--warn:#a86a00}
 @media(prefers-color-scheme:dark){:root{--bg:#0f1115;--card:#171a21;--text:#e6e8ee;--muted:#9aa3b2;--line:#262a33;--good:#3ddc84;--bad:#ff6b6b;--warn:#fab219}}
@@ -22,26 +22,27 @@ td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap} .pos
 pre{white-space:pre-wrap;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;font-size:13px}
 footer{color:var(--muted);font-size:12px;margin-top:24px}
 </style></head><body><div class="wrap">
-<h1>Market agent</h1>
-<p class="sub">Studies the same names the trading agent can buy. Trades nothing. Read for 2026-09-03, written 2026-09-24T18:40:15+00:00.</p>
+<h1>Researcher</h1>
+<p class="sub">Studies the same names the trading agent can buy. Trades nothing. Read for 2026-09-24, written 2026-09-24T18:57:37+00:00.</p>
 <div class="verdict"><b>risk-on</b> &middot; 4 of 4 checks
 <ul><li class="ok">index above its 200-day</li><li class="ok">50-day above the 200-day</li><li class="ok">breadth not weak (over 40% of names above their 200-day)</li><li class="ok">VIX not stressed (under 25)</li></ul></div>
 <div class="tiles">
-<div class="tile"><div class="l">SPY vs 200-day</div><div class="v">+9.0%</div><div class="s">uptrend</div></div>
-<div class="tile"><div class="l">Breadth</div><div class="v">77%</div><div class="s">of 30 names above their 200-day (broad)</div></div>
-<div class="tile"><div class="l">VIX</div><div class="v">—</div><div class="s">, +0% in 5 sessions</div></div>
-<div class="tile"><div class="l">SPY realized vol</div><div class="v">8%</div><div class="s">20-day, falling</div></div>
+<div class="tile"><div class="l">SPY vs 200-day</div><div class="v">+7.5%</div><div class="s">uptrend</div></div>
+<div class="tile"><div class="l">Breadth</div><div class="v">56%</div><div class="s">of 193 names above their 200-day (mixed)</div></div>
+<div class="tile"><div class="l">VIX</div><div class="v">15.56</div><div class="s">normal, -12% in 5 sessions</div></div>
+<div class="tile"><div class="l">SPY realized vol</div><div class="v">11%</div><div class="s">20-day, steady</div></div>
 <div class="tile"><div class="l">Events today</div><div class="v">0</div><div class="s">big moves or headline bursts</div></div>
 </div>
 <h2>Today's brief</h2>
-<pre>Market read for 2026-09-03: RISK-ON (4 of 4 checks).
-SPY is in an uptrend, +9.0% from its 200-day and -0.6% from its 52-week high; +0.3% over 5 sessions, +0.4% over 21.
-Breadth is broad: 77% of 30 watchlist names are above their 200-day, 70% above their 50-day; 6 made a 20-day high today, 2 a 20-day low.
-Leading sectors over 21 sessions versus SPY: Energy (+12.3%), Health care (+5.1%), Financials (+0.5%). Lagging: Health care (+5.1%), Financials (+0.5%), Technology (-0.4%).
+<pre>Market read for 2026-09-24: RISK-ON (4 of 4 checks).
+SPY is in an uptrend, +7.5% from its 200-day and -1.0% from its 52-week high; +1.0% over 5 sessions, +0.5% over 21.
+Breadth is mixed: 56% of 193 watchlist names are above their 200-day, 34% above their 50-day; 11 made a 20-day high today, 56 a 20-day low.
+VIX 15.6 (normal, -12% over 5 sessions); SPY&#x27;s realized volatility is 11% annualized and steady.
+Leading sectors over 21 sessions versus SPY: Technology (+7.8%), Communication (+1.2%), Energy (+0.9%). Lagging: Materials (-7.3%), Real estate (-7.6%), Utilities (-8.5%).
 No events recorded today: no name moved 2.5 ATR and no headline burst.
 The record holds 0 event(s).</pre>
 <h2>Sectors versus SPY</h2>
-<div class="card"><table><thead><tr><th>#</th><th>Sector</th><th class="n">21-day vs SPY</th><th class="n">5-day vs SPY</th><th class="n">21-day return</th></tr></thead><tbody><tr><td>1</td><td>Energy <span class='sym'>XLE</span></td><td class='n pos'>+12.3%</td><td class='n pos'>+3.5%</td><td class='n'>+12.8%</td></tr><tr><td>2</td><td>Health care <span class='sym'>XLV</span></td><td class='n pos'>+5.1%</td><td class='n pos'>+0.7%</td><td class='n'>+5.5%</td></tr><tr><td>3</td><td>Financials <span class='sym'>XLF</span></td><td class='n pos'>+0.5%</td><td class='n pos'>+0.9%</td><td class='n'>+1.0%</td></tr><tr><td>4</td><td>Technology <span class='sym'>XLK</span></td><td class='n neg'>-0.4%</td><td class='n neg'>-1.7%</td><td class='n'>+0.0%</td></tr></tbody></table></div>
+<div class="card"><table><thead><tr><th>#</th><th>Sector</th><th class="n">21-day vs SPY</th><th class="n">5-day vs SPY</th><th class="n">21-day return</th></tr></thead><tbody><tr><td>1</td><td>Technology <span class='sym'>XLK</span></td><td class='n pos'>+7.8%</td><td class='n pos'>+5.1%</td><td class='n'>+8.4%</td></tr><tr><td>2</td><td>Communication <span class='sym'>XLC</span></td><td class='n pos'>+1.2%</td><td class='n pos'>+0.2%</td><td class='n'>+1.8%</td></tr><tr><td>3</td><td>Energy <span class='sym'>XLE</span></td><td class='n pos'>+0.9%</td><td class='n neg'>-3.4%</td><td class='n'>+1.4%</td></tr><tr><td>4</td><td>Health care <span class='sym'>XLV</span></td><td class='n neg'>-2.7%</td><td class='n pos'>+0.9%</td><td class='n'>-2.2%</td></tr><tr><td>5</td><td>Industrials <span class='sym'>XLI</span></td><td class='n neg'>-5.8%</td><td class='n neg'>-0.4%</td><td class='n'>-5.2%</td></tr><tr><td>6</td><td>Consumer staples <span class='sym'>XLP</span></td><td class='n neg'>-6.1%</td><td class='n neg'>-1.8%</td><td class='n'>-5.5%</td></tr><tr><td>7</td><td>Financials <span class='sym'>XLF</span></td><td class='n neg'>-6.7%</td><td class='n neg'>-3.1%</td><td class='n'>-6.2%</td></tr><tr><td>8</td><td>Consumer discretionary <span class='sym'>XLY</span></td><td class='n neg'>-6.8%</td><td class='n neg'>-0.4%</td><td class='n'>-6.3%</td></tr><tr><td>9</td><td>Materials <span class='sym'>XLB</span></td><td class='n neg'>-7.3%</td><td class='n neg'>-1.8%</td><td class='n'>-6.8%</td></tr><tr><td>10</td><td>Real estate <span class='sym'>XLRE</span></td><td class='n neg'>-7.6%</td><td class='n neg'>-2.5%</td><td class='n'>-7.0%</td></tr><tr><td>11</td><td>Utilities <span class='sym'>XLU</span></td><td class='n neg'>-8.5%</td><td class='n neg'>-4.7%</td><td class='n'>-8.0%</td></tr></tbody></table></div>
 <h2>Events recorded today</h2>
 <div class="card"><table><thead><tr><th>Symbol</th><th>Kind</th><th class="n">Move</th><th class="n">In ATRs</th><th class="n">Headlines</th><th>What the headlines said</th></tr></thead><tbody><tr><td colspan=6 class=muted>none</td></tr></tbody></table></div>
 <h2>What the record says so far</h2>
