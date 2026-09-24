@@ -78,6 +78,14 @@ class Reliability(unittest.TestCase):
         code,read=self.run_agent(future)
         self.assertEqual(read['index']['close'],150)
 
+    def test_sector_returns_use_shared_endpoint_dates(self):
+        expected = regime.sector_strength(self.bars, self.cfg)
+        missing_middle = dict(self.bars, XLK=self.bars['XLK'].drop(self.frame.index[-3]))
+        actual = regime.sector_strength(missing_middle, self.cfg)
+        self.assertEqual(actual, expected)
+        missing_start = dict(self.bars, XLK=self.bars['XLK'].drop(self.frame.index[-22]))
+        self.assertNotIn('XLK', [r['symbol'] for r in regime.sector_strength(missing_start, self.cfg)])
+
     def test_missing_vix_is_unknown(self):
         code,read=self.run_agent({s:d for s,d in self.bars.items() if s!='^VIX'})
         self.assertEqual(code,1);self.assertEqual(read['risk']['word'],'unknown')

@@ -124,7 +124,13 @@ def sector_strength(bars: Dict[str, pd.DataFrame], cfg: MarketConfig) -> List[di
         return []
     def ret(df, n):
         c = df["close"].astype(float)
-        return float(c.iloc[-1] / c.iloc[-1 - n] - 1) * 100 if len(c) > n else None
+        start, end = spy.index[-1 - n], spy.index[-1]
+        if start not in c.index or end not in c.index:
+            return None
+        first, last = float(c.loc[start]), float(c.loc[end])
+        if not (math.isfinite(first) and math.isfinite(last) and first > 0):
+            return None
+        return (last / first - 1) * 100
     spy_s, spy_l = ret(spy, cfg.rs_short), ret(spy, cfg.rs_long)
     rows = []
     for sym, name in SECTORS.items():

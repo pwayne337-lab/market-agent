@@ -135,14 +135,11 @@ def _run(args):
     vol = regime.volatility(spy, bars.get("^VIX"), cfg)
     if "vix" not in vol:
         errors.append("VIX unavailable; volatility check is unknown")
-    # Relative returns must cover identical sessions, not just equal row counts.
-    aligned = {s: df.reindex(spy.index).dropna() for s, df in bars.items()}
-    for sym in list(aligned):
-        if not aligned[sym].index[-(cfg.rs_long + 1):].equals(spy.index[-(cfg.rs_long + 1):]):
-            aligned.pop(sym)
-    secs = regime.sector_strength(aligned, cfg)
+    # Sector returns compare the exact SPY start/end sessions. An unrelated
+    # missing intermediate bar does not change these endpoint returns.
+    secs = regime.sector_strength(bars, cfg)
     if len(secs) != len(SECTORS):
-        errors.append("Some sector comparisons have incomplete session coverage")
+        errors.append("Some sectors lack prices on comparison endpoint dates")
     risk = regime.risk_score(idx, br if br["coverage_pct"] >= 90 else {}, vol, cfg)
 
     counts, titles, failed, capped = {}, {}, [], []
