@@ -152,14 +152,15 @@ def risk_score(idx: dict, br: dict, vol: dict, cfg: MarketConfig) -> dict:
     never as "what it will do".
     """
     checks = [
-        ("index above its 200-day", bool(idx.get("above_200"))),
-        ("50-day above the 200-day", bool(idx.get("stacked"))),
+        ("index above its 200-day", idx.get("above_200")),
+        ("50-day above the 200-day", idx.get("stacked")),
         (f"breadth not weak (over {cfg.breadth_weak_below:.0%} of names above their 200-day)",
-         br.get("status") in ("mixed", "broad")),
+         br.get("status") in ("mixed", "broad") if br.get("status") in ("mixed", "broad", "weak") else None),
         (f"VIX not stressed (under {cfg.vix_stressed_above:g})",
-         vol.get("vix_status") in ("calm", "normal") if "vix_status" in vol else True),
+         vol.get("vix_status") in ("calm", "normal") if "vix_status" in vol else None),
     ]
     yes = sum(1 for _, ok in checks if ok)
-    word = "risk-on" if yes >= 3 else ("risk-off" if yes <= 1 else "mixed")
+    word = ("unknown" if any(ok is None for _, ok in checks) else
+            "risk-on" if yes >= 3 else ("risk-off" if yes <= 1 else "mixed"))
     return {"word": word, "score": yes, "of": len(checks),
             "checks": [{"check": c, "ok": ok} for c, ok in checks]}

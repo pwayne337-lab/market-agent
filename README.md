@@ -35,8 +35,9 @@ By writing things down and coming back. Each event is stored in
 `state/events.jsonl`. One and five sessions later the agent fills in what the
 price did next. Once a kind of event (say, "a 3-ATR down day with no news")
 has twenty examples, the page reports the average follow-through, the share
-that went up, and whether the average is distinguishable from zero. Under
-twenty it reports the count and refuses to conclude.
+that went up, and the number of distinct event dates. These are descriptive
+results: related stocks and overlapping horizons are not independent samples. Under
+twenty it reports the count and refuses to conclude. It makes no statistical significance claim.
 
 That table is the whole of the agent's understanding of how the market moves.
 It is a set of facts about these names over this period. It is not a model
@@ -76,3 +77,34 @@ state/events.jsonl   the record, committed on purpose
 state/news_counts.jsonl  daily headline counts, the baseline for "a burst"
 site/                the page and market.json
 ```
+
+## Automatic runs and data quality
+
+GitHub Actions runs at **3:47 p.m. America/Chicago on weekdays**, with a
+**4:12 p.m. retry**. Both follow daylight saving time. The retry skips a session
+already completed successfully. GitHub schedules can be delayed, so these are
+scheduled start times, not guaranteed delivery times. The trader's 4:30 p.m.
+Central scan reads the dated report without changing any trade decision.
+
+An NYSE calendar handles holidays and early closes. No permanent event or
+follow-through is written before the close plus 15 minutes. All inputs must
+end on the same completed session; missing VIX/breadth checks are unknown.
+A failure writes a visible status report and causes an unsuccessful run,
+while retaining the last good reading separately. The page marks overdue
+reports stale even if the scheduler stops. Weekends and holidays are included
+in the report's explicit expiry time.
+
+News counts cover unique returned Yahoo articles in the **24 hours ending at
+the session close**, not all published news. The fetch requests 100 items; a
+response at the limit that does not reach the window start is excluded. Each symbol
+needs five valid prior observations using this method. Failed observations
+are missing, never zero; the older limited-sample baseline is not reused.
+
+Event rules are versioned. Repeated reads update same-session events and
+recompute outcomes from completed bars; a missing target-session bar never
+silently shifts a 1-day outcome to a different day. Tests run on code changes
+and pull requests as well as before scheduled reads.
+
+Install `requirements.txt` with Python 3.11 or newer. Runtime libraries are
+pinned to tested versions. `--cached` is fully offline and skips headlines;
+it still enforces current completed-session data and reports degraded status.

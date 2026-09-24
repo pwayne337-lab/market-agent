@@ -50,7 +50,10 @@ def brief(read: dict) -> str:
         lines.append(f"{len(evs)} event(s) recorded today: {bits}"
                      + (" and more." if len(evs) > 5 else "."))
     else:
-        lines.append("No events recorded today: no name moved 2.5 ATR and no headline burst.")
+        lines.append("No qualifying events recorded in the available prices and headline observations.")
+    news = read.get("news") or {}
+    if not news.get("baseline_ready"):
+        lines.append(f"News baseline warming up: {news.get('ready_symbols', 0)} symbols have five valid prior observations.")
     rec = read.get("record") or {}
     n_ev = rec.get("events_total", 0)
     lines.append(f"The record holds {n_ev} event(s)"
@@ -73,7 +76,17 @@ def page(read: dict) -> str:
         return (f'<div class="tile"><div class="l">{e(label)}</div>'
                 f'<div class="v">{e(str(value))}</div><div class="s">{e(sub)}</div></div>')
 
-    checks = "".join(f'<li class="{"ok" if c["ok"] else "no"}">{e(c["check"])}</li>'
+    errors = "".join(f"<li>{e(str(x))}</li>" for x in read.get("errors", []))
+    status = read.get("status", "unknown")
+    health = f'<div class="verdict"><strong>Data status: {e(status)}</strong><ul>{errors}</ul></div>'
+    last_good = read.get("last_good") or {}
+    if last_good:
+        health += f'<p>Last good report: {e(str(last_good.get("as_of")))}. Current reading unavailable.</p>'
+    news = read.get("news") or {}
+    news_note = (f"Headline baseline: {news.get('ready_symbols', 0)} symbols ready; "
+                 f"{news.get('valid_symbols', 0)} valid observations this run. "
+                 "Counts cover returned Yahoo articles, not all published news.")
+    checks = "".join(f'<li class="{"ok" if c["ok"] else "no"}">{e(c["check"])} — {"unknown" if c["ok"] is None else "pass" if c["ok"] else "fail"}</li>'
                      for c in risk.get("checks", []))
     sec_rows = "".join(
         f"<tr><td>{s['rank']}</td><td>{e(s['name'])} <span class='sym'>{e(s['symbol'])}</span></td>"
@@ -84,7 +97,7 @@ def page(read: dict) -> str:
         f"<tr><td><strong>{e(v['symbol'])}</strong></td><td>{e(v['kind'])}</td>"
         f"<td class='n {'pos' if v['move_pct'] >= 0 else 'neg'}'>{v['move_pct']:+.1f}%</td>"
         f"<td class='n'>{v['move_atr']:+.1f} ATR</td><td class='n'>{v['headlines_today']} "
-        f"<span class='muted'>/ usual {v['headlines_usual']:.1f}</span></td>"
+        f"<span class='muted'>/ usual {v['headlines_usual']:.1f}; {e(v.get('news_assessment', 'legacy'))}</span></td>"
         f"<td class='hl'>{e('; '.join(v.get('top_headlines') or []))}</td></tr>" for v in evs)
 
     def stat(s):
@@ -92,8 +105,8 @@ def page(read: dict) -> str:
             return "&mdash;"
         if "note" in s:
             return f"<span class='muted'>{e(s['note'])}</span>"
-        real = " &check;" if s.get("real") else ""
-        return f"{s['mean_pct']:+.2f}% avg, {s['up_share_pct']:.0f}% up (n={s['n']}){real}"
+        dates = s.get("distinct_dates", 0)
+        return f"{s['mean_pct']:+.2f}% avg, {s['up_share_pct']:.0f}% up (n={s['n']}, {dates} dates)"
     say_rows = "".join(
         f"<tr><td>{e(r['group'])}</td><td class='n'>{r['events']}</td>"
         f"<td>{stat(r.get('after_1d', {}))}</td><td>{stat(r.get('after_5d', {}))}</td></tr>"
@@ -124,14 +137,16 @@ pre{{white-space:pre-wrap;background:var(--card);border:1px solid var(--line);bo
 footer{{color:var(--muted);font-size:12px;margin-top:24px}}
 </style></head><body><div class="wrap">
 <h1>Researcher</h1>
+{health}
+<div id="freshness" class="verdict" hidden>This report is stale. The next completed-session update is overdue.</div>
 <p class="sub">Studies the same names the trading agent can buy. Trades nothing. Read for {e(str(read.get('as_of')))}, written {e(str(read.get('updated_at')))}.</p>
 <div class="verdict"><b>{e(risk.get('word', '?'))}</b> &middot; {risk.get('score')} of {risk.get('of')} checks
 <ul>{checks}</ul></div>
 <div class="tiles">
-{tile('SPY vs 200-day', f"{idx.get('pct_from_200', 0):+.1f}%", idx.get('status', ''))}
-{tile('Breadth', f"{br.get('above_200_pct', 0):.0f}%", f"of {br.get('counted', 0)} names above their 200-day ({br.get('status', '')})")}
+{tile('SPY vs 200-day', f"{idx['pct_from_200']:+.1f}%" if 'pct_from_200' in idx else '—', idx.get('status', ''))}
+{tile('Breadth', f"{br['above_200_pct']:.0f}%" if 'above_200_pct' in br else '—', f"of {br.get('counted', 0)} names above their 200-day ({br.get('status', '')})")}
 {tile('VIX', vol.get('vix', '—'), f"{vol.get('vix_status', '')}, {vol.get('vix_change_5d_pct', 0):+.0f}% in 5 sessions")}
-{tile('SPY realized vol', f"{vol.get('realized_20d_pct', 0):.0f}%", f"20-day, {vol.get('realized_trend', '')}")}
+{tile('SPY realized vol', f"{vol['realized_20d_pct']:.0f}%" if 'realized_20d_pct' in vol else '—', f"20-day, {vol.get('realized_trend', '')}")}
 {tile('Events today', len(evs), 'big moves or headline bursts')}
 </div>
 <h2>Today's brief</h2>
@@ -139,12 +154,17 @@ footer{{color:var(--muted);font-size:12px;margin-top:24px}}
 <h2>Sectors versus SPY</h2>
 <div class="card"><table><thead><tr><th>#</th><th>Sector</th><th class="n">21-day vs SPY</th><th class="n">5-day vs SPY</th><th class="n">21-day return</th></tr></thead><tbody>{sec_rows}</tbody></table></div>
 <h2>Events recorded today</h2>
+<p class="sub">{e(news_note)}</p>
 <div class="card"><table><thead><tr><th>Symbol</th><th>Kind</th><th class="n">Move</th><th class="n">In ATRs</th><th class="n">Headlines</th><th>What the headlines said</th></tr></thead><tbody>{ev_rows or '<tr><td colspan=6 class=muted>none</td></tr>'}</tbody></table></div>
 <h2>What the record says so far</h2>
-<p class="sub">How prices moved after each kind of event, with the count it comes from. Under {read.get('min_sample', 20)} events a line reports the count and nothing else. A check mark means the average is distinguishable from zero.</p>
+<p class="sub">How prices moved after each kind of event, with the count it comes from. Under {read.get('min_sample', 20)} events a line reports the count and nothing else. Results are descriptive only. Stocks and overlapping periods can be correlated; event counts do not measure independent evidence. No significance or prediction is claimed.</p>
 <div class="card"><table><thead><tr><th>Event kind / direction</th><th class="n">Events</th><th>Next session</th><th>Five sessions later</th></tr></thead><tbody>{say_rows or '<tr><td colspan=4 class=muted>nothing recorded yet</td></tr>'}</tbody></table></div>
 <footer>Every word above is produced by a fixed rule from free daily prices and headline counts. No model reads the news and nothing here is a forecast. Source: the agent's own record, state/events.jsonl.</footer>
-</div></body></html>"""
+</div><script>
+const expiry = {json.dumps(read.get('expires_at'))};
+function checkFreshness() {{ if (expiry && Date.now() > Date.parse(expiry)) document.getElementById('freshness').hidden = false; }}
+checkFreshness(); setInterval(checkFreshness, 60000);
+</script></body></html>"""
 
 
 def write_site(read: dict) -> Path:

@@ -1,0 +1,19 @@
+name: Offline tests
+on:
+  pull_request:
+  push:
+    paths: ["agent.py", "mbot/**", "tests/**", "requirements.txt", ".github/workflows/**"]
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - run: python -m tests.test_logic
+      - run: python -m unittest discover -s tests -p 'test_reliability.py'

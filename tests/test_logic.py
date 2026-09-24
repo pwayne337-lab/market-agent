@@ -60,7 +60,7 @@ rs2 = regime.risk_score(r_down, {"status": "weak"}, {"vix_status": "stressed"}, 
 check("downtrend, weak, stressed is risk-off", rs2["word"] == "risk-off" and rs2["score"] == 0, rs2)
 check("every check is printed with its answer", len(rs["checks"]) == 4 and all("check" in c for c in rs["checks"]))
 rs3 = regime.risk_score(r_up, br2, {}, cfg)
-check("no VIX data does not count against the market", rs3["score"] == 4, rs3)
+check("no VIX data is unknown, never a passing check", rs3["word"] == "unknown" and rs3["checks"][-1]["ok"] is None, rs3)
 
 print("\nEvents")
 big = series(seed=7)
@@ -103,10 +103,10 @@ check("five events report a count and no result",
       says[0]["events"] == 5 and "note" in says[0]["after_1d"] and "mean_pct" not in says[0]["after_1d"], str(says))
 many = [{"kind": "move", "direction": "down", "follow": {"1d": -0.5 + (i % 3) * 0.1, "5d": 1.0}} for i in range(30)]
 says2 = ev.what_the_record_says(many, cfg)
-check("thirty events report a mean, an up-share and a confidence interval",
-      says2[0]["after_1d"]["n"] == 30 and "mean_pct" in says2[0]["after_1d"] and "ci" in says2[0]["after_1d"], str(says2))
-check("thirty identical +1% five-day results are called real",
-      says2[0]["after_5d"].get("real") is True, str(says2[0]["after_5d"]))
+check("thirty events report descriptive results without significance claims",
+      says2[0]["after_1d"]["n"] == 30 and "mean_pct" in says2[0]["after_1d"] and "ci" not in says2[0]["after_1d"], str(says2))
+check("identical results do not prove statistical certainty",
+      "real" not in says2[0]["after_5d"], str(says2[0]["after_5d"]))
 
 print("\nBrief and page")
 read = {"as_of": today, "updated_at": "now", "risk": rs, "index": r_up, "breadth": br2,
