@@ -1,0 +1,68 @@
+# Reads the market after the close, records the day's events, fills in the
+# follow-through for older ones, and publishes the page. Trades nothing.
+name: Market read
+
+on:
+  schedule:
+    # 22:07 UTC weekdays, after the US close in both seasons and after the
+    # trading agent's own run has had time to start. Odd minute on purpose:
+    # GitHub's on-the-hour slots are the most delayed.
+    - cron: "7 22 * * 1-5"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: market-agent
+  cancel-in-progress: false
+
+jobs:
+  read:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Verify the rules before trusting the read
+        run: python -m tests.test_logic
+      - name: Read the market
+        run: python agent.py run
+      - name: Commit the read and the record
+        if: always()
+        run: |
+          git config user.name "market-agent"
+          git config user.email "actions@github.com"
+          mkdir -p state site
+          git add -A state site
+          git diff --staged --quiet && exit 0
+          git commit -m "read $(date -u +%Y-%m-%d)"
+          for i in 1 2 3; do
+            git push && exit 0
+            git pull --rebase --autostash || break
+          done
+          exit 1
+      - uses: actions/upload-pages-artifact@v3
+        if: always()
+        with:
+          path: site
+
+  publish:
+    needs: read
+    if: always()
+    runs-on: ubuntu-latest
+    concurrency:
+      group: market-pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - id: deploy
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Market agent</title>
+<style>
+:root{--bg:#f6f7fb;--card:#fff;--text:#111827;--muted:#6b7280;--line:#e5e7eb;--good:#0a7a3a;--bad:#c62828;--warn:#a86a00}
+@media(prefers-color-scheme:dark){:root{--bg:#0f1115;--card:#171a21;--text:#e6e8ee;--muted:#9aa3b2;--line:#262a33;--good:#3ddc84;--bad:#ff6b6b;--warn:#fab219}}
+body{margin:0;background:var(--bg);color:var(--text);font:14px/1.5 -apple-system,Segoe UI,Roboto,sans-serif}
+.wrap{max-width:960px;margin:0 auto;padding:20px 16px}
+h1{font-size:22px;margin:0} h2{font-size:16px;margin:24px 0 8px}
+.sub{color:var(--muted);margin:2px 0 14px}
+.verdict{border:1px solid var(--line);border-left:4px solid var(--good);background:var(--card);border-radius:12px;padding:14px 16px;margin-bottom:14px}
+.verdict b{font-size:18px;text-transform:uppercase}
+.verdict ul{margin:8px 0 0;padding-left:18px} .verdict li.ok::marker{color:var(--good)} .verdict li.no::marker{color:var(--bad)}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px}
+.tile .l{color:var(--muted);font-size:12px} .tile .v{font-size:20px;font-weight:600} .tile .s{color:var(--muted);font-size:11.5px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:4px 12px;overflow-x:auto}
+table{width:100%;border-collapse:collapse} th,td{padding:8px 6px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.05em}
+td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap} .pos{color:var(--good)} .neg{color:var(--bad)}
+.muted{color:var(--muted)} .sym{color:var(--muted);font-size:11px} .hl{font-size:12.5px;color:var(--muted)}
+pre{white-space:pre-wrap;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;font-size:13px}
+footer{color:var(--muted);font-size:12px;margin-top:24px}
+</style></head><body><div class="wrap">
+<h1>Market agent</h1>
+<p class="sub">Studies the same names the trading agent can buy. Trades nothing. Read for 2026-09-03, written 2026-09-24T18:40:15+00:00.</p>
+<div class="verdict"><b>risk-on</b> &middot; 4 of 4 checks
+<ul><li class="ok">index above its 200-day</li><li class="ok">50-day above the 200-day</li><li class="ok">breadth not weak (over 40% of names above their 200-day)</li><li class="ok">VIX not stressed (under 25)</li></ul></div>
+<div class="tiles">
+<div class="tile"><div class="l">SPY vs 200-day</div><div class="v">+9.0%</div><div class="s">uptrend</div></div>
+<div class="tile"><div class="l">Breadth</div><div class="v">77%</div><div class="s">of 30 names above their 200-day (broad)</div></div>
+<div class="tile"><div class="l">VIX</div><div class="v">—</div><div class="s">, +0% in 5 sessions</div></div>
+<div class="tile"><div class="l">SPY realized vol</div><div class="v">8%</div><div class="s">20-day, falling</div></div>
+<div class="tile"><div class="l">Events today</div><div class="v">0</div><div class="s">big moves or headline bursts</div></div>
+</div>
+<h2>Today's brief</h2>
+<pre>Market read for 2026-09-03: RISK-ON (4 of 4 checks).
+SPY is in an uptrend, +9.0% from its 200-day and -0.6% from its 52-week high; +0.3% over 5 sessions, +0.4% over 21.
+Breadth is broad: 77% of 30 watchlist names are above their 200-day, 70% above their 50-day; 6 made a 20-day high today, 2 a 20-day low.
+Leading sectors over 21 sessions versus SPY: Energy (+12.3%), Health care (+5.1%), Financials (+0.5%). Lagging: Health care (+5.1%), Financials (+0.5%), Technology (-0.4%).
+No events recorded today: no name moved 2.5 ATR and no headline burst.
+The record holds 0 event(s).</pre>
+<h2>Sectors versus SPY</h2>
+<div class="card"><table><thead><tr><th>#</th><th>Sector</th><th class="n">21-day vs SPY</th><th class="n">5-day vs SPY</th><th class="n">21-day return</th></tr></thead><tbody><tr><td>1</td><td>Energy <span class='sym'>XLE</span></td><td class='n pos'>+12.3%</td><td class='n pos'>+3.5%</td><td class='n'>+12.8%</td></tr><tr><td>2</td><td>Health care <span class='sym'>XLV</span></td><td class='n pos'>+5.1%</td><td class='n pos'>+0.7%</td><td class='n'>+5.5%</td></tr><tr><td>3</td><td>Financials <span class='sym'>XLF</span></td><td class='n pos'>+0.5%</td><td class='n pos'>+0.9%</td><td class='n'>+1.0%</td></tr><tr><td>4</td><td>Technology <span class='sym'>XLK</span></td><td class='n neg'>-0.4%</td><td class='n neg'>-1.7%</td><td class='n'>+0.0%</td></tr></tbody></table></div>
+<h2>Events recorded today</h2>
+<div class="card"><table><thead><tr><th>Symbol</th><th>Kind</th><th class="n">Move</th><th class="n">In ATRs</th><th class="n">Headlines</th><th>What the headlines said</th></tr></thead><tbody><tr><td colspan=6 class=muted>none</td></tr></tbody></table></div>
+<h2>What the record says so far</h2>
+<p class="sub">How prices moved after each kind of event, with the count it comes from. Under 20 events a line reports the count and nothing else. A check mark means the average is distinguishable from zero.</p>
+<div class="card"><table><thead><tr><th>Event kind / direction</th><th class="n">Events</th><th>Next session</th><th>Five sessions later</th></tr></thead><tbody><tr><td colspan=4 class=muted>nothing recorded yet</td></tr></tbody></table></div>
+<footer>Every word above is produced by a fixed rule from free daily prices and headline counts. No model reads the news and nothing here is a forecast. Source: the agent's own record, state/events.jsonl.</footer>
+</div></body></html>

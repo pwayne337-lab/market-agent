@@ -1,0 +1,171 @@
+{
+  "updated_at": "2026-09-24T18:40:15+00:00",
+  "as_of": "2026-09-03",
+  "healthy": true,
+  "errors": [],
+  "risk": {
+    "word": "risk-on",
+    "score": 4,
+    "of": 4,
+    "checks": [
+      {
+        "check": "index above its 200-day",
+        "ok": true
+      },
+      {
+        "check": "50-day above the 200-day",
+        "ok": true
+      },
+      {
+        "check": "breadth not weak (over 40% of names above their 200-day)",
+        "ok": true
+      },
+      {
+        "check": "VIX not stressed (under 25)",
+        "ok": true
+      }
+    ]
+  },
+  "index": {
+    "close": 773.17,
+    "sma_fast": 756.14,
+    "sma_slow": 709.32,
+    "above_200": true,
+    "stacked": true,
+    "status": "uptrend",
+    "pct_from_200": 9.0,
+    "ret_1d": 1.05,
+    "ret_5d": 0.27,
+    "ret_21d": 0.44,
+    "high_252": 777.88,
+    "pct_from_high": -0.61
+  },
+  "indexes": {
+    "SPY": {
+      "close": 773.17,
+      "sma_fast": 756.14,
+      "sma_slow": 709.32,
+      "above_200": true,
+      "stacked": true,
+      "status": "uptrend",
+      "pct_from_200": 9.0,
+      "ret_1d": 1.05,
+      "ret_5d": 0.27,
+      "ret_21d": 0.44,
+      "high_252": 777.88,
+      "pct_from_high": -0.61
+    },
+    "QQQ": {
+      "close": 717.67,
+      "sma_fast": 711.03,
+      "sma_slow": 656.19,
+      "above_200": true,
+      "stacked": true,
+      "status": "uptrend",
+      "pct_from_200": 9.37,
+      "ret_1d": 1.19,
+      "ret_5d": -0.48,
+      "ret_21d": 0.05,
+      "high_252": 745.34,
+      "pct_from_high": -3.71
+    },
+    "IWM": {
+      "close": 295.19,
+      "sma_fast": 297.07,
+      "sma_slow": 271.65,
+      "above_200": true,
+      "stacked": true,
+      "status": "uptrend",
+      "pct_from_200": 8.66,
+      "ret_1d": 0.4,
+      "ret_5d": -1.54,
+      "ret_21d": -1.53,
+      "high_252": 305.09,
+      "pct_from_high": -3.24
+    },
+    "DIA": {
+      "close": 536.93,
+      "sma_fast": 528.22,
+      "sma_slow": 495.75,
+      "above_200": true,
+      "stacked": true,
+      "status": "uptrend",
+      "pct_from_200": 8.31,
+      "ret_1d": 1.19,
+      "ret_5d": 0.32,
+      "ret_21d": -1.0,
+      "high_252": 542.36,
+      "pct_from_high": -1.0
+    }
+  },
+  "breadth": {
+    "counted": 30,
+    "above_200_pct": 76.7,
+    "above_50_pct": 70.0,
+    "new_20d_highs": 6,
+    "new_20d_lows": 2,
+    "status": "broad",
+    "rule": "weak under 40% above the 200-day, broad over 65%"
+  },
+  "volatility": {
+    "realized_20d_pct": 8.3,
+    "realized_prev_20d_pct": 14.3,
+    "realized_trend": "falling"
+  },
+  "sectors": [
+    {
+      "symbol": "XLE",
+      "name": "Energy",
+      "ret_5d": 3.74,
+      "ret_21d": 12.76,
+      "rs_5d": 3.47,
+      "rs_21d": 12.32,
+      "rank": 1
+    },
+    {
+      "symbol": "XLV",
+      "name": "Health care",
+      "ret_5d": 0.98,
+      "ret_21d": 5.54,
+      "rs_5d": 0.71,
+      "rs_21d": 5.1,
+      "rank": 2
+    },
+    {
+      "symbol": "XLF",
+      "name": "Financials",
+      "ret_5d": 1.17,
+      "ret_21d": 0.97,
+      "rs_5d": 0.91,
+      "rs_21d": 0.53,
+      "rank": 3
+    },
+    {
+      "symbol": "XLK",
+      "name": "Technology",
+      "ret_5d": -1.4,
+      "ret_21d": 0.03,
+      "rs_5d": -1.67,
+      "rs_21d": -0.41,
+      "rank": 4
+    }
+  ],
+  "events_today": [],
+  "record": {
+    "events_total": 0,
+    "with_5d": 0,
+    "filled_this_run": 0,
+    "what_it_says": []
+  },
+  "news": {
+    "fetched": false,
+    "baseline_days": 0,
+    "baseline_ready": false
+  },
+  "min_sample": 20,
+  "universe": {
+    "watchlist": 193,
+    "loaded": 30
+  },
+  "brief": "Market read for 2026-09-03: RISK-ON (4 of 4 checks).\nSPY is in an uptrend, +9.0% from its 200-day and -0.6% from its 52-week high; +0.3% over 5 sessions, +0.4% over 21.\nBreadth is broad: 77% of 30 watchlist names are above their 200-day, 70% above their 50-day; 6 made a 20-day high today, 2 a 20-day low.\nLeading sectors over 21 sessions versus SPY: Energy (+12.3%), Health care (+5.1%), Financials (+0.5%). Lagging: Health care (+5.1%), Financials (+0.5%), Technology (-0.4%).\nNo events recorded today: no name moved 2.5 ATR and no headline burst.\nThe record holds 0 event(s)."
+}

@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+data/cache/
+.venv/
+_to_delete/
