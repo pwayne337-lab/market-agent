@@ -1,4 +1,4 @@
-# Market agent
+# Researcher (the market agent)
 
 Studies the market. Trades nothing.
 

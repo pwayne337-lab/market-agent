@@ -101,7 +101,7 @@ def page(read: dict) -> str:
 
     return f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Market agent</title>
+<title>Researcher</title>
 <style>
 :root{{--bg:#f6f7fb;--card:#fff;--text:#111827;--muted:#6b7280;--line:#e5e7eb;--good:#0a7a3a;--bad:#c62828;--warn:#a86a00}}
 @media(prefers-color-scheme:dark){{:root{{--bg:#0f1115;--card:#171a21;--text:#e6e8ee;--muted:#9aa3b2;--line:#262a33;--good:#3ddc84;--bad:#ff6b6b;--warn:#fab219}}}}
@@ -123,7 +123,7 @@ td.n{{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}} .p
 pre{{white-space:pre-wrap;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;font-size:13px}}
 footer{{color:var(--muted);font-size:12px;margin-top:24px}}
 </style></head><body><div class="wrap">
-<h1>Market agent</h1>
+<h1>Researcher</h1>
 <p class="sub">Studies the same names the trading agent can buy. Trades nothing. Read for {e(str(read.get('as_of')))}, written {e(str(read.get('updated_at')))}.</p>
 <div class="verdict"><b>{e(risk.get('word', '?'))}</b> &middot; {risk.get('score')} of {risk.get('of')} checks
 <ul>{checks}</ul></div>
