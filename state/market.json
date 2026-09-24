@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "rules_version": 2,
-  "updated_at": "2026-09-24T21:17:13+00:00",
+  "updated_at": "2026-09-24T21:23:08+00:00",
   "as_of": "2026-09-24",
   "session_close": "2026-09-24T20:00:00+00:00",
   "expires_at": "2026-09-25T21:30:00+00:00",
@@ -10,7 +10,6 @@
   "status": "degraded",
   "errors": [
     "Missing or stale prices for 2 symbols: GIS, WMB",
-    "Some sector comparisons have incomplete session coverage",
     "Headline sample limit reached for 2 symbols; excluded from baseline"
   ],
   "risk": {
@@ -129,13 +128,58 @@
   },
   "sectors": [
     {
+      "symbol": "XLK",
+      "name": "Technology",
+      "ret_5d": 3.66,
+      "ret_21d": 7.26,
+      "rs_5d": 2.81,
+      "rs_21d": 6.85,
+      "rank": 1
+    },
+    {
       "symbol": "XLE",
       "name": "Energy",
       "ret_5d": -2.34,
       "ret_21d": 1.47,
       "rs_5d": -3.19,
       "rs_21d": 1.06,
-      "rank": 1
+      "rank": 2
+    },
+    {
+      "symbol": "XLC",
+      "name": "Communication",
+      "ret_5d": 1.79,
+      "ret_21d": 1.05,
+      "rs_5d": 0.94,
+      "rs_21d": 0.63,
+      "rank": 3
+    },
+    {
+      "symbol": "XLV",
+      "name": "Health care",
+      "ret_5d": 1.01,
+      "ret_21d": -2.72,
+      "rs_5d": 0.16,
+      "rs_21d": -3.14,
+      "rank": 4
+    },
+    {
+      "symbol": "XLP",
+      "name": "Consumer staples",
+      "ret_5d": -1.5,
+      "ret_21d": -4.95,
+      "rs_5d": -2.35,
+      "rs_21d": -5.36,
+      "rank": 5
+    },
+    {
+      "symbol": "XLI",
+      "name": "Industrials",
+      "ret_5d": 0.16,
+      "ret_21d": -5.11,
+      "rs_5d": -0.69,
+      "rs_21d": -5.52,
+      "rank": 6
     },
     {
       "symbol": "XLF",
@@ -144,7 +188,43 @@
       "ret_21d": -6.15,
       "rs_5d": -2.92,
       "rs_21d": -6.57,
-      "rank": 2
+      "rank": 7
+    },
+    {
+      "symbol": "XLY",
+      "name": "Consumer discretionary",
+      "ret_5d": -0.74,
+      "ret_21d": -6.26,
+      "rs_5d": -1.59,
+      "rs_21d": -6.68,
+      "rank": 8
+    },
+    {
+      "symbol": "XLB",
+      "name": "Materials",
+      "ret_5d": -1.58,
+      "ret_21d": -6.85,
+      "rs_5d": -2.43,
+      "rs_21d": -7.27,
+      "rank": 9
+    },
+    {
+      "symbol": "XLRE",
+      "name": "Real estate",
+      "ret_5d": -2.19,
+      "ret_21d": -7.41,
+      "rs_5d": -3.04,
+      "rs_21d": -7.82,
+      "rank": 10
+    },
+    {
+      "symbol": "XLU",
+      "name": "Utilities",
+      "ret_5d": -4.89,
+      "ret_21d": -8.45,
+      "rs_5d": -5.75,
+      "rs_21d": -8.87,
+      "rank": 11
     }
   ],
   "events_today": [],
@@ -174,5 +254,5 @@
     "loaded": 193
   },
   "last_good": null,
-  "brief": "Market read for 2026-09-24: RISK-ON (4 of 4 checks).\nSPY is in an uptrend, +7.4% from its 200-day and -1.1% from its 52-week high; +0.8% over 5 sessions, +0.4% over 21.\nBreadth is mixed: 56% of 191 watchlist names are above their 200-day, 34% above their 50-day; 9 made a 20-day high today, 59 a 20-day low.\nVIX 15.7 (normal, -12% over 5 sessions); SPY's realized volatility is 11% annualized and steady.\nLeading sectors over 21 sessions versus SPY: Energy (+1.1%), Financials (-6.6%).\nNo qualifying events recorded in the available prices and headline observations.\nNews baseline warming up: 0 symbols have five valid prior observations.\nThe record holds 0 event(s)."
+  "brief": "Market read for 2026-09-24: RISK-ON (4 of 4 checks).\nSPY is in an uptrend, +7.4% from its 200-day and -1.1% from its 52-week high; +0.8% over 5 sessions, +0.4% over 21.\nBreadth is mixed: 56% of 191 watchlist names are above their 200-day, 34% above their 50-day; 9 made a 20-day high today, 59 a 20-day low.\nVIX 15.7 (normal, -12% over 5 sessions); SPY's realized volatility is 11% annualized and steady.\nLeading sectors over 21 sessions versus SPY: Technology (+6.8%), Energy (+1.1%), Communication (+0.6%). Lagging: Materials (-7.3%), Real estate (-7.8%), Utilities (-8.9%).\nNo qualifying events recorded in the available prices and headline observations.\nNews baseline warming up: 0 symbols have five valid prior observations.\nThe record holds 0 event(s)."
 }
