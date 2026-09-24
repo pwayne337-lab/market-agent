@@ -1,8 +1,18 @@
 {
-  "updated_at": "2026-09-24T18:57:37+00:00",
+  "schema_version": 2,
+  "rules_version": 2,
+  "updated_at": "2026-09-24T21:17:13+00:00",
   "as_of": "2026-09-24",
-  "healthy": true,
-  "errors": [],
+  "session_close": "2026-09-24T20:00:00+00:00",
+  "expires_at": "2026-09-25T21:30:00+00:00",
+  "finalized": true,
+  "healthy": false,
+  "status": "degraded",
+  "errors": [
+    "Missing or stale prices for 2 symbols: GIS, WMB",
+    "Some sector comparisons have incomplete session coverage",
+    "Headline sample limit reached for 2 symbols; excluded from baseline"
+  ],
   "risk": {
     "word": "risk-on",
     "score": 4,
@@ -27,194 +37,114 @@
     ]
   },
   "index": {
-    "close": 768.07,
-    "sma_fast": 759.48,
-    "sma_slow": 714.37,
+    "close": 767.18,
+    "sma_fast": 759.46,
+    "sma_slow": 714.36,
     "above_200": true,
     "stacked": true,
     "status": "uptrend",
-    "pct_from_200": 7.52,
-    "ret_1d": 0.03,
-    "ret_5d": 0.97,
-    "ret_21d": 0.53,
+    "pct_from_200": 7.39,
+    "ret_1d": -0.08,
+    "ret_5d": 0.85,
+    "ret_21d": 0.41,
     "high_252": 775.95,
-    "pct_from_high": -1.02
+    "pct_from_high": -1.13
   },
   "indexes": {
     "SPY": {
-      "close": 768.07,
-      "sma_fast": 759.48,
-      "sma_slow": 714.37,
+      "close": 767.18,
+      "sma_fast": 759.46,
+      "sma_slow": 714.36,
       "above_200": true,
       "stacked": true,
       "status": "uptrend",
-      "pct_from_200": 7.52,
-      "ret_1d": 0.03,
-      "ret_5d": 0.97,
-      "ret_21d": 0.53,
+      "pct_from_200": 7.39,
+      "ret_1d": -0.08,
+      "ret_5d": 0.85,
+      "ret_21d": 0.41,
       "high_252": 775.95,
-      "pct_from_high": -1.02
+      "pct_from_high": -1.13
     },
     "QQQ": {
-      "close": 741.49,
-      "sma_fast": 711.21,
+      "close": 741.1,
+      "sma_fast": 711.2,
       "sma_slow": 663.53,
       "above_200": true,
       "stacked": true,
       "status": "uptrend",
-      "pct_from_200": 11.75,
-      "ret_1d": 0.04,
-      "ret_5d": 3.53,
-      "ret_21d": 4.44,
+      "pct_from_200": 11.69,
+      "ret_1d": -0.01,
+      "ret_5d": 3.48,
+      "ret_21d": 4.38,
       "high_252": 747.46,
-      "pct_from_high": -0.8
+      "pct_from_high": -0.85
     },
     "IWM": {
-      "close": 281.8,
+      "close": 281.66,
       "sma_fast": 293.63,
       "sma_slow": 274.26,
       "above_200": true,
       "stacked": true,
       "status": "uptrend",
-      "pct_from_200": 2.75,
-      "ret_1d": -0.04,
-      "ret_5d": -1.27,
-      "ret_21d": -5.58,
+      "pct_from_200": 2.7,
+      "ret_1d": -0.09,
+      "ret_5d": -1.32,
+      "ret_21d": -5.63,
       "high_252": 304.3,
-      "pct_from_high": -7.39
+      "pct_from_high": -7.44
     },
     "DIA": {
-      "close": 512.93,
+      "close": 512.68,
       "sma_fast": 526.51,
       "sma_slow": 498.31,
       "above_200": true,
       "stacked": true,
       "status": "uptrend",
-      "pct_from_200": 2.93,
-      "ret_1d": -0.27,
-      "ret_5d": -0.21,
-      "ret_21d": -3.66,
+      "pct_from_200": 2.88,
+      "ret_1d": -0.31,
+      "ret_5d": -0.26,
+      "ret_21d": -3.71,
       "high_252": 541.11,
-      "pct_from_high": -5.21
+      "pct_from_high": -5.25
     }
   },
   "breadth": {
-    "counted": 193,
-    "above_200_pct": 56.0,
-    "above_50_pct": 33.7,
-    "new_20d_highs": 11,
-    "new_20d_lows": 56,
+    "counted": 191,
+    "above_200_pct": 55.5,
+    "above_50_pct": 34.0,
+    "new_20d_highs": 9,
+    "new_20d_lows": 59,
     "status": "mixed",
-    "rule": "weak under 40% above the 200-day, broad over 65%"
+    "rule": "weak under 40% above the 200-day, broad over 65%",
+    "coverage_pct": 99.0
   },
   "volatility": {
     "realized_20d_pct": 10.9,
     "realized_prev_20d_pct": 11.7,
     "realized_trend": "steady",
-    "vix": 15.56,
-    "vix_change_5d_pct": -12.1,
+    "vix": 15.67,
+    "vix_change_5d_pct": -11.5,
     "vix_status": "normal",
     "vix_rule": "calm under 15, stressed over 25"
   },
   "sectors": [
     {
-      "symbol": "XLK",
-      "name": "Technology",
-      "ret_5d": 6.09,
-      "ret_21d": 8.37,
-      "rs_5d": 5.12,
-      "rs_21d": 7.84,
-      "rank": 1
-    },
-    {
-      "symbol": "XLC",
-      "name": "Communication",
-      "ret_5d": 1.16,
-      "ret_21d": 1.77,
-      "rs_5d": 0.19,
-      "rs_21d": 1.24,
-      "rank": 2
-    },
-    {
       "symbol": "XLE",
       "name": "Energy",
-      "ret_5d": -2.42,
-      "ret_21d": 1.39,
-      "rs_5d": -3.38,
-      "rs_21d": 0.86,
-      "rank": 3
-    },
-    {
-      "symbol": "XLV",
-      "name": "Health care",
-      "ret_5d": 1.83,
-      "ret_21d": -2.21,
-      "rs_5d": 0.86,
-      "rs_21d": -2.74,
-      "rank": 4
-    },
-    {
-      "symbol": "XLI",
-      "name": "Industrials",
-      "ret_5d": 0.57,
-      "ret_21d": -5.22,
-      "rs_5d": -0.4,
-      "rs_21d": -5.75,
-      "rank": 5
-    },
-    {
-      "symbol": "XLP",
-      "name": "Consumer staples",
-      "ret_5d": -0.86,
-      "ret_21d": -5.53,
-      "rs_5d": -1.83,
-      "rs_21d": -6.06,
-      "rank": 6
+      "ret_5d": -2.34,
+      "ret_21d": 1.47,
+      "rs_5d": -3.19,
+      "rs_21d": 1.06,
+      "rank": 1
     },
     {
       "symbol": "XLF",
       "name": "Financials",
-      "ret_5d": -2.11,
-      "ret_21d": -6.19,
-      "rs_5d": -3.07,
-      "rs_21d": -6.72,
-      "rank": 7
-    },
-    {
-      "symbol": "XLY",
-      "name": "Consumer discretionary",
-      "ret_5d": 0.59,
-      "ret_21d": -6.32,
-      "rs_5d": -0.38,
-      "rs_21d": -6.85,
-      "rank": 8
-    },
-    {
-      "symbol": "XLB",
-      "name": "Materials",
-      "ret_5d": -0.81,
-      "ret_21d": -6.77,
-      "rs_5d": -1.77,
-      "rs_21d": -7.3,
-      "rank": 9
-    },
-    {
-      "symbol": "XLRE",
-      "name": "Real estate",
-      "ret_5d": -1.56,
-      "ret_21d": -7.03,
-      "rs_5d": -2.53,
-      "rs_21d": -7.56,
-      "rank": 10
-    },
-    {
-      "symbol": "XLU",
-      "name": "Utilities",
-      "ret_5d": -3.74,
-      "ret_21d": -7.97,
-      "rs_5d": -4.71,
-      "rs_21d": -8.5,
-      "rank": 11
+      "ret_5d": -2.07,
+      "ret_21d": -6.15,
+      "rs_5d": -2.92,
+      "rs_21d": -6.57,
+      "rank": 2
     }
   ],
   "events_today": [],
@@ -227,12 +157,22 @@
   "news": {
     "fetched": true,
     "baseline_days": 1,
-    "baseline_ready": false
+    "baseline_ready": false,
+    "ready_symbols": 0,
+    "valid_symbols": 191,
+    "failed_symbols": [],
+    "capped_symbols": [
+      "NVDA",
+      "META"
+    ],
+    "method": "yahoo_returned_items_v2",
+    "note": "Returned Yahoo articles in the 24 hours ending at the close; not all published news."
   },
   "min_sample": 20,
   "universe": {
     "watchlist": 193,
-    "loaded": 195
+    "loaded": 193
   },
-  "brief": "Market read for 2026-09-24: RISK-ON (4 of 4 checks).\nSPY is in an uptrend, +7.5% from its 200-day and -1.0% from its 52-week high; +1.0% over 5 sessions, +0.5% over 21.\nBreadth is mixed: 56% of 193 watchlist names are above their 200-day, 34% above their 50-day; 11 made a 20-day high today, 56 a 20-day low.\nVIX 15.6 (normal, -12% over 5 sessions); SPY's realized volatility is 11% annualized and steady.\nLeading sectors over 21 sessions versus SPY: Technology (+7.8%), Communication (+1.2%), Energy (+0.9%). Lagging: Materials (-7.3%), Real estate (-7.6%), Utilities (-8.5%).\nNo events recorded today: no name moved 2.5 ATR and no headline burst.\nThe record holds 0 event(s)."
+  "last_good": null,
+  "brief": "Market read for 2026-09-24: RISK-ON (4 of 4 checks).\nSPY is in an uptrend, +7.4% from its 200-day and -1.1% from its 52-week high; +0.8% over 5 sessions, +0.4% over 21.\nBreadth is mixed: 56% of 191 watchlist names are above their 200-day, 34% above their 50-day; 9 made a 20-day high today, 59 a 20-day low.\nVIX 15.7 (normal, -12% over 5 sessions); SPY's realized volatility is 11% annualized and steady.\nLeading sectors over 21 sessions versus SPY: Energy (+1.1%), Financials (-6.6%).\nNo qualifying events recorded in the available prices and headline observations.\nNews baseline warming up: 0 symbols have five valid prior observations.\nThe record holds 0 event(s)."
 }
