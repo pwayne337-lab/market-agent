@@ -104,7 +104,8 @@ def _run(args):
     as_of = session["date"]
     prev = _previous()
     if (getattr(args, "scheduled", False) and prev.get("healthy") and prev.get("finalized")
-            and prev.get("as_of") == as_of and prev.get("schema_version") == 2):
+            and prev.get("as_of") == as_of and prev.get("schema_version") == 2
+            and not prev.get("warnings")):
         print(f"Completed healthy read already recorded for {as_of}; retry skipped.")
         return 0
     universe = sorted(set(cfg.watchlist) | set(INDEXES) | set(SECTORS) | set(RATES_AND_FEAR))
@@ -120,9 +121,9 @@ def _run(args):
     stale = [sym for sym, df in bars.items() if df.empty or str(df.index[-1].date()) != as_of]
     bars = {sym: df for sym, df in bars.items() if sym not in stale}
     missing = sorted(set(universe) - set(bars))
-    errors = []
+    errors, warnings = [], []
     if missing:
-        errors.append(f"Missing or stale prices for {len(missing)} symbols: {', '.join(missing[:10])}")
+        warnings.append(f"Missing or stale prices for {len(missing)} symbols: {', '.join(missing[:10])}")
     spy = bars.get(cfg.regime_symbol)
     if spy is None or len(spy) < cfg.sma_slow + 1:
         raise ValueError(f"{cfg.regime_symbol} has no complete, current history for {as_of}")
@@ -139,7 +140,7 @@ def _run(args):
     # missing intermediate bar does not change these endpoint returns.
     secs = regime.sector_strength(bars, cfg)
     if len(secs) != len(SECTORS):
-        errors.append("Some sectors lack prices on comparison endpoint dates")
+        warnings.append("Some sectors lack prices on comparison endpoint dates")
     risk = regime.risk_score(idx, br if br["coverage_pct"] >= 90 else {}, vol, cfg)
 
     counts, titles, failed, capped = {}, {}, [], []
@@ -149,10 +150,10 @@ def _run(args):
     if not (args.no_news or args.cached):
         counts, titles, failed, capped = newsmod.fetch_headlines(cfg.watchlist, end=session["close"])
         if failed:
-            errors.append(f"Headlines unavailable for {len(failed)} symbols")
+            warnings.append(f"Headlines unavailable for {len(failed)} symbols")
         # Capped responses are omitted, not interpreted as a quiet day or a known total.
         if capped:
-            errors.append(f"Headline sample limit reached for {len(capped)} symbols; excluded from baseline")
+            warnings.append(f"Headline sample limit reached for {', '.join(capped)}; excluded from baseline")
         if counts:
             old = next((h for h in history if h.get("date") == as_of and h.get("method") == newsmod.METHOD), {})
             row = {"date": as_of, "method": newsmod.METHOD, "window_end": session["close"].isoformat(),
@@ -161,7 +162,7 @@ def _run(args):
             STATE_DIR.mkdir(parents=True, exist_ok=True)
             NEWS_FILE.write_text("".join(json.dumps(h) + "\n" for h in history))
     else:
-        errors.append("Headlines skipped; news events were not assessed")
+        warnings.append("Headlines skipped; news events were not assessed")
     watch_bars = {s: bars[s] for s in cfg.watchlist if s in bars}
     today = ev.detect(watch_bars, counts, baseline, titles, cfg, as_of=as_of)
     # Only finalized v2 events contribute to the new research series.
@@ -172,7 +173,9 @@ def _run(args):
     read = {
         "schema_version": 2, "rules_version": 2, "updated_at": now_iso(), "as_of": as_of,
         "session_close": session["close"].isoformat(), "expires_at": sessions.next_expiry(as_of),
-        "finalized": True, "healthy": not errors, "status": "complete" if not errors else "degraded", "errors": errors,
+        "finalized": True, "healthy": not errors,
+        "status": "degraded" if errors else "complete_with_warnings" if warnings else "complete",
+        "errors": errors, "warnings": warnings,
         "risk": risk, "index": idx, "indexes": indexes, "breadth": br,
         "volatility": vol, "sectors": secs, "events_today": today,
         "record": {"events_total": len(record), "with_5d": sum("5d" in (e.get("follow") or {}) for e in record),
@@ -188,6 +191,10 @@ def _run(args):
     read["brief"] = report.brief(read)
     _save(read)
     print("\n" + read["brief"] + "\n")
+    for message in warnings:
+        print(f"DATA NOTE: {message}")
+    for message in errors:
+        print(f"ERROR: {message}")
     print(f"Page: {report.write_site(read)}")
     return 0 if read["healthy"] else 1
 

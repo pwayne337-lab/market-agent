@@ -82,15 +82,20 @@ site/                the page and market.json
 
 GitHub Actions runs at **3:47 p.m. America/Chicago on weekdays**, with a
 **4:12 p.m. retry**. Both follow daylight saving time. The retry skips a session
-already completed successfully. GitHub schedules can be delayed, so these are
+already completed successfully without warnings. GitHub schedules can be delayed, so these are
 scheduled start times, not guaranteed delivery times. The trader's 4:30 p.m.
 Central scan reads the dated report without changing any trade decision.
 
 An NYSE calendar handles holidays and early closes. No permanent event or
 follow-through is written before the close plus 15 minutes. All inputs must
 end on the same completed session; missing VIX/breadth checks are unknown.
-A failure writes a visible status report and causes an unsuccessful run,
-while retaining the last good reading separately. The page marks overdue
+Missing essential inputs (SPY, VIX, or 90% breadth coverage) or a broken run
+writes a visible failure status and causes an unsuccessful run,
+while retaining the last good reading separately. Limited gaps in individual
+stock prices, sector comparisons, or sampled headlines are visible data notes,
+not requests for user action. A usable core reading with these notes succeeds
+as `complete_with_warnings`; affected observations are still excluded, and the
+later retry runs again to try to improve coverage. The page marks overdue
 reports stale even if the scheduler stops. Weekends and holidays are included
 in the report's explicit expiry time.
 
@@ -107,4 +112,4 @@ and pull requests as well as before scheduled reads.
 
 Install `requirements.txt` with Python 3.11 or newer. Runtime libraries are
 pinned to tested versions. `--cached` is fully offline and skips headlines;
-it still enforces current completed-session data and reports degraded status.
+it still enforces current completed-session data and reports the skipped-news warning.
