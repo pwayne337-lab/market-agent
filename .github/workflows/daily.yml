@@ -1,14 +1,16 @@
-# Reads the market after the close, records the day's events, fills in the
-# follow-through for older ones, and publishes the page. Trades nothing.
 name: Market read
 
 on:
   schedule:
-    # 22:07 UTC weekdays, after the US close in both seasons and after the
-    # trading agent's own run has had time to start. Odd minute on purpose:
-    # GitHub's on-the-hour slots are the most delayed.
-    - cron: "7 22 * * 1-5"
+    # 47 minutes after the normal close; retry before the trader's 4:30 CT scan.
+    - cron: "47 15 * * 1-5"
+      timezone: "America/Chicago"
+    - cron: "12 16 * * 1-5"
+      timezone: "America/Chicago"
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["agent.py", "mbot/**", "requirements.txt", ".github/workflows/daily.yml"]
 
 permissions:
   contents: write
@@ -22,24 +24,38 @@ concurrency:
 jobs:
   read:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
+    outputs:
+      changed: ${{ steps.freshness.outputs.changed }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.11"
           cache: pip
-      - name: Install dependencies
-        run: pip install -r requirements.txt
-      - name: Verify the rules before trusting the read
-        run: python -m tests.test_logic
-      - name: Read the market
-        run: python agent.py run
-      - name: Commit the read and the record
+      - run: pip install -r requirements.txt
+      - name: Verify the rules and failure handling
+        run: |
+          python -m tests.test_logic
+          python -m unittest discover -s tests -p 'test_reliability.py'
+      - name: Read the completed session
+        id: read
+        continue-on-error: true
+        run: python agent.py run --scheduled
+      - name: Check for a newly generated report
+        id: freshness
         if: always()
+        run: |
+          if git diff --quiet HEAD -- site/market.json; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Commit the report and record
+        if: steps.freshness.outputs.changed == 'true'
         run: |
           git config user.name "market-agent"
           git config user.email "actions@github.com"
-          mkdir -p state site
           git add -A state site
           git diff --staged --quiet && exit 0
           git commit -m "read $(date -u +%Y-%m-%d)"
@@ -49,17 +65,19 @@ jobs:
           done
           exit 1
       - uses: actions/upload-pages-artifact@v3
-        if: always()
+        id: upload
+        if: steps.freshness.outputs.changed == 'true'
         with:
           path: site
+      - name: Report an unsuccessful market read
+        if: steps.read.outcome == 'failure'
+        run: exit 1
 
   publish:
     needs: read
-    if: always()
+    # A newly written failure report is useful; an untouched old site is not.
+    if: always() && needs.read.outputs.changed == 'true'
     runs-on: ubuntu-latest
-    concurrency:
-      group: market-pages
-      cancel-in-progress: false
     environment:
       name: github-pages
       url: ${{ steps.deploy.outputs.page_url }}

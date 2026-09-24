@@ -28,6 +28,7 @@ import numpy as np
 import pandas as pd
 
 from .config import MarketConfig
+from .sessions import follow_dates, last_completed
 
 STATE_DIR = Path(__file__).resolve().parent.parent / "state"
 EVENTS_FILE = STATE_DIR / "events.jsonl"
@@ -75,11 +76,13 @@ def detect(bars: Dict[str, pd.DataFrame], news_counts: Dict[str, int],
         kind = ("move+news" if big_move and news_spike
                 else "move" if big_move else "news")
         out.append({
-            "date": str(day.date()), "symbol": sym, "kind": kind,
+            "date": str(day.date()), "symbol": sym, "kind": kind, "rules_version": 2,
             "direction": "up" if move > 0 else "down",
             "move_pct": round(move_pct, 2), "move_atr": round(move_atr, 2),
             "gap_pct": round(gap_pct, 2), "close": round(float(c.iloc[-1]), 2),
             "headlines_today": n_news, "headlines_usual": round(base, 2),
+            "news_assessment": ("assessed" if sym in news_counts and sym in news_baseline else
+                                "unavailable" if sym not in news_counts else "warming up"),
             "top_headlines": (headlines.get(sym) or [])[:3],
             "follow": {},
         })
@@ -107,37 +110,39 @@ def save_events(rows: List[dict]) -> None:
 
 
 def merge(existing: List[dict], fresh: List[dict]) -> List[dict]:
-    """Add today's events without duplicating a (date, symbol) already there."""
-    seen = {(e.get("date"), e.get("symbol")) for e in existing}
-    out = list(existing)
+    """Update repeated finalized reads without duplicating date/symbol keys."""
+    by_key = {(e.get("date"), e.get("symbol")): e for e in existing}
     for e in fresh:
-        if (e.get("date"), e.get("symbol")) not in seen:
-            out.append(e)
-            seen.add((e.get("date"), e.get("symbol")))
-    return out
+        key = (e.get("date"), e.get("symbol"))
+        old = by_key.get(key, {})
+        by_key[key] = dict(e, follow=old.get("follow") or {})
+    return sorted(by_key.values(), key=lambda e: (e.get("date", ""), e.get("symbol", "")))
 
 
 def fill_follow_through(events: List[dict], bars: Dict[str, pd.DataFrame],
                         cfg: MarketConfig) -> int:
     """Write in what happened N sessions after each event, once N sessions
-    have happened. Returns how many fields were filled this run."""
+    have completed; reruns repair corrected source bars. Returns how many fields were filled this run."""
     filled = 0
+    completed = last_completed()
     for e in events:
         df = bars.get(e.get("symbol"))
-        if df is None:
-            continue
-        try:
-            i = df.index.get_loc(pd.Timestamp(e["date"]))
-        except KeyError:
+        if df is None or pd.Timestamp(e["date"]) not in df.index:
             continue
         c = df["close"].astype(float)
-        base = float(c.iloc[i])
+        base = float(c.loc[pd.Timestamp(e["date"])])
         for n in cfg.follow_through_days:
             key = f"{n}d"
-            if key in (e.get("follow") or {}):
+            target = follow_dates(e["date"], n)
+            if target > completed or pd.Timestamp(target) not in c.index:
                 continue
-            if i + n < len(c):
-                e.setdefault("follow", {})[key] = round((float(c.iloc[i + n]) / base - 1) * 100, 2)
+            value = float(c.loc[pd.Timestamp(target)])
+            if not (math.isfinite(value) and math.isfinite(base) and base > 0):
+                continue
+            # Recompute from final bars so reruns can repair source corrections.
+            result = round((value / base - 1) * 100, 2)
+            if (e.get("follow") or {}).get(key) != result:
+                e.setdefault("follow", {})[key] = result
                 filled += 1
     return filled
 
@@ -153,34 +158,29 @@ def _stats(vals: List[float], n_min: int) -> dict:
         return out
     arr = np.array(vals, dtype=float)
     mean = float(arr.mean())
-    sd = float(arr.std(ddof=1)) if n > 1 else float("nan")
-    se = sd / math.sqrt(n) if sd == sd else float("nan")
     out.update({"mean_pct": round(mean, 2), "median_pct": round(float(np.median(arr)), 2),
-                "up_share_pct": round(float((arr > 0).mean() * 100), 1)})
-    if n > 1 and sd == 0 and abs(mean) > 1e-9:
-        # Every result the same. No spread means no doubt.
-        out["ci"] = [round(mean, 2), round(mean, 2)]
-        out["real"] = True
-    elif se == se and se > 0:
-        lo, hi = mean - 1.96 * se, mean + 1.96 * se
-        out["ci"] = [round(lo, 2), round(hi, 2)]
-        out["real"] = bool(lo > 0 or hi < 0)
+                "up_share_pct": round(float((arr > 0).mean() * 100), 1),
+                "descriptive_only": True})
     return out
 
 
 def what_the_record_says(events: List[dict], cfg: MarketConfig) -> List[dict]:
-    """Follow-through by kind and direction, with sample sizes. This is the
+    """Follow-through by kind and direction, with sample sizes and descriptive results. This is the
     agent's understanding of how the market moves, and it is only as good
     as the count next to each line."""
     groups: Dict[str, List[dict]] = {}
     for e in events:
-        key = f"{e.get('kind')} / {e.get('direction')}"
+        key = (f"{e.get('kind')} / {e.get('direction')} / rules {e.get('rules_version', 1)}"
+               f" / news {e.get('news_assessment', 'legacy')}")
         groups.setdefault(key, []).append(e)
     out = []
     for key, evs in sorted(groups.items()):
-        row = {"group": key, "events": len(evs)}
+        row = {"group": key, "events": len(evs),
+               "distinct_dates": len({e.get("date") for e in evs}),
+               "distinct_symbols": len({e.get("symbol") for e in evs})}
         for n in cfg.follow_through_days:
             vals = [(e.get("follow") or {}).get(f"{n}d") for e in evs]
             row[f"after_{n}d"] = _stats(vals, cfg.min_sample)
+            row[f"after_{n}d"]["distinct_dates"] = len({e.get("date") for e in evs if (e.get("follow") or {}).get(f"{n}d") is not None})
         out.append(row)
     return out

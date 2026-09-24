@@ -3,3 +3,5 @@ __pycache__/
 data/cache/
 .venv/
 _to_delete/
+
+.venv*/
