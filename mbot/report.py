@@ -77,8 +77,13 @@ def page(read: dict) -> str:
                 f'<div class="v">{e(str(value))}</div><div class="s">{e(sub)}</div></div>')
 
     errors = "".join(f"<li>{e(str(x))}</li>" for x in read.get("errors", []))
-    status = read.get("status", "unknown")
+    status = read.get("status", "unknown").replace("_", " ")
     health = f'<div class="verdict"><strong>Data status: {e(status)}</strong><ul>{errors}</ul></div>'
+    warnings = "".join(f"<li>{e(str(x))}</li>" for x in read.get("warnings", []))
+    if warnings:
+        health += (f'<div class="verdict"><strong>Data notes — no action required</strong>'
+                   f'<p>Affected observations are excluded. The next scheduled attempt checks them again.</p>'
+                   f'<ul>{warnings}</ul></div>')
     last_good = read.get("last_good") or {}
     if last_good:
         health += f'<p>Last good report: {e(str(last_good.get("as_of")))}. Current reading unavailable.</p>'

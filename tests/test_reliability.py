@@ -99,10 +99,36 @@ class Reliability(unittest.TestCase):
         self.assertEqual(agent._news_baseline(rows,['S'],30)['S'],10)
         self.assertEqual(agent._news_baseline([dict(r,method='legacy') for r in rows],['S'],30),{})
 
-    def test_failed_news_visible(self):
+    def test_optional_news_gap_is_a_visible_warning(self):
         code,read=self.run_agent(news_result=({}, {}, ['SPY'], []))
-        self.assertEqual(code,1)
+        self.assertEqual(code,0)
+        self.assertTrue(read['healthy']);self.assertEqual(read['errors'],[])
+        self.assertEqual(read['status'],'complete_with_warnings')
         self.assertIn('Headlines unavailable',(report.SITE/'index.html').read_text())
+
+    def test_limited_price_and_news_gaps_do_not_require_user_action(self):
+        bars = {s:d for s,d in self.bars.items() if s not in ('GIS','WMB')}
+        counts = {s:1 for s in self.cfg.watchlist if s not in ('NVDA','META')}
+        code,read=self.run_agent(bars, (counts,{},[],['NVDA','META']))
+        self.assertEqual(code,0);self.assertEqual(read['errors'],[])
+        self.assertEqual(len(read['warnings']),2)
+        self.assertEqual(read['news']['valid_symbols'],191)
+        self.assertEqual(read['breadth']['counted'],191)
+        self.assertEqual(len(read['sectors']),11)
+        self.assertIn('Data notes — no action required',(report.SITE/'index.html').read_text())
+        history=agent._load_news_history()
+        self.assertNotIn('NVDA',history[-1]['counts'])
+        self.args.scheduled = True
+        with patch.object(sessions,'utc_now',return_value=pd.Timestamp('2026-09-24T21:12Z')),patch.object(agent.datamod,'load_universe',side_effect=RuntimeError('retry attempted')) as load:
+            self.assertEqual(agent.cmd_run(self.args),1)
+            load.assert_called_once()
+
+    def test_insufficient_breadth_still_fails(self):
+        essential = set(INDEXES)|set(SECTORS)|set(RATES_AND_FEAR)
+        code,read=self.run_agent({s:d for s,d in self.bars.items() if s in essential})
+        self.assertEqual(code,1);self.assertFalse(read['healthy'])
+        self.assertTrue(any('coverage below' in x for x in read['errors']))
+        self.assertEqual(read['risk']['word'],'unknown')
 
     def test_fixed_news_window_dedup_and_cap(self):
         article=lambda ident,dt:{'id':ident,'content':{'title':ident,'pubDate':dt}}
