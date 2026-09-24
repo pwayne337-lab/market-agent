@@ -1,16 +1,17 @@
 {
   "schema_version": 2,
   "rules_version": 2,
-  "updated_at": "2026-09-24T21:23:08+00:00",
+  "updated_at": "2026-09-24T21:33:20+00:00",
   "as_of": "2026-09-24",
   "session_close": "2026-09-24T20:00:00+00:00",
   "expires_at": "2026-09-25T21:30:00+00:00",
   "finalized": true,
-  "healthy": false,
-  "status": "degraded",
-  "errors": [
+  "healthy": true,
+  "status": "complete_with_warnings",
+  "errors": [],
+  "warnings": [
     "Missing or stale prices for 2 symbols: GIS, WMB",
-    "Headline sample limit reached for 2 symbols; excluded from baseline"
+    "Headline sample limit reached for NVDA, META; excluded from baseline"
   ],
   "risk": {
     "word": "risk-on",
@@ -253,6 +254,5 @@
     "watchlist": 193,
     "loaded": 193
   },
-  "last_good": null,
   "brief": "Market read for 2026-09-24: RISK-ON (4 of 4 checks).\nSPY is in an uptrend, +7.4% from its 200-day and -1.1% from its 52-week high; +0.8% over 5 sessions, +0.4% over 21.\nBreadth is mixed: 56% of 191 watchlist names are above their 200-day, 34% above their 50-day; 9 made a 20-day high today, 59 a 20-day low.\nVIX 15.7 (normal, -12% over 5 sessions); SPY's realized volatility is 11% annualized and steady.\nLeading sectors over 21 sessions versus SPY: Technology (+6.8%), Energy (+1.1%), Communication (+0.6%). Lagging: Materials (-7.3%), Real estate (-7.8%), Utilities (-8.9%).\nNo qualifying events recorded in the available prices and headline observations.\nNews baseline warming up: 0 symbols have five valid prior observations.\nThe record holds 0 event(s)."
 }
