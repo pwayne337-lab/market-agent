@@ -8,7 +8,7 @@ body{margin:0;background:var(--bg);color:var(--text);font:14px/1.5 -apple-system
 .wrap{max-width:960px;margin:0 auto;padding:20px 16px}
 h1{font-size:22px;margin:0} h2{font-size:16px;margin:24px 0 8px}
 .sub{color:var(--muted);margin:2px 0 14px}
-.verdict{border:1px solid var(--line);border-left:4px solid var(--warn);background:var(--card);border-radius:12px;padding:14px 16px;margin-bottom:14px}
+.verdict{border:1px solid var(--line);border-left:4px solid var(--good);background:var(--card);border-radius:12px;padding:14px 16px;margin-bottom:14px}
 .verdict b{font-size:18px;text-transform:uppercase}
 .verdict ul{margin:8px 0 0;padding-left:18px} .verdict li.ok::marker{color:var(--good)} .verdict li.no::marker{color:var(--bad)}
 .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
@@ -23,31 +23,38 @@ pre{white-space:pre-wrap;background:var(--card);border:1px solid var(--line);bor
 footer{color:var(--muted);font-size:12px;margin-top:24px}
 </style></head><body><div class="wrap">
 <h1>Researcher</h1>
-<div class="verdict"><strong>Data status: unavailable</strong><ul><li>Market read failed: ValueError: SPY has no complete, current history for 2026-09-28</li></ul></div><p>Last good report: 2026-09-25. Current reading unavailable.</p>
+<div class="verdict"><strong>Data status: complete with warnings</strong><ul></ul></div><div class="verdict"><strong>Data notes — no action required</strong><p>Affected observations are excluded. The next scheduled attempt checks them again.</p><ul><li>Headline sample limit reached for NVDA; excluded from baseline</li></ul></div>
 <div id="freshness" class="verdict" hidden>This report is stale. The next completed-session update is overdue.</div>
-<p class="sub">Studies the same names the trading agent can buy. Trades nothing. Read for None, written 2026-09-29T01:00:44+00:00.</p>
-<div class="verdict"><b>unknown</b> &middot; 0 of 4 checks
-<ul></ul></div>
+<p class="sub">Studies the same names the trading agent can buy. Trades nothing. Read for 2026-09-28, written 2026-09-29T02:49:12+00:00.</p>
+<div class="verdict"><b>risk-on</b> &middot; 4 of 4 checks
+<ul><li class="ok">index above its 200-day — pass</li><li class="ok">50-day above the 200-day — pass</li><li class="ok">breadth not weak (over 40% of names above their 200-day) — pass</li><li class="ok">VIX not stressed (under 25) — pass</li></ul></div>
 <div class="tiles">
-<div class="tile"><div class="l">SPY vs 200-day</div><div class="v">—</div><div class="s"></div></div>
-<div class="tile"><div class="l">Breadth</div><div class="v">—</div><div class="s">of 0 names above their 200-day ()</div></div>
-<div class="tile"><div class="l">VIX</div><div class="v">—</div><div class="s">, +0% in 5 sessions</div></div>
-<div class="tile"><div class="l">SPY realized vol</div><div class="v">—</div><div class="s">20-day, </div></div>
+<div class="tile"><div class="l">SPY vs 200-day</div><div class="v">+7.0%</div><div class="s">uptrend</div></div>
+<div class="tile"><div class="l">Breadth</div><div class="v">55%</div><div class="s">of 193 names above their 200-day (mixed)</div></div>
+<div class="tile"><div class="l">VIX</div><div class="v">16.07</div><div class="s">normal, +8% in 5 sessions</div></div>
+<div class="tile"><div class="l">SPY realized vol</div><div class="v">11%</div><div class="s">20-day, steady</div></div>
 <div class="tile"><div class="l">Events today</div><div class="v">0</div><div class="s">big moves or headline bursts</div></div>
 </div>
 <h2>Today's brief</h2>
-<pre></pre>
+<pre>Market read for 2026-09-28: RISK-ON (4 of 4 checks).
+SPY is in an uptrend, +7.0% from its 200-day and -1.3% from its 52-week high; -1.0% over 5 sessions, -0.5% over 21.
+Breadth is mixed: 55% of 193 watchlist names are above their 200-day, 34% above their 50-day; 13 made a 20-day high today, 60 a 20-day low.
+VIX 16.1 (normal, +8% over 5 sessions); SPY&#x27;s realized volatility is 11% annualized and steady.
+Leading sectors over 21 sessions versus SPY: Technology (+3.7%), Energy (+0.8%), Health care (+0.7%). Lagging: Materials (-6.2%), Real estate (-6.2%), Utilities (-8.0%).
+No qualifying events recorded in the available prices and headline observations.
+News baseline warming up: 0 symbols have five valid prior observations.
+The record holds 0 event(s).</pre>
 <h2>Sectors versus SPY</h2>
-<div class="card"><table><thead><tr><th>#</th><th>Sector</th><th class="n">21-day vs SPY</th><th class="n">5-day vs SPY</th><th class="n">21-day return</th></tr></thead><tbody></tbody></table></div>
+<div class="card"><table><thead><tr><th>#</th><th>Sector</th><th class="n">21-day vs SPY</th><th class="n">5-day vs SPY</th><th class="n">21-day return</th></tr></thead><tbody><tr><td>1</td><td>Technology <span class='sym'>XLK</span></td><td class='n pos'>+3.7%</td><td class='n pos'>+0.9%</td><td class='n'>+3.3%</td></tr><tr><td>2</td><td>Energy <span class='sym'>XLE</span></td><td class='n pos'>+0.8%</td><td class='n pos'>+0.4%</td><td class='n'>+0.3%</td></tr><tr><td>3</td><td>Health care <span class='sym'>XLV</span></td><td class='n pos'>+0.7%</td><td class='n pos'>+2.4%</td><td class='n'>+0.2%</td></tr><tr><td>4</td><td>Communication <span class='sym'>XLC</span></td><td class='n pos'>+0.6%</td><td class='n neg'>-2.1%</td><td class='n'>+0.1%</td></tr><tr><td>5</td><td>Consumer staples <span class='sym'>XLP</span></td><td class='n neg'>-2.2%</td><td class='n pos'>+1.5%</td><td class='n'>-2.6%</td></tr><tr><td>6</td><td>Industrials <span class='sym'>XLI</span></td><td class='n neg'>-4.9%</td><td class='n pos'>+0.3%</td><td class='n'>-5.3%</td></tr><tr><td>7</td><td>Consumer discretionary <span class='sym'>XLY</span></td><td class='n neg'>-5.3%</td><td class='n neg'>-1.9%</td><td class='n'>-5.7%</td></tr><tr><td>8</td><td>Financials <span class='sym'>XLF</span></td><td class='n neg'>-5.6%</td><td class='n neg'>-2.0%</td><td class='n'>-6.0%</td></tr><tr><td>9</td><td>Materials <span class='sym'>XLB</span></td><td class='n neg'>-6.2%</td><td class='n pos'>+0.5%</td><td class='n'>-6.6%</td></tr><tr><td>10</td><td>Real estate <span class='sym'>XLRE</span></td><td class='n neg'>-6.2%</td><td class='n neg'>-1.9%</td><td class='n'>-6.6%</td></tr><tr><td>11</td><td>Utilities <span class='sym'>XLU</span></td><td class='n neg'>-8.0%</td><td class='n neg'>-2.5%</td><td class='n'>-8.4%</td></tr></tbody></table></div>
 <h2>Events recorded today</h2>
-<p class="sub">Headline baseline: 0 symbols ready; 0 valid observations this run. Counts cover returned Yahoo articles, not all published news.</p>
+<p class="sub">Headline baseline: 0 symbols ready; 192 valid observations this run. Counts cover returned Yahoo articles, not all published news.</p>
 <div class="card"><table><thead><tr><th>Symbol</th><th>Kind</th><th class="n">Move</th><th class="n">In ATRs</th><th class="n">Headlines</th><th>What the headlines said</th></tr></thead><tbody><tr><td colspan=6 class=muted>none</td></tr></tbody></table></div>
 <h2>What the record says so far</h2>
 <p class="sub">How prices moved after each kind of event, with the count it comes from. Under 20 events a line reports the count and nothing else. Results are descriptive only. Stocks and overlapping periods can be correlated; event counts do not measure independent evidence. No significance or prediction is claimed.</p>
 <div class="card"><table><thead><tr><th>Event kind / direction</th><th class="n">Events</th><th>Next session</th><th>Five sessions later</th></tr></thead><tbody><tr><td colspan=4 class=muted>nothing recorded yet</td></tr></tbody></table></div>
 <footer>Every word above is produced by a fixed rule from free daily prices and headline counts. No model reads the news and nothing here is a forecast. Source: the agent's own record, state/events.jsonl.</footer>
 </div><script>
-const expiry = null;
+const expiry = "2026-09-29T21:30:00+00:00";
 function checkFreshness() { if (expiry && Date.now() > Date.parse(expiry)) document.getElementById('freshness').hidden = false; }
 checkFreshness(); setInterval(checkFreshness, 60000);
 </script></body></html>
