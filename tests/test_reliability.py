@@ -33,7 +33,7 @@ class Reliability(unittest.TestCase):
     def run_agent(self, bars=None, news_result=None):
         result = news_result if news_result is not None else ({s:1 for s in self.cfg.watchlist},{},[],[])
         with patch.object(sessions,'utc_now',return_value=pd.Timestamp('2026-09-24T20:47Z')), \
-             patch.object(agent.datamod,'load_universe',return_value=self.bars if bars is None else bars), \
+             patch.object(agent.datamod,'load_session',return_value=self.bars if bars is None else bars), \
              patch.object(news,'fetch_headlines',return_value=result), contextlib.redirect_stdout(io.StringIO()):
             code = agent.cmd_run(self.args)
         return code,json.loads(agent.READ_FILE.read_text())
@@ -48,7 +48,7 @@ class Reliability(unittest.TestCase):
         self.assertEqual(sessions.follow_dates('2026-11-25',1),'2026-11-27')
 
     def test_early_run_preserves_research(self):
-        with patch.object(sessions,'utc_now',return_value=pd.Timestamp('2026-09-24T18:57Z')),patch.object(agent.datamod,'load_universe') as load:
+        with patch.object(sessions,'utc_now',return_value=pd.Timestamp('2026-09-24T18:57Z')),patch.object(agent.datamod,'load_session') as load:
             self.assertEqual(agent.cmd_run(self.args),0)
             load.assert_not_called()
         self.assertFalse(events.EVENTS_FILE.exists())
@@ -59,7 +59,7 @@ class Reliability(unittest.TestCase):
         self.assertEqual(code,0);self.assertTrue(read['finalized']);self.assertTrue(read['healthy'])
         self.assertIn('warming up',read['brief'])
         self.args.scheduled = True
-        with patch.object(sessions,'utc_now',return_value=pd.Timestamp('2026-09-24T21:12Z')),patch.object(agent.datamod,'load_universe') as load:
+        with patch.object(sessions,'utc_now',return_value=pd.Timestamp('2026-09-24T21:12Z')),patch.object(agent.datamod,'load_session') as load:
             agent.cmd_run(self.args);load.assert_not_called()
 
     def test_missing_spy_publishes_current_failure(self):
@@ -119,7 +119,7 @@ class Reliability(unittest.TestCase):
         history=agent._load_news_history()
         self.assertNotIn('NVDA',history[-1]['counts'])
         self.args.scheduled = True
-        with patch.object(sessions,'utc_now',return_value=pd.Timestamp('2026-09-24T21:12Z')),patch.object(agent.datamod,'load_universe',side_effect=RuntimeError('retry attempted')) as load:
+        with patch.object(sessions,'utc_now',return_value=pd.Timestamp('2026-09-24T21:12Z')),patch.object(agent.datamod,'load_session',side_effect=RuntimeError('retry attempted')) as load:
             self.assertEqual(agent.cmd_run(self.args),1)
             load.assert_called_once()
 

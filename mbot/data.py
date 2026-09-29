@@ -330,3 +330,42 @@ def cache_status() -> pd.DataFrame:
             rows.append({"symbol": path.stem, "bars": 0, "first": None,
                          "last": None, "size_kb": 0})
     return pd.DataFrame(rows)
+
+
+def load_session(symbols: List[str], start: str, session: str,
+                 cached: bool = False) -> Dict[str, pd.DataFrame]:
+    """Read a completed session, retrying nonempty but stale batch responses.
+
+    Yahoo's end date is exclusive. Supplying it explicitly also makes a late
+    run after UTC midnight request the same completed New York session.
+    Cached mode never downloads, including when a cached symbol is stale.
+    """
+    end = str((pd.Timestamp(session) + pd.Timedelta(days=1)).date())
+    selected = [s for s in symbols if _cache_path(s).exists()] if cached else symbols
+    bars = load_universe(selected, start=start, end=end, refresh=not cached)
+
+    def current(frame):
+        return frame is not None and pd.Timestamp(session) in frame.index
+
+    for sym in symbols:
+        frame = bars.get(sym)
+        if current(frame):
+            continue
+        last = str(frame.index[-1].date()) if frame is not None and len(frame) else "none"
+        print(f"  [{sym}] session {session} missing (latest usable bar: {last})")
+        if cached:
+            continue
+        # Nonempty stale results used to bypass all download retries. Retry
+        # independently, then validate again; yesterday's prices never qualify.
+        for attempt in range(2):
+            try:
+                frame = load_bars(sym, start=start, end=end, refresh=True)
+                bars[sym] = frame
+                if current(frame):
+                    print(f"  [{sym}] recovered session {session} on retry {attempt + 1}")
+                    break
+            except Exception as exc:
+                print(f"  [{sym}] session retry {attempt + 1} failed: {exc}")
+        if not current(bars.get(sym)):
+            bars.pop(sym, None)
+    return {s: df.loc[df.index <= session] for s, df in bars.items() if current(df)}

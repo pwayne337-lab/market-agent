@@ -2,7 +2,7 @@ name: Market read
 
 on:
   schedule:
-    # 47 minutes after the normal close; retry before the trader's 4:30 CT scan.
+    # Backup to the hub's 3:45 / 4:10 PM Central dispatches.
     - cron: "47 15 * * 1-5"
       timezone: "America/Chicago"
     - cron: "12 16 * * 1-5"
@@ -29,6 +29,9 @@ jobs:
       changed: ${{ steps.freshness.outputs.changed }}
     steps:
       - uses: actions/checkout@v5
+        with:
+          # Concurrent dispatches must read the state saved by the preceding run.
+          ref: main
       - uses: actions/setup-python@v6
         with:
           python-version: "3.11"
@@ -37,7 +40,7 @@ jobs:
       - name: Verify the rules and failure handling
         run: |
           python -m tests.test_logic
-          python -m unittest discover -s tests -p 'test_reliability.py'
+          python -m unittest discover -s tests -p 'test_*.py'
       - name: Read the completed session
         id: read
         continue-on-error: true

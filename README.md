@@ -80,10 +80,12 @@ site/                the page and market.json
 
 ## Automatic runs and data quality
 
-GitHub Actions runs at **3:47 p.m. America/Chicago on weekdays**, with a
-**4:12 p.m. retry**. Both follow daylight saving time. The retry skips a session
-already completed successfully without warnings. GitHub schedules can be delayed, so these are
-scheduled start times, not guaranteed delivery times. The trader's 4:30 p.m.
+The hub cloud timer starts GitHub Actions at **3:45 p.m. America/Chicago on
+weekdays**, with a **4:10 p.m. retry**. GitHub's own 3:47 / 4:12 schedule remains
+a backup. Both follow daylight saving time. The retry skips a session
+already completed successfully without warnings. The hub checks for acceptance every five minutes during bounded windows and
+avoids starting a second job while one is active. GitHub runner queues can
+still delay execution, so these are target times, not a guarantee. The trader's 4:30 p.m.
 Central scan reads the dated report without changing any trade decision.
 
 An NYSE calendar handles holidays and early closes. No permanent event or
@@ -113,3 +115,8 @@ and pull requests as well as before scheduled reads.
 Install `requirements.txt` with Python 3.11 or newer. Runtime libraries are
 pinned to tested versions. `--cached` is fully offline and skips headlines;
 it still enforces current completed-session data and reports the skipped-news warning.
+
+Price reads request an explicit completed-session date. A nonempty batch that
+omits that session is retried independently up to twice. Prices that remain
+stale are excluded, and missing essential data still fails the report. Cached
+mode remains offline. The logs name the missing session and last usable bar.

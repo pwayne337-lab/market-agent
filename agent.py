@@ -110,13 +110,8 @@ def _run(args):
         return 0
     universe = sorted(set(cfg.watchlist) | set(INDEXES) | set(SECTORS) | set(RATES_AND_FEAR))
     print(f"Loading {len(universe)} symbols for completed session {as_of}...")
-    if args.cached:
-        available = [sym for sym in universe if datamod._cache_path(sym).exists()]
-        if not available:
-            raise ValueError("no cached prices")
-        bars = datamod.load_universe(available, start=cfg.history_start, refresh=False)
-    else:
-        bars = datamod.load_universe(universe, start=cfg.history_start, refresh=True)
+    bars = datamod.load_session(universe, start=cfg.history_start,
+                                session=as_of, cached=args.cached)
     bars = {sym: df.loc[df.index <= as_of] for sym, df in bars.items()}
     stale = [sym for sym, df in bars.items() if df.empty or str(df.index[-1].date()) != as_of]
     bars = {sym: df for sym, df in bars.items() if sym not in stale}
@@ -126,7 +121,9 @@ def _run(args):
         warnings.append(f"Missing or stale prices for {len(missing)} symbols: {', '.join(missing[:10])}")
     spy = bars.get(cfg.regime_symbol)
     if spy is None or len(spy) < cfg.sma_slow + 1:
-        raise ValueError(f"{cfg.regime_symbol} has no complete, current history for {as_of}")
+        raise ValueError(f"{cfg.regime_symbol} has no complete, current history for {as_of} "
+                         f"({0 if spy is None else len(spy)} usable bars; "
+                         f"need {cfg.sma_slow + 1})")
     idx = regime.index_read(spy, cfg)
     indexes = {s: regime.index_read(bars[s], cfg) for s in INDEXES if s in bars}
     br = regime.breadth(bars, cfg.watchlist, cfg)
