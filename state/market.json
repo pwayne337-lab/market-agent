@@ -1,11 +1,11 @@
 {
   "schema_version": 2,
-  "updated_at": "2026-10-01T00:36:26+00:00",
+  "updated_at": "2026-10-01T15:18:34+00:00",
   "healthy": false,
   "finalized": false,
-  "status": "unavailable",
+  "status": "waiting",
   "errors": [
-    "Market read failed: ValueError: SPY has no complete, current history for 2026-09-30 (0 usable bars; need 201)"
+    "Waiting for a completed NYSE session and a 15-minute settlement buffer."
   ],
   "risk": {
     "word": "unknown",
