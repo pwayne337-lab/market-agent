@@ -28,7 +28,7 @@ import numpy as np
 import pandas as pd
 
 from .config import MarketConfig
-from .sessions import follow_dates, last_completed
+from .sessions import follow_dates, last_completed, schedule
 
 STATE_DIR = Path(__file__).resolve().parent.parent / "state"
 EVENTS_FILE = STATE_DIR / "events.jsonl"
@@ -52,9 +52,15 @@ def detect(bars: Dict[str, pd.DataFrame], news_counts: Dict[str, int],
     one, so the record can later be cut by kind.
     """
     out = []
+    required = None
+    if as_of:
+        end = pd.Timestamp(as_of)
+        required = schedule(str((end - pd.Timedelta(days=60)).date()), as_of).index[-(cfg.atr_period + 2):]
     for sym, df in bars.items():
         if df is None or len(df) < cfg.atr_period + 2:
             continue
+        if required is not None and not all(day in df.index for day in required):
+            continue  # Missing sessions cannot become a multi-day "daily" move.
         c = df["close"].astype(float)
         atr = _atr(df, cfg.atr_period)
         a = float(atr.iloc[-1])

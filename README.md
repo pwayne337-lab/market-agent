@@ -45,12 +45,24 @@ and it does not predict.
 
 ## Connection to the trading agent
 
-One way, and read-only. The trading agent reads `market.json` at its evening
-run and records the word and the checks in its own state, so the dashboard
-shows what the market agent thought that night beside what the trader did.
-Nothing the market agent says changes a trade. If its calls prove out over a
-few months of record, letting it gate new entries becomes a measurable
-change, and it will be measured the way every other rule is.
+One way, through the existing free HTTPS `site/market.json` feed. The report
+keeps its version 2 market envelope and adds `stock_research` version 1. Every
+requested symbol has a dated finding ID, available headlines with publication
+time/publisher/source link, unusual moves and headline bursts, price/headline
+coverage, missing-data warnings, and the dated sector ETF comparisons. Sector
+comparisons describe the market; we do not infer a company's sector membership.
+Capped headline responses retain available articles but never count as complete
+news coverage or enter the news-burst baseline. Earnings are not supplied.
+
+The trader validates the report, matches findings to each candidate's symbol
+and completed signal session, and passes them into its own `tbot/research.py`
+screen. Existing unusual-move and headline-burst events become review flags
+under the trader's existing approval gate. Ordinary headlines and sector context
+are recorded as evidence without guessing event risk from keywords. The broad
+risk word does not create, block, size, or exit a trade. Missing research remains
+explicitly unavailable; it is never reported as an empty successful screen.
+The trader keeps earnings checks independent and records which findings were
+considered and whether they affected each screening decision. No model is used.
 
 ## Commands
 
@@ -86,7 +98,7 @@ a backup. Both follow daylight saving time. The retry skips a session
 already completed successfully without warnings. The hub checks for acceptance every five minutes during bounded windows and
 avoids starting a second job while one is active. GitHub runner queues can
 still delay execution, so these are target times, not a guarantee. The trader's 4:30 p.m.
-Central scan reads the dated report without changing any trade decision.
+Central scan reads the dated report through its own screening and approval rules.
 
 An NYSE calendar handles holidays and early closes. No permanent event or
 follow-through is written before the close plus 15 minutes. All inputs must
@@ -120,3 +132,27 @@ Price reads request an explicit completed-session date. A nonempty batch that
 omits that session is retried independently up to twice. Prices that remain
 stale are excluded, and missing essential data still fails the report. Cached
 mode remains offline. The logs name the missing session and last usable bar.
+
+
+## Recovery and stock-report contract
+
+`python agent.py run --recover-last-completed` explicitly repairs the latest
+completed NYSE session before today's close. Its `as_of`, session close and
+expiry still identify that prior session. The workflow exposes the same
+`recover_last_completed` option. Ordinary early runs still wait. A scheduled
+retry skips only a successful report with the current stock-report schema.
+
+Prices must be numeric and finite and obey OHLCV bounds. Missing current bars
+are retried independently, then with a different history window; incompatible
+adjustments require a full cache rebuild. No usable completed bar means missing
+data, never a substituted older price. Unusual daily moves additionally require
+consecutive recent exchange sessions so a gap cannot become a multi-day move
+presented as today's move.
+
+`stock_research.coverage` lists the requested, usable-price, complete-headline,
+missing-price, missing-headline and capped-headline symbols. Capped symbols are
+a subset of missing-headline coverage even when some articles are retained.
+Every requested symbol has exactly one finding. Headline-burst baselines may
+still be warming up; that limitation is separate from a failed headline fetch.
+A shared offline report fixture in `tests/fixtures/researcher_report_v1.json`
+exercises the published contract in both repositories.

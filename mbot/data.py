@@ -18,6 +18,9 @@ from pathlib import Path
 from typing import Dict, List, Optional
 
 import pandas as pd
+import numpy as np
+
+from mbot import sessions
 
 CACHE_DIR = Path(__file__).resolve().parent.parent / "data" / "cache"
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
@@ -64,7 +67,7 @@ def _adjustment_drift(old: pd.DataFrame, fresh: pd.DataFrame):
     # skips NaN, so an overlap that is entirely NaN used to return nan, and
     # nan > tolerance is False, so the two halves were joined anyway and the
     # NaN rows overwrote good cached bars on the way through.
-    usable = a.notna() & b.notna()
+    usable = np.isfinite(a) & np.isfinite(b) & (a > 0) & (b > 0)
     n = int(usable.sum())
     if n == 0:
         return float("inf"), 0
@@ -98,8 +101,13 @@ def _normalize(df: pd.DataFrame) -> pd.DataFrame:
 def _sanity_check(symbol: str, df: pd.DataFrame) -> pd.DataFrame:
     """Drop rows that cannot be real. Bad ticks make fake backtest profits."""
     n_before = len(df)
+    original = df.copy()
 
-    df = df.dropna(subset=REQUIRED_COLS)
+    # NaN checks alone miss infinity, and vendor placeholders can arrive as
+    # strings. Neither is a usable price or volume, even if OHLC ordering holds.
+    df = df.copy()
+    df[REQUIRED_COLS] = df[REQUIRED_COLS].apply(pd.to_numeric, errors="coerce")
+    df = df[np.isfinite(df[REQUIRED_COLS].to_numpy(dtype=float)).all(axis=1)]
     df = df[(df[["open", "high", "low", "close"]] > 0).all(axis=1)]
     df = df[df["volume"] >= 0]
     # High must be the highest and low the lowest of the bar.
@@ -108,7 +116,10 @@ def _sanity_check(symbol: str, df: pd.DataFrame) -> pd.DataFrame:
 
     dropped = n_before - len(df)
     if dropped > 0:
-        print(f"  [{symbol}] dropped {dropped} malformed bar(s)")
+        rejected = original.loc[~original.index.isin(df.index)]
+        latest = rejected.tail(1)
+        detail = latest.to_dict(orient="index")
+        print(f"  [{symbol}] dropped {dropped} malformed bar(s); latest rejected OHLCV: {detail}")
     return df
 
 
@@ -227,6 +238,7 @@ def load_bars(symbol: str, start: str = "2015-01-01", end: Optional[str] = None,
         # either way, so batching cannot quietly skip a safety step.
         if fresh is None:
             fresh = download_bars(symbol, start=start, end=end)
+        fresh = _sanity_check(symbol, _normalize(fresh))
 
         # Merge into whatever is already cached instead of replacing it.
         # A daily run only asks for a couple of years of bars, and without
@@ -244,6 +256,8 @@ def load_bars(symbol: str, start: str = "2015-01-01", end: Optional[str] = None,
         # filter would read a crash, and the agent would act on it. So the two
         # halves are compared where they overlap before they are joined.
         old = _read_cache(path) if use_cache else None
+        if old is not None:
+            old = _sanity_check(symbol, old)
         if old is not None and len(old):
             drift, shared = _adjustment_drift(old, fresh)
             if shared == 0:
@@ -265,12 +279,14 @@ def load_bars(symbol: str, start: str = "2015-01-01", end: Optional[str] = None,
                 # already on disk deletes the rest of the history, and a
                 # backtest run tomorrow silently covers less ground than the
                 # same command covered today.
-                fresh = download_bars(symbol, start=begin, end=None)
+                fresh = _sanity_check(symbol, download_bars(symbol, start=begin, end=None))
             else:
                 fresh = pd.concat([old, fresh])
                 fresh = fresh[~fresh.index.duplicated(keep="last")].sort_index()
 
         df = fresh
+        if df.empty:
+            raise DataError(f"no usable downloaded bars for {symbol}")
         df.to_csv(path)
 
     df = _sanity_check(symbol, df)
@@ -341,12 +357,33 @@ def load_session(symbols: List[str], start: str, session: str,
     Cached mode never downloads, including when a cached symbol is stale.
     """
     end = str((pd.Timestamp(session) + pd.Timedelta(days=1)).date())
+    valid_dates = sessions.schedule(start, session).index
+    if pd.Timestamp(session) not in valid_dates:
+        raise DataError(f"{session} is not a trading session")
     selected = [s for s in symbols if _cache_path(s).exists()] if cached else symbols
-    bars = load_universe(selected, start=start, end=end, refresh=not cached)
+    try:
+        bars = load_universe(selected, start=start, end=end, refresh=not cached)
+    except DataError as exc:
+        # Even a wholly unusable batch gets the independent recovery window.
+        # Missing inputs still fail the report if recovery does not succeed.
+        print(f"  Session batch unavailable: {exc}")
+        bars = {}
+
+    def session_bars(symbol, frame):
+        if frame is None:
+            return None
+        selected = frame.loc[frame.index.isin(valid_dates)]
+        excluded = len(frame) - len(selected)
+        if excluded:
+            print(f"  [{symbol}] excluded {excluded} bar(s) outside requested trading sessions")
+        return selected
+
+    bars = {sym: session_bars(sym, frame) for sym, frame in bars.items()}
 
     def current(frame):
         return frame is not None and pd.Timestamp(session) in frame.index
 
+    recovery_waited = False
     for sym in symbols:
         frame = bars.get(sym)
         if current(frame):
@@ -359,7 +396,21 @@ def load_session(symbols: List[str], start: str, session: str,
         # independently, then validate again; yesterday's prices never qualify.
         for attempt in range(2):
             try:
-                frame = load_bars(sym, start=start, end=end, refresh=True)
+                if attempt == 0:
+                    frame = load_bars(sym, start=start, end=end, refresh=True)
+                else:
+                    # A different request window avoids repeating the same bad
+                    # long-history response. Keep >201 trading days and let
+                    # load_bars enforce adjustment compatibility with the cache.
+                    recovery_start = max(start, str((pd.Timestamp(session) - pd.Timedelta(days=550)).date()))
+                    if recovery_start == start:
+                        recovery_start = str((pd.Timestamp(start) - pd.Timedelta(days=7)).date())
+                    if not recovery_waited:
+                        time.sleep(5)
+                        recovery_waited = True
+                    fresh = download_bars(sym, start=recovery_start, end=end)
+                    frame = load_bars(sym, start=start, end=end, refresh=True, fresh=fresh)
+                frame = session_bars(sym, frame)
                 bars[sym] = frame
                 if current(frame):
                     print(f"  [{sym}] recovered session {session} on retry {attempt + 1}")

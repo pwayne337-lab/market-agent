@@ -22,7 +22,7 @@ from mbot import data as datamod
 from mbot import events as ev
 from mbot import news as newsmod
 from mbot import regime
-from mbot import report, sessions
+from mbot import report, sessions, findings
 from mbot.config import INDEXES, RATES_AND_FEAR, SECTORS, MarketConfig
 
 STATE_DIR = Path(__file__).resolve().parent / "state"
@@ -93,6 +93,13 @@ def cmd_run(args):
 def _run(args):
     cfg = MarketConfig()
     session = sessions.today_session()
+    if (session is None or not session["ready"]) and getattr(args, "recover_last_completed", False):
+        # Explicit recovery never re-labels yesterday as today. The calendar
+        # chooses only a session whose close + settlement buffer has passed.
+        day = sessions.last_completed()
+        completed = sessions.schedule(day, day)
+        session = {"date": day, "close": completed.iloc[0].market_close, "ready": True}
+        print(f"Recovering latest completed NYSE session {day}.")
     if session is None or not session["ready"]:
         # Holidays and early manual runs never change the permanent research record.
         prev = _previous()
@@ -105,6 +112,7 @@ def _run(args):
     prev = _previous()
     if (getattr(args, "scheduled", False) and prev.get("healthy") and prev.get("finalized")
             and prev.get("as_of") == as_of and prev.get("schema_version") == 2
+            and (prev.get("stock_research") or {}).get("schema_version") == findings.SCHEMA_VERSION
             and not prev.get("warnings")):
         print(f"Completed healthy read already recorded for {as_of}; retry skipped.")
         return 0
@@ -140,12 +148,13 @@ def _run(args):
         warnings.append("Some sectors lack prices on comparison endpoint dates")
     risk = regime.risk_score(idx, br if br["coverage_pct"] >= 90 else {}, vol, cfg)
 
-    counts, titles, failed, capped = {}, {}, [], []
+    counts, titles, articles, failed, capped = {}, {}, {}, [], []
     history = _load_news_history()
     baseline = _news_baseline([h for h in history if h.get("date", "") < as_of],
                               cfg.watchlist, cfg.news_baseline_days)
     if not (args.no_news or args.cached):
-        counts, titles, failed, capped = newsmod.fetch_headlines(cfg.watchlist, end=session["close"])
+        counts, articles, failed, capped = newsmod.fetch_headlines(cfg.watchlist, end=session["close"], detailed=True)
+        titles = {sym: [h['title'] for h in rows] for sym, rows in articles.items()}
         if failed:
             warnings.append(f"Headlines unavailable for {len(failed)} symbols")
         # Capped responses are omitted, not interpreted as a quiet day or a known total.
@@ -167,6 +176,13 @@ def _run(args):
     filled = ev.fill_follow_through(record, watch_bars, cfg)
     ev.save_events(record)
     says = ev.what_the_record_says(record, cfg)
+    stock_research = findings.build(as_of=as_of, symbols=cfg.watchlist,
+        bars=watch_bars, counts=counts, headlines=articles, baseline=baseline,
+        events=today, sectors=secs, failed=failed, capped=capped,
+        skipped=bool(args.no_news or args.cached), cfg=cfg)
+    history_gaps = set(watch_bars) - set(stock_research['coverage']['price_symbols'])
+    if history_gaps:
+        warnings.append(f'Incomplete recent price history for {len(history_gaps)} symbols; unusual moves not assessed')
     read = {
         "schema_version": 2, "rules_version": 2, "updated_at": now_iso(), "as_of": as_of,
         "session_close": session["close"].isoformat(), "expires_at": sessions.next_expiry(as_of),
@@ -174,6 +190,7 @@ def _run(args):
         "status": "degraded" if errors else "complete_with_warnings" if warnings else "complete",
         "errors": errors, "warnings": warnings,
         "risk": risk, "index": idx, "indexes": indexes, "breadth": br,
+        "stock_research": stock_research,
         "volatility": vol, "sectors": secs, "events_today": today,
         "record": {"events_total": len(record), "with_5d": sum("5d" in (e.get("follow") or {}) for e in record),
                    "filled_this_run": filled, "what_it_says": says},
@@ -226,6 +243,8 @@ def main():
     r.add_argument("--no-news", action="store_true", help="skip headline fetching")
     r.add_argument("--cached", action="store_true", help="use cached prices only (offline)")
     r.add_argument("--scheduled", action="store_true", help="skip an already successful session")
+    r.add_argument("--recover-last-completed", action="store_true",
+                   help="repair the latest completed session before today's close, preserving its date")
     r.set_defaults(func=cmd_run)
     p = sub.add_parser("page", help="rebuild the page from the saved read")
     p.set_defaults(func=cmd_page)
