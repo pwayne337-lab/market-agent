@@ -54,6 +54,25 @@ class Reliability(unittest.TestCase):
         self.assertFalse(events.EVENTS_FILE.exists())
         self.assertEqual(json.loads((report.SITE/'market.json').read_text())['status'],'waiting')
 
+    def test_explicit_recovery_before_close_keeps_previous_session_date(self):
+        self.args.recover_last_completed = True
+        with patch.object(sessions, 'utc_now', return_value=pd.Timestamp('2026-09-25T15:00Z')), \
+             patch.object(agent.datamod, 'load_session', return_value=self.bars), \
+             patch.object(news, 'fetch_headlines', return_value=({}, {}, [], [])), \
+             contextlib.redirect_stdout(io.StringIO()):
+            self.assertEqual(agent.cmd_run(self.args), 0)
+        read = json.loads(agent.READ_FILE.read_text())
+        self.assertEqual(read['as_of'], '2026-09-24')
+        self.assertEqual(read['stock_research']['as_of'], '2026-09-24')
+        self.assertEqual(read['session_close'], '2026-09-24T20:00:00+00:00')
+
+    def test_gapped_recent_history_cannot_create_daily_event(self):
+        frame = self.frame.copy()
+        frame.loc[frame.index[-1], 'close'] = 200
+        self.assertTrue(events.detect({'S':frame}, {}, {}, {}, self.cfg, as_of='2026-09-24'))
+        frame = frame.drop(frame.index[-2])
+        self.assertEqual(events.detect({'S':frame}, {}, {}, {}, self.cfg, as_of='2026-09-24'), [])
+
     def test_success_and_scheduled_duplicate(self):
         code,read = self.run_agent()
         self.assertEqual(code,0);self.assertTrue(read['finalized']);self.assertTrue(read['healthy'])

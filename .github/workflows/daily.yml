@@ -8,6 +8,11 @@ on:
     - cron: "12 16 * * 1-5"
       timezone: "America/Chicago"
   workflow_dispatch:
+    inputs:
+      recover_last_completed:
+        description: "Repair the latest completed session, preserving its actual date"
+        type: boolean
+        default: false
   push:
     branches: [main]
     paths: ["agent.py", "mbot/**", "requirements.txt", ".github/workflows/daily.yml"]
@@ -44,7 +49,14 @@ jobs:
       - name: Read the completed session
         id: read
         continue-on-error: true
-        run: python agent.py run --scheduled
+        env:
+          RECOVER_LAST_COMPLETED: ${{ inputs.recover_last_completed }}
+        run: |
+          if [ "$RECOVER_LAST_COMPLETED" = "true" ]; then
+            python agent.py run --scheduled --recover-last-completed
+          else
+            python agent.py run --scheduled
+          fi
       - name: Check for a newly generated report
         id: freshness
         if: always()
