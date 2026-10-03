@@ -1,11 +1,11 @@
 {
   "schema_version": 2,
-  "updated_at": "2026-10-02T00:50:47+00:00",
+  "updated_at": "2026-10-03T00:04:05+00:00",
   "healthy": false,
   "finalized": false,
   "status": "unavailable",
   "errors": [
-    "Market read failed: ValueError: SPY has no complete, current history for 2026-10-01 (0 usable bars; need 201)"
+    "Market read failed: ValueError: SPY has no complete, current history for 2026-10-02 (0 usable bars; need 201)"
   ],
   "risk": {
     "word": "unknown",
