@@ -15,6 +15,8 @@ def build(*, as_of, symbols, bars, counts, headlines, baseline, events, sectors,
     end = pd.Timestamp(as_of)
     recent = sessions.schedule(str((end - pd.Timedelta(days=60)).date()), as_of).index[-(cfg.atr_period + 2):]
     price_symbols = [s for s in requested if s in bars and all(d in bars[s].index for d in recent)]
+    recovered = {s: deepcopy(bars[s].attrs['price_recovery']) for s in price_symbols
+                 if bars[s].attrs.get('price_recovery', {}).get('as_of') == as_of}
     headline_symbols = [s for s in requested if s in counts and not skipped]
     rows = []
     for sym in requested:
@@ -24,6 +26,9 @@ def build(*, as_of, symbols, bars, counts, headlines, baseline, events, sectors,
                            'available' if sym in headline_symbols else 'unavailable')
         if not price_ok:
             warnings.append('Current price or consecutive recent bars unavailable; unusual moves not assessed.')
+        if sym in recovered:
+            warnings.append('Latest prices recovered from complete regular-session 30-minute bars; '
+                            'prices and volume may differ from finalized daily prints.')
         if headline_status != 'available':
             warnings.append(f'Headline coverage {headline_status}; missing headlines are not evidence of no news.')
         baseline_status = ('unavailable' if headline_status != 'available' else
@@ -46,6 +51,8 @@ def build(*, as_of, symbols, bars, counts, headlines, baseline, events, sectors,
             'sector_context': {'scope': 'market', 'as_of': as_of, 'comparisons': deepcopy(sectors)},
             'warnings': warnings,
         })
+        if sym in recovered:
+            rows[-1]['price_recovery'] = deepcopy(recovered[sym])
     missing_price = sorted(set(requested) - set(price_symbols))
     missing_news = sorted(set(requested) - set(headline_symbols))
     warnings = []
@@ -55,7 +62,9 @@ def build(*, as_of, symbols, bars, counts, headlines, baseline, events, sectors,
         warnings.append(f'Incomplete headline coverage for {len(missing_news)} symbols.')
     if len(sectors) != 11:
         warnings.append('Some sector comparisons are unavailable.')
-    return {
+    if recovered:
+        warnings.append(f'Latest prices reconstructed from intraday bars for {len(recovered)} symbols.')
+    result = {
         'schema_version': SCHEMA_VERSION, 'as_of': as_of,
         'source': {'provider': 'Yahoo Finance', 'price_method': 'adjusted_daily_ohlcv',
                    'news_method': news.METHOD},
@@ -65,3 +74,7 @@ def build(*, as_of, symbols, bars, counts, headlines, baseline, events, sectors,
                      'capped_headline_symbols': sorted(set(capped) & set(requested))},
         'warnings': warnings, 'findings': rows,
     }
+    if recovered:
+        result['source']['price_method'] = 'adjusted_daily_ohlcv_with_complete_intraday_recovery'
+        result['source']['price_recovery'] = recovered
+    return result

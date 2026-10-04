@@ -93,9 +93,11 @@ def cmd_run(args):
 def _run(args):
     cfg = MarketConfig()
     session = sessions.today_session()
-    if (session is None or not session["ready"]) and getattr(args, "recover_last_completed", False):
-        # Explicit recovery never re-labels yesterday as today. The calendar
-        # chooses only a session whose close + settlement buffer has passed.
+    recovery_only = getattr(args, "recovery_only", False)
+    if recovery_only or ((session is None or not session["ready"])
+                         and getattr(args, "recover_last_completed", False)):
+        # Recovery never re-labels yesterday as today. The calendar chooses
+        # only a session whose close + settlement buffer has passed.
         day = sessions.last_completed()
         completed = sessions.schedule(day, day)
         session = {"date": day, "close": completed.iloc[0].market_close, "ready": True}
@@ -110,13 +112,20 @@ def _run(args):
         return 0
     as_of = session["date"]
     prev = _previous()
-    if (getattr(args, "scheduled", False) and prev.get("healthy") and prev.get("finalized")
+    universe = sorted(set(cfg.watchlist) | set(INDEXES) | set(SECTORS) | set(RATES_AND_FEAR))
+    complete_daily_prices = (
+        not prev.get("price_recovery")
+        and (prev.get("universe") or {}).get("loaded") == len(universe)
+        and ((prev.get("stock_research") or {}).get("coverage") or {}).get("missing_price_symbols") == []
+        and len(prev.get("sectors") or []) == len(SECTORS)
+    )
+    if ((getattr(args, "scheduled", False) or recovery_only)
+            and prev.get("healthy") and prev.get("finalized")
             and prev.get("as_of") == as_of and prev.get("schema_version") == 2
             and (prev.get("stock_research") or {}).get("schema_version") == findings.SCHEMA_VERSION
-            and not prev.get("warnings")):
+            and (complete_daily_prices if recovery_only else not prev.get("warnings"))):
         print(f"Completed healthy read already recorded for {as_of}; retry skipped.")
         return 0
-    universe = sorted(set(cfg.watchlist) | set(INDEXES) | set(SECTORS) | set(RATES_AND_FEAR))
     print(f"Loading {len(universe)} symbols for completed session {as_of}...")
     bars = datamod.load_session(universe, start=cfg.history_start,
                                 session=as_of, cached=args.cached)
@@ -125,6 +134,11 @@ def _run(args):
     bars = {sym: df for sym, df in bars.items() if sym not in stale}
     missing = sorted(set(universe) - set(bars))
     errors, warnings = [], []
+    price_recovery = {sym: df.attrs["price_recovery"] for sym, df in bars.items()
+                      if df.attrs.get("price_recovery", {}).get("as_of") == as_of}
+    if price_recovery:
+        warnings.append(f"Prices recovered from complete intraday bars for {len(price_recovery)} symbols; "
+                        "values may differ from finalized daily prints")
     if missing:
         warnings.append(f"Missing or stale prices for {len(missing)} symbols: {', '.join(missing[:10])}")
     spy = bars.get(cfg.regime_symbol)
@@ -200,6 +214,8 @@ def _run(args):
                  "method": newsmod.METHOD, "note": "Returned Yahoo articles in the 24 hours ending at the close; not all published news."},
         "min_sample": cfg.min_sample, "universe": {"watchlist": len(cfg.watchlist), "loaded": len(bars)},
     }
+    if price_recovery:
+        read["price_recovery"] = price_recovery
     if errors:
         read["last_good"] = (prev if prev.get("healthy") and prev.get("finalized") else prev.get("last_good"))
     read["brief"] = report.brief(read)
@@ -245,6 +261,8 @@ def main():
     r.add_argument("--scheduled", action="store_true", help="skip an already successful session")
     r.add_argument("--recover-last-completed", action="store_true",
                    help="repair the latest completed session before today's close, preserving its date")
+    r.add_argument("--recovery-only", action="store_true",
+                   help="repair latest-session price gaps or recovered prices; preserve complete daily reads with headline warnings")
     r.set_defaults(func=cmd_run)
     p = sub.add_parser("page", help="rebuild the page from the saved read")
     p.set_defaults(func=cmd_page)

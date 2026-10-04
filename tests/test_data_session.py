@@ -18,6 +18,9 @@ class SessionDataTests(unittest.TestCase):
         self.addCleanup(self.tmp.cleanup)
         p = patch.object(data, 'CACHE_DIR', Path(self.tmp.name))
         p.start(); self.addCleanup(p.stop)
+        p = patch.object(data, '_recover_session_intraday',
+                         side_effect=data.DataError('intraday recovery unavailable in daily-only tests'))
+        p.start(); self.addCleanup(p.stop)
         self.old = frame(['2026-09-24', '2026-09-25'])
         self.fresh = frame(['2026-09-24', '2026-09-25', '2026-09-28'])
 
