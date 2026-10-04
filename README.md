@@ -149,6 +149,31 @@ data, never a substituted older price. Unusual daily moves additionally require
 consecutive recent exchange sessions so a gap cannot become a multi-day move
 presented as today's move.
 
+If daily retries still omit the completed stock/ETF session, a final recovery
+requests Yahoo's separate 30-minute feed. Both that session and its preceding
+session must contain every regular trading interval, including early closes,
+with valid OHLCV. The preceding session's aggregated prices must agree with
+the adjusted daily history within 0.2%; no price scaling or filling is guessed.
+Index symbols such as VIX use different trading hours and are excluded from
+this fallback. Recovered prices are used only in memory, disclosed in the
+report and affected stock findings, and never saved as ordinary daily cache
+data. Intraday prices and volume can differ from final daily prints. Recovery
+prioritizes SPY and has a three-minute request budget; unrecovered symbols
+remain unavailable and essential-input checks still apply.
+Recovered observations can appear in today's findings, with their provenance,
+but do not enter the permanent event sample or fill future-return outcomes.
+Only a later daily-feed confirmation can add those observations to the record.
+
+Two additional recovery checks run at **8:20 p.m. Monday–Friday** and
+**7:20 a.m. Tuesday–Saturday**, America/Chicago. They use `--recovery-only`
+to retry the actual latest completed NYSE session after the vendor has had
+more time to publish. Calendar holidays, early closes, and weekends never
+change the report's date. A healthy report with ordinary headline warnings
+is left alone; a failed report or one using intraday recovery is retried.
+Reports with missing stock prices, recent price-history gaps, or incomplete
+sector comparisons also retry.
+These checks use the same concurrency group as the normal afternoon reads.
+
 `stock_research.coverage` lists the requested, usable-price, complete-headline,
 missing-price, missing-headline and capped-headline symbols. Capped symbols are
 a subset of missing-headline coverage even when some articles are retained.

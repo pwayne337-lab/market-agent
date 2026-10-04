@@ -20,6 +20,7 @@ from __future__ import annotations
 
 import json
 import math
+from copy import deepcopy
 from datetime import date
 from pathlib import Path
 from typing import Dict, List, Optional
@@ -92,6 +93,9 @@ def detect(bars: Dict[str, pd.DataFrame], news_counts: Dict[str, int],
             "top_headlines": (headlines.get(sym) or [])[:3],
             "follow": {},
         })
+        recovery = df.attrs.get("price_recovery", {})
+        if recovery.get("as_of") == str(day.date()):
+            out[-1]["price_recovery"] = deepcopy(recovery)
     out.sort(key=lambda e: -abs(e["move_atr"]))
     return out
 
@@ -116,9 +120,18 @@ def save_events(rows: List[dict]) -> None:
 
 
 def merge(existing: List[dict], fresh: List[dict]) -> List[dict]:
-    """Update repeated finalized reads without duplicating date/symbol keys."""
-    by_key = {(e.get("date"), e.get("symbol")): e for e in existing}
+    """Record daily-source events without duplicating date/symbol keys.
+
+    Intraday reconstructions may be displayed in today's report, but they
+    are not permanent research observations until daily prices confirm them.
+    Otherwise a provisional move that disappears on the daily retry would
+    remain in the record, because no replacement event would be generated.
+    """
+    by_key = {(e.get("date"), e.get("symbol")): e for e in existing
+              if not e.get("price_recovery")}
     for e in fresh:
+        if e.get("price_recovery"):
+            continue
         key = (e.get("date"), e.get("symbol"))
         old = by_key.get(key, {})
         by_key[key] = dict(e, follow=old.get("follow") or {})
@@ -132,6 +145,8 @@ def fill_follow_through(events: List[dict], bars: Dict[str, pd.DataFrame],
     filled = 0
     completed = last_completed()
     for e in events:
+        if e.get("price_recovery"):
+            continue
         df = bars.get(e.get("symbol"))
         if df is None or pd.Timestamp(e["date"]) not in df.index:
             continue
@@ -140,6 +155,8 @@ def fill_follow_through(events: List[dict], bars: Dict[str, pd.DataFrame],
         for n in cfg.follow_through_days:
             key = f"{n}d"
             target = follow_dates(e["date"], n)
+            if df.attrs.get("price_recovery", {}).get("as_of") in (e["date"], target):
+                continue  # Wait for daily prices for either return endpoint.
             if target > completed or pd.Timestamp(target) not in c.index:
                 continue
             value = float(c.loc[pd.Timestamp(target)])

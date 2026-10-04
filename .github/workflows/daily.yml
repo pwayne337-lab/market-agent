@@ -7,6 +7,11 @@ on:
       timezone: "America/Chicago"
     - cron: "12 16 * * 1-5"
       timezone: "America/Chicago"
+    # Bounded recovery when the vendor has not finished publishing daily bars.
+    - cron: "20 20 * * 1-5"
+      timezone: "America/Chicago"
+    - cron: "20 7 * * 2-6"
+      timezone: "America/Chicago"
   workflow_dispatch:
     inputs:
       recover_last_completed:
@@ -51,8 +56,11 @@ jobs:
         continue-on-error: true
         env:
           RECOVER_LAST_COMPLETED: ${{ inputs.recover_last_completed }}
+          RECOVERY_ONLY: ${{ github.event_name == 'schedule' && (github.event.schedule == '20 20 * * 1-5' || github.event.schedule == '20 7 * * 2-6') }}
         run: |
-          if [ "$RECOVER_LAST_COMPLETED" = "true" ]; then
+          if [ "$RECOVERY_ONLY" = "true" ]; then
+            python agent.py run --scheduled --recovery-only
+          elif [ "$RECOVER_LAST_COMPLETED" = "true" ]; then
             python agent.py run --scheduled --recover-last-completed
           else
             python agent.py run --scheduled

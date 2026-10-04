@@ -31,6 +31,7 @@ REQUIRED_COLS = ["open", "high", "low", "close", "volume"]
 # the cache is treated as being on a different basis. Rounding moves prices by
 # a hundredth of a percent. A split moves them by half or more.
 ADJUST_TOLERANCE = 0.002
+INTRADAY_RECOVERY_BUDGET = 180
 
 
 class DataError(RuntimeError):
@@ -157,12 +158,10 @@ def download_bars(symbol: str, start: str, end: Optional[str] = None,
 
 def download_many(symbols: List[str], start: str, end: Optional[str] = None,
                   chunk: int = 40) -> Dict[str, pd.DataFrame]:
-    """Fetch several symbols per request instead of one at a time.
+    """Load groups of symbols and split yfinance's combined response.
 
-    A watchlist of 200 names is 200 separate HTTP requests the naive way, which
-    is slow and, from a shared address like a CI runner, a good way to get rate
-    limited into a half-empty result. Yahoo will return a batch in one call, so
-    this asks in chunks and splits the frame afterwards.
+    yfinance still requests each ticker separately. Chunking limits the size
+    of each combined frame; it does not reduce the number of HTTP requests.
 
     Anything the batch does not return is retried on its own, because one bad
     ticker in a chunk should not cost you the other thirty-nine.
@@ -348,6 +347,106 @@ def cache_status() -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
+def _regular_session_bar(symbol: str, raw: pd.DataFrame, day: str,
+                         market_open, market_close) -> pd.DataFrame:
+    """Aggregate only an exact, valid set of regular-session 30-minute bars.
+
+    Do not use _normalize here: it removes timezone information and silently
+    deduplicates timestamps, both of which would hide incomplete source data.
+    """
+    if not isinstance(raw, pd.DataFrame) or raw.empty:
+        raise DataError(f"no intraday bars for {symbol}")
+    frame = raw.copy()
+    if isinstance(frame.columns, pd.MultiIndex):
+        if frame.columns.nlevels != 2 or set(frame.columns.get_level_values(1)) != {symbol}:
+            raise DataError(f"unexpected intraday symbols for {symbol}")
+        frame = frame.droplevel(1, axis=1)
+    frame = frame.rename(columns={c: str(c).strip().lower().replace(" ", "_") for c in frame.columns})
+    if frame.columns.duplicated().any() or not set(REQUIRED_COLS).issubset(frame.columns):
+        raise DataError(f"invalid intraday columns for {symbol}")
+    frame = frame[REQUIRED_COLS]
+    try:
+        stamps = pd.DatetimeIndex(pd.to_datetime(frame.index))
+    except (TypeError, ValueError) as exc:
+        raise DataError(f"invalid intraday timestamps for {symbol}") from exc
+    if stamps.tz is None or stamps.hasnans:
+        raise DataError(f"intraday timestamps for {symbol} must have a timezone")
+    frame.index = stamps.tz_convert("UTC")
+    market_open, market_close = pd.Timestamp(market_open), pd.Timestamp(market_close)
+    expected = pd.date_range(market_open, market_close, freq="30min", inclusive="left")
+    regular = frame.loc[(frame.index >= market_open) & (frame.index < market_close)].sort_index()
+    if regular.index.has_duplicates or not regular.index.equals(expected):
+        raise DataError(f"incomplete or duplicate regular-session intraday bars for {symbol} on {day} "
+                        f"({len(regular)} returned; {len(expected)} expected)")
+    checked = _sanity_check(symbol, regular)
+    if len(checked) != len(expected):
+        raise DataError(f"malformed regular-session intraday bars for {symbol} on {day}")
+    bar = pd.DataFrame({
+        "open": [checked["open"].iloc[0]],
+        "high": [checked["high"].max()],
+        "low": [checked["low"].min()],
+        "close": [checked["close"].iloc[-1]],
+        "volume": [checked["volume"].sum()],
+    }, index=pd.DatetimeIndex([pd.Timestamp(day)], name="date"))
+    if len(_sanity_check(symbol, bar)) != 1:
+        raise DataError(f"invalid aggregated intraday bar for {symbol} on {day}")
+    return bar
+
+
+def _recover_session_intraday(symbol: str, history: Optional[pd.DataFrame],
+                              session: str) -> pd.DataFrame:
+    """Recover a missing daily bar from complete, compatible intraday data.
+
+    This is one bounded request. Both the prior and requested NYSE sessions
+    must have every regular-session slot. Prior-session adjusted OHLC must
+    agree with the validated daily history; no price rescaling is inferred.
+    The reconstructed row stays in memory so the disk cache remains daily
+    source data and a later run cannot lose the reconstruction provenance.
+    """
+    if symbol.startswith("^"):
+        # Index publication sessions (including VIX) differ from NYSE equity
+        # hours. Their daily values cannot be reconstructed on this calendar.
+        raise DataError(f"intraday recovery does not support index sessions for {symbol}")
+    calendar = sessions.schedule(str((pd.Timestamp(session) - pd.Timedelta(days=15)).date()), session)
+    if len(calendar) < 2 or str(calendar.index[-1].date()) != session:
+        raise DataError(f"no preceding trading session for {session}")
+    anchor = str(calendar.index[-2].date())
+    if history is None or pd.Timestamp(anchor) not in history.index:
+        raise DataError(f"no validated daily adjustment anchor for {symbol} on {anchor}")
+    daily_anchor = _sanity_check(symbol, history.loc[[pd.Timestamp(anchor)]])
+    if len(daily_anchor) != 1:
+        raise DataError(f"invalid daily adjustment anchor for {symbol} on {anchor}")
+
+    import yfinance as yf
+    raw = yf.download(symbol, start=anchor,
+                      end=str((pd.Timestamp(session) + pd.Timedelta(days=1)).date()),
+                      interval="30m", auto_adjust=True, prepost=False,
+                      ignore_tz=False, progress=False, threads=False,
+                      group_by="column", timeout=15)
+    intraday_anchor, recovered = [
+        _regular_session_bar(symbol, raw, day, calendar.loc[day, "market_open"],
+                             calendar.loc[day, "market_close"])
+        for day in (anchor, session)
+    ]
+    prices = REQUIRED_COLS[:4]
+    reference = daily_anchor[prices].iloc[0].astype(float)
+    observed = intraday_anchor[prices].iloc[0].astype(float)
+    drift = ((reference - observed).abs() / reference).max()
+    if not np.isfinite(drift) or drift > ADJUST_TOLERANCE:
+        raise DataError(f"intraday adjustment anchor differs for {symbol} on {anchor} "
+                        f"({drift * 100:.3f}%; maximum {ADJUST_TOLERANCE * 100:.3f}%)")
+    result = pd.concat([history.loc[history.index != pd.Timestamp(session)], recovered]).sort_index()
+    result.attrs["price_recovery"] = {
+        "provider": "Yahoo Finance", "as_of": session,
+        "method": "complete_regular_session_30m", "interval": "30m",
+        "anchor_session": anchor,
+        "bars": len(pd.date_range(calendar.loc[session, "market_open"],
+                                  calendar.loc[session, "market_close"],
+                                  freq="30min", inclusive="left")),
+    }
+    return result
+
+
 def load_session(symbols: List[str], start: str, session: str,
                  cached: bool = False) -> Dict[str, pd.DataFrame]:
     """Read a completed session, retrying nonempty but stale batch responses.
@@ -417,6 +516,20 @@ def load_session(symbols: List[str], start: str, session: str,
                     break
             except Exception as exc:
                 print(f"  [{sym}] session retry {attempt + 1} failed: {exc}")
-        if not current(bars.get(sym)):
-            bars.pop(sym, None)
+    if not cached:
+        recovery_started = time.monotonic()
+        missing = [sym for sym in symbols if not current(bars.get(sym)) and not sym.startswith("^")]
+        # Recover the essential broad index ETF first during a broad feed failure.
+        missing.sort(key=lambda sym: sym != "SPY")
+        for sym in missing:
+            if time.monotonic() - recovery_started + 15 > INTRADAY_RECOVERY_BUDGET:
+                print("  Intraday recovery time budget exhausted; remaining symbols stay unavailable")
+                break
+            try:
+                recovered = _recover_session_intraday(sym, bars.get(sym), session)
+                bars[sym] = session_bars(sym, recovered)
+                print(f"  [{sym}] recovered session {session} from complete regular-session 30-minute bars")
+            except Exception as exc:
+                print(f"  [{sym}] intraday recovery unavailable: {exc}")
+                bars.pop(sym, None)
     return {s: df.loc[df.index <= session] for s, df in bars.items() if current(df)}

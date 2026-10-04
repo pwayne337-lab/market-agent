@@ -86,6 +86,28 @@ class FindingsTests(unittest.TestCase):
         self.assertEqual(rows['CCC']['events'], [])
         self.assertNotIn('OUTSIDE', rows)
 
+    def test_recovered_prices_keep_symbol_specific_provenance_and_warning(self):
+        recovered = self.frame.copy()
+        metadata = {'as_of': AS_OF, 'method': 'complete_regular_session_30m',
+                    'interval': '30m', 'anchor_session': '2026-09-23'}
+        recovered.attrs['price_recovery'] = metadata
+        result = self.build(bars={'AAA': recovered, 'BBB': self.frame}, events=[event()])
+        rows = {r['symbol']: r for r in result['findings']}
+        self.assertEqual(result['source']['price_recovery'], {'AAA': metadata})
+        self.assertEqual(rows['AAA']['price_recovery'], metadata)
+        self.assertEqual(rows['AAA']['price_status'], 'available')
+        self.assertTrue(any('finalized daily prints' in w for w in rows['AAA']['warnings']))
+        self.assertNotIn('price_recovery', rows['BBB'])
+        metadata['as_of'] = 'changed'
+        self.assertEqual(rows['AAA']['price_recovery']['as_of'], AS_OF)
+
+    def test_stale_recovery_metadata_is_not_attached_to_current_report(self):
+        recovered = self.frame.copy()
+        recovered.attrs['price_recovery'] = {'as_of': '2026-09-23'}
+        result = self.build(bars={'AAA': recovered})
+        self.assertNotIn('price_recovery', result['source'])
+        self.assertNotIn('price_recovery', result['findings'][0])
+
     def test_sector_context_is_dated_market_context_without_company_mapping(self):
         result = self.build()
         for row in result['findings']:

@@ -66,6 +66,139 @@ class Reliability(unittest.TestCase):
         self.assertEqual(read['stock_research']['as_of'], '2026-09-24')
         self.assertEqual(read['session_close'], '2026-09-24T20:00:00+00:00')
 
+    def test_recovery_uses_exact_latest_completed_calendar_session(self):
+        self.args.recovery_only = True
+        for now, expected in [
+            ('2026-09-25T01:20Z', '2026-09-24'),  # 8:20 p.m. Central
+            ('2026-09-25T12:20Z', '2026-09-24'),  # 7:20 a.m. Central
+            ('2026-09-19T12:20Z', '2026-09-18'),  # Saturday recovers Friday
+            ('2026-09-07T20:20Z', '2026-09-04'),  # Labor Day recovers Friday
+            ('2026-09-08T12:20Z', '2026-09-04'),  # Morning after Labor Day
+            ('2026-09-24T19:59Z', '2026-09-23'),  # Before close
+            ('2026-09-24T20:14Z', '2026-09-23'),  # Settlement buffer
+        ]:
+            with self.subTest(now=now), \
+                 patch.object(sessions, 'utc_now', return_value=pd.Timestamp(now)), \
+                 patch.object(agent, '_previous', return_value={}), \
+                 patch.object(agent.datamod, 'load_session', return_value=self.bars) as load, \
+                 patch.object(news, 'fetch_headlines', return_value=({}, {}, [], [])), \
+                 contextlib.redirect_stdout(io.StringIO()):
+                self.assertEqual(agent.cmd_run(self.args), 0)
+                self.assertEqual(load.call_args.kwargs['session'], expected)
+                read = json.loads(agent.READ_FILE.read_text())
+                self.assertEqual(read['as_of'], expected)
+                self.assertEqual(read['stock_research']['as_of'], expected)
+                self.assertEqual(read['session_close'], f'{expected}T20:00:00+00:00')
+
+    def test_recovery_skips_healthy_same_session_with_headline_warnings(self):
+        self.run_agent(news_result=({}, {}, ['SPY'], []))
+        before = {path: path.read_bytes() for path in (
+            agent.READ_FILE, events.EVENTS_FILE, report.SITE / 'market.json', report.SITE / 'index.html')}
+        self.args.recovery_only = True
+        with patch.object(sessions, 'utc_now', return_value=pd.Timestamp('2026-09-25T12:20Z')), \
+             patch.object(agent.datamod, 'load_session') as load, \
+             patch.object(news, 'fetch_headlines') as fetch, \
+             contextlib.redirect_stdout(io.StringIO()):
+            self.assertEqual(agent.cmd_run(self.args), 0)
+            load.assert_not_called()
+            fetch.assert_not_called()
+        self.assertEqual({path: path.read_bytes() for path in before}, before)
+
+    def test_recovery_retries_failed_session_then_preserves_success(self):
+        self.run_agent()
+        self.run_agent({sym: frame for sym, frame in self.bars.items() if sym != 'SPY'})
+        self.args.recovery_only = True
+        with patch.object(sessions, 'utc_now', return_value=pd.Timestamp('2026-09-25T12:20Z')), \
+             patch.object(agent.datamod, 'load_session', return_value=self.bars) as load, \
+             patch.object(news, 'fetch_headlines', return_value=({}, {}, ['SPY'], [])), \
+             contextlib.redirect_stdout(io.StringIO()):
+            self.assertEqual(agent.cmd_run(self.args), 0)
+            load.assert_called_once()
+            read = json.loads(agent.READ_FILE.read_text())
+            self.assertTrue(read['healthy'])
+            self.assertEqual(read['as_of'], '2026-09-24')
+            self.assertEqual(agent.cmd_run(self.args), 0)
+            load.assert_called_once()
+
+    def test_recovery_retries_healthy_reports_with_price_gaps(self):
+        partial_reports = {
+            'missing_symbol': {sym: frame for sym, frame in self.bars.items() if sym != 'AAPL'},
+            'recent_history_gap': dict(self.bars, AAPL=self.bars['AAPL'].drop(self.frame.index[-2])),
+            'sector_endpoint_gap': dict(self.bars, XLK=self.bars['XLK'].drop(self.frame.index[-22])),
+        }
+        for gap, bars in partial_reports.items():
+            with self.subTest(gap=gap):
+                self.args.recovery_only = False
+                code, partial = self.run_agent(bars)
+                self.assertEqual(code, 0)
+                self.assertTrue(partial['healthy'])
+                self.assertTrue(partial['warnings'])
+                self.args.recovery_only = True
+                with patch.object(sessions, 'utc_now', return_value=pd.Timestamp('2026-09-25T12:20Z')), \
+                     patch.object(agent.datamod, 'load_session', return_value=self.bars) as load, \
+                     patch.object(news, 'fetch_headlines', return_value=({}, {}, ['SPY'], [])), \
+                     contextlib.redirect_stdout(io.StringIO()):
+                    self.assertEqual(agent.cmd_run(self.args), 0)
+                    load.assert_called_once()
+                    read = json.loads(agent.READ_FILE.read_text())
+                    self.assertEqual(read['universe']['loaded'], len(self.bars))
+                    self.assertEqual(read['stock_research']['coverage']['missing_price_symbols'], [])
+                    self.assertEqual(len(read['sectors']), len(SECTORS))
+                    self.assertEqual(agent.cmd_run(self.args), 0)
+                    load.assert_called_once()
+
+    def test_recovery_replaces_intraday_prices_with_final_daily_prices(self):
+        self.bars['SPY'].attrs['price_recovery'] = {
+            'as_of': '2026-09-24', 'method': 'complete_regular_session_30m',
+            'interval': '30m', 'anchor_session': '2026-09-23'}
+        _, recovered = self.run_agent()
+        self.assertTrue(recovered['healthy'])
+        self.assertIn('SPY', recovered['price_recovery'])
+        self.bars['SPY'].attrs.clear()
+        self.args.recovery_only = True
+        with patch.object(sessions, 'utc_now', return_value=pd.Timestamp('2026-09-25T12:20Z')), \
+             patch.object(agent.datamod, 'load_session', return_value=self.bars) as load, \
+             patch.object(news, 'fetch_headlines', return_value=({}, {}, ['SPY'], [])), \
+             contextlib.redirect_stdout(io.StringIO()):
+            self.assertEqual(agent.cmd_run(self.args), 0)
+            load.assert_called_once()
+            read = json.loads(agent.READ_FILE.read_text())
+            self.assertTrue(read['healthy'])
+            self.assertNotIn('price_recovery', read)
+            self.assertEqual(read['as_of'], '2026-09-24')
+            self.assertEqual(agent.cmd_run(self.args), 0)
+            load.assert_called_once()
+
+    def test_healthy_previous_session_does_not_block_recovery_of_new_session(self):
+        _, read = self.run_agent()
+        read['as_of'] = '2026-09-23'
+        agent._save(read)
+        self.args.recovery_only = True
+        with patch.object(sessions, 'utc_now', return_value=pd.Timestamp('2026-09-25T12:20Z')), \
+             patch.object(agent.datamod, 'load_session', return_value=self.bars) as load, \
+             patch.object(news, 'fetch_headlines', return_value=({}, {}, [], [])), \
+             contextlib.redirect_stdout(io.StringIO()):
+            self.assertEqual(agent.cmd_run(self.args), 0)
+            load.assert_called_once()
+        self.assertEqual(json.loads(agent.READ_FILE.read_text())['as_of'], '2026-09-24')
+
+    def test_recovered_prices_are_disclosed_for_all_universe_symbols(self):
+        source = {'provider': 'Yahoo Finance', 'as_of': '2026-09-24',
+                  'method': 'complete_regular_session_30m', 'interval': '30m',
+                  'anchor_session': '2026-09-23', 'bars': 13}
+        for symbol in ('SPY', '^VIX', 'AAPL'):
+            self.bars[symbol].attrs['price_recovery'] = dict(source)
+        code, read = self.run_agent()
+        self.assertEqual(code, 0)
+        self.assertEqual(read['price_recovery'], {s: source for s in ('SPY', '^VIX', 'AAPL')})
+        self.assertTrue(any('complete intraday bars for 3 symbols' in text
+                            and 'finalized daily prints' in text for text in read['warnings']))
+        for frame in self.bars.values():
+            frame.attrs.clear()
+        self.bars['SPY'].attrs['price_recovery'] = dict(source, as_of='2026-09-23')
+        _, daily_read = self.run_agent()
+        self.assertNotIn('price_recovery', daily_read)
+
     def test_gapped_recent_history_cannot_create_daily_event(self):
         frame = self.frame.copy()
         frame.loc[frame.index[-1], 'close'] = 200
