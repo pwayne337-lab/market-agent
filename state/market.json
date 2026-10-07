@@ -1,17 +1,15 @@
 {
   "schema_version": 2,
   "rules_version": 2,
-  "updated_at": "2026-10-07T00:45:35+00:00",
+  "updated_at": "2026-10-07T07:18:36+00:00",
   "as_of": "2026-10-06",
   "session_close": "2026-10-06T20:00:00+00:00",
   "expires_at": "2026-10-07T21:30:00+00:00",
   "finalized": true,
   "healthy": true,
-  "status": "complete_with_warnings",
+  "status": "complete",
   "errors": [],
-  "warnings": [
-    "Prices recovered from complete intraday bars for 19 symbols; values may differ from finalized daily prints"
-  ],
+  "warnings": [],
   "risk": {
     "word": "risk-on",
     "score": 4,
@@ -122,154 +120,8 @@
     "as_of": "2026-10-06",
     "source": {
       "provider": "Yahoo Finance",
-      "price_method": "adjusted_daily_ohlcv_with_complete_intraday_recovery",
-      "news_method": "yahoo_returned_items_v2",
-      "price_recovery": {
-        "ABBV": {
-          "provider": "Yahoo Finance",
-          "as_of": "2026-10-06",
-          "method": "complete_regular_session_30m",
-          "interval": "30m",
-          "anchor_session": "2026-10-05",
-          "bars": 13
-        },
-        "ABNB": {
-          "provider": "Yahoo Finance",
-          "as_of": "2026-10-06",
-          "method": "complete_regular_session_30m",
-          "interval": "30m",
-          "anchor_session": "2026-10-05",
-          "bars": 13
-        },
-        "ANET": {
-          "provider": "Yahoo Finance",
-          "as_of": "2026-10-06",
-          "method": "complete_regular_session_30m",
-          "interval": "30m",
-          "anchor_session": "2026-10-05",
-          "bars": 13
-        },
-        "CARR": {
-          "provider": "Yahoo Finance",
-          "as_of": "2026-10-06",
-          "method": "complete_regular_session_30m",
-          "interval": "30m",
-          "anchor_session": "2026-10-05",
-          "bars": 13
-        },
-        "DDOG": {
-          "provider": "Yahoo Finance",
-          "as_of": "2026-10-06",
-          "method": "complete_regular_session_30m",
-          "interval": "30m",
-          "anchor_session": "2026-10-05",
-          "bars": 13
-        },
-        "DOW": {
-          "provider": "Yahoo Finance",
-          "as_of": "2026-10-06",
-          "method": "complete_regular_session_30m",
-          "interval": "30m",
-          "anchor_session": "2026-10-05",
-          "bars": 13
-        },
-        "META": {
-          "provider": "Yahoo Finance",
-          "as_of": "2026-10-06",
-          "method": "complete_regular_session_30m",
-          "interval": "30m",
-          "anchor_session": "2026-10-05",
-          "bars": 13
-        },
-        "NOW": {
-          "provider": "Yahoo Finance",
-          "as_of": "2026-10-06",
-          "method": "complete_regular_session_30m",
-          "interval": "30m",
-          "anchor_session": "2026-10-05",
-          "bars": 13
-        },
-        "PANW": {
-          "provider": "Yahoo Finance",
-          "as_of": "2026-10-06",
-          "method": "complete_regular_session_30m",
-          "interval": "30m",
-          "anchor_session": "2026-10-05",
-          "bars": 13
-        },
-        "PSX": {
-          "provider": "Yahoo Finance",
-          "as_of": "2026-10-06",
-          "method": "complete_regular_session_30m",
-          "interval": "30m",
-          "anchor_session": "2026-10-05",
-          "bars": 13
-        },
-        "PYPL": {
-          "provider": "Yahoo Finance",
-          "as_of": "2026-10-06",
-          "method": "complete_regular_session_30m",
-          "interval": "30m",
-          "anchor_session": "2026-10-05",
-          "bars": 13
-        },
-        "SHOP": {
-          "provider": "Yahoo Finance",
-          "as_of": "2026-10-06",
-          "method": "complete_regular_session_30m",
-          "interval": "30m",
-          "anchor_session": "2026-10-05",
-          "bars": 13
-        },
-        "SNOW": {
-          "provider": "Yahoo Finance",
-          "as_of": "2026-10-06",
-          "method": "complete_regular_session_30m",
-          "interval": "30m",
-          "anchor_session": "2026-10-05",
-          "bars": 13
-        },
-        "SPOT": {
-          "provider": "Yahoo Finance",
-          "as_of": "2026-10-06",
-          "method": "complete_regular_session_30m",
-          "interval": "30m",
-          "anchor_session": "2026-10-05",
-          "bars": 13
-        },
-        "TEAM": {
-          "provider": "Yahoo Finance",
-          "as_of": "2026-10-06",
-          "method": "complete_regular_session_30m",
-          "interval": "30m",
-          "anchor_session": "2026-10-05",
-          "bars": 13
-        },
-        "UBER": {
-          "provider": "Yahoo Finance",
-          "as_of": "2026-10-06",
-          "method": "complete_regular_session_30m",
-          "interval": "30m",
-          "anchor_session": "2026-10-05",
-          "bars": 13
-        },
-        "WDAY": {
-          "provider": "Yahoo Finance",
-          "as_of": "2026-10-06",
-          "method": "complete_regular_session_30m",
-          "interval": "30m",
-          "anchor_session": "2026-10-05",
-          "bars": 13
-        },
-        "XLRE": {
-          "provider": "Yahoo Finance",
-          "as_of": "2026-10-06",
-          "method": "complete_regular_session_30m",
-          "interval": "30m",
-          "anchor_session": "2026-10-05",
-          "bars": 13
-        }
-      }
+      "price_method": "adjusted_daily_ohlcv",
+      "news_method": "yahoo_returned_items_v2"
     },
     "coverage": {
       "requested_symbols": [
@@ -861,9 +713,7 @@
       "missing_headline_symbols": [],
       "capped_headline_symbols": []
     },
-    "warnings": [
-      "Latest prices reconstructed from intraday bars for 18 symbols."
-    ],
+    "warnings": [],
     "findings": [
       {
         "id": "2026-10-06:AAPL",
@@ -962,10 +812,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -1078,10 +928,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -1095,17 +945,7 @@
             }
           ]
         },
-        "warnings": [
-          "Latest prices recovered from complete regular-session 30-minute bars; prices and volume may differ from finalized daily prints."
-        ],
-        "price_recovery": {
-          "provider": "Yahoo Finance",
-          "as_of": "2026-10-06",
-          "method": "complete_regular_session_30m",
-          "interval": "30m",
-          "anchor_session": "2026-10-05",
-          "bars": 13
-        }
+        "warnings": []
       },
       {
         "id": "2026-10-06:ABNB",
@@ -1204,10 +1044,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -1221,17 +1061,7 @@
             }
           ]
         },
-        "warnings": [
-          "Latest prices recovered from complete regular-session 30-minute bars; prices and volume may differ from finalized daily prints."
-        ],
-        "price_recovery": {
-          "provider": "Yahoo Finance",
-          "as_of": "2026-10-06",
-          "method": "complete_regular_session_30m",
-          "interval": "30m",
-          "anchor_session": "2026-10-05",
-          "bars": 13
-        }
+        "warnings": []
       },
       {
         "id": "2026-10-06:ABT",
@@ -1330,10 +1160,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -1446,10 +1276,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -1562,10 +1392,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -1678,10 +1508,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -1794,10 +1624,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -1910,10 +1740,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -2026,10 +1856,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -2142,10 +1972,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -2258,10 +2088,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -2374,10 +2204,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -2490,10 +2320,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -2606,10 +2436,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -2623,17 +2453,7 @@
             }
           ]
         },
-        "warnings": [
-          "Latest prices recovered from complete regular-session 30-minute bars; prices and volume may differ from finalized daily prints."
-        ],
-        "price_recovery": {
-          "provider": "Yahoo Finance",
-          "as_of": "2026-10-06",
-          "method": "complete_regular_session_30m",
-          "interval": "30m",
-          "anchor_session": "2026-10-05",
-          "bars": 13
-        }
+        "warnings": []
       },
       {
         "id": "2026-10-06:AON",
@@ -2732,10 +2552,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -2848,10 +2668,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -2964,10 +2784,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -3080,10 +2900,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -3196,10 +3016,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -3312,10 +3132,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -3428,10 +3248,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -3544,10 +3364,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -3660,10 +3480,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -3776,10 +3596,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -3892,10 +3712,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -4008,10 +3828,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -4124,10 +3944,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -4141,17 +3961,7 @@
             }
           ]
         },
-        "warnings": [
-          "Latest prices recovered from complete regular-session 30-minute bars; prices and volume may differ from finalized daily prints."
-        ],
-        "price_recovery": {
-          "provider": "Yahoo Finance",
-          "as_of": "2026-10-06",
-          "method": "complete_regular_session_30m",
-          "interval": "30m",
-          "anchor_session": "2026-10-05",
-          "bars": 13
-        }
+        "warnings": []
       },
       {
         "id": "2026-10-06:CAT",
@@ -4250,10 +4060,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -4366,10 +4176,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -4482,10 +4292,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -4598,10 +4408,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -4714,10 +4524,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -4830,10 +4640,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -4946,10 +4756,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -5062,10 +4872,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -5178,10 +4988,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -5294,10 +5104,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -5410,10 +5220,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -5526,10 +5336,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -5642,10 +5452,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -5758,10 +5568,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -5874,10 +5684,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -5990,10 +5800,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -6106,10 +5916,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -6222,10 +6032,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -6239,17 +6049,7 @@
             }
           ]
         },
-        "warnings": [
-          "Latest prices recovered from complete regular-session 30-minute bars; prices and volume may differ from finalized daily prints."
-        ],
-        "price_recovery": {
-          "provider": "Yahoo Finance",
-          "as_of": "2026-10-06",
-          "method": "complete_regular_session_30m",
-          "interval": "30m",
-          "anchor_session": "2026-10-05",
-          "bars": 13
-        }
+        "warnings": []
       },
       {
         "id": "2026-10-06:DE",
@@ -6348,10 +6148,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -6464,10 +6264,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -6580,10 +6380,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -6696,10 +6496,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -6812,10 +6612,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -6928,10 +6728,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -6945,17 +6745,7 @@
             }
           ]
         },
-        "warnings": [
-          "Latest prices recovered from complete regular-session 30-minute bars; prices and volume may differ from finalized daily prints."
-        ],
-        "price_recovery": {
-          "provider": "Yahoo Finance",
-          "as_of": "2026-10-06",
-          "method": "complete_regular_session_30m",
-          "interval": "30m",
-          "anchor_session": "2026-10-05",
-          "bars": 13
-        }
+        "warnings": []
       },
       {
         "id": "2026-10-06:DUK",
@@ -7054,10 +6844,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -7170,10 +6960,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -7286,10 +7076,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -7402,10 +7192,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -7518,10 +7308,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -7634,10 +7424,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -7750,10 +7540,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -7866,10 +7656,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -7982,10 +7772,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -8098,10 +7888,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -8214,10 +8004,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -8330,10 +8120,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -8446,10 +8236,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -8562,10 +8352,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -8678,10 +8468,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -8794,10 +8584,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -8910,10 +8700,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -9026,10 +8816,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -9142,10 +8932,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -9258,10 +9048,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -9374,10 +9164,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -9490,10 +9280,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -9606,10 +9396,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -9722,10 +9512,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -9838,10 +9628,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -9954,10 +9744,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -10070,10 +9860,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -10186,10 +9976,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -10302,10 +10092,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -10418,10 +10208,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -10534,10 +10324,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -10650,10 +10440,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -10766,10 +10556,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -10882,10 +10672,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -10998,10 +10788,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -11114,10 +10904,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -11230,10 +11020,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -11346,10 +11136,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -11462,10 +11252,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -11578,10 +11368,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -11694,10 +11484,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -11810,10 +11600,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -11926,10 +11716,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -12042,10 +11832,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -12158,10 +11948,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -12274,10 +12064,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -12390,10 +12180,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -12506,10 +12296,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -12622,10 +12412,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -12738,10 +12528,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -12755,17 +12545,7 @@
             }
           ]
         },
-        "warnings": [
-          "Latest prices recovered from complete regular-session 30-minute bars; prices and volume may differ from finalized daily prints."
-        ],
-        "price_recovery": {
-          "provider": "Yahoo Finance",
-          "as_of": "2026-10-06",
-          "method": "complete_regular_session_30m",
-          "interval": "30m",
-          "anchor_session": "2026-10-05",
-          "bars": 13
-        }
+        "warnings": []
       },
       {
         "id": "2026-10-06:MMM",
@@ -12864,10 +12644,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -12980,10 +12760,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -13096,10 +12876,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -13212,10 +12992,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -13328,10 +13108,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -13444,10 +13224,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -13560,10 +13340,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -13676,10 +13456,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -13792,10 +13572,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -13908,10 +13688,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -14024,10 +13804,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -14140,10 +13920,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -14256,10 +14036,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -14372,10 +14152,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -14389,17 +14169,7 @@
             }
           ]
         },
-        "warnings": [
-          "Latest prices recovered from complete regular-session 30-minute bars; prices and volume may differ from finalized daily prints."
-        ],
-        "price_recovery": {
-          "provider": "Yahoo Finance",
-          "as_of": "2026-10-06",
-          "method": "complete_regular_session_30m",
-          "interval": "30m",
-          "anchor_session": "2026-10-05",
-          "bars": 13
-        }
+        "warnings": []
       },
       {
         "id": "2026-10-06:NUE",
@@ -14498,10 +14268,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -14614,10 +14384,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -14732,10 +14502,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -14848,10 +14618,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -14964,10 +14734,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -15080,10 +14850,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -15196,10 +14966,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -15312,10 +15082,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -15428,10 +15198,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -15445,17 +15215,7 @@
             }
           ]
         },
-        "warnings": [
-          "Latest prices recovered from complete regular-session 30-minute bars; prices and volume may differ from finalized daily prints."
-        ],
-        "price_recovery": {
-          "provider": "Yahoo Finance",
-          "as_of": "2026-10-06",
-          "method": "complete_regular_session_30m",
-          "interval": "30m",
-          "anchor_session": "2026-10-05",
-          "bars": 13
-        }
+        "warnings": []
       },
       {
         "id": "2026-10-06:PAYX",
@@ -15554,10 +15314,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -15670,10 +15430,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -15786,10 +15546,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -15902,10 +15662,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -16018,10 +15778,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -16134,10 +15894,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -16250,10 +16010,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -16366,10 +16126,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -16482,10 +16242,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -16598,10 +16358,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -16615,17 +16375,7 @@
             }
           ]
         },
-        "warnings": [
-          "Latest prices recovered from complete regular-session 30-minute bars; prices and volume may differ from finalized daily prints."
-        ],
-        "price_recovery": {
-          "provider": "Yahoo Finance",
-          "as_of": "2026-10-06",
-          "method": "complete_regular_session_30m",
-          "interval": "30m",
-          "anchor_session": "2026-10-05",
-          "bars": 13
-        }
+        "warnings": []
       },
       {
         "id": "2026-10-06:PYPL",
@@ -16724,10 +16474,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -16741,17 +16491,7 @@
             }
           ]
         },
-        "warnings": [
-          "Latest prices recovered from complete regular-session 30-minute bars; prices and volume may differ from finalized daily prints."
-        ],
-        "price_recovery": {
-          "provider": "Yahoo Finance",
-          "as_of": "2026-10-06",
-          "method": "complete_regular_session_30m",
-          "interval": "30m",
-          "anchor_session": "2026-10-05",
-          "bars": 13
-        }
+        "warnings": []
       },
       {
         "id": "2026-10-06:QCOM",
@@ -16850,10 +16590,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -16966,10 +16706,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -17082,10 +16822,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -17198,10 +16938,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -17314,10 +17054,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -17430,10 +17170,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -17546,10 +17286,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -17662,10 +17402,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -17778,10 +17518,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -17795,17 +17535,7 @@
             }
           ]
         },
-        "warnings": [
-          "Latest prices recovered from complete regular-session 30-minute bars; prices and volume may differ from finalized daily prints."
-        ],
-        "price_recovery": {
-          "provider": "Yahoo Finance",
-          "as_of": "2026-10-06",
-          "method": "complete_regular_session_30m",
-          "interval": "30m",
-          "anchor_session": "2026-10-05",
-          "bars": 13
-        }
+        "warnings": []
       },
       {
         "id": "2026-10-06:SHW",
@@ -17904,10 +17634,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -18020,10 +17750,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -18136,10 +17866,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -18252,10 +17982,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -18368,10 +18098,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -18484,10 +18214,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -18501,17 +18231,7 @@
             }
           ]
         },
-        "warnings": [
-          "Latest prices recovered from complete regular-session 30-minute bars; prices and volume may differ from finalized daily prints."
-        ],
-        "price_recovery": {
-          "provider": "Yahoo Finance",
-          "as_of": "2026-10-06",
-          "method": "complete_regular_session_30m",
-          "interval": "30m",
-          "anchor_session": "2026-10-05",
-          "bars": 13
-        }
+        "warnings": []
       },
       {
         "id": "2026-10-06:SNPS",
@@ -18610,10 +18330,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -18726,10 +18446,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -18842,10 +18562,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -18958,10 +18678,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -19074,10 +18794,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -19091,17 +18811,7 @@
             }
           ]
         },
-        "warnings": [
-          "Latest prices recovered from complete regular-session 30-minute bars; prices and volume may differ from finalized daily prints."
-        ],
-        "price_recovery": {
-          "provider": "Yahoo Finance",
-          "as_of": "2026-10-06",
-          "method": "complete_regular_session_30m",
-          "interval": "30m",
-          "anchor_session": "2026-10-05",
-          "bars": 13
-        }
+        "warnings": []
       },
       {
         "id": "2026-10-06:SPY",
@@ -19200,10 +18910,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -19316,10 +19026,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -19432,10 +19142,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -19548,10 +19258,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -19565,17 +19275,7 @@
             }
           ]
         },
-        "warnings": [
-          "Latest prices recovered from complete regular-session 30-minute bars; prices and volume may differ from finalized daily prints."
-        ],
-        "price_recovery": {
-          "provider": "Yahoo Finance",
-          "as_of": "2026-10-06",
-          "method": "complete_regular_session_30m",
-          "interval": "30m",
-          "anchor_session": "2026-10-05",
-          "bars": 13
-        }
+        "warnings": []
       },
       {
         "id": "2026-10-06:TGT",
@@ -19674,10 +19374,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -19790,10 +19490,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -19906,10 +19606,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -20022,10 +19722,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -20138,10 +19838,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -20254,10 +19954,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -20370,10 +20070,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -20486,10 +20186,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -20503,17 +20203,7 @@
             }
           ]
         },
-        "warnings": [
-          "Latest prices recovered from complete regular-session 30-minute bars; prices and volume may differ from finalized daily prints."
-        ],
-        "price_recovery": {
-          "provider": "Yahoo Finance",
-          "as_of": "2026-10-06",
-          "method": "complete_regular_session_30m",
-          "interval": "30m",
-          "anchor_session": "2026-10-05",
-          "bars": 13
-        }
+        "warnings": []
       },
       {
         "id": "2026-10-06:UNH",
@@ -20612,10 +20302,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -20728,10 +20418,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -20844,10 +20534,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -20960,10 +20650,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -21076,10 +20766,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -21192,10 +20882,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -21308,10 +20998,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -21424,10 +21114,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -21441,17 +21131,7 @@
             }
           ]
         },
-        "warnings": [
-          "Latest prices recovered from complete regular-session 30-minute bars; prices and volume may differ from finalized daily prints."
-        ],
-        "price_recovery": {
-          "provider": "Yahoo Finance",
-          "as_of": "2026-10-06",
-          "method": "complete_regular_session_30m",
-          "interval": "30m",
-          "anchor_session": "2026-10-05",
-          "bars": 13
-        }
+        "warnings": []
       },
       {
         "id": "2026-10-06:WFC",
@@ -21550,10 +21230,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -21666,10 +21346,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -21782,10 +21462,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -21898,10 +21578,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -22014,10 +21694,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -22130,10 +21810,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -22246,10 +21926,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -22362,10 +22042,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -22478,10 +22158,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -22594,10 +22274,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -22710,10 +22390,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -22727,17 +22407,7 @@
             }
           ]
         },
-        "warnings": [
-          "Latest prices recovered from complete regular-session 30-minute bars; prices and volume may differ from finalized daily prints."
-        ],
-        "price_recovery": {
-          "provider": "Yahoo Finance",
-          "as_of": "2026-10-06",
-          "method": "complete_regular_session_30m",
-          "interval": "30m",
-          "anchor_session": "2026-10-05",
-          "bars": 13
-        }
+        "warnings": []
       },
       {
         "id": "2026-10-06:XLU",
@@ -22836,10 +22506,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -22952,10 +22622,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -23068,10 +22738,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -23184,10 +22854,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -23300,10 +22970,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -23416,10 +23086,10 @@
             {
               "symbol": "XLRE",
               "name": "Real estate",
-              "ret_5d": -0.56,
-              "ret_21d": -5.63,
-              "rs_5d": -2.5,
-              "rs_21d": -7.04,
+              "ret_5d": -0.58,
+              "ret_21d": -5.65,
+              "rs_5d": -2.53,
+              "rs_21d": -7.06,
               "rank": 10
             },
             {
@@ -23531,10 +23201,10 @@
     {
       "symbol": "XLRE",
       "name": "Real estate",
-      "ret_5d": -0.56,
-      "ret_21d": -5.63,
-      "rs_5d": -2.5,
-      "rs_21d": -7.04,
+      "ret_5d": -0.58,
+      "ret_21d": -5.65,
+      "rs_5d": -2.53,
+      "rs_21d": -7.06,
       "rank": 10
     },
     {
@@ -23570,159 +23240,5 @@
     "watchlist": 193,
     "loaded": 195
   },
-  "price_recovery": {
-    "ABBV": {
-      "provider": "Yahoo Finance",
-      "as_of": "2026-10-06",
-      "method": "complete_regular_session_30m",
-      "interval": "30m",
-      "anchor_session": "2026-10-05",
-      "bars": 13
-    },
-    "ABNB": {
-      "provider": "Yahoo Finance",
-      "as_of": "2026-10-06",
-      "method": "complete_regular_session_30m",
-      "interval": "30m",
-      "anchor_session": "2026-10-05",
-      "bars": 13
-    },
-    "ANET": {
-      "provider": "Yahoo Finance",
-      "as_of": "2026-10-06",
-      "method": "complete_regular_session_30m",
-      "interval": "30m",
-      "anchor_session": "2026-10-05",
-      "bars": 13
-    },
-    "CARR": {
-      "provider": "Yahoo Finance",
-      "as_of": "2026-10-06",
-      "method": "complete_regular_session_30m",
-      "interval": "30m",
-      "anchor_session": "2026-10-05",
-      "bars": 13
-    },
-    "DDOG": {
-      "provider": "Yahoo Finance",
-      "as_of": "2026-10-06",
-      "method": "complete_regular_session_30m",
-      "interval": "30m",
-      "anchor_session": "2026-10-05",
-      "bars": 13
-    },
-    "DOW": {
-      "provider": "Yahoo Finance",
-      "as_of": "2026-10-06",
-      "method": "complete_regular_session_30m",
-      "interval": "30m",
-      "anchor_session": "2026-10-05",
-      "bars": 13
-    },
-    "META": {
-      "provider": "Yahoo Finance",
-      "as_of": "2026-10-06",
-      "method": "complete_regular_session_30m",
-      "interval": "30m",
-      "anchor_session": "2026-10-05",
-      "bars": 13
-    },
-    "NOW": {
-      "provider": "Yahoo Finance",
-      "as_of": "2026-10-06",
-      "method": "complete_regular_session_30m",
-      "interval": "30m",
-      "anchor_session": "2026-10-05",
-      "bars": 13
-    },
-    "PANW": {
-      "provider": "Yahoo Finance",
-      "as_of": "2026-10-06",
-      "method": "complete_regular_session_30m",
-      "interval": "30m",
-      "anchor_session": "2026-10-05",
-      "bars": 13
-    },
-    "PSX": {
-      "provider": "Yahoo Finance",
-      "as_of": "2026-10-06",
-      "method": "complete_regular_session_30m",
-      "interval": "30m",
-      "anchor_session": "2026-10-05",
-      "bars": 13
-    },
-    "PYPL": {
-      "provider": "Yahoo Finance",
-      "as_of": "2026-10-06",
-      "method": "complete_regular_session_30m",
-      "interval": "30m",
-      "anchor_session": "2026-10-05",
-      "bars": 13
-    },
-    "SHOP": {
-      "provider": "Yahoo Finance",
-      "as_of": "2026-10-06",
-      "method": "complete_regular_session_30m",
-      "interval": "30m",
-      "anchor_session": "2026-10-05",
-      "bars": 13
-    },
-    "SNOW": {
-      "provider": "Yahoo Finance",
-      "as_of": "2026-10-06",
-      "method": "complete_regular_session_30m",
-      "interval": "30m",
-      "anchor_session": "2026-10-05",
-      "bars": 13
-    },
-    "SPOT": {
-      "provider": "Yahoo Finance",
-      "as_of": "2026-10-06",
-      "method": "complete_regular_session_30m",
-      "interval": "30m",
-      "anchor_session": "2026-10-05",
-      "bars": 13
-    },
-    "TEAM": {
-      "provider": "Yahoo Finance",
-      "as_of": "2026-10-06",
-      "method": "complete_regular_session_30m",
-      "interval": "30m",
-      "anchor_session": "2026-10-05",
-      "bars": 13
-    },
-    "UBER": {
-      "provider": "Yahoo Finance",
-      "as_of": "2026-10-06",
-      "method": "complete_regular_session_30m",
-      "interval": "30m",
-      "anchor_session": "2026-10-05",
-      "bars": 13
-    },
-    "WDAY": {
-      "provider": "Yahoo Finance",
-      "as_of": "2026-10-06",
-      "method": "complete_regular_session_30m",
-      "interval": "30m",
-      "anchor_session": "2026-10-05",
-      "bars": 13
-    },
-    "XLC": {
-      "provider": "Yahoo Finance",
-      "as_of": "2026-10-06",
-      "method": "complete_regular_session_30m",
-      "interval": "30m",
-      "anchor_session": "2026-10-05",
-      "bars": 13
-    },
-    "XLRE": {
-      "provider": "Yahoo Finance",
-      "as_of": "2026-10-06",
-      "method": "complete_regular_session_30m",
-      "interval": "30m",
-      "anchor_session": "2026-10-05",
-      "bars": 13
-    }
-  },
-  "brief": "Market read for 2026-10-06: RISK-ON (4 of 4 checks).\nSPY is in an uptrend, +8.5% from its 200-day and +0.0% from its 52-week high; +1.9% over 5 sessions, +1.4% over 21.\nBreadth is mixed: 56% of 193 watchlist names are above their 200-day, 34% above their 50-day; 28 made a 20-day high today, 7 a 20-day low.\nVIX 15.0 (normal, -6% over 5 sessions); SPY's realized volatility is 10% annualized and rising.\nLeading sectors over 21 sessions versus SPY: Technology (+6.6%), Energy (-1.3%), Communication (-1.4%). Lagging: Materials (-6.1%), Real estate (-7.0%), Financials (-8.1%).\nNo qualifying events recorded in the available prices and headline observations.\nNews baseline warming up: 192 symbols have five valid prior observations.\nThe record holds 0 event(s)."
+  "brief": "Market read for 2026-10-06: RISK-ON (4 of 4 checks).\nSPY is in an uptrend, +8.5% from its 200-day and +0.0% from its 52-week high; +1.9% over 5 sessions, +1.4% over 21.\nBreadth is mixed: 56% of 193 watchlist names are above their 200-day, 34% above their 50-day; 28 made a 20-day high today, 7 a 20-day low.\nVIX 15.0 (normal, -6% over 5 sessions); SPY's realized volatility is 10% annualized and rising.\nLeading sectors over 21 sessions versus SPY: Technology (+6.6%), Energy (-1.3%), Communication (-1.4%). Lagging: Materials (-6.1%), Real estate (-7.1%), Financials (-8.1%).\nNo qualifying events recorded in the available prices and headline observations.\nNews baseline warming up: 192 symbols have five valid prior observations.\nThe record holds 0 event(s)."
 }
