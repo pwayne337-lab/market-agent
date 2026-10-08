@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "rules_version": 2,
-  "updated_at": "2026-10-08T00:31:21+00:00",
+  "updated_at": "2026-10-08T01:06:36+00:00",
   "as_of": "2026-10-07",
   "session_close": "2026-10-07T20:00:00+00:00",
   "expires_at": "2026-10-08T21:30:00+00:00",
@@ -10,9 +10,8 @@
   "status": "complete_with_warnings",
   "errors": [],
   "warnings": [
-    "Prices recovered from complete intraday bars for 185 symbols; values may differ from finalized daily prints",
-    "Missing or stale prices for 9 symbols: ADBE, ADP, CMCSA, INTU, ISRG, LRCX, MPC, PANW, SNPS",
-    "Headlines unavailable for 1 symbols"
+    "Prices recovered from complete intraday bars for 187 symbols; values may differ from finalized daily prints",
+    "Missing or stale prices for 7 symbols: ADBE, ADP, CMCSA, INTU, ISRG, LRCX, SNPS"
   ],
   "risk": {
     "word": "risk-on",
@@ -110,14 +109,14 @@
     }
   },
   "breadth": {
-    "counted": 184,
-    "above_200_pct": 53.3,
-    "above_50_pct": 33.7,
-    "new_20d_highs": 11,
+    "counted": 186,
+    "above_200_pct": 53.8,
+    "above_50_pct": 34.4,
+    "new_20d_highs": 12,
     "new_20d_lows": 33,
     "status": "mixed",
     "rule": "weak under 40% above the 200-day, broad over 65%",
-    "coverage_pct": 95.3
+    "coverage_pct": 96.4
   },
   "stock_research": {
     "schema_version": 1,
@@ -903,6 +902,14 @@
           "anchor_session": "2026-10-06",
           "bars": 13
         },
+        "MPC": {
+          "provider": "Yahoo Finance",
+          "as_of": "2026-10-07",
+          "method": "complete_regular_session_30m",
+          "interval": "30m",
+          "anchor_session": "2026-10-06",
+          "bars": 13
+        },
         "MRK": {
           "provider": "Yahoo Finance",
           "as_of": "2026-10-07",
@@ -1056,6 +1063,14 @@
           "bars": 13
         },
         "OXY": {
+          "provider": "Yahoo Finance",
+          "as_of": "2026-10-07",
+          "method": "complete_regular_session_30m",
+          "interval": "30m",
+          "anchor_session": "2026-10-06",
+          "bars": 13
+        },
+        "PANW": {
           "provider": "Yahoo Finance",
           "as_of": "2026-10-07",
           "method": "complete_regular_session_30m",
@@ -1895,6 +1910,7 @@
         "MET",
         "META",
         "MMM",
+        "MPC",
         "MRK",
         "MRSH",
         "MRVL",
@@ -1915,6 +1931,7 @@
         "ORCL",
         "ORLY",
         "OXY",
+        "PANW",
         "PAYX",
         "PEP",
         "PFE",
@@ -2101,6 +2118,7 @@
         "NOC",
         "NOW",
         "NUE",
+        "NVDA",
         "NXPI",
         "O",
         "ON",
@@ -2184,19 +2202,14 @@
         "INTU",
         "ISRG",
         "LRCX",
-        "MPC",
-        "PANW",
         "SNPS"
       ],
-      "missing_headline_symbols": [
-        "NVDA"
-      ],
+      "missing_headline_symbols": [],
       "capped_headline_symbols": []
     },
     "warnings": [
-      "Unusual moves unassessed for 9 symbols.",
-      "Incomplete headline coverage for 1 symbols.",
-      "Latest prices reconstructed from intraday bars for 184 symbols."
+      "Unusual moves unassessed for 7 symbols.",
+      "Latest prices reconstructed from intraday bars for 186 symbols."
     ],
     "findings": [
       {
@@ -15133,7 +15146,7 @@
         "id": "2026-10-07:MPC",
         "symbol": "MPC",
         "as_of": "2026-10-07",
-        "price_status": "unavailable",
+        "price_status": "available",
         "headline_status": "available",
         "news_baseline_status": "ready",
         "headlines": [],
@@ -15244,8 +15257,16 @@
           ]
         },
         "warnings": [
-          "Current price or consecutive recent bars unavailable; unusual moves not assessed."
-        ]
+          "Latest prices recovered from complete regular-session 30-minute bars; prices and volume may differ from finalized daily prints."
+        ],
+        "price_recovery": {
+          "provider": "Yahoo Finance",
+          "as_of": "2026-10-07",
+          "method": "complete_regular_session_30m",
+          "interval": "30m",
+          "anchor_session": "2026-10-06",
+          "bars": 13
+        }
       },
       {
         "id": "2026-10-07:MRK",
@@ -16890,8 +16911,8 @@
         "symbol": "NVDA",
         "as_of": "2026-10-07",
         "price_status": "available",
-        "headline_status": "unavailable",
-        "news_baseline_status": "unavailable",
+        "headline_status": "available",
+        "news_baseline_status": "warming_up",
         "headlines": [],
         "events": [],
         "sector_context": {
@@ -17001,7 +17022,7 @@
         },
         "warnings": [
           "Latest prices recovered from complete regular-session 30-minute bars; prices and volume may differ from finalized daily prints.",
-          "Headline coverage unavailable; missing headlines are not evidence of no news."
+          "Fewer than five valid prior headline observations; headline bursts not assessed."
         ],
         "price_recovery": {
           "provider": "Yahoo Finance",
@@ -17772,7 +17793,7 @@
         "id": "2026-10-07:PANW",
         "symbol": "PANW",
         "as_of": "2026-10-07",
-        "price_status": "unavailable",
+        "price_status": "available",
         "headline_status": "available",
         "news_baseline_status": "ready",
         "headlines": [],
@@ -17883,8 +17904,16 @@
           ]
         },
         "warnings": [
-          "Current price or consecutive recent bars unavailable; unusual moves not assessed."
-        ]
+          "Latest prices recovered from complete regular-session 30-minute bars; prices and volume may differ from finalized daily prints."
+        ],
+        "price_recovery": {
+          "provider": "Yahoo Finance",
+          "as_of": "2026-10-07",
+          "method": "complete_regular_session_30m",
+          "interval": "30m",
+          "anchor_session": "2026-10-06",
+          "bars": 13
+        }
       },
       {
         "id": "2026-10-07:PAYX",
@@ -26570,10 +26599,8 @@
     "baseline_days": 9,
     "baseline_ready": false,
     "ready_symbols": 192,
-    "valid_symbols": 192,
-    "failed_symbols": [
-      "NVDA"
-    ],
+    "valid_symbols": 193,
+    "failed_symbols": [],
     "capped_symbols": [],
     "method": "yahoo_returned_items_v2",
     "note": "Returned Yahoo articles in the 24 hours ending at the close; not all published news."
@@ -26581,7 +26608,7 @@
   "min_sample": 20,
   "universe": {
     "watchlist": 193,
-    "loaded": 186
+    "loaded": 188
   },
   "price_recovery": {
     "AAPL": {
@@ -27360,6 +27387,14 @@
       "anchor_session": "2026-10-06",
       "bars": 13
     },
+    "MPC": {
+      "provider": "Yahoo Finance",
+      "as_of": "2026-10-07",
+      "method": "complete_regular_session_30m",
+      "interval": "30m",
+      "anchor_session": "2026-10-06",
+      "bars": 13
+    },
     "MRK": {
       "provider": "Yahoo Finance",
       "as_of": "2026-10-07",
@@ -27513,6 +27548,14 @@
       "bars": 13
     },
     "OXY": {
+      "provider": "Yahoo Finance",
+      "as_of": "2026-10-07",
+      "method": "complete_regular_session_30m",
+      "interval": "30m",
+      "anchor_session": "2026-10-06",
+      "bars": 13
+    },
+    "PANW": {
       "provider": "Yahoo Finance",
       "as_of": "2026-10-07",
       "method": "complete_regular_session_30m",
@@ -28065,5 +28108,5 @@
       "bars": 13
     }
   },
-  "brief": "Market read for 2026-10-07: RISK-ON (4 of 4 checks).\nSPY is in an uptrend, +8.1% from its 200-day and -0.2% from its 52-week high; +1.9% over 5 sessions, +1.7% over 21.\nBreadth is mixed: 53% of 184 watchlist names are above their 200-day, 34% above their 50-day; 11 made a 20-day high today, 33 a 20-day low.\nVIX 15.1 (normal, -8% over 5 sessions); SPY's realized volatility is 10% annualized and rising.\nLeading sectors over 21 sessions versus SPY: Technology (+5.6%), Health care (-0.3%), Communication (-1.6%). Lagging: Materials (-7.0%), Financials (-7.6%), Real estate (-8.5%).\nNo qualifying events recorded in the available prices and headline observations.\nNews baseline warming up: 192 symbols have five valid prior observations.\nThe record holds 0 event(s)."
+  "brief": "Market read for 2026-10-07: RISK-ON (4 of 4 checks).\nSPY is in an uptrend, +8.1% from its 200-day and -0.2% from its 52-week high; +1.9% over 5 sessions, +1.7% over 21.\nBreadth is mixed: 54% of 186 watchlist names are above their 200-day, 34% above their 50-day; 12 made a 20-day high today, 33 a 20-day low.\nVIX 15.1 (normal, -8% over 5 sessions); SPY's realized volatility is 10% annualized and rising.\nLeading sectors over 21 sessions versus SPY: Technology (+5.6%), Health care (-0.3%), Communication (-1.6%). Lagging: Materials (-7.0%), Financials (-7.6%), Real estate (-8.5%).\nNo qualifying events recorded in the available prices and headline observations.\nNews baseline warming up: 192 symbols have five valid prior observations.\nThe record holds 0 event(s)."
 }
