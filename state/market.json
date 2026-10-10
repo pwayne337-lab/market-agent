@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "rules_version": 2,
-  "updated_at": "2026-10-10T00:24:11+00:00",
+  "updated_at": "2026-10-10T00:55:31+00:00",
   "as_of": "2026-10-09",
   "session_close": "2026-10-09T20:00:00+00:00",
   "expires_at": "2026-10-12T21:30:00+00:00",
@@ -10,8 +10,8 @@
   "status": "complete_with_warnings",
   "errors": [],
   "warnings": [
-    "Prices recovered from complete intraday bars for 186 symbols; values may differ from finalized daily prints",
-    "Missing or stale prices for 8 symbols: ADBE, ADI, DE, EXC, FISV, ORCL, PEP, UNH"
+    "Prices recovered from complete intraday bars for 188 symbols; values may differ from finalized daily prints",
+    "Missing or stale prices for 6 symbols: ADBE, ADI, EXC, FISV, ORCL, PEP"
   ],
   "risk": {
     "word": "risk-on",
@@ -109,14 +109,14 @@
     }
   },
   "breadth": {
-    "counted": 185,
-    "above_200_pct": 57.8,
-    "above_50_pct": 43.2,
+    "counted": 187,
+    "above_200_pct": 58.3,
+    "above_50_pct": 42.8,
     "new_20d_highs": 27,
-    "new_20d_lows": 9,
+    "new_20d_lows": 10,
     "status": "mixed",
     "rule": "weak under 40% above the 200-day, broad over 65%",
-    "coverage_pct": 95.9
+    "coverage_pct": 96.9
   },
   "stock_research": {
     "schema_version": 1,
@@ -471,6 +471,14 @@
           "bars": 13
         },
         "DDOG": {
+          "provider": "Yahoo Finance",
+          "as_of": "2026-10-09",
+          "method": "complete_regular_session_30m",
+          "interval": "30m",
+          "anchor_session": "2026-10-08",
+          "bars": 13
+        },
+        "DE": {
           "provider": "Yahoo Finance",
           "as_of": "2026-10-09",
           "method": "complete_regular_session_30m",
@@ -1414,6 +1422,14 @@
           "anchor_session": "2026-10-08",
           "bars": 13
         },
+        "UNH": {
+          "provider": "Yahoo Finance",
+          "as_of": "2026-10-09",
+          "method": "complete_regular_session_30m",
+          "interval": "30m",
+          "anchor_session": "2026-10-08",
+          "bars": 13
+        },
         "UNP": {
           "provider": "Yahoo Finance",
           "as_of": "2026-10-09",
@@ -1849,6 +1865,7 @@
         "CVX",
         "D",
         "DDOG",
+        "DE",
         "DG",
         "DHR",
         "DIA",
@@ -1966,6 +1983,7 @@
         "TSLA",
         "TXN",
         "UBER",
+        "UNH",
         "UNP",
         "UPS",
         "USB",
@@ -2189,19 +2207,17 @@
       "missing_price_symbols": [
         "ADBE",
         "ADI",
-        "DE",
         "EXC",
         "FISV",
         "ORCL",
-        "PEP",
-        "UNH"
+        "PEP"
       ],
       "missing_headline_symbols": [],
       "capped_headline_symbols": []
     },
     "warnings": [
-      "Unusual moves unassessed for 8 symbols.",
-      "Latest prices reconstructed from intraday bars for 185 symbols."
+      "Unusual moves unassessed for 6 symbols.",
+      "Latest prices reconstructed from intraday bars for 187 symbols."
     ],
     "findings": [
       {
@@ -2292,10 +2308,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -2418,10 +2434,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -2544,10 +2560,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -2670,10 +2686,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -2796,10 +2812,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -2914,10 +2930,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -3032,10 +3048,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -3158,10 +3174,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -3284,10 +3300,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -3410,10 +3426,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -3536,10 +3552,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -3662,10 +3678,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -3798,10 +3814,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -3924,10 +3940,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -4050,10 +4066,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -4176,10 +4192,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -4302,10 +4318,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -4428,10 +4444,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -4554,10 +4570,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -4680,10 +4696,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -4806,10 +4822,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -4932,10 +4948,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -5058,10 +5074,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -5184,10 +5200,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -5310,10 +5326,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -5436,10 +5452,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -5562,10 +5578,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -5688,10 +5704,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -5814,10 +5830,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -5940,10 +5956,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -6076,10 +6092,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -6202,10 +6218,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -6328,10 +6344,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -6454,10 +6470,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -6580,10 +6596,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -6706,10 +6722,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -6832,10 +6848,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -6958,10 +6974,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -7084,10 +7100,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -7210,10 +7226,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -7336,10 +7352,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -7462,10 +7478,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -7588,10 +7604,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -7714,10 +7730,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -7840,10 +7856,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -7966,10 +7982,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -8008,7 +8024,7 @@
         "id": "2026-10-09:DE",
         "symbol": "DE",
         "as_of": "2026-10-09",
-        "price_status": "unavailable",
+        "price_status": "available",
         "headline_status": "available",
         "news_baseline_status": "ready",
         "headlines": [],
@@ -8092,10 +8108,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -8119,8 +8135,16 @@
           ]
         },
         "warnings": [
-          "Current price or consecutive recent bars unavailable; unusual moves not assessed."
-        ]
+          "Latest prices recovered from complete regular-session 30-minute bars; prices and volume may differ from finalized daily prints."
+        ],
+        "price_recovery": {
+          "provider": "Yahoo Finance",
+          "as_of": "2026-10-09",
+          "method": "complete_regular_session_30m",
+          "interval": "30m",
+          "anchor_session": "2026-10-08",
+          "bars": 13
+        }
       },
       {
         "id": "2026-10-09:DG",
@@ -8210,10 +8234,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -8336,10 +8360,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -8462,10 +8486,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -8588,10 +8612,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -8714,10 +8738,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -8840,10 +8864,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -8966,10 +8990,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -9092,10 +9116,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -9218,10 +9242,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -9344,10 +9368,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -9470,10 +9494,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -9596,10 +9620,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -9722,10 +9746,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -9840,10 +9864,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -9966,10 +9990,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -10092,10 +10116,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -10218,10 +10242,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -10336,10 +10360,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -10462,10 +10486,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -10588,10 +10612,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -10714,10 +10738,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -10840,10 +10864,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -10966,10 +10990,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -11092,10 +11116,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -11218,10 +11242,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -11344,10 +11368,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -11470,10 +11494,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -11596,10 +11620,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -11722,10 +11746,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -11848,10 +11872,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -11974,10 +11998,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -12100,10 +12124,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -12226,10 +12250,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -12352,10 +12376,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -12478,10 +12502,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -12604,10 +12628,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -12730,10 +12754,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -12856,10 +12880,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -12982,10 +13006,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -13108,10 +13132,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -13234,10 +13258,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -13360,10 +13384,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -13486,10 +13510,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -13612,10 +13636,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -13738,10 +13762,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -13864,10 +13888,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -13990,10 +14014,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -14116,10 +14140,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -14242,10 +14266,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -14368,10 +14392,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -14494,10 +14518,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -14620,10 +14644,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -14746,10 +14770,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -14872,10 +14896,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -14998,10 +15022,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -15124,10 +15148,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -15250,10 +15274,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -15376,10 +15400,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -15502,10 +15526,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -15628,10 +15652,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -15754,10 +15778,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -15880,10 +15904,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -16006,10 +16030,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -16132,10 +16156,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -16258,10 +16282,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -16384,10 +16408,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -16510,10 +16534,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -16636,10 +16660,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -16762,10 +16786,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -16888,10 +16912,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -17014,10 +17038,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -17140,10 +17164,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -17266,10 +17290,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -17392,10 +17416,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -17518,10 +17542,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -17636,10 +17660,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -17762,10 +17786,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -17888,10 +17912,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -18014,10 +18038,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -18140,10 +18164,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -18258,10 +18282,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -18384,10 +18408,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -18510,10 +18534,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -18636,10 +18660,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -18762,10 +18786,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -18888,10 +18912,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -19014,10 +19038,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -19140,10 +19164,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -19266,10 +19290,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -19392,10 +19416,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -19518,10 +19542,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -19644,10 +19668,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -19770,10 +19794,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -19896,10 +19920,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -20022,10 +20046,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -20148,10 +20172,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -20274,10 +20298,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -20400,10 +20424,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -20526,10 +20550,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -20652,10 +20676,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -20778,10 +20802,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -20904,10 +20928,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -21030,10 +21054,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -21156,10 +21180,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -21282,10 +21306,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -21408,10 +21432,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -21534,10 +21558,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -21660,10 +21684,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -21786,10 +21810,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -21912,10 +21936,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -22038,10 +22062,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -22174,10 +22198,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -22300,10 +22324,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -22426,10 +22450,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -22552,10 +22576,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -22678,10 +22702,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -22804,10 +22828,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -22940,10 +22964,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -23066,10 +23090,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -23192,10 +23216,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -23318,10 +23342,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -23360,7 +23384,7 @@
         "id": "2026-10-09:UNH",
         "symbol": "UNH",
         "as_of": "2026-10-09",
-        "price_status": "unavailable",
+        "price_status": "available",
         "headline_status": "available",
         "news_baseline_status": "ready",
         "headlines": [],
@@ -23444,10 +23468,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -23471,8 +23495,16 @@
           ]
         },
         "warnings": [
-          "Current price or consecutive recent bars unavailable; unusual moves not assessed."
-        ]
+          "Latest prices recovered from complete regular-session 30-minute bars; prices and volume may differ from finalized daily prints."
+        ],
+        "price_recovery": {
+          "provider": "Yahoo Finance",
+          "as_of": "2026-10-09",
+          "method": "complete_regular_session_30m",
+          "interval": "30m",
+          "anchor_session": "2026-10-08",
+          "bars": 13
+        }
       },
       {
         "id": "2026-10-09:UNP",
@@ -23562,10 +23594,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -23688,10 +23720,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -23814,10 +23846,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -23940,10 +23972,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -24066,10 +24098,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -24202,10 +24234,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -24328,10 +24360,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -24454,10 +24486,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -24580,10 +24612,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -24706,10 +24738,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -24832,10 +24864,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -24958,10 +24990,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -25084,10 +25116,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -25210,10 +25242,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -25336,10 +25368,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -25462,10 +25494,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -25588,10 +25620,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -25714,10 +25746,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -25840,10 +25872,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -25966,10 +25998,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -26092,10 +26124,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -26218,10 +26250,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -26344,10 +26376,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -26470,10 +26502,10 @@
             {
               "symbol": "XLB",
               "name": "Materials",
-              "ret_5d": 1.13,
-              "ret_21d": -2.21,
-              "rs_5d": -0.03,
-              "rs_21d": -5.2,
+              "ret_5d": 1.14,
+              "ret_21d": -2.2,
+              "rs_5d": -0.02,
+              "rs_21d": -5.19,
               "rank": 9
             },
             {
@@ -26595,10 +26627,10 @@
     {
       "symbol": "XLB",
       "name": "Materials",
-      "ret_5d": 1.13,
-      "ret_21d": -2.21,
-      "rs_5d": -0.03,
-      "rs_21d": -5.2,
+      "ret_5d": 1.14,
+      "ret_21d": -2.2,
+      "rs_5d": -0.02,
+      "rs_21d": -5.19,
       "rank": 9
     },
     {
@@ -26762,7 +26794,7 @@
   "min_sample": 20,
   "universe": {
     "watchlist": 193,
-    "loaded": 187
+    "loaded": 189
   },
   "price_recovery": {
     "AAPL": {
@@ -27110,6 +27142,14 @@
       "bars": 13
     },
     "DDOG": {
+      "provider": "Yahoo Finance",
+      "as_of": "2026-10-09",
+      "method": "complete_regular_session_30m",
+      "interval": "30m",
+      "anchor_session": "2026-10-08",
+      "bars": 13
+    },
+    "DE": {
       "provider": "Yahoo Finance",
       "as_of": "2026-10-09",
       "method": "complete_regular_session_30m",
@@ -28053,6 +28093,14 @@
       "anchor_session": "2026-10-08",
       "bars": 13
     },
+    "UNH": {
+      "provider": "Yahoo Finance",
+      "as_of": "2026-10-09",
+      "method": "complete_regular_session_30m",
+      "interval": "30m",
+      "anchor_session": "2026-10-08",
+      "bars": 13
+    },
     "UNP": {
       "provider": "Yahoo Finance",
       "as_of": "2026-10-09",
@@ -28254,5 +28302,5 @@
       "bars": 13
     }
   },
-  "brief": "Market read for 2026-10-09: RISK-ON (4 of 4 checks).\nSPY is in an uptrend, +8.2% from its 200-day and -0.1% from its 52-week high; +1.2% over 5 sessions, +3.0% over 21.\nBreadth is mixed: 58% of 185 watchlist names are above their 200-day, 43% above their 50-day; 27 made a 20-day high today, 9 a 20-day low.\nVIX 14.8 (calm, -3% over 5 sessions); SPY's realized volatility is 10% annualized and steady.\nLeading sectors over 21 sessions versus SPY: Technology (+4.5%), Health care (+0.5%), Consumer staples (-1.9%). Lagging: Materials (-5.2%), Real estate (-5.5%), Financials (-6.4%).\n5 event(s) recorded today: TMUS -13.3% (move), T -10.9% (move), CCI +15.6% (move), VZ -10.2% (move), AMT +9.3% (move).\nThe record holds 0 event(s)."
+  "brief": "Market read for 2026-10-09: RISK-ON (4 of 4 checks).\nSPY is in an uptrend, +8.2% from its 200-day and -0.1% from its 52-week high; +1.2% over 5 sessions, +3.0% over 21.\nBreadth is mixed: 58% of 187 watchlist names are above their 200-day, 43% above their 50-day; 27 made a 20-day high today, 10 a 20-day low.\nVIX 14.8 (calm, -3% over 5 sessions); SPY's realized volatility is 10% annualized and steady.\nLeading sectors over 21 sessions versus SPY: Technology (+4.5%), Health care (+0.5%), Consumer staples (-1.9%). Lagging: Materials (-5.2%), Real estate (-5.5%), Financials (-6.4%).\n5 event(s) recorded today: TMUS -13.3% (move), T -10.9% (move), CCI +15.6% (move), VZ -10.2% (move), AMT +9.3% (move).\nThe record holds 0 event(s)."
 }
