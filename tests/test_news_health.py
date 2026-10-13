@@ -134,7 +134,7 @@ class NewsHealthTests(unittest.TestCase):
         self.assertEqual(row['matched_in_window_count'], 1)
         self.assertFalse(row['sample_reaches_window_start'])
 
-    def run_read(self, get_news, *, scheduled_runs=()):
+    def run_read(self, get_news, *, scheduled_runs=(), recovered=()):
         """Run one offline read, then optional scheduled repeats, in a temp state dir."""
         cfg = MarketConfig(watchlist=['AAA', 'BBB'])
         dates = sessions.schedule('2025-01-01', '2026-09-24').index
@@ -144,6 +144,8 @@ class NewsHealthTests(unittest.TestCase):
         symbols = set(cfg.watchlist) | set(INDEXES) | set(SECTORS) | set(RATES_AND_FEAR)
         bars = {symbol: frame.copy() for symbol in symbols}
         bars['^VIX'].loc[:, ['open', 'high', 'low', 'close']] = [14, 15, 13, 14]
+        for symbol in recovered:
+            bars[symbol].attrs['price_recovery'] = {'as_of': '2026-09-24', 'source': 'intraday'}
         prior = {'date': '2026-09-23', 'method': news.METHOD,
                  'counts': {'AAA': 2, 'BBB': 3}}
         with tempfile.TemporaryDirectory() as directory, ExitStack() as stack:
@@ -208,6 +210,40 @@ class NewsHealthTests(unittest.TestCase):
         self.assertNotIn('retry skipped', stdout)
         self.assertEqual(loader.call_count, 2)
         self.assertIn('Headlines unavailable for 2 symbols', saved['warnings'])
+
+    def test_batch_metrics_zero_universe(self):
+        saved, *_ = self.run_read(lambda: [])
+        health = saved['news_health']
+        self.assertEqual(health['status'], 'zero_universe')
+        self.assertEqual((health['session_article_count'], health['symbols_with_articles']), (0, 0))
+        self.assertTrue(health['universe_zero_in_window_observed'])
+        metrics = saved['batch_metrics']
+        self.assertEqual(metrics['headline_symbols_requested'], 2)
+        self.assertEqual(metrics['price_bars']['watchlist'], {'intraday_rebuilt': 0, 'daily': 2})
+        self.assertEqual(metrics['price_bars']['universe']['intraday_rebuilt'], 0)
+        self.assertEqual(metrics['price_bars']['universe']['daily'], saved['universe']['loaded'])
+
+    def test_batch_metrics_ok_and_intraday_counts_do_not_change_research_fields(self):
+        saved, *_ = self.run_read(lambda: [article()], recovered=['AAA', 'SPY'])
+        self.assertEqual(saved['news_health']['status'], 'ok')
+        self.assertEqual(saved['news_health']['session_article_count'], 2)
+        self.assertEqual(saved['news_health']['symbols_with_articles'], 2)
+        self.assertEqual(saved['batch_metrics']['price_bars']['watchlist'],
+                         {'intraday_rebuilt': 1, 'daily': 1})
+        self.assertEqual(saved['batch_metrics']['price_bars']['universe']['intraday_rebuilt'], 2)
+        self.assertTrue(saved['healthy'] and saved['finalized'])
+        self.assertEqual(saved['status'], 'complete_with_warnings')  # price recovery warning only
+        self.assertEqual(len(saved['warnings']), 1)
+        for row in saved['stock_research']['findings']:
+            self.assertEqual(row['headline_status'], 'available')
+
+    def test_batch_metrics_partial_on_provider_failure(self):
+        def failing():
+            raise RuntimeError('provider down')
+        saved, *_ = self.run_read(failing)
+        self.assertEqual(saved['news_health']['status'], 'partial')
+        self.assertEqual(saved['news_health']['failed_symbols'], 2)
+        self.assertEqual(saved['batch_metrics']['session_article_count'], 0)
 
 if __name__ == '__main__':
     unittest.main()

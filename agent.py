@@ -224,6 +224,10 @@ def _run(args):
         read["news"]["diagnostics"] = news_diagnostics
     if data_notes:
         read["news"]["data_notes"] = data_notes
+    read["batch_metrics"], read["news_health"] = _batch_metrics(
+        watchlist=cfg.watchlist, bars=bars, price_recovery=price_recovery, articles=articles,
+        failed=failed, capped=capped, skipped=bool(args.no_news or args.cached),
+        diagnostics=news_diagnostics)
     if price_recovery:
         read["price_recovery"] = price_recovery
     if errors:
@@ -237,6 +241,42 @@ def _run(args):
         print(f"ERROR: {message}")
     print(f"Page: {report.write_site(read)}")
     return 0 if read["healthy"] else 1
+
+
+def _batch_metrics(*, watchlist, bars, price_recovery, articles, failed, capped, skipped,
+                   diagnostics):
+    """Report-only batch counts. Nothing here feeds healthy, status, events or baselines."""
+    in_window = {sym: len(articles.get(sym) or []) for sym in watchlist}
+    total = sum(in_window.values())
+    with_articles = sum(1 for n in in_window.values() if n)
+    responding = len(watchlist) - len(failed)
+    if skipped:
+        status = "skipped"
+    elif total == 0 and len(watchlist) > 1 and responding > 0:
+        status = "zero_universe"
+    elif failed or capped:
+        status = "partial"
+    else:
+        status = "ok"
+    watch_loaded = [sym for sym in watchlist if sym in bars]
+    metrics = {
+        "session_article_count": total, "symbols_with_articles": with_articles,
+        "headline_symbols_requested": 0 if skipped else len(watchlist),
+        "price_bars": {
+            "universe": {"intraday_rebuilt": len(price_recovery),
+                         "daily": len(bars) - len(price_recovery)},
+            "watchlist": {"intraday_rebuilt": sum(1 for s in watch_loaded if s in price_recovery),
+                          "daily": sum(1 for s in watch_loaded if s not in price_recovery)},
+        },
+    }
+    health = {
+        "status": status, "session_article_count": total, "symbols_with_articles": with_articles,
+        "failed_symbols": len(failed), "capped_symbols": len(capped),
+        "universe_zero_in_window_observed": bool(diagnostics.get("universe_zero_in_window_observed")),
+        "note": ("Report only. Does not change healthy, status, per-symbol headline_status, "
+                 "events or baselines; a zero is not evidence of no published news."),
+    }
+    return metrics, health
 
 
 def _save(read):
