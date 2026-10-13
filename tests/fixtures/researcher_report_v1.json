@@ -123,7 +123,7 @@
     "source": {
       "provider": "Yahoo Finance",
       "price_method": "adjusted_daily_ohlcv",
-      "news_method": "yahoo_returned_items_v2"
+      "news_method": "yahoo_search_returned_items_v1"
     },
     "coverage": {
       "requested_symbols": [
@@ -163,14 +163,16 @@
             "publisher": "Fixture Wire",
             "published_at": "2026-09-24T18:00:00+00:00",
             "source": "Yahoo Finance",
-            "url": "https://example.com/fixture/aapl-product-update"
+            "url": "https://example.com/fixture/aapl-product-update",
+            "related_symbols": ["AAPL"]
           },
           {
             "title": "Fixture: AAPL previews its product event",
             "publisher": "Fixture Wire",
             "published_at": "2026-09-23T21:00:00+00:00",
             "source": "Yahoo Finance",
-            "url": "https://example.com/fixture/aapl-event-preview"
+            "url": "https://example.com/fixture/aapl-event-preview",
+            "related_symbols": ["AAPL"]
           }
         ],
         "events": [
@@ -689,7 +691,8 @@
       "NVDA"
     ],
     "capped_symbols": [],
-    "method": "yahoo_returned_items_v2",
+    "method": "yahoo_search_returned_items_v1",
+    "validation_version": 1,
     "note": "Returned Yahoo articles in the 24 hours ending at the close; not all published news."
   },
   "min_sample": 20,

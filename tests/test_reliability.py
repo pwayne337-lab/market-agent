@@ -3,9 +3,10 @@ import contextlib
 import io
 import json
 import tempfile
+from copy import deepcopy
 import unittest
 from pathlib import Path
-from unittest.mock import patch, MagicMock
+from unittest.mock import patch
 import numpy as np
 import pandas as pd
 import agent
@@ -90,19 +91,21 @@ class Reliability(unittest.TestCase):
                 self.assertEqual(read['stock_research']['as_of'], expected)
                 self.assertEqual(read['session_close'], f'{expected}T20:00:00+00:00')
 
-    def test_recovery_skips_healthy_same_session_with_headline_warnings(self):
+    def test_recovery_repairs_missing_headlines_before_skipping_complete_session(self):
         self.run_agent(news_result=({}, {}, ['SPY'], []))
-        before = {path: path.read_bytes() for path in (
-            agent.READ_FILE, events.EVENTS_FILE, report.SITE / 'market.json', report.SITE / 'index.html')}
         self.args.recovery_only = True
         with patch.object(sessions, 'utc_now', return_value=pd.Timestamp('2026-09-25T12:20Z')), \
-             patch.object(agent.datamod, 'load_session') as load, \
-             patch.object(news, 'fetch_headlines') as fetch, \
+             patch.object(agent.datamod, 'load_session', return_value=self.bars) as load, \
+             patch.object(news, 'fetch_headlines', return_value=({s:0 for s in self.cfg.watchlist}, {}, [], [])) as fetch, \
              contextlib.redirect_stdout(io.StringIO()):
             self.assertEqual(agent.cmd_run(self.args), 0)
-            load.assert_not_called()
-            fetch.assert_not_called()
-        self.assertEqual({path: path.read_bytes() for path in before}, before)
+            load.assert_called_once()
+            fetch.assert_called_once()
+            read = json.loads(agent.READ_FILE.read_text())
+            self.assertEqual(read['stock_research']['coverage']['missing_headline_symbols'], [])
+            self.assertEqual(agent.cmd_run(self.args), 0)
+            load.assert_called_once()
+            fetch.assert_called_once()
 
     def test_recovery_retries_failed_session_then_preserves_success(self):
         self.run_agent()
@@ -110,7 +113,7 @@ class Reliability(unittest.TestCase):
         self.args.recovery_only = True
         with patch.object(sessions, 'utc_now', return_value=pd.Timestamp('2026-09-25T12:20Z')), \
              patch.object(agent.datamod, 'load_session', return_value=self.bars) as load, \
-             patch.object(news, 'fetch_headlines', return_value=({}, {}, ['SPY'], [])), \
+             patch.object(news, 'fetch_headlines', return_value=({s:0 for s in self.cfg.watchlist}, {}, [], [])), \
              contextlib.redirect_stdout(io.StringIO()):
             self.assertEqual(agent.cmd_run(self.args), 0)
             load.assert_called_once()
@@ -136,7 +139,7 @@ class Reliability(unittest.TestCase):
                 self.args.recovery_only = True
                 with patch.object(sessions, 'utc_now', return_value=pd.Timestamp('2026-09-25T12:20Z')), \
                      patch.object(agent.datamod, 'load_session', return_value=self.bars) as load, \
-                     patch.object(news, 'fetch_headlines', return_value=({}, {}, ['SPY'], [])), \
+                     patch.object(news, 'fetch_headlines', return_value=({s:0 for s in self.cfg.watchlist}, {}, [], [])), \
                      contextlib.redirect_stdout(io.StringIO()):
                     self.assertEqual(agent.cmd_run(self.args), 0)
                     load.assert_called_once()
@@ -158,7 +161,7 @@ class Reliability(unittest.TestCase):
         self.args.recovery_only = True
         with patch.object(sessions, 'utc_now', return_value=pd.Timestamp('2026-09-25T12:20Z')), \
              patch.object(agent.datamod, 'load_session', return_value=self.bars) as load, \
-             patch.object(news, 'fetch_headlines', return_value=({}, {}, ['SPY'], [])), \
+             patch.object(news, 'fetch_headlines', return_value=({s:0 for s in self.cfg.watchlist}, {}, [], [])), \
              contextlib.redirect_stdout(io.StringIO()):
             self.assertEqual(agent.cmd_run(self.args), 0)
             load.assert_called_once()
@@ -213,6 +216,53 @@ class Reliability(unittest.TestCase):
         self.args.scheduled = True
         with patch.object(sessions,'utc_now',return_value=pd.Timestamp('2026-09-24T21:12Z')),patch.object(agent.datamod,'load_session') as load:
             agent.cmd_run(self.args);load.assert_not_called()
+
+    def test_unvalidated_legacy_report_is_rechecked_before_scheduled_skip(self):
+        _, read = self.run_agent()
+        read['news'].pop('validation_version')
+        read['news']['method'] = 'yahoo_returned_items_v2'
+        agent._save(read)
+        self.args.scheduled = True
+        code, current = self.run_agent()
+        self.assertEqual(code, 0)
+        self.assertEqual(current['news']['validation_version'], news.VALIDATION_VERSION)
+        self.assertEqual(current['news']['method'], news.METHOD)
+
+    def test_legacy_counts_are_not_mixed_into_the_new_method_baseline(self):
+        prior = [{'date':f'2026-09-{d:02}', 'method':'yahoo_returned_items_v2',
+                  'counts':{'S':0}} for d in range(1,6)]
+        self.assertNotIn('S', agent._news_baseline(prior, ['S'], 30))
+        current = [dict(row, method=news.METHOD, counts={'S':2}) for row in prior]
+        self.assertEqual(agent._news_baseline(current, ['S'], 30), {'S':2})
+
+    def test_event_news_provenance_keeps_assessed_populations_separate(self):
+        base = {'date':'2026-09-24', 'symbol':'S', 'kind':'move', 'direction':'up',
+                'rules_version':2, 'news_assessment':'assessed', 'follow':{'5d':1.0}}
+        rows = [base, dict(base, news_method=news.METHOD)]
+        original = deepcopy(rows)
+        groups = events.what_the_record_says(rows, self.cfg)
+        self.assertEqual(len(groups), 2)
+        self.assertTrue(any('/ method legacy' in g['group'] for g in groups))
+        self.assertTrue(any(news.METHOD in g['group'] for g in groups))
+        self.assertEqual(rows, original)
+        self.assertEqual(events.merge([base], [dict(base, news_method=news.METHOD)]), [base])
+        # No assessed news influences a purely price-only classification.
+        for row in rows:
+            row['news_assessment'] = 'unavailable'
+        self.assertEqual(len(events.what_the_record_says(rows, self.cfg)), 1)
+        moved = self.frame.copy()
+        moved.loc[moved.index[-1], 'close'] = 200
+        detected = events.detect({'S':moved}, {}, {}, {}, self.cfg, as_of='2026-09-24')
+        self.assertEqual(detected[0]['news_method'], news.METHOD)
+
+    def test_collecting_new_method_preserves_old_method_records_for_same_session(self):
+        legacy = {'date':'2026-09-24', 'method':'yahoo_returned_items_v2', 'counts':{'AAPL':0}}
+        agent.STATE_DIR.mkdir()
+        agent.NEWS_FILE.write_text(json.dumps(legacy) + '\n')
+        self.run_agent()
+        history = agent._load_news_history()
+        self.assertIn(legacy, history)
+        self.assertTrue(any(r['method'] == news.METHOD for r in history))
 
     def test_missing_spy_publishes_current_failure(self):
         self.run_agent()
@@ -283,18 +333,15 @@ class Reliability(unittest.TestCase):
         self.assertEqual(read['risk']['word'],'unknown')
 
     def test_fixed_news_window_dedup_and_cap(self):
-        article=lambda ident,dt:{'id':ident,'content':{'title':ident,'pubDate':dt}}
+        article=lambda ident,dt:{'id':ident,'relatedTickers':['S'],'content':{'title':ident,'pubDate':dt,'publisher':'Example Wire'}}
         items=[article('in','2026-09-24T19:00:00Z')]*2+[article('after','2026-09-24T21:00:00Z'),article('old','2026-09-23T19:00:00Z')]
-        ticker=MagicMock();ticker.get_news.return_value=items
-        with patch('yfinance.Ticker',return_value=ticker):
+        with patch.object(news,'_search_news',return_value=items):
             counts,titles,failed,capped=news.fetch_headlines(['S'],end=pd.Timestamp('2026-09-24T20:00Z'),pause=0)
         self.assertEqual(counts,{'S':1});self.assertEqual(titles,{'S':['in']})
-        ticker.get_news.return_value=[items[0]]*news.FETCH_LIMIT
-        with patch('yfinance.Ticker',return_value=ticker):
+        with patch.object(news,'_search_news',return_value=[items[0]]*news.FETCH_LIMIT):
             counts,_,_,capped=news.fetch_headlines(['S'],end=pd.Timestamp('2026-09-24T20:00Z'),pause=0)
         self.assertEqual(counts,{});self.assertEqual(capped,['S'])
-        ticker.get_news.return_value=[items[0]]*99+[items[-1]]
-        with patch('yfinance.Ticker',return_value=ticker):
+        with patch.object(news,'_search_news',return_value=[items[0]]*(news.FETCH_LIMIT-1)+[items[-1]]):
             counts,_,_,capped=news.fetch_headlines(['S'],end=pd.Timestamp('2026-09-24T20:00Z'),pause=0)
         self.assertEqual(counts,{'S':1});self.assertEqual(capped,[])
 

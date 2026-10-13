@@ -88,9 +88,16 @@ def page(read: dict) -> str:
     if feed_notes:
         health += (f'<div class="verdict"><strong>Headline feed notes — report only</strong>'
                    f'<ul>{feed_notes}</ul></div>')
+    attempt = read.get("last_attempt") or {}
+    if attempt and read.get("healthy") and read.get("finalized"):
+        health += (f'<div class="verdict"><strong>Latest retry failed; validated report retained</strong>'
+                   f'<p>Attempt for {e(str(attempt.get("session")))} at {e(str(attempt.get("at")))}: '
+                   f'{e("; ".join(str(x) for x in attempt.get("errors", [])))}. '
+                   f'The report dates, findings and expiry below were not refreshed.</p></div>')
     last_good = read.get("last_good") or {}
     if last_good:
-        health += f'<p>Last good report: {e(str(last_good.get("as_of")))}. Current reading unavailable.</p>'
+        health += (f'<p>Archived previous report: {e(str(last_good.get("as_of")))}. '
+                   f'Current reading unavailable. <a href="last-good.json">Archived evidence</a></p>')
     news = read.get("news") or {}
     news_note = (f"Headline baseline: {news.get('ready_symbols', 0)} symbols ready; "
                  f"{news.get('valid_symbols', 0)} valid observations this run. "

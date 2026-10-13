@@ -2,56 +2,48 @@
 from datetime import timedelta
 import time
 from typing import Dict, List
+from urllib.parse import urlparse
 import pandas as pd
 
-METHOD = 'yahoo_returned_items_v2'
-FETCH_LIMIT = 100
+METHOD = 'yahoo_search_returned_items_v1'
+FETCH_LIMIT = 50
+VALIDATION_VERSION = 1
+REQUEST_TIMEOUT = 10
+FETCH_BUDGET = 180
+SEARCH_URL = 'https://query1.finance.yahoo.com/v1/finance/search'
 
 
-class _NewsResponseObserver:
-    """Forward the pinned provider's request unchanged and retain only its status.
+def _search_news(symbol, observation):
+    """Read Yahoo's working search feed; its response explicitly tags symbols.
 
-    The provider may turn a non-2xx JSON response into an empty article list.
-    Observing that response must not reinterpret the result or issue a second
-    request. This proxy belongs to one Ticker; it never patches shared data.
+    curl_cffi is already supplied by the pinned yfinance dependency. There is
+    one bounded request, no provider retry or paid service, and no credentials.
     """
-    def __init__(self, delegate, observation):
-        self._delegate = delegate
-        self._observation = observation
-
-    def __getattr__(self, name):
-        return getattr(self._delegate, name)
-
-    def post(self, *args, **kwargs):
-        response = self._delegate.post(*args, **kwargs)
-        try:
-            status = response.status_code
-            if isinstance(status, int) and not isinstance(status, bool) and 100 <= status < 600:
-                self._observation.update(http_status=status, http_success=200 <= status < 300)
-        except Exception:
-            pass  # Diagnostic capture must never change the provider result.
-        return response
-
-
-def _news_with_response_observation(ticker, observation):
-    """Observe yfinance 1.2.0's local data attribute, with a legacy fallback."""
-    try:
-        delegate = ticker._data
-        ticker._data = _NewsResponseObserver(delegate, observation)
-    except Exception:
-        return ticker.get_news(count=FETCH_LIMIT)
-    try:
-        return ticker.get_news(count=FETCH_LIMIT)
-    finally:
-        try:
-            ticker._data = delegate
-        except Exception:
-            pass
+    from curl_cffi import requests
+    response = requests.get(SEARCH_URL, params={
+        'q': symbol, 'quotesCount': 0, 'newsCount': FETCH_LIMIT,
+        'enableFuzzyQuery': 'false',
+    }, impersonate='chrome', timeout=REQUEST_TIMEOUT)
+    status = response.status_code
+    observation.update(http_status=status, http_success=200 <= status < 300,
+                       backend='yahoo_search', sample_limit=FETCH_LIMIT)
+    if not observation['http_success']:
+        raise ValueError('provider HTTP failure')
+    payload = response.json()
+    valid = (isinstance(payload, dict) and isinstance(payload.get('news'), list)
+             and not payload.get('error') and not payload.get('errors'))
+    observation['payload_valid'] = valid
+    if not valid:
+        raise ValueError('invalid provider news payload')
+    return payload['news']
 
 
 def _error_reason(exc):
     """Keep useful failure categories without persisting provider URLs or secrets."""
-    known = {'invalid news response', 'invalid article',
+    known = {'invalid news response', 'provider HTTP failure', 'invalid provider news payload', 'invalid article',
+             'article missing symbol relevance',
+             'article missing publisher',
+             'headline batch budget exhausted',
              'article missing date or title', 'article timestamp has no timezone'}
     if isinstance(exc, ValueError) and str(exc) in known:
         return str(exc)
@@ -71,22 +63,24 @@ def fetch_headlines(symbols: List[str], *, end, pause=0.05, detailed=False,
 
     A zero is an observed count in Yahoo's returned sample. It never confirms
     that no news was published, even when the sample reaches the window start.
-    Diagnostic collection does not alter counts, baselines or trading rules.
+    Observed HTTP failures and malformed provider payloads are unavailable.
+    Search results must explicitly name the requested symbol as related.
     """
-    import yfinance as yf
     end = pd.Timestamp(end)
     since = end - timedelta(days=1)
     counts, titles, failed, capped = {}, {}, [], []
     observations = {}
+    deadline = time.monotonic() + FETCH_BUDGET
     for sym in symbols:
-        items, ts, dates = None, [], []
+        items, ts, dates, related_dates = None, [], [], []
         provider_response = {}
         error_type, error_reason = None, None
         parsed = False
         try:
-            ticker = yf.Ticker(sym)
-            items = (_news_with_response_observation(ticker, provider_response)
-                     if diagnostics is not None else ticker.get_news(count=FETCH_LIMIT))
+            if time.monotonic() >= deadline:
+                provider_response['request_skipped'] = 'batch_budget'
+                raise ValueError('headline batch budget exhausted')
+            items = _search_news(sym, provider_response)
             if not isinstance(items, list):
                 raise ValueError('invalid news response')
             seen, ts, dates = set(), [], []
@@ -94,33 +88,43 @@ def fetch_headlines(symbols: List[str], *, end, pause=0.05, detailed=False,
                 if not isinstance(item, dict):
                     raise ValueError('invalid article')
                 content = item.get('content') or item
+                related = item.get('relatedTickers')
+                if not isinstance(related, list) or any(not isinstance(s, str) for s in related):
+                    raise ValueError('article missing symbol relevance')
                 title = content.get('title') or ''
                 when = content.get('pubDate') or item.get('providerPublishTime')
-                if not title or not when:
+                if not isinstance(title, str) or not title.strip() or not when:
                     raise ValueError('article missing date or title')
+                provider = content.get('provider') or {}
+                publisher = provider.get('displayName') or content.get('publisher')
+                if not isinstance(publisher, str) or not publisher.strip():
+                    raise ValueError('article missing publisher')
                 dt = (pd.Timestamp(when, unit='s', tz='UTC') if isinstance(when, (int, float))
                       else pd.Timestamp(when))
                 if dt.tzinfo is None:
                     raise ValueError('article timestamp has no timezone')
                 dates.append(dt)
-                key = content.get('id') or item.get('id') or (title, dt.isoformat())
-                if since < dt <= end and key not in seen:
+                if sym in related:
+                    related_dates.append(dt)
+                key = content.get('id') or item.get('uuid') or item.get('id') or (title, dt.isoformat())
+                if sym in related and since < dt <= end and key not in seen:
                     seen.add(key)
-                    provider = content.get('provider') or {}
                     link = content.get('canonicalUrl') or content.get('clickThroughUrl') or {}
                     url = link.get('url') if isinstance(link, dict) else None
                     url = url or content.get('link') or item.get('link')
-                    if not isinstance(url, str) or not url.startswith(('https://', 'http://')):
+                    if (not isinstance(url, str) or urlparse(url).scheme not in ('https', 'http')
+                            or not urlparse(url).netloc):
                         url = None
                     ts.append({'title': str(title).strip()[:500], 'published_at': dt.isoformat(),
-                               'publisher': str(provider.get('displayName') or content.get('publisher') or '')[:200],
-                               'url': url, 'source': 'Yahoo Finance'} if detailed else title)
+                               'publisher': publisher[:200],
+                               'url': url, 'source': 'Yahoo Finance', 'related_symbols': related} if detailed else title)
             parsed = True
             # A capped sample still has useful dated headlines. Only its count
             # is unknown: it must never enter the burst baseline as a total.
             if detailed:
                 titles[sym] = ts[:20]
-            if len(items) >= FETCH_LIMIT and (not dates or min(dates) > since):
+            if len(items) >= FETCH_LIMIT and (not related_dates or min(related_dates) > since
+                                             or dates != sorted(dates, reverse=True)):
                 capped.append(sym)
                 continue  # The returned sample does not reach the window boundary.
             counts[sym], titles[sym] = len(ts), ts
@@ -135,7 +139,9 @@ def fetch_headlines(symbols: List[str], *, end, pause=0.05, detailed=False,
                     'matched_in_window_count': len(ts),
                     'oldest_returned_at': min(dates).isoformat() if dates else None,
                     'newest_returned_at': max(dates).isoformat() if dates else None,
-                    'sample_reaches_window_start': bool(dates and min(dates) <= since),
+                    'related_item_count': len(related_dates),
+                    'returned_newest_first': dates == sorted(dates, reverse=True),
+                    'sample_reaches_window_start': bool(related_dates and min(related_dates) <= since),
                     'observed_zero_in_window': parsed and not ts,
                     'published_news_coverage_confirmed': False,
                     'status': ('failed' if error_type else 'capped' if sym in capped else
@@ -144,7 +150,8 @@ def fetch_headlines(symbols: List[str], *, end, pause=0.05, detailed=False,
                     'error_type': error_type, 'error_reason': error_reason,
                     'provider_response': provider_response or None,
                 }
-            time.sleep(pause)
+            if time.monotonic() < deadline:
+                time.sleep(pause)
     if diagnostics is not None:
         matched = sum(row['matched_in_window_count'] for row in observations.values())
         universe_zero = len(observations) > 1 and matched == 0
@@ -155,7 +162,7 @@ def fetch_headlines(symbols: List[str], *, end, pause=0.05, detailed=False,
                  if universe_zero else [])
         if http_errors:
             notes.append(f'News provider returned unsuccessful HTTP status for {http_errors} symbols; '
-                         'library-returned article counts retain their existing interpretation.')
+                         'affected samples are unavailable and excluded from new baseline observations.')
         diagnostics.clear()
         diagnostics.update({
             'schema_version': 1, 'window_start': since.isoformat(),
