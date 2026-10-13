@@ -5,6 +5,7 @@ import io
 import json
 from pathlib import Path
 import tempfile
+from types import SimpleNamespace
 import unittest
 from unittest.mock import MagicMock, patch
 
@@ -25,6 +26,76 @@ def article(title='Example report', when='2026-09-24T19:00:00Z'):
 
 
 class NewsHealthTests(unittest.TestCase):
+    def provider_response(self, status, payload):
+        return SimpleNamespace(status_code=status, text='JSON response',
+                               json=MagicMock(return_value=payload))
+
+    def actual_provider_fetch(self, response, *, opt_in=True):
+        """Exercise pinned get_news parsing, including its masked HTTP failures."""
+        import yfinance as yf
+        ticker = yf.Ticker('AAA')
+        delegate = ticker._data
+        diagnostics = {}
+        with patch('yfinance.Ticker', return_value=ticker), \
+                patch.object(delegate, 'post', return_value=response) as post:
+            kwargs = {'diagnostics': diagnostics} if opt_in else {}
+            result = news.fetch_headlines(['AAA'], end=CLOSE, pause=0,
+                                          detailed=True, **kwargs)
+        self.assertIs(ticker._data, delegate)
+        self.assertEqual(post.call_count, 1)
+        self.assertEqual(response.json.call_count, 1)
+        return result, diagnostics
+
+    def test_masked_http_404_is_visible_without_changing_existing_valid_zero(self):
+        result, diagnostics = self.actual_provider_fetch(self.provider_response(
+            404, {'message': 'provider endpoint is unavailable'}))
+        legacy, _ = self.actual_provider_fetch(self.provider_response(
+            404, {'message': 'provider endpoint is unavailable'}), opt_in=False)
+        self.assertEqual(result, legacy)
+        self.assertEqual(result, ({'AAA': 0}, {'AAA': []}, [], []))
+        self.assertEqual(diagnostics['symbols']['AAA']['provider_response'],
+                         {'http_status': 404, 'http_success': False})
+        self.assertEqual(diagnostics['provider_http_error_symbol_count'], 1)
+        self.assertNotIn('endpoint is unavailable', json.dumps(diagnostics))
+
+    def test_successful_response_is_observed_without_extra_request_or_decode(self):
+        result, diagnostics = self.actual_provider_fetch(self.provider_response(
+            200, {'data': {'tickerStream': {'stream': [article()]}}}))
+        self.assertEqual(result[0], {'AAA': 1})
+        self.assertEqual(diagnostics['symbols']['AAA']['provider_response'],
+                         {'http_status': 200, 'http_success': True})
+        self.assertEqual(diagnostics['provider_http_error_symbol_count'], 0)
+
+    def test_response_metadata_failure_cannot_change_news_result(self):
+        class Response:
+            text = 'JSON response'
+            json = MagicMock(return_value={'data': {'tickerStream': {'stream': [article()]}}})
+
+            @property
+            def status_code(self):
+                raise RuntimeError('diagnostic read failed with private-value')
+
+        result, diagnostics = self.actual_provider_fetch(Response())
+        self.assertEqual(result[0], {'AAA': 1})
+        self.assertEqual(result[2], [])
+        self.assertIsNone(diagnostics['symbols']['AAA']['provider_response'])
+        self.assertNotIn('private-value', json.dumps(diagnostics))
+
+    def test_http_failure_note_does_not_change_report_status_or_retry_skip(self):
+        def observe(ticker, observation):
+            observation.update(http_status=404, http_success=False)
+            return ticker.get_news(count=news.FETCH_LIMIT)
+
+        with patch.object(news, '_news_with_response_observation', side_effect=observe):
+            saved, _, _, stdout, loader, _, _ = self.run_read(lambda: [], scheduled_runs=[1])
+        self.assertTrue(saved['healthy'])
+        self.assertEqual(saved['status'], 'complete')
+        self.assertEqual(saved['warnings'], [])
+        self.assertEqual(saved['news']['diagnostics']['provider_http_error_symbol_count'], 2)
+        self.assertEqual(len(saved['news']['data_notes']), 2)
+        self.assertIn('retry skipped', stdout)
+        self.assertEqual(loader.call_count, 1)
+
     def fetch(self, responses, *, opt_in=True):
         def ticker(symbol):
             result = MagicMock()
