@@ -17,6 +17,7 @@ import json
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
+import pandas as pd
 
 from mbot import data as datamod
 from mbot import events as ev
@@ -52,9 +53,10 @@ def _news_baseline(history, symbols, days):
     history one day at a time; until five days exist, no baseline, and no
     news-spike events are called."""
     out = {}
+    current = [r for r in history if r.get("method") == newsmod.METHOD]
     for symbol in symbols:
-        vals = [float(r["counts"][symbol]) for r in history[-days:]
-                if r.get("method") == newsmod.METHOD and symbol in r.get("counts", {})]
+        vals = [float(r["counts"][symbol]) for r in current[-days:]
+                if symbol in r.get("counts", {})]
         if len(vals) >= 5:
             out[symbol] = sum(vals) / len(vals)
     return out
@@ -62,13 +64,86 @@ def _news_baseline(history, symbols, days):
 
 def _previous():
     try:
-        return json.loads(READ_FILE.read_text())
+        read = json.loads(READ_FILE.read_text())
+        return read if isinstance(read, dict) else {}
     except (OSError, ValueError):
         return {}
 
 
-def _publish_failure(errors, status="unavailable"):
+def _complete_news(read, symbols):
+    coverage = (read.get("stock_research") or {}).get("coverage") or {}
+    diagnostics = (read.get("news") or {}).get("diagnostics") or {}
+    return bool(
+        type((read.get("news") or {}).get("validation_version")) is int
+        and (read.get("news") or {}).get("validation_version") == newsmod.VALIDATION_VERSION
+        and (read.get("news") or {}).get("method") == newsmod.METHOD
+        and (read.get("stock_research") or {}).get("as_of") == read.get("as_of")
+        and ((read.get("stock_research") or {}).get("source") or {}).get("news_method") == newsmod.METHOD
+        and sorted(coverage.get("headline_symbols") or []) == sorted(set(symbols))
+        and coverage.get("missing_headline_symbols") == []
+        and coverage.get("capped_headline_symbols") == []
+        and not diagnostics.get("provider_http_error_symbol_count")
+        and all((row.get("provider_response") or {}).get("http_success") is not False
+                and (row.get("provider_response") or {}).get("payload_valid") is not False
+                for row in (diagnostics.get("symbols") or {}).values())
+    )
+
+
+def _retainable(read, session):
+    """Only retain fresh, fully validated evidence, never a legacy false zero."""
+    try:
+        stock = read["stock_research"]
+        coverage = stock["coverage"]
+        requested = coverage["requested_symbols"]
+        day = read["as_of"]
+        close = pd.Timestamp(read["session_close"])
+        written, expiry = pd.Timestamp(read["updated_at"]), pd.Timestamp(read["expires_at"])
+        now = pd.Timestamp(sessions.utc_now())
+        rows = stock["findings"]
+        return bool(session and day >= session and read.get("healthy") is True
+            and read.get("finalized") is True and read.get("schema_version") == 2
+            and read.get("status") == "complete" and read.get("errors") == []
+            and not read.get("warnings") and stock.get("schema_version") == findings.SCHEMA_VERSION
+            and stock.get("as_of") == day and requested and _complete_news(read, requested)
+            and stock["source"]["news_method"] == newsmod.METHOD
+            and sorted(coverage["price_symbols"]) == sorted(requested)
+            and coverage["missing_price_symbols"] == []
+            and len(rows) == len(requested) and {r["symbol"] for r in rows} == set(requested)
+            and all(r["id"] == f'{day}:{r["symbol"]}' and r["as_of"] == day
+                    and r["price_status"] == r["headline_status"] == "available" for r in rows)
+            and all(t.tzinfo is not None for t in (close, written, expiry, now))
+            and close == sessions.schedule(day, day).iloc[0].market_close
+            and written >= close + pd.Timedelta(minutes=15) and written <= now < expiry
+            and expiry == pd.Timestamp(sessions.next_expiry(day)))
+    except (KeyError, TypeError, ValueError, IndexError, AttributeError):
+        return False
+
+
+def _retain(read, errors, status, session, failed_sample=None):
+    retained = dict(read, last_attempt={"at": now_iso(), "session": session,
+                                       "status": status, "errors": errors})
+    if failed_sample is not None:
+        news = failed_sample.get("news") or {}
+        retained["last_attempt"]["news"] = {
+            "method": news.get("method"), "failed_symbols": news.get("failed_symbols", []),
+            "capped_symbols": news.get("capped_symbols", []),
+            "provider_http_error_symbol_count": (news.get("diagnostics") or {}).get("provider_http_error_symbol_count", 0),
+        }
+    _save(retained)
+    report.write_site(retained)
+    print(f"WARNING: {status} retry for {session}; retaining validated report dated {read['as_of']}.")
+
+
+def _publish_failure(errors, status="unavailable", session=None):
     prev = _previous()
+    if session is None:
+        try:
+            session = sessions.last_completed()
+        except Exception:
+            session = None
+    if _retainable(prev, session):
+        _retain(prev, errors, status, session)
+        return
     last_good = prev if prev.get("healthy") and prev.get("finalized") else prev.get("last_good")
     if last_good:
         last_good = {k: v for k, v in last_good.items() if k != "last_good"}
@@ -83,14 +158,15 @@ def _publish_failure(errors, status="unavailable"):
 
 
 def cmd_run(args):
+    attempt = {}
     try:
-        return _run(args)
+        return _run(args, attempt)
     except Exception as exc:
-        _publish_failure([f"Market read failed: {type(exc).__name__}: {exc}"])
+        _publish_failure([f"Market read failed: {type(exc).__name__}: {exc}"], session=attempt.get("session"))
         return 1
 
 
-def _run(args):
+def _run(args, attempt=None):
     cfg = MarketConfig()
     session = sessions.today_session()
     recovery_only = getattr(args, "recovery_only", False)
@@ -111,6 +187,8 @@ def _run(args):
         _publish_failure(["Waiting for a completed NYSE session and a 15-minute settlement buffer."], "waiting")
         return 0
     as_of = session["date"]
+    if attempt is not None:
+        attempt["session"] = as_of
     prev = _previous()
     universe = sorted(set(cfg.watchlist) | set(INDEXES) | set(SECTORS) | set(RATES_AND_FEAR))
     complete_daily_prices = (
@@ -123,6 +201,7 @@ def _run(args):
             and prev.get("healthy") and prev.get("finalized")
             and prev.get("as_of") == as_of and prev.get("schema_version") == 2
             and (prev.get("stock_research") or {}).get("schema_version") == findings.SCHEMA_VERSION
+            and _complete_news(prev, cfg.watchlist)
             and (complete_daily_prices if recovery_only else not prev.get("warnings"))):
         print(f"Completed healthy read already recorded for {as_of}; retry skipped.")
         return 0
@@ -184,7 +263,8 @@ def _run(args):
             old = next((h for h in history if h.get("date") == as_of and h.get("method") == newsmod.METHOD), {})
             row = {"date": as_of, "method": newsmod.METHOD, "window_end": session["close"].isoformat(),
                    "counts": dict(old.get("counts", {}), **counts)}
-            history = sorted([h for h in history if h.get("date") != as_of] + [row], key=lambda h: h["date"])
+            history = sorted([h for h in history if not (h.get("date") == as_of
+                and h.get("method") == newsmod.METHOD)] + [row], key=lambda h: h["date"])
             STATE_DIR.mkdir(parents=True, exist_ok=True)
             NEWS_FILE.write_text("".join(json.dumps(h) + "\n" for h in history))
     else:
@@ -230,9 +310,13 @@ def _run(args):
         diagnostics=news_diagnostics)
     if price_recovery:
         read["price_recovery"] = price_recovery
+    read["news"]["validation_version"] = newsmod.VALIDATION_VERSION
     if errors:
         read["last_good"] = (prev if prev.get("healthy") and prev.get("finalized") else prev.get("last_good"))
     read["brief"] = report.brief(read)
+    if errors and _retainable(prev, as_of):
+        _retain(prev, errors, read["status"], as_of, failed_sample=read)
+        return 1
     _save(read)
     print("\n" + read["brief"] + "\n")
     for message in warnings + data_notes:
@@ -312,7 +396,7 @@ def main():
     r.add_argument("--recover-last-completed", action="store_true",
                    help="repair the latest completed session before today's close, preserving its date")
     r.add_argument("--recovery-only", action="store_true",
-                   help="repair latest-session price gaps or recovered prices; preserve complete daily reads with headline warnings")
+                   help="repair latest-session price or headline coverage gaps and recovered prices")
     r.set_defaults(func=cmd_run)
     p = sub.add_parser("page", help="rebuild the page from the saved read")
     p.set_defaults(func=cmd_page)

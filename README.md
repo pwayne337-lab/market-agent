@@ -95,7 +95,7 @@ site/                the page and market.json
 The hub cloud timer starts GitHub Actions at **3:45 p.m. America/Chicago on
 weekdays**, with a **4:10 p.m. retry**. GitHub's own 3:47 / 4:12 schedule remains
 a backup. Both follow daylight saving time. The retry skips a session
-already completed successfully without warnings. The hub checks for acceptance every five minutes during bounded windows and
+already completed successfully without warnings using the current news validation method. The hub checks for acceptance every five minutes during bounded windows and
 avoids starting a second job while one is active. GitHub runner queues can
 still delay execution, so these are target times, not a guarantee. The trader's 4:30 p.m.
 Central scan reads the dated report through its own screening and approval rules.
@@ -104,8 +104,12 @@ An NYSE calendar handles holidays and early closes. No permanent event or
 follow-through is written before the close plus 15 minutes. All inputs must
 end on the same completed session; missing VIX/breadth checks are unknown.
 Missing essential inputs (SPY, VIX, or 90% breadth coverage) or a broken run
-writes a visible failure status and causes an unsuccessful run,
-while retaining the last good reading separately. Limited gaps in individual
+causes an unsuccessful run. A fresh, complete report for the same or a newer
+session is retained only when its current validation marker, news method,
+coverage, dates and expiry pass checks. The later failure is recorded separately
+in `last_attempt`; it does not refresh the earlier evidence. Legacy, partial,
+expired or malformed reports cannot qualify. Otherwise a visible failure status
+is published with the last good reading separately. Limited gaps in individual
 stock prices, sector comparisons, or sampled headlines are visible data notes,
 not requests for user action. A usable core reading with these notes succeeds
 as `complete_with_warnings`; affected observations are still excluded, and the
@@ -114,10 +118,23 @@ reports stale even if the scheduler stops. Weekends and holidays are included
 in the report's explicit expiry time.
 
 News counts cover unique returned Yahoo articles in the **24 hours ending at
-the session close**, not all published news. The fetch requests 100 items; a
-response at the limit that does not reach the window start is excluded. Each symbol
-needs five valid prior observations using this method. Failed observations
-are missing, never zero; the older limited-sample baseline is not reused.
+the session close**, not all published news. Yahoo's old content-query endpoint
+returned HTTP404 in the October 13, 2026 audit; the Researcher uses its working search endpoint
+with a bounded ten-second GET. Results must explicitly list the requested
+symbol in `relatedTickers`, and retain publication times, publisher and links.
+The search requests 50 items, the observed provider cap. A response at that
+limit must be newest-first and reach the window start with relevant items, or
+its count is excluded while available headlines remain visible.
+The batch has a three-minute budget, with at most one in-flight ten-second
+request beyond it; unqueried symbols are unavailable, never valid zeros.
+Each symbol needs five valid prior observations using this method. Failed observations
+are missing, never zero. Non-2xx responses, malformed payloads and missing
+relevance metadata are unavailable even if a library would return an empty list.
+Genuine HTTP200 empty/out-of-window samples remain valid observed zeros.
+`yahoo_search_returned_items_v1` is a distinct count method, so unvalidated old
+content-query counts are not reused or rewritten. The five-observation warm-up
+and all event thresholds stay the same. `news.validation_version=1` identifies
+the guarded report; PR6 diagnostics still record HTTP, sample bounds and gaps.
 
 Event rules are versioned. Repeated reads update same-session events and
 recompute outcomes from completed bars; a missing target-session bar never
@@ -168,8 +185,8 @@ Two additional recovery checks run at **8:20 p.m. Monday–Friday** and
 **7:20 a.m. Tuesday–Saturday**, America/Chicago. They use `--recovery-only`
 to retry the actual latest completed NYSE session after the vendor has had
 more time to publish. Calendar holidays, early closes, and weekends never
-change the report's date. A healthy report with ordinary headline warnings
-is left alone; a failed report or one using intraday recovery is retried.
+change the report's date. A report with failed or capped headline coverage,
+unvalidated news, a failed read or intraday price recovery is retried.
 Reports with missing stock prices, recent price-history gaps, or incomplete
 sector comparisons also retry.
 These checks use the same concurrency group as the normal afternoon reads.

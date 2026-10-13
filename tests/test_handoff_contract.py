@@ -42,11 +42,11 @@ def generate_report():
         "AAPL": [
             {"title": "Fixture: AAPL announces a product update", "publisher": "Fixture Wire",
              "published_at": "2026-09-24T18:00:00+00:00", "source": "Yahoo Finance",
-             "url": "https://example.com/fixture/aapl-product-update"},
+             "url": "https://example.com/fixture/aapl-product-update", "related_symbols": ["AAPL"]},
             # The producer's 24-hour window also includes yesterday after close.
             {"title": "Fixture: AAPL previews its product event", "publisher": "Fixture Wire",
              "published_at": "2026-09-23T21:00:00+00:00", "source": "Yahoo Finance",
-             "url": "https://example.com/fixture/aapl-event-preview"},
+             "url": "https://example.com/fixture/aapl-event-preview", "related_symbols": ["AAPL"]},
         ],
         "MSFT": [],
     }

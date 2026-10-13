@@ -6,7 +6,7 @@ import json
 import tempfile
 import unittest
 from pathlib import Path
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 
 import pandas as pd
 
@@ -25,7 +25,7 @@ def bars():
 
 
 def article(ident='one', when='2026-09-24T19:00:00Z', url='https://example.test/story'):
-    return {'id': ident, 'content': {'title': f'Story {ident}', 'pubDate': when,
+    return {'id': ident, 'relatedTickers': ['AAA'], 'content': {'title': f'Story {ident}', 'pubDate': when,
             'provider': {'displayName': 'Example Wire'}, 'canonicalUrl': {'url': url}}}
 
 
@@ -168,11 +168,9 @@ class FindingsTests(unittest.TestCase):
         self.assertEqual(row['headlines'][0]['title'], 'Story 0')
 
     def fetch(self, items):
-        ticker = MagicMock()
-        ticker.get_news.return_value = items
-        with patch('yfinance.Ticker', return_value=ticker):
+        with patch.object(news, '_search_news', return_value=items) as fetch:
             result = news.fetch_headlines(['AAA'], end=CLOSE, pause=0, detailed=True)
-        ticker.get_news.assert_called_once_with(count=news.FETCH_LIMIT)
+        fetch.assert_called_once()
         return result
 
     def test_headlines_have_dated_sources_links_and_session_window(self):
@@ -182,7 +180,7 @@ class FindingsTests(unittest.TestCase):
         self.assertEqual(counts, {'AAA': 2})
         self.assertEqual(failed, [])
         self.assertEqual(capped, [])
-        self.assertEqual(headlines['AAA'][0], dict(self.headline, title='Story one'))
+        self.assertEqual(headlines['AAA'][0], dict(self.headline, title='Story one', related_symbols=['AAA']))
         for row in headlines['AAA']:
             self.assertGreater(pd.Timestamp(row['published_at']), CLOSE - pd.Timedelta(days=1))
             self.assertLessEqual(pd.Timestamp(row['published_at']), CLOSE)
@@ -212,9 +210,11 @@ class FindingsTests(unittest.TestCase):
                 self.assertEqual(headlines, {})
                 self.assertEqual(failed, ['AAA'])
                 self.assertEqual(capped, [])
-        counts, headlines, _, _ = self.fetch([article(url='javascript:alert(1)')])
-        self.assertEqual(counts, {'AAA': 1})
-        self.assertIsNone(headlines['AAA'][0]['url'])
+        for url in ('javascript:alert(1)', 'https://', 'https:/example.test/story'):
+            with self.subTest(url=url):
+                counts, headlines, _, _ = self.fetch([article(url=url)])
+                self.assertEqual(counts, {'AAA': 1})
+                self.assertIsNone(headlines['AAA'][0]['url'])
 
 
 class FindingsPublicationTests(unittest.TestCase):
