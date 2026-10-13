@@ -259,7 +259,7 @@ class FindingsPublicationTests(unittest.TestCase):
         self.assertTrue(read['finalized'])
         self.assertEqual(read['as_of'], AS_OF)
         self.assertGreater(pd.Timestamp(read['expires_at']), CLOSE)
-        fetch.assert_called_once_with(self.cfg.watchlist, end=CLOSE, detailed=True)
+        fetch.assert_called_once_with(self.cfg.watchlist, end=CLOSE, detailed=True, diagnostics={})
         finding = read['stock_research']['findings'][0]
         self.assertEqual(finding['headlines'], [headline])
         self.assertEqual(len(finding['events']), 1)

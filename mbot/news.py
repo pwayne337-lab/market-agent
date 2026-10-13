@@ -7,14 +7,86 @@ import pandas as pd
 METHOD = 'yahoo_returned_items_v2'
 FETCH_LIMIT = 100
 
-def fetch_headlines(symbols: List[str], *, end, pause=0.05, detailed=False):
+
+class _NewsResponseObserver:
+    """Forward the pinned provider's request unchanged and retain only its status.
+
+    The provider may turn a non-2xx JSON response into an empty article list.
+    Observing that response must not reinterpret the result or issue a second
+    request. This proxy belongs to one Ticker; it never patches shared data.
+    """
+    def __init__(self, delegate, observation):
+        self._delegate = delegate
+        self._observation = observation
+
+    def __getattr__(self, name):
+        return getattr(self._delegate, name)
+
+    def post(self, *args, **kwargs):
+        response = self._delegate.post(*args, **kwargs)
+        try:
+            status = response.status_code
+            if isinstance(status, int) and not isinstance(status, bool) and 100 <= status < 600:
+                self._observation.update(http_status=status, http_success=200 <= status < 300)
+        except Exception:
+            pass  # Diagnostic capture must never change the provider result.
+        return response
+
+
+def _news_with_response_observation(ticker, observation):
+    """Observe yfinance 1.2.0's local data attribute, with a legacy fallback."""
+    try:
+        delegate = ticker._data
+        ticker._data = _NewsResponseObserver(delegate, observation)
+    except Exception:
+        return ticker.get_news(count=FETCH_LIMIT)
+    try:
+        return ticker.get_news(count=FETCH_LIMIT)
+    finally:
+        try:
+            ticker._data = delegate
+        except Exception:
+            pass
+
+
+def _error_reason(exc):
+    """Keep useful failure categories without persisting provider URLs or secrets."""
+    known = {'invalid news response', 'invalid article',
+             'article missing date or title', 'article timestamp has no timezone'}
+    if isinstance(exc, ValueError) and str(exc) in known:
+        return str(exc)
+    name = type(exc).__name__.lower()
+    if 'timeout' in name:
+        return 'Provider request timed out; raw details omitted.'
+    if 'connection' in name:
+        return 'Provider connection failed; raw details omitted.'
+    if 'http' in name:
+        return 'Provider HTTP request failed; raw details omitted.'
+    return 'Provider response could not be processed; raw details omitted.'
+
+
+def fetch_headlines(symbols: List[str], *, end, pause=0.05, detailed=False,
+                    diagnostics=None):
+    """Return the existing four values; optionally fill a diagnostic dictionary.
+
+    A zero is an observed count in Yahoo's returned sample. It never confirms
+    that no news was published, even when the sample reaches the window start.
+    Diagnostic collection does not alter counts, baselines or trading rules.
+    """
     import yfinance as yf
     end = pd.Timestamp(end)
     since = end - timedelta(days=1)
     counts, titles, failed, capped = {}, {}, [], []
+    observations = {}
     for sym in symbols:
+        items, ts, dates = None, [], []
+        provider_response = {}
+        error_type, error_reason = None, None
+        parsed = False
         try:
-            items = yf.Ticker(sym).get_news(count=FETCH_LIMIT)
+            ticker = yf.Ticker(sym)
+            items = (_news_with_response_observation(ticker, provider_response)
+                     if diagnostics is not None else ticker.get_news(count=FETCH_LIMIT))
             if not isinstance(items, list):
                 raise ValueError('invalid news response')
             seen, ts, dates = set(), [], []
@@ -43,6 +115,7 @@ def fetch_headlines(symbols: List[str], *, end, pause=0.05, detailed=False):
                     ts.append({'title': str(title).strip()[:500], 'published_at': dt.isoformat(),
                                'publisher': str(provider.get('displayName') or content.get('publisher') or '')[:200],
                                'url': url, 'source': 'Yahoo Finance'} if detailed else title)
+            parsed = True
             # A capped sample still has useful dated headlines. Only its count
             # is unknown: it must never enter the burst baseline as a total.
             if detailed:
@@ -51,8 +124,47 @@ def fetch_headlines(symbols: List[str], *, end, pause=0.05, detailed=False):
                 capped.append(sym)
                 continue  # The returned sample does not reach the window boundary.
             counts[sym], titles[sym] = len(ts), ts
-        except Exception:
+        except Exception as exc:
             failed.append(sym)
+            error_type, error_reason = type(exc).__name__, _error_reason(exc)
         finally:
+            if diagnostics is not None:
+                observations[sym] = {
+                    'returned_item_count': len(items) if isinstance(items, list) else None,
+                    'parsed_item_count': len(dates), 'parse_complete': parsed,
+                    'matched_in_window_count': len(ts),
+                    'oldest_returned_at': min(dates).isoformat() if dates else None,
+                    'newest_returned_at': max(dates).isoformat() if dates else None,
+                    'sample_reaches_window_start': bool(dates and min(dates) <= since),
+                    'observed_zero_in_window': parsed and not ts,
+                    'published_news_coverage_confirmed': False,
+                    'status': ('failed' if error_type else 'capped' if sym in capped else
+                               'empty_response' if not items else
+                               'observed_in_window' if ts else 'no_items_in_window'),
+                    'error_type': error_type, 'error_reason': error_reason,
+                    'provider_response': provider_response or None,
+                }
             time.sleep(pause)
+    if diagnostics is not None:
+        matched = sum(row['matched_in_window_count'] for row in observations.values())
+        universe_zero = len(observations) > 1 and matched == 0
+        http_errors = sum((row.get('provider_response') or {}).get('http_success') is False
+                          for row in observations.values())
+        notes = (['No in-window headlines observed across the requested universe; '
+                  'news coverage is unconfirmed, not evidence of no published news.']
+                 if universe_zero else [])
+        if http_errors:
+            notes.append(f'News provider returned unsuccessful HTTP status for {http_errors} symbols; '
+                         'library-returned article counts retain their existing interpretation.')
+        diagnostics.clear()
+        diagnostics.update({
+            'schema_version': 1, 'window_start': since.isoformat(),
+            'window_end': end.isoformat(), 'requested_symbol_count': len(observations),
+            'observed_matched_item_count': matched,
+            'universe_zero_in_window_observed': universe_zero,
+            'published_news_coverage_confirmed': False,
+            'provider_http_error_symbol_count': http_errors,
+            'symbols': observations,
+            'warnings': notes,
+        })
     return counts, titles, failed, capped

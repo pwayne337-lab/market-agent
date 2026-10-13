@@ -33,7 +33,7 @@ concurrency:
 
 jobs:
   read:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 20
     outputs:
       changed: ${{ steps.freshness.outputs.changed }}
@@ -100,7 +100,7 @@ jobs:
     needs: read
     # A newly written failure report is useful; an untouched old site is not.
     if: always() && needs.read.outputs.changed == 'true'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     environment:
       name: github-pages
       url: ${{ steps.deploy.outputs.page_url }}
