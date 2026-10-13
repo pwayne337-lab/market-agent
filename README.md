@@ -105,11 +105,15 @@ follow-through is written before the close plus 15 minutes. All inputs must
 end on the same completed session; missing VIX/breadth checks are unknown.
 Missing essential inputs (SPY, VIX, or 90% breadth coverage) or a broken run
 causes an unsuccessful run. A fresh, complete report for the same or a newer
-session is retained only when its current validation marker, news method,
+session can be retained only for a failure before data collection starts,
+when its current validation marker, news method,
 coverage, dates and expiry pass checks. The later failure is recorded separately
 in `last_attempt`; it does not refresh the earlier evidence. Legacy, partial,
-expired or malformed reports cannot qualify. Otherwise a visible failure status
-is published with the last good reading separately. Limited gaps in individual
+expired or malformed reports cannot qualify. A newly observed price, headline,
+capped-sample or other required-input failure remains current and fails the
+existing checks. Earlier evidence is archived separately as `last-good.json`,
+with only a small reference in the current report; the trader does not consume
+that archive as current research. Limited gaps in individual
 stock prices, sector comparisons, or sampled headlines are visible data notes,
 not requests for user action. A usable core reading with these notes succeeds
 as `complete_with_warnings`; affected observations are still excluded, and the

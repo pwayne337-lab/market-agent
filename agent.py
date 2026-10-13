@@ -120,6 +120,13 @@ def _retainable(read, session):
 
 
 def _retain(read, errors, status, session, failed_sample=None):
+    if failed_sample is not None:
+        stock = failed_sample.get("stock_research") or {}
+        requested = (stock.get("coverage") or {}).get("requested_symbols") or []
+        news = failed_sample.get("news") or {}
+        if (failed_sample.get("errors") or news.get("failed_symbols") or news.get("capped_symbols")
+                or not _complete_news(failed_sample, requested)):
+            return False  # New required-input failures must stay current.
     retained = dict(read, last_attempt={"at": now_iso(), "session": session,
                                        "status": status, "errors": errors})
     if failed_sample is not None:
@@ -132,21 +139,37 @@ def _retain(read, errors, status, session, failed_sample=None):
     _save(retained)
     report.write_site(retained)
     print(f"WARNING: {status} retry for {session}; retaining validated report dated {read['as_of']}.")
+    return True
 
 
-def _publish_failure(errors, status="unavailable", session=None):
+def _archive_previous(read):
+    """Keep earlier evidence for audit, with a small non-consumable reference."""
+    previous = read if read.get("healthy") and read.get("finalized") else read.get("last_good")
+    if not isinstance(previous, dict) or not previous:
+        return None
+    if previous.get("report_file") == "last-good.json":
+        return previous
+    archived = {k:v for k,v in previous.items() if k not in ("last_good", "last_attempt")}
+    encoded = json.dumps(archived, indent=2, default=str)
+    STATE_DIR.mkdir(parents=True, exist_ok=True)
+    report.SITE.mkdir(parents=True, exist_ok=True)
+    (STATE_DIR / "last-good.json").write_text(encoded)
+    (report.SITE / "last-good.json").write_text(encoded)
+    return {**{k:archived.get(k) for k in ("as_of", "updated_at", "expires_at", "status")},
+            "report_file": "last-good.json"}
+
+
+def _publish_failure(errors, status="unavailable", session=None, allow_retain=False):
     prev = _previous()
     if session is None:
         try:
             session = sessions.last_completed()
         except Exception:
             session = None
-    if _retainable(prev, session):
+    if allow_retain and _retainable(prev, session):
         _retain(prev, errors, status, session)
         return
-    last_good = prev if prev.get("healthy") and prev.get("finalized") else prev.get("last_good")
-    if last_good:
-        last_good = {k: v for k, v in last_good.items() if k != "last_good"}
+    last_good = _archive_previous(prev)
     read = {"schema_version": 2, "updated_at": now_iso(), "healthy": False,
             "finalized": False, "status": status, "errors": errors,
             "risk": {"word": "unknown", "score": 0, "of": 4, "checks": []},
@@ -162,7 +185,8 @@ def cmd_run(args):
     try:
         return _run(args, attempt)
     except Exception as exc:
-        _publish_failure([f"Market read failed: {type(exc).__name__}: {exc}"], session=attempt.get("session"))
+        _publish_failure([f"Market read failed: {type(exc).__name__}: {exc}"],
+                         session=attempt.get("session"), allow_retain=not attempt.get("collecting"))
         return 1
 
 
@@ -206,6 +230,8 @@ def _run(args, attempt=None):
         print(f"Completed healthy read already recorded for {as_of}; retry skipped.")
         return 0
     print(f"Loading {len(universe)} symbols for completed session {as_of}...")
+    if attempt is not None:
+        attempt["collecting"] = True
     bars = datamod.load_session(universe, start=cfg.history_start,
                                 session=as_of, cached=args.cached)
     bars = {sym: df.loc[df.index <= as_of] for sym, df in bars.items()}
@@ -312,11 +338,11 @@ def _run(args, attempt=None):
         read["price_recovery"] = price_recovery
     read["news"]["validation_version"] = newsmod.VALIDATION_VERSION
     if errors:
-        read["last_good"] = (prev if prev.get("healthy") and prev.get("finalized") else prev.get("last_good"))
+        read["last_good"] = _archive_previous(prev)
     read["brief"] = report.brief(read)
     if errors and _retainable(prev, as_of):
-        _retain(prev, errors, read["status"], as_of, failed_sample=read)
-        return 1
+        if _retain(prev, errors, read["status"], as_of, failed_sample=read):
+            return 1
     _save(read)
     print("\n" + read["brief"] + "\n")
     for message in warnings + data_notes:

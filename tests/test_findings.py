@@ -292,7 +292,10 @@ class FindingsPublicationTests(unittest.TestCase):
         self.assertFalse(failed['healthy'])
         self.assertFalse(failed['finalized'])
         self.assertNotIn('stock_research', failed)
-        self.assertEqual(failed['last_good']['stock_research'], previous['stock_research'])
+        archived = json.loads((report.SITE/'last-good.json').read_text())
+        self.assertEqual(archived['stock_research'], previous['stock_research'])
+        self.assertEqual(failed['last_good']['report_file'], 'last-good.json')
+        self.assertNotIn('stock_research', failed['last_good'])
 
 
 if __name__ == '__main__':
