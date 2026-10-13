@@ -80,7 +80,7 @@ def generate_report():
         prices.assert_called_once_with(sorted(symbols), start=cfg.history_start,
                                        session="2026-09-24", cached=False)
         headlines.assert_called_once_with(cfg.watchlist, end=pd.Timestamp("2026-09-24T20:00Z"),
-                                          detailed=True)
+                                          detailed=True, diagnostics={})
         saved = json.loads(agent.READ_FILE.read_text())
         published = json.loads((report.SITE / "market.json").read_text())
         if saved != published:

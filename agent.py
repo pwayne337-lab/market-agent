@@ -163,11 +163,14 @@ def _run(args):
     risk = regime.risk_score(idx, br if br["coverage_pct"] >= 90 else {}, vol, cfg)
 
     counts, titles, articles, failed, capped = {}, {}, {}, [], []
+    news_diagnostics = {}
     history = _load_news_history()
     baseline = _news_baseline([h for h in history if h.get("date", "") < as_of],
                               cfg.watchlist, cfg.news_baseline_days)
     if not (args.no_news or args.cached):
-        counts, articles, failed, capped = newsmod.fetch_headlines(cfg.watchlist, end=session["close"], detailed=True)
+        counts, articles, failed, capped = newsmod.fetch_headlines(
+            cfg.watchlist, end=session["close"], detailed=True, diagnostics=news_diagnostics)
+        warnings.extend(news_diagnostics.get("warnings", []))
         titles = {sym: [h['title'] for h in rows] for sym, rows in articles.items()}
         if failed:
             warnings.append(f"Headlines unavailable for {len(failed)} symbols")
@@ -214,6 +217,8 @@ def _run(args):
                  "method": newsmod.METHOD, "note": "Returned Yahoo articles in the 24 hours ending at the close; not all published news."},
         "min_sample": cfg.min_sample, "universe": {"watchlist": len(cfg.watchlist), "loaded": len(bars)},
     }
+    if news_diagnostics:
+        read["news"]["diagnostics"] = news_diagnostics
     if price_recovery:
         read["price_recovery"] = price_recovery
     if errors:
