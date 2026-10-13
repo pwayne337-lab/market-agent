@@ -163,14 +163,17 @@ def _run(args):
     risk = regime.risk_score(idx, br if br["coverage_pct"] >= 90 else {}, vol, cfg)
 
     counts, titles, articles, failed, capped = {}, {}, {}, [], []
-    news_diagnostics = {}
+    news_diagnostics, data_notes = {}, []
     history = _load_news_history()
     baseline = _news_baseline([h for h in history if h.get("date", "") < as_of],
                               cfg.watchlist, cfg.news_baseline_days)
     if not (args.no_news or args.cached):
         counts, articles, failed, capped = newsmod.fetch_headlines(
             cfg.watchlist, end=session["close"], detailed=True, diagnostics=news_diagnostics)
-        warnings.extend(news_diagnostics.get("warnings", []))
+        # Feed-health observations are report-only data notes, not report
+        # warnings: they must not change status, the trader-visible warnings,
+        # or the scheduled retry skip for an already-recorded session.
+        data_notes.extend(news_diagnostics.get("warnings", []))
         titles = {sym: [h['title'] for h in rows] for sym, rows in articles.items()}
         if failed:
             warnings.append(f"Headlines unavailable for {len(failed)} symbols")
@@ -219,6 +222,8 @@ def _run(args):
     }
     if news_diagnostics:
         read["news"]["diagnostics"] = news_diagnostics
+    if data_notes:
+        read["news"]["data_notes"] = data_notes
     if price_recovery:
         read["price_recovery"] = price_recovery
     if errors:
@@ -226,7 +231,7 @@ def _run(args):
     read["brief"] = report.brief(read)
     _save(read)
     print("\n" + read["brief"] + "\n")
-    for message in warnings:
+    for message in warnings + data_notes:
         print(f"DATA NOTE: {message}")
     for message in errors:
         print(f"ERROR: {message}")

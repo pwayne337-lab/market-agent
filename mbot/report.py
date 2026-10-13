@@ -84,6 +84,10 @@ def page(read: dict) -> str:
         health += (f'<div class="verdict"><strong>Data notes — no action required</strong>'
                    f'<p>Affected observations are excluded. The next scheduled attempt checks them again.</p>'
                    f'<ul>{warnings}</ul></div>')
+    feed_notes = "".join(f"<li>{e(str(x))}</li>" for x in (read.get("news") or {}).get("data_notes") or [])
+    if feed_notes:
+        health += (f'<div class="verdict"><strong>Headline feed notes — report only</strong>'
+                   f'<ul>{feed_notes}</ul></div>')
     last_good = read.get("last_good") or {}
     if last_good:
         health += f'<p>Last good report: {e(str(last_good.get("as_of")))}. Current reading unavailable.</p>'

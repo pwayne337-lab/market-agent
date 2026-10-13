@@ -134,7 +134,8 @@ class NewsHealthTests(unittest.TestCase):
         self.assertEqual(row['matched_in_window_count'], 1)
         self.assertFalse(row['sample_reaches_window_start'])
 
-    def test_report_persists_warning_and_diagnostics_without_changing_risk(self):
+    def run_read(self, get_news, *, scheduled_runs=()):
+        """Run one offline read, then optional scheduled repeats, in a temp state dir."""
         cfg = MarketConfig(watchlist=['AAA', 'BBB'])
         dates = sessions.schedule('2025-01-01', '2026-09-24').index
         close = pd.Series(range(len(dates)), index=dates).astype(float) + 100
@@ -143,7 +144,6 @@ class NewsHealthTests(unittest.TestCase):
         symbols = set(cfg.watchlist) | set(INDEXES) | set(SECTORS) | set(RATES_AND_FEAR)
         bars = {symbol: frame.copy() for symbol in symbols}
         bars['^VIX'].loc[:, ['open', 'high', 'low', 'close']] = [14, 15, 13, 14]
-        args = argparse.Namespace(cached=False, no_news=False, scheduled=False)
         prior = {'date': '2026-09-23', 'method': news.METHOD,
                  'counts': {'AAA': 2, 'BBB': 3}}
         with tempfile.TemporaryDirectory() as directory, ExitStack() as stack:
@@ -160,27 +160,54 @@ class NewsHealthTests(unittest.TestCase):
             agent.NEWS_FILE.write_text(json.dumps(prior) + '\n')
             stack.enter_context(patch.object(agent, 'MarketConfig', return_value=cfg))
             stack.enter_context(patch.object(sessions, 'utc_now', return_value=CLOSE + pd.Timedelta(minutes=47)))
-            stack.enter_context(patch.object(agent.datamod, 'load_session', return_value=bars))
+            loader = stack.enter_context(patch.object(agent.datamod, 'load_session', return_value=bars))
             ticker = MagicMock()
-            ticker.get_news.return_value = []
+            ticker.get_news.side_effect = lambda count: get_news()
             stack.enter_context(patch('yfinance.Ticker', return_value=ticker))
             stack.enter_context(patch.object(news.time, 'sleep'))
             stdout = stack.enter_context(redirect_stdout(io.StringIO()))
+            args = argparse.Namespace(cached=False, no_news=False, scheduled=False)
             self.assertEqual(agent.cmd_run(args), 0)
+            for _ in scheduled_runs:
+                self.assertEqual(agent.cmd_run(argparse.Namespace(
+                    cached=False, no_news=False, scheduled=True)), 0)
             saved = json.loads(agent.READ_FILE.read_text())
             published = json.loads((report.SITE / 'market.json').read_text())
-            self.assertEqual(saved, published)
-            self.assertTrue(saved['healthy'])
-            self.assertEqual(saved['risk']['word'], 'risk-on')
-            self.assertEqual(saved['risk']['score'], 4)
-            self.assertEqual(saved['status'], 'complete_with_warnings')
-            self.assertTrue(saved['news']['diagnostics']['universe_zero_in_window_observed'])
-            self.assertEqual(saved['news']['diagnostics']['symbols']['AAA']['status'], 'empty_response')
-            self.assertIn('coverage is unconfirmed', stdout.getvalue())
+            page = (report.SITE / 'index.html').read_text()
             rows = [json.loads(line) for line in agent.NEWS_FILE.read_text().splitlines()]
-            self.assertEqual(rows[0], prior)
-            self.assertEqual(rows[-1]['counts'], {'AAA': 0, 'BBB': 0})
+            return saved, published, page, stdout.getvalue(), loader, rows, prior
 
+    def test_report_persists_data_note_and_diagnostics_without_changing_risk(self):
+        saved, published, page, stdout, _, rows, prior = self.run_read(lambda: [])
+        self.assertEqual(saved, published)
+        self.assertTrue(saved['healthy'])
+        self.assertEqual(saved['risk']['word'], 'risk-on')
+        self.assertEqual(saved['risk']['score'], 4)
+        # The universe-zero observation is a report-only data note, not a report warning.
+        self.assertEqual(saved['status'], 'complete')
+        self.assertEqual(saved['warnings'], [])
+        self.assertEqual(len(saved['news']['data_notes']), 1)
+        self.assertIn('coverage is unconfirmed', saved['news']['data_notes'][0])
+        self.assertTrue(saved['news']['diagnostics']['universe_zero_in_window_observed'])
+        self.assertEqual(saved['news']['diagnostics']['symbols']['AAA']['status'], 'empty_response')
+        self.assertIn('DATA NOTE: No in-window headlines observed', stdout)
+        self.assertIn('Headline feed notes', page)
+        self.assertEqual(rows[0], prior)
+        self.assertEqual(rows[-1]['counts'], {'AAA': 0, 'BBB': 0})
+
+    def test_universe_zero_note_does_not_block_scheduled_retry_skip(self):
+        saved, _, _, stdout, loader, _, _ = self.run_read(lambda: [], scheduled_runs=[1])
+        self.assertIn('retry skipped', stdout)
+        self.assertEqual(loader.call_count, 1)
+        self.assertTrue(saved['news']['data_notes'])
+
+    def test_report_warning_still_triggers_scheduled_retry(self):
+        def failing():
+            raise RuntimeError('provider down')
+        saved, _, _, stdout, loader, _, _ = self.run_read(failing, scheduled_runs=[1])
+        self.assertNotIn('retry skipped', stdout)
+        self.assertEqual(loader.call_count, 2)
+        self.assertIn('Headlines unavailable for 2 symbols', saved['warnings'])
 
 if __name__ == '__main__':
     unittest.main()
