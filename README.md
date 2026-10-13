@@ -139,6 +139,11 @@ Genuine HTTP200 empty/out-of-window samples remain valid observed zeros.
 content-query counts are not reused or rewritten. The five-observation warm-up
 and all event thresholds stay the same. `news.validation_version=1` identifies
 the guarded report; PR6 diagnostics still record HTTP, sample bounds and gaps.
+New event records carry the news count method. Descriptive outcome groups keep
+different methods separate when news was assessed or affected the event kind;
+older untagged records are labeled legacy. Unassessed price-only groups stay
+combined. A method transition does not replace an already recorded date/symbol
+observation; historical rows are not relabeled to the new method.
 
 Event rules are versioned. Repeated reads update same-session events and
 recompute outcomes from completed bars; a missing target-session bar never

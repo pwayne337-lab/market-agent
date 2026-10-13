@@ -3,6 +3,7 @@ import contextlib
 import io
 import json
 import tempfile
+from copy import deepcopy
 import unittest
 from pathlib import Path
 from unittest.mock import patch
@@ -233,6 +234,26 @@ class Reliability(unittest.TestCase):
         self.assertNotIn('S', agent._news_baseline(prior, ['S'], 30))
         current = [dict(row, method=news.METHOD, counts={'S':2}) for row in prior]
         self.assertEqual(agent._news_baseline(current, ['S'], 30), {'S':2})
+
+    def test_event_news_provenance_keeps_assessed_populations_separate(self):
+        base = {'date':'2026-09-24', 'symbol':'S', 'kind':'move', 'direction':'up',
+                'rules_version':2, 'news_assessment':'assessed', 'follow':{'5d':1.0}}
+        rows = [base, dict(base, news_method=news.METHOD)]
+        original = deepcopy(rows)
+        groups = events.what_the_record_says(rows, self.cfg)
+        self.assertEqual(len(groups), 2)
+        self.assertTrue(any('/ method legacy' in g['group'] for g in groups))
+        self.assertTrue(any(news.METHOD in g['group'] for g in groups))
+        self.assertEqual(rows, original)
+        self.assertEqual(events.merge([base], [dict(base, news_method=news.METHOD)]), [base])
+        # No assessed news influences a purely price-only classification.
+        for row in rows:
+            row['news_assessment'] = 'unavailable'
+        self.assertEqual(len(events.what_the_record_says(rows, self.cfg)), 1)
+        moved = self.frame.copy()
+        moved.loc[moved.index[-1], 'close'] = 200
+        detected = events.detect({'S':moved}, {}, {}, {}, self.cfg, as_of='2026-09-24')
+        self.assertEqual(detected[0]['news_method'], news.METHOD)
 
     def test_collecting_new_method_preserves_old_method_records_for_same_session(self):
         legacy = {'date':'2026-09-24', 'method':'yahoo_returned_items_v2', 'counts':{'AAPL':0}}

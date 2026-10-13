@@ -29,6 +29,7 @@ import numpy as np
 import pandas as pd
 
 from .config import MarketConfig
+from . import news
 from .sessions import follow_dates, last_completed, schedule
 
 STATE_DIR = Path(__file__).resolve().parent.parent / "state"
@@ -90,6 +91,7 @@ def detect(bars: Dict[str, pd.DataFrame], news_counts: Dict[str, int],
             "headlines_today": n_news, "headlines_usual": round(base, 2),
             "news_assessment": ("assessed" if sym in news_counts and sym in news_baseline else
                                 "unavailable" if sym not in news_counts else "warming up"),
+            "news_method": news.METHOD,
             "top_headlines": (headlines.get(sym) or [])[:3],
             "follow": {},
         })
@@ -134,6 +136,8 @@ def merge(existing: List[dict], fresh: List[dict]) -> List[dict]:
             continue
         key = (e.get("date"), e.get("symbol"))
         old = by_key.get(key, {})
+        if old and old.get("news_method", "legacy") != e.get("news_method", "legacy"):
+            continue  # A new sampling method cannot relabel a historical observation.
         by_key[key] = dict(e, follow=old.get("follow") or {})
     return sorted(by_key.values(), key=lambda e: (e.get("date", ""), e.get("symbol", "")))
 
@@ -195,6 +199,10 @@ def what_the_record_says(events: List[dict], cfg: MarketConfig) -> List[dict]:
     for e in events:
         key = (f"{e.get('kind')} / {e.get('direction')} / rules {e.get('rules_version', 1)}"
                f" / news {e.get('news_assessment', 'legacy')}")
+        # Sampling can change assessed membership, even a move with no burst.
+        # Unassessed price-only moves need no method-based fragmentation.
+        if 'news' in str(e.get('kind')) or e.get('news_assessment') == 'assessed':
+            key += f" / method {e.get('news_method', 'legacy')}"
         groups.setdefault(key, []).append(e)
     out = []
     for key, evs in sorted(groups.items()):
