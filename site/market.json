@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "rules_version": 2,
-  "updated_at": "2026-10-15T23:23:00+00:00",
+  "updated_at": "2026-10-15T23:44:25+00:00",
   "as_of": "2026-10-15",
   "session_close": "2026-10-15T20:00:00+00:00",
   "expires_at": "2026-10-16T21:30:00+00:00",
@@ -11,7 +11,7 @@
   "errors": [],
   "warnings": [
     "Prices recovered from complete intraday bars for 8 symbols; values may differ from finalized daily prints",
-    "Headline sample limit reached for MSFT, GOOGL, C; excluded from baseline"
+    "Headline sample limit reached for SPY, MSFT, GOOGL, C; excluded from baseline"
   ],
   "risk": {
     "word": "risk-on",
@@ -737,7 +737,6 @@
         "SPG",
         "SPGI",
         "SPOT",
-        "SPY",
         "SYK",
         "T",
         "TEAM",
@@ -779,16 +778,18 @@
       "missing_headline_symbols": [
         "C",
         "GOOGL",
-        "MSFT"
+        "MSFT",
+        "SPY"
       ],
       "capped_headline_symbols": [
         "C",
         "GOOGL",
-        "MSFT"
+        "MSFT",
+        "SPY"
       ]
     },
     "warnings": [
-      "Incomplete headline coverage for 3 symbols.",
+      "Incomplete headline coverage for 4 symbols.",
       "Latest prices reconstructed from intraday bars for 8 symbols."
     ],
     "findings": [
@@ -2047,7 +2048,35 @@
         "price_status": "available",
         "headline_status": "available",
         "news_baseline_status": "warming_up",
-        "headlines": [],
+        "headlines": [
+          {
+            "title": "5 Boring Dividend Stocks That Could Keep Growing While Customers Pay More",
+            "published_at": "2026-10-15T13:15:04+00:00",
+            "publisher": "24/7 Wall St.",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/5-boring-dividend-stocks-could-131504200.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "ECL",
+              "LIN",
+              "WCN",
+              "NG=F",
+              "ADP",
+              "GWW"
+            ]
+          },
+          {
+            "title": "Paychex Builds Fortress of Steady Dividend Growth While Stock Struggles",
+            "published_at": "2026-10-15T11:45:46+00:00",
+            "publisher": "24/7 Wall St.",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/paychex-builds-fortress-steady-dividend-114546386.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "PAYX",
+              "PAYC",
+              "ADP"
+            ]
+          }
+        ],
         "events": [],
         "sector_context": {
           "scope": "market",
@@ -2367,7 +2396,26 @@
         "price_status": "available",
         "headline_status": "available",
         "news_baseline_status": "warming_up",
-        "headlines": [],
+        "headlines": [
+          {
+            "title": "Is American Airlines Stock's Drop A Chance To Buy?",
+            "published_at": "2026-10-15T17:39:45+00:00",
+            "publisher": "Trefis",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/american-airlines-stocks-drop-chance-173945158.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "AAL",
+              "^GSPC",
+              "DAL",
+              "UAL",
+              "LUV",
+              "ALK",
+              "JBLU",
+              "SPGI",
+              "AIG"
+            ]
+          }
+        ],
         "events": [],
         "sector_context": {
           "scope": "market",
@@ -2739,7 +2787,314 @@
         "price_status": "available",
         "headline_status": "available",
         "news_baseline_status": "warming_up",
-        "headlines": [],
+        "headlines": [
+          {
+            "title": "Why This Market Washout Will Spark a Year-End Rally",
+            "published_at": "2026-10-15T19:42:00+00:00",
+            "publisher": "Zacks",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/why-market-washout-spark-end-194200754.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "^IXIC",
+              "AMD",
+              "MU",
+              "QQQ",
+              "META",
+              "NBIS"
+            ]
+          },
+          {
+            "title": "Chip Stocks Face Another Rough Morning",
+            "published_at": "2026-10-15T18:19:21+00:00",
+            "publisher": "GuruFocus.com",
+            "url": "https://finance.yahoo.com/technology/articles/chip-stocks-face-another-rough-181921354.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "AMD",
+              "RKLB",
+              "ERIC",
+              "INTC",
+              "NVDA",
+              "MU",
+              "TSM",
+              "STX",
+              "WDC"
+            ]
+          },
+          {
+            "title": "Anthropic Just Made the AI Stock Concerns Worse",
+            "published_at": "2026-10-15T18:19:00+00:00",
+            "publisher": "Barrons.com",
+            "url": "https://finance.yahoo.com/m/638c8ad5-e8ed-3919-b065-4dda80229200/anthropic-just-made-the-ai.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "ANTH.PVT",
+              "AMD",
+              "MU",
+              "SNDK",
+              "STX",
+              "WDC"
+            ]
+          },
+          {
+            "title": "Should You Buy The Dip In Marvell Stock?",
+            "published_at": "2026-10-15T18:11:01+00:00",
+            "publisher": "Trefis",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/buy-dip-marvell-stock-181101936.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "MRVL",
+              "AVGO",
+              "NVDA",
+              "AMD",
+              "QCOM",
+              "INTC"
+            ]
+          },
+          {
+            "title": "Advanced Micro Devices (AMD) Expands AI Infrastructure Cooling, Is The Stock Fully Priced?",
+            "published_at": "2026-10-15T18:10:12+00:00",
+            "publisher": "Simply Wall St.",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/advanced-micro-devices-amd-expands-181012642.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "AMD"
+            ]
+          },
+          {
+            "title": "FormFactor, Teradyne, Applied Materials, AMD, and Intel Shares Plummet, What You Need To Know",
+            "published_at": "2026-10-15T17:36:27+00:00",
+            "publisher": "StockStory",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/formfactor-teradyne-applied-materials-amd-173627052.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "TER",
+              "AMAT",
+              "FORM",
+              "AMD",
+              "INTC"
+            ]
+          },
+          {
+            "title": "I\u2019m Simply Not Worried About Broadcom\u2019s Multi-Segment Drag",
+            "published_at": "2026-10-15T16:45:34+00:00",
+            "publisher": "24/7 Wall St.",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/m-simply-not-worried-broadcom-164534970.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "AVGO",
+              "NVDA",
+              "AMD"
+            ]
+          },
+          {
+            "title": "The Real AMD Catalyst Investors Are Sleeping On Isn\u2019t What You Think",
+            "published_at": "2026-10-15T16:30:34+00:00",
+            "publisher": "24/7 Wall St.",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/real-amd-catalyst-investors-sleeping-163034055.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "AMD",
+              "NVDA",
+              "INTC",
+              "META"
+            ]
+          },
+          {
+            "title": "Nvidia, Micron and SanDisk Leads Chip Sell-Off as Rising Yields Rattle AI Investors",
+            "published_at": "2026-10-15T16:03:27+00:00",
+            "publisher": "GuruFocus.com",
+            "url": "https://finance.yahoo.com/technology/articles/nvidia-micron-sandisk-leads-chip-160327936.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "NVDA",
+              "MU",
+              "SNDK",
+              "SKHY",
+              "AMD",
+              "TSM"
+            ]
+          },
+          {
+            "title": "AMD, NVDA, Other Chip Stocks Extend Rout Amid AI Debt Concerns \u2014 Saxo Says Financing Squeeze Could Hit Supply Chain",
+            "published_at": "2026-10-15T15:28:26+00:00",
+            "publisher": "Stocktwits",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/amd-nvda-other-chip-stocks-152826082.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "AMD",
+              "TSM",
+              "NVDA",
+              "CRWV",
+              "MU",
+              "SNDK"
+            ]
+          },
+          {
+            "title": "TSMC stock drops despite record profit amid 'extremely robust demand' for AI chips",
+            "published_at": "2026-10-15T15:26:49+00:00",
+            "publisher": "Yahoo Finance",
+            "url": "https://finance.yahoo.com/markets/stocks/article/tsmc-stock-drops-despite-record-profit-amid-extremely-robust-demand-for-ai-chips-152649370.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "TSM",
+              "TSMC34.SA",
+              "TSLA",
+              "NVDA",
+              "AVGO",
+              "AMD",
+              "TSM"
+            ]
+          },
+          {
+            "title": "As AI stocks plunge, Apple is riding high",
+            "published_at": "2026-10-15T15:04:12+00:00",
+            "publisher": "Yahoo Finance",
+            "url": "https://finance.yahoo.com/technology/article/as-ai-stocks-plunge-apple-is-riding-high-150412052.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "AAPL",
+              "CRWV",
+              "NVDA",
+              "AMD"
+            ]
+          },
+          {
+            "title": "Sterling and BitRipple Partner to Deliver Super Intelligence Efficiency and Communication Acceleration",
+            "published_at": "2026-10-15T15:00:00+00:00",
+            "publisher": "Business Wire",
+            "url": "https://finance.yahoo.com/technology/ai/articles/sterling-bitripple-partner-deliver-super-150000787.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "AMD",
+              "NVDA"
+            ]
+          },
+          {
+            "title": "TSMC Stock Falls After Blowout Earnings. Musk Talks Could Offset AI Chip Fears.",
+            "published_at": "2026-10-15T14:18:00+00:00",
+            "publisher": "Barrons.com",
+            "url": "https://finance.yahoo.com/m/daa2ad70-2429-337c-8d4e-660e86e01e04/tsmc-stock-falls-after.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "TSM",
+              "NVDA",
+              "AVGO",
+              "AMD",
+              "INTC",
+              "TSM"
+            ]
+          },
+          {
+            "title": "Prediction: Broadcom Could Be the AI Winner After Nvidia",
+            "published_at": "2026-10-15T14:15:08+00:00",
+            "publisher": "24/7 Wall St.",
+            "url": "https://finance.yahoo.com/technology/ai/articles/prediction-broadcom-could-ai-winner-141508125.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "AVGO",
+              "NVDA",
+              "META",
+              "ANTH.PVT",
+              "AMD",
+              "GOOG"
+            ]
+          },
+          {
+            "title": "Here Are the Tech Stocks Taking a Beating Today",
+            "published_at": "2026-10-15T14:11:42+00:00",
+            "publisher": "The Wall Street Journal",
+            "url": "https://finance.yahoo.com/m/8e8a15a9-8e24-3fc5-b65e-ff5436998a61/here-are-the-tech-stocks.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "ANTH.PVT",
+              "TSM",
+              "ASTS",
+              "SMCI",
+              "MRVL",
+              "SNDK",
+              "ORCL",
+              "INTC",
+              "SPCX",
+              "NVDA",
+              "CRWV",
+              "MU",
+              "AMD",
+              "NBIS"
+            ]
+          },
+          {
+            "title": "Tech slumps as AI financing worries grow, investors flock to bonds: AlphaCheck",
+            "published_at": "2026-10-15T14:02:48+00:00",
+            "publisher": "Yahoo Finance",
+            "url": "https://finance.yahoo.com/markets/article/tech-slumps-as-ai-financing-worries-grow-investors-flock-to-bonds-alphacheck-140248350.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "RKLB",
+              "SNDK",
+              "MU",
+              "NVDA",
+              "XLU",
+              "CRWV",
+              "XLP",
+              "XLK",
+              "AMD",
+              "CL=F",
+              "SKHY",
+              "^TNX"
+            ]
+          },
+          {
+            "title": "Global chip sell-off deepens as South Korean market plunges",
+            "published_at": "2026-10-15T13:44:30+00:00",
+            "publisher": "Yahoo Finance",
+            "url": "https://finance.yahoo.com/markets/stocks/article/global-chip-sell-off-deepens-as-south-korean-market-plunges-024927049.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "^KS11",
+              "NVDA",
+              "005930.KS",
+              "SKHY",
+              "MU",
+              "SKHY",
+              "AVGO",
+              "INTC",
+              "AMD"
+            ]
+          },
+          {
+            "title": "The Case For NVIDIA Stock Rests On One Thing",
+            "published_at": "2026-10-15T13:42:36+00:00",
+            "publisher": "Trefis",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/case-nvidia-stock-rests-one-134236405.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "NVDA",
+              "AMD",
+              "INTC",
+              "AVGO",
+              "QCOM",
+              "MRVL"
+            ]
+          },
+          {
+            "title": "Is There A Risk Hiding In AMD Stock's Big Run?",
+            "published_at": "2026-10-15T13:31:32+00:00",
+            "publisher": "Trefis",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/risk-hiding-amd-stocks-big-133132787.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "AMD",
+              "^GSPC",
+              "INTC",
+              "NVDA",
+              "AVGO",
+              "QCOM",
+              "MRVL",
+              "SPGI"
+            ]
+          }
+        ],
         "events": [],
         "sector_context": {
           "scope": "market",
@@ -6587,7 +6942,18 @@
         "price_status": "available",
         "headline_status": "available",
         "news_baseline_status": "warming_up",
-        "headlines": [],
+        "headlines": [
+          {
+            "title": "Mizuho Adjusts Price Target on Carrier Global to $70 From $75",
+            "published_at": "2026-10-15T10:37:09+00:00",
+            "publisher": "MT Newswires",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/mizuho-adjusts-price-target-carrier-103709720.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "CARR"
+            ]
+          }
+        ],
         "events": [],
         "sector_context": {
           "scope": "market",
@@ -6923,7 +7289,32 @@
         "price_status": "available",
         "headline_status": "available",
         "news_baseline_status": "warming_up",
-        "headlines": [],
+        "headlines": [
+          {
+            "title": "Gear Up for Chubb (CB) Q3 Earnings: Wall Street Estimates for Key Metrics",
+            "published_at": "2026-10-15T12:15:15+00:00",
+            "publisher": "Zacks",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/gear-chubb-cb-q3-earnings-121515554.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "CB"
+            ]
+          },
+          {
+            "title": "iShares MSCI USA Min Vol Factor ETF (USMV) Sells Microsoft and Amphenol on Oct. 13",
+            "published_at": "2026-10-15T11:04:48+00:00",
+            "publisher": "GuruFocus.com",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/ishares-msci-usa-min-vol-110448020.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "MSFT",
+              "APH",
+              "NVDA",
+              "CB",
+              "USMV"
+            ]
+          }
+        ],
         "events": [],
         "sector_context": {
           "scope": "market",
@@ -7562,37 +7953,7 @@
         "price_status": "available",
         "headline_status": "available",
         "news_baseline_status": "warming_up",
-        "headlines": [
-          {
-            "title": "What Happened With UnitedHealth Stock This Week?",
-            "published_at": "2026-10-15T13:14:38+00:00",
-            "publisher": "Trefis",
-            "url": "https://finance.yahoo.com/markets/stocks/articles/happened-unitedhealth-stock-week-131438979.html",
-            "source": "Yahoo Finance",
-            "related_symbols": [
-              "UNH",
-              "^GSPC",
-              "ELV",
-              "CI",
-              "HUM",
-              "CNC",
-              "SPGI",
-              "CVS"
-            ]
-          },
-          {
-            "title": "TD Cowen Picks 4 Pharmacy Stocks With Attractive Q3 Setups",
-            "published_at": "2026-10-15T11:57:45+00:00",
-            "publisher": "Investing.com",
-            "url": "https://finance.yahoo.com/healthcare/articles/td-cowen-picks-4-pharmacy-115745713.html",
-            "source": "Yahoo Finance",
-            "related_symbols": [
-              "CVS",
-              "CI",
-              "OPCH"
-            ]
-          }
-        ],
+        "headlines": [],
         "events": [],
         "sector_context": {
           "scope": "market",
@@ -7919,7 +8280,78 @@
         "price_status": "available",
         "headline_status": "available",
         "news_baseline_status": "warming_up",
-        "headlines": [],
+        "headlines": [
+          {
+            "title": "Analysts Estimate Comcast (CMCSA) to Report a Decline in Earnings: What to Look Out for",
+            "published_at": "2026-10-15T13:00:09+00:00",
+            "publisher": "Zacks",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/analysts-estimate-comcast-cmcsa-report-130009131.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "CMCSA"
+            ]
+          },
+          {
+            "title": "Is Netflix Stock Worth More Than Its Competitors?",
+            "published_at": "2026-10-15T01:19:10+00:00",
+            "publisher": "Trefis",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/netflix-stock-worth-more-competitors-011910341.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "NFLX",
+              "DIS",
+              "AAPL",
+              "AMZN",
+              "CMCSA",
+              "WBD"
+            ]
+          },
+          {
+            "title": "Stock Market Today, Oct. 14: Skydance Warrants Begin Separate Trading Today: SKYD Stock Drops 24%",
+            "published_at": "2026-10-14T21:28:19+00:00",
+            "publisher": "Motley Fool",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/stock-market-today-oct-14-212819639.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "CMCSA",
+              "^GSPC",
+              "^IXIC",
+              "DIS"
+            ]
+          },
+          {
+            "title": "Is There A Risk Hiding In Comcast Stock's Latest Results?",
+            "published_at": "2026-10-14T20:37:29+00:00",
+            "publisher": "Trefis",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/risk-hiding-comcast-stocks-latest-203729801.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "CMCSA",
+              "CHTR",
+              "T",
+              "VZ",
+              "DIS",
+              "TMUS"
+            ]
+          },
+          {
+            "title": "Why You Should Think About AT&T Differently Now?",
+            "published_at": "2026-10-14T20:12:57+00:00",
+            "publisher": "Trefis",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/why-think-t-differently-now-201257254.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "T",
+              "^GSPC",
+              "VZ",
+              "TMUS",
+              "CMCSA",
+              "CHTR",
+              "LUMN",
+              "SPGI"
+            ]
+          }
+        ],
         "events": [],
         "sector_context": {
           "scope": "market",
@@ -8945,232 +9377,7 @@
         "price_status": "available",
         "headline_status": "available",
         "news_baseline_status": "warming_up",
-        "headlines": [
-          {
-            "title": "ZoomInfo (GTM) Stock Trades Up, Here Is Why",
-            "published_at": "2026-10-15T18:59:09+00:00",
-            "publisher": "StockStory",
-            "url": "https://finance.yahoo.com/markets/stocks/articles/zoominfo-gtm-stock-trades-why-185909396.html",
-            "source": "Yahoo Finance",
-            "related_symbols": [
-              "GTM",
-              "CRM"
-            ]
-          },
-          {
-            "title": "3 Reasons ServiceNow Stock Is Climbing When Tech Is Selling Off",
-            "published_at": "2026-10-15T18:35:00+00:00",
-            "publisher": "Barrons.com",
-            "url": "https://finance.yahoo.com/m/3c2543e1-6811-3219-a491-1ece7312b775/3-reasons-servicenow-stock-is.html",
-            "source": "Yahoo Finance",
-            "related_symbols": [
-              "NOW",
-              "TEAM",
-              "^GSPC",
-              "CRM",
-              "WDAY"
-            ]
-          },
-          {
-            "title": "ServiceNow Climbs 5% After Denying Decagon Acquisition Interest; Salesforce Rises 4%, Palantir Dips",
-            "published_at": "2026-10-15T16:58:00+00:00",
-            "publisher": "24/7 Wall St.",
-            "url": "https://finance.yahoo.com/markets/stocks/articles/servicenow-climbs-5-denying-decagon-165800936.html",
-            "source": "Yahoo Finance",
-            "related_symbols": [
-              "CRM",
-              "NOW",
-              "PLTR",
-              "QQQ",
-              "IGV"
-            ]
-          },
-          {
-            "title": "The Measurement Gap in Agentic AI Is Not a Reporting Problem. It Is the ROI Barrier.",
-            "published_at": "2026-10-15T16:54:50+00:00",
-            "publisher": "Forkast News",
-            "url": "https://finance.yahoo.com/technology/ai/articles/measurement-gap-agentic-ai-not-165450395.html",
-            "source": "Yahoo Finance",
-            "related_symbols": [
-              "CRM",
-              "ACN"
-            ]
-          },
-          {
-            "title": "Is ZoomInfo (GTM) Quietly Evolving Into Essential AI Sales Infrastructure Inside Enterprise Workflows?",
-            "published_at": "2026-10-15T15:13:01+00:00",
-            "publisher": "Simply Wall St.",
-            "url": "https://finance.yahoo.com/technology/ai/articles/zoominfo-gtm-quietly-evolving-essential-151301017.html",
-            "source": "Yahoo Finance",
-            "related_symbols": [
-              "GTM",
-              "CRM"
-            ]
-          },
-          {
-            "title": "Salesforce (CRM): AI Integration Enhances Core Enterprise Software Platform Value",
-            "published_at": "2026-10-15T14:13:24+00:00",
-            "publisher": "Insider Monkey",
-            "url": "https://finance.yahoo.com/markets/stocks/articles/salesforce-crm-ai-integration-enhances-141324231.html",
-            "source": "Yahoo Finance",
-            "related_symbols": [
-              "CRM",
-              "^GSPC"
-            ]
-          },
-          {
-            "title": "Demandbase Named Flagship Data Partner for Hunter, Salesforce\u2019s New Outbound Sales Agent",
-            "published_at": "2026-10-15T13:00:00+00:00",
-            "publisher": "Business Wire",
-            "url": "https://finance.yahoo.com/technology/ai/articles/demandbase-named-flagship-data-partner-130000225.html",
-            "source": "Yahoo Finance",
-            "related_symbols": [
-              "CRM"
-            ]
-          },
-          {
-            "title": "ZoomInfo Named a Flagship Data Partner for Hunter, Salesforce's New Outbound Sales Agent",
-            "published_at": "2026-10-15T12:30:00+00:00",
-            "publisher": "Business Wire",
-            "url": "https://finance.yahoo.com/technology/ai/articles/zoominfo-named-flagship-data-partner-123000589.html",
-            "source": "Yahoo Finance",
-            "related_symbols": [
-              "CRM",
-              "GTM"
-            ]
-          },
-          {
-            "title": "2 of Wall Street\u2019s Favorite Stocks Worth Your Attention and 1 We Ignore",
-            "published_at": "2026-10-15T12:08:27+00:00",
-            "publisher": "StockStory",
-            "url": "https://finance.yahoo.com/markets/stocks/articles/2-wall-street-favorite-stocks-120827482.html",
-            "source": "Yahoo Finance",
-            "related_symbols": [
-              "CRM",
-              "ENSG",
-              "DAR"
-            ]
-          },
-          {
-            "title": "Klient Launches Klient Insights: Live PSA Dashboards Inside Salesforce",
-            "published_at": "2026-10-15T11:09:00+00:00",
-            "publisher": "PR Newswire",
-            "url": "https://finance.yahoo.com/technology/articles/klient-launches-klient-insights-live-110900089.html",
-            "source": "Yahoo Finance",
-            "related_symbols": [
-              "CRM"
-            ]
-          },
-          {
-            "title": "Klient Launches Klient Insights: Live PSA Dashboards Inside Salesforce",
-            "published_at": "2026-10-15T11:09:00+00:00",
-            "publisher": "CNW Group",
-            "url": "https://finance.yahoo.com/technology/articles/klient-launches-klient-insights-live-110900166.html",
-            "source": "Yahoo Finance",
-            "related_symbols": [
-              "CRM"
-            ]
-          },
-          {
-            "title": "Markets News, Oct. 15, 2026: Dow Ends Up 550 Points as Investors Rotate Out of Tech Stocks; Wholesale Prices Top Expectations",
-            "published_at": "2026-10-15T10:44:07+00:00",
-            "publisher": "Investopedia",
-            "url": "https://finance.yahoo.com/markets/stocks/articles/markets-news-oct-15-2026-104407851.html",
-            "source": "Yahoo Finance",
-            "related_symbols": [
-              "^IXIC",
-              "^DJI",
-              "NKE",
-              "CRM",
-              "HD"
-            ]
-          },
-          {
-            "title": "Salesforce vs. ServiceNow: Here's What Revenue Trends Tell Investors About These Software Giants and Their Move to AI",
-            "published_at": "2026-10-15T06:31:21+00:00",
-            "publisher": "Motley Fool",
-            "url": "https://finance.yahoo.com/markets/stocks/articles/salesforce-vs-servicenow-heres-revenue-063121938.html",
-            "source": "Yahoo Finance",
-            "related_symbols": [
-              "CRM",
-              "NOW",
-              "TMV.DE"
-            ]
-          },
-          {
-            "title": "Is DocuSign (DOCU) Undervalued Following Its Expanded Salesforce Partnership?",
-            "published_at": "2026-10-15T06:23:53+00:00",
-            "publisher": "Simply Wall St.",
-            "url": "https://finance.yahoo.com/markets/stocks/articles/docusign-docu-undervalued-following-expanded-062353425.html",
-            "source": "Yahoo Finance",
-            "related_symbols": [
-              "DOCU",
-              "CRM"
-            ]
-          },
-          {
-            "title": "DocuSign (DOCU) Stock Could Be Above Fair Value On New IAM Launch",
-            "published_at": "2026-10-15T02:16:58+00:00",
-            "publisher": "Simply Wall St.",
-            "url": "https://finance.yahoo.com/markets/stocks/articles/docusign-docu-stock-could-above-021658925.html",
-            "source": "Yahoo Finance",
-            "related_symbols": [
-              "DOCU",
-              "CRM"
-            ]
-          },
-          {
-            "title": "Why Is Everyone Ignoring Zoom Stock's High Cash Yield?",
-            "published_at": "2026-10-15T01:52:17+00:00",
-            "publisher": "Trefis",
-            "url": "https://finance.yahoo.com/markets/stocks/articles/why-everyone-ignoring-zoom-stocks-015217422.html",
-            "source": "Yahoo Finance",
-            "related_symbols": [
-              "ZM",
-              "MSFT",
-              "CSCO",
-              "GOOG",
-              "RNG",
-              "CRM",
-              "SPGI"
-            ]
-          },
-          {
-            "title": "Exalate launches Australian hosting for Exalate Cloud, giving organisations the option to run integrations in-country",
-            "published_at": "2026-10-14T22:17:00+00:00",
-            "publisher": "GlobeNewswire",
-            "url": "https://finance.yahoo.com/technology/articles/exalate-launches-australian-hosting-exalate-221700788.html",
-            "source": "Yahoo Finance",
-            "related_symbols": [
-              "CRM"
-            ]
-          },
-          {
-            "title": "Elon Musk takes aim at the customer service industry",
-            "published_at": "2026-10-14T21:47:34+00:00",
-            "publisher": "TheStreet",
-            "url": "https://finance.yahoo.com/technology/ai/articles/elon-musk-takes-aim-customer-214734317.html",
-            "source": "Yahoo Finance",
-            "related_symbols": [
-              "CRM",
-              "VZ"
-            ]
-          },
-          {
-            "title": "Stock Market Today, Oct. 14: Oracle Tumbles on Hotter CPI Data Lifting Treasury Yields",
-            "published_at": "2026-10-14T21:12:46+00:00",
-            "publisher": "Motley Fool",
-            "url": "https://finance.yahoo.com/markets/stocks/articles/stock-market-today-oct-14-211246271.html",
-            "source": "Yahoo Finance",
-            "related_symbols": [
-              "ORCL",
-              "^IXIC",
-              "^GSPC",
-              "SAP",
-              "CRM"
-            ]
-          }
-        ],
+        "headlines": [],
         "events": [],
         "sector_context": {
           "scope": "market",
@@ -10985,7 +11192,59 @@
         "price_status": "available",
         "headline_status": "available",
         "news_baseline_status": "warming_up",
-        "headlines": [],
+        "headlines": [
+          {
+            "title": "DTE Energy Is Becoming More Interesting as America\u2019s Power Needs Soar",
+            "published_at": "2026-10-15T17:00:17+00:00",
+            "publisher": "24/7 Wall St.",
+            "url": "https://finance.yahoo.com/energy/articles/dte-energy-becoming-more-interesting-170017752.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "DTE",
+              "ORCL",
+              "GOOG",
+              "CMS",
+              "DUK"
+            ]
+          },
+          {
+            "title": "What State Street Utilities Select Sector SPDR ETF (XLU) Sold: NEE Leads on Tuesday",
+            "published_at": "2026-10-15T11:04:57+00:00",
+            "publisher": "GuruFocus.com",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/state-street-utilities-select-sector-110457241.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "XLU",
+              "NEE",
+              "CEG",
+              "AEP",
+              "DUK"
+            ]
+          },
+          {
+            "title": "Goldman Sachs Adjusts Price Target on Duke Energy to $143 From $147",
+            "published_at": "2026-10-15T09:52:49+00:00",
+            "publisher": "MT Newswires",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/goldman-sachs-adjusts-price-target-095249589.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "DUK"
+            ]
+          },
+          {
+            "title": "Duke Energy (DUK) Increases Despite Market Slip: Here's What You Need to Know",
+            "published_at": "2026-10-14T21:00:02+00:00",
+            "publisher": "Zacks",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/duke-energy-duk-increases-despite-210002995.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "DUK",
+              "^GSPC",
+              "^DJI",
+              "^IXIC"
+            ]
+          }
+        ],
         "events": [],
         "sector_context": {
           "scope": "market",
@@ -11539,46 +11798,7 @@
         "price_status": "available",
         "headline_status": "available",
         "news_baseline_status": "warming_up",
-        "headlines": [
-          {
-            "title": "Murphy Oil Advances Production Growth and Offshore Exploration",
-            "published_at": "2026-10-15T15:26:00+00:00",
-            "publisher": "Zacks",
-            "url": "https://finance.yahoo.com/energy/articles/murphy-oil-advances-production-growth-152600908.html",
-            "source": "Yahoo Finance",
-            "related_symbols": [
-              "MUR",
-              "CVX",
-              "EOG",
-              "TALO"
-            ]
-          },
-          {
-            "title": "Scotiabank Initiates Coverage on EOG Resources With Sector Perform Rating, $144 Price Target",
-            "published_at": "2026-10-15T11:47:09+00:00",
-            "publisher": "MT Newswires",
-            "url": "https://finance.yahoo.com/markets/stocks/articles/scotiabank-initiates-coverage-eog-resources-114709248.html",
-            "source": "Yahoo Finance",
-            "related_symbols": [
-              "EOG"
-            ]
-          },
-          {
-            "title": "Should You Buy Occidental Petroleum Stock For Its Cash?",
-            "published_at": "2026-10-14T21:25:43+00:00",
-            "publisher": "Trefis",
-            "url": "https://finance.yahoo.com/energy/articles/buy-occidental-petroleum-stock-cash-212543958.html",
-            "source": "Yahoo Finance",
-            "related_symbols": [
-              "OXY",
-              "CVX",
-              "XOM",
-              "COP",
-              "EOG",
-              "FANG"
-            ]
-          }
-        ],
+        "headlines": [],
         "events": [],
         "sector_context": {
           "scope": "market",
@@ -11705,62 +11925,7 @@
         "price_status": "available",
         "headline_status": "available",
         "news_baseline_status": "warming_up",
-        "headlines": [
-          {
-            "title": "Equinix outlook upgraded to positive at Fitch on capital discipline, scale",
-            "published_at": "2026-10-15T15:49:30+00:00",
-            "publisher": "Investing.com",
-            "url": "https://finance.yahoo.com/markets/stocks/articles/equinix-outlook-upgraded-positive-fitch-154930987.html",
-            "source": "Yahoo Finance",
-            "related_symbols": [
-              "EQIX"
-            ]
-          },
-          {
-            "title": "The AI Boom Has a Landlord. These 3 REITs Are Getting Paid",
-            "published_at": "2026-10-15T11:15:36+00:00",
-            "publisher": "24/7 Wall St.",
-            "url": "https://finance.yahoo.com/real-estate/articles/ai-boom-landlord-3-reits-111536278.html",
-            "source": "Yahoo Finance",
-            "related_symbols": [
-              "EQIX",
-              "DLR",
-              "IRM"
-            ]
-          },
-          {
-            "title": "AI Data Center Demand Puts Equinix Stock And Digital Realty Shares In Focus",
-            "published_at": "2026-10-15T06:16:25+00:00",
-            "publisher": "Simply Wall St.",
-            "url": "https://finance.yahoo.com/technology/ai/articles/ai-data-center-demand-puts-061625129.html",
-            "source": "Yahoo Finance",
-            "related_symbols": [
-              "EQIX",
-              "BAM",
-              "NEE",
-              "DLR",
-              "IRM"
-            ]
-          },
-          {
-            "title": "What Needs To Be True To Buy Cipher Digital Stock Now?",
-            "published_at": "2026-10-15T01:33:01+00:00",
-            "publisher": "Trefis",
-            "url": "https://finance.yahoo.com/markets/stocks/articles/needs-true-buy-cipher-digital-013301316.html",
-            "source": "Yahoo Finance",
-            "related_symbols": [
-              "CIFR",
-              "^GSPC",
-              "BTC-USD",
-              "APLD",
-              "CORZ",
-              "RIOT",
-              "DLR",
-              "EQIX",
-              "SPGI"
-            ]
-          }
-        ],
+        "headlines": [],
         "events": [],
         "sector_context": {
           "scope": "market",
@@ -14643,7 +14808,73 @@
         "price_status": "available",
         "headline_status": "available",
         "news_baseline_status": "warming_up",
-        "headlines": [],
+        "headlines": [
+          {
+            "title": "Earnings Preview: Honeywell International Inc. (HON) Q3 Earnings Expected to Decline",
+            "published_at": "2026-10-15T13:00:14+00:00",
+            "publisher": "Zacks",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/earnings-preview-honeywell-international-inc-130014139.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "HON",
+              "MMM"
+            ]
+          },
+          {
+            "title": "Mizuho Adjusts Price Target on Honeywell International to $255 From $265",
+            "published_at": "2026-10-15T10:33:31+00:00",
+            "publisher": "MT Newswires",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/mizuho-adjusts-price-target-honeywell-103331250.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "HON"
+            ]
+          },
+          {
+            "title": "Is GE Vernova Stock Still Telling You The Same Thing?",
+            "published_at": "2026-10-15T00:40:08+00:00",
+            "publisher": "Trefis",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/ge-vernova-stock-still-telling-004008280.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "GEV",
+              "^GSPC",
+              "ETN",
+              "HON",
+              "NEE",
+              "EMR",
+              "PWR",
+              "PSIX",
+              "GE",
+              "SPGI"
+            ]
+          },
+          {
+            "title": "Is Honeywell International (HON) Cheap Following Its New AI Alliance Launch?",
+            "published_at": "2026-10-14T21:14:21+00:00",
+            "publisher": "Simply Wall St.",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/honeywell-international-hon-cheap-following-211421233.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "HON",
+              "NVDA",
+              "DELL"
+            ]
+          },
+          {
+            "title": "Should Honeywell\u2019s AI Push and Kenya Megarefinery Win Require Action From Honeywell International (HON) Investors?",
+            "published_at": "2026-10-14T20:14:33+00:00",
+            "publisher": "Simply Wall St.",
+            "url": "https://finance.yahoo.com/technology/ai/articles/honeywell-ai-push-kenya-megarefinery-201433873.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "HON",
+              "NVDA",
+              "DELL",
+              "MSFT"
+            ]
+          }
+        ],
         "events": [],
         "sector_context": {
           "scope": "market",
@@ -15941,7 +16172,18 @@
         "price_status": "available",
         "headline_status": "available",
         "news_baseline_status": "warming_up",
-        "headlines": [],
+        "headlines": [
+          {
+            "title": "ITW Schedules Third Quarter 2026 Earnings Webcast",
+            "published_at": "2026-10-15T16:20:00+00:00",
+            "publisher": "GlobeNewswire",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/itw-schedules-third-quarter-2026-162000442.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "ITW"
+            ]
+          }
+        ],
         "events": [],
         "sector_context": {
           "scope": "market",
@@ -16346,155 +16588,7 @@
         "price_status": "available",
         "headline_status": "available",
         "news_baseline_status": "warming_up",
-        "headlines": [
-          {
-            "title": "How Has Merck's Story Changed?",
-            "published_at": "2026-10-15T19:46:29+00:00",
-            "publisher": "Trefis",
-            "url": "https://finance.yahoo.com/healthcare/articles/mercks-story-changed-194629808.html",
-            "source": "Yahoo Finance",
-            "related_symbols": [
-              "MRK",
-              "^GSPC",
-              "PFE",
-              "JNJ",
-              "LLY",
-              "ABBV",
-              "BMY"
-            ]
-          },
-          {
-            "title": "Is Boston Scientific Stock Riskier Than It Was A Year Ago?",
-            "published_at": "2026-10-15T19:18:07+00:00",
-            "publisher": "Trefis",
-            "url": "https://finance.yahoo.com/markets/stocks/articles/boston-scientific-stock-riskier-ago-191807936.html",
-            "source": "Yahoo Finance",
-            "related_symbols": [
-              "BSX",
-              "^GSPC",
-              "MDT",
-              "ABT",
-              "JNJ",
-              "SYK",
-              "BDX"
-            ]
-          },
-          {
-            "title": "Procter & Gamble Has Raised Its Dividend for 70 Years. These 4 Stocks Also Reward Patience",
-            "published_at": "2026-10-15T17:45:23+00:00",
-            "publisher": "24/7 Wall St.",
-            "url": "https://finance.yahoo.com/markets/stocks/articles/procter-gamble-raised-dividend-70-174523680.html",
-            "source": "Yahoo Finance",
-            "related_symbols": [
-              "PG",
-              "TROW",
-              "JNJ",
-              "MDT",
-              "CSCO"
-            ]
-          },
-          {
-            "title": "XENE's Depression Trial Setback: Is Its Pipeline Still Attractive?",
-            "published_at": "2026-10-15T16:05:00+00:00",
-            "publisher": "Zacks",
-            "url": "https://finance.yahoo.com/healthcare/articles/xenes-depression-trial-setback-pipeline-160500356.html",
-            "source": "Yahoo Finance",
-            "related_symbols": [
-              "XENE",
-              "JNJ",
-              "VNDA"
-            ]
-          },
-          {
-            "title": "DA Davidson Adjusts Price Target on Johnson & Johnson to $270 From $250, Keeps Buy Rating",
-            "published_at": "2026-10-15T14:49:40+00:00",
-            "publisher": "MT Newswires",
-            "url": "https://finance.yahoo.com/markets/stocks/articles/da-davidson-adjusts-price-target-144940502.html",
-            "source": "Yahoo Finance",
-            "related_symbols": [
-              "JNJ"
-            ]
-          },
-          {
-            "title": "Where Could Johnson & Johnson's Next Growth Come From?",
-            "published_at": "2026-10-15T13:09:29+00:00",
-            "publisher": "Trefis",
-            "url": "https://finance.yahoo.com/healthcare/articles/where-could-johnson-johnsons-next-130929550.html",
-            "source": "Yahoo Finance",
-            "related_symbols": [
-              "JNJ",
-              "^GSPC",
-              "PFE",
-              "MRK",
-              "LLY",
-              "ABBV",
-              "MDT",
-              "SPGI"
-            ]
-          },
-          {
-            "title": "Earnings live updates: TSM reports record profits fueled by AI demand",
-            "published_at": "2026-10-15T11:24:29+00:00",
-            "publisher": "Yahoo Finance",
-            "url": "https://finance.yahoo.com/markets/live/earnings-live-updates-big-banks-q3-earnings-115135687.html",
-            "source": "Yahoo Finance",
-            "related_symbols": [
-              "TSM",
-              "^GSPC",
-              "ASML",
-              "BLK",
-              "JNJ",
-              "UNH"
-            ]
-          },
-          {
-            "title": "State Street Health Care SPDR (XLV) Sells Medtronic and Eli Lilly on Oct. 13",
-            "published_at": "2026-10-15T11:05:41+00:00",
-            "publisher": "GuruFocus.com",
-            "url": "https://finance.yahoo.com/healthcare/articles/state-street-health-care-spdr-110541059.html",
-            "source": "Yahoo Finance",
-            "related_symbols": [
-              "LLY",
-              "MDT",
-              "XLV",
-              "ABBV",
-              "JNJ"
-            ]
-          },
-          {
-            "title": "How Much Downside Is Left In Liquidia Stock?",
-            "published_at": "2026-10-15T01:47:10+00:00",
-            "publisher": "Trefis",
-            "url": "https://finance.yahoo.com/markets/stocks/articles/much-downside-left-liquidia-stock-014710370.html",
-            "source": "Yahoo Finance",
-            "related_symbols": [
-              "LQDA",
-              "^GSPC",
-              "UTHR",
-              "INM",
-              "LLY",
-              "JNJ",
-              "MRK",
-              "PFE",
-              "SPGI"
-            ]
-          },
-          {
-            "title": "What Could BSX Stock Be Worth In Three Years?",
-            "published_at": "2026-10-14T20:55:29+00:00",
-            "publisher": "Trefis",
-            "url": "https://finance.yahoo.com/markets/stocks/articles/could-bsx-stock-worth-three-205529605.html",
-            "source": "Yahoo Finance",
-            "related_symbols": [
-              "BSX",
-              "MDT",
-              "ABT",
-              "JNJ",
-              "SYK",
-              "BDX"
-            ]
-          }
-        ],
+        "headlines": [],
         "events": [],
         "sector_context": {
           "scope": "market",
@@ -17899,68 +17993,7 @@
         "price_status": "available",
         "headline_status": "available",
         "news_baseline_status": "warming_up",
-        "headlines": [
-          {
-            "title": "5 Boring Dividend Stocks That Could Keep Growing While Customers Pay More",
-            "published_at": "2026-10-15T13:15:04+00:00",
-            "publisher": "24/7 Wall St.",
-            "url": "https://finance.yahoo.com/markets/stocks/articles/5-boring-dividend-stocks-could-131504200.html",
-            "source": "Yahoo Finance",
-            "related_symbols": [
-              "ECL",
-              "LIN",
-              "WCN",
-              "NG=F",
-              "ADP",
-              "GWW"
-            ]
-          },
-          {
-            "title": "RBC Trims Price Target on Linde to $549 From $553, Keeps Outperform Rating",
-            "published_at": "2026-10-15T11:10:24+00:00",
-            "publisher": "MT Newswires",
-            "url": "https://finance.yahoo.com/markets/stocks/articles/rbc-trims-price-target-linde-111024900.html",
-            "source": "Yahoo Finance",
-            "related_symbols": [
-              "LIN"
-            ]
-          },
-          {
-            "title": "Linde\u2019s Quarterly Earnings Preview: What You Need to Know",
-            "published_at": "2026-10-15T03:59:58+00:00",
-            "publisher": "Barchart",
-            "url": "https://finance.yahoo.com/markets/stocks/articles/linde-quarterly-earnings-preview-know-035958429.html",
-            "source": "Yahoo Finance",
-            "related_symbols": [
-              "LIN"
-            ]
-          },
-          {
-            "title": "Linde (LIN) Stock Looks Fully Valued On Current Earnings",
-            "published_at": "2026-10-14T22:14:24+00:00",
-            "publisher": "Simply Wall St.",
-            "url": "https://finance.yahoo.com/markets/stocks/articles/linde-lin-stock-looks-fully-221424799.html",
-            "source": "Yahoo Finance",
-            "related_symbols": [
-              "LIN"
-            ]
-          },
-          {
-            "title": "What Are Bloom Energy Investors Betting On?",
-            "published_at": "2026-10-14T20:31:23+00:00",
-            "publisher": "Trefis",
-            "url": "https://finance.yahoo.com/markets/stocks/articles/bloom-energy-investors-betting-203123467.html",
-            "source": "Yahoo Finance",
-            "related_symbols": [
-              "BE",
-              "PLUG",
-              "FCEL",
-              "CMI",
-              "APD",
-              "LIN"
-            ]
-          }
-        ],
+        "headlines": [],
         "events": [],
         "sector_context": {
           "scope": "market",
@@ -20209,7 +20242,31 @@
         "price_status": "available",
         "headline_status": "available",
         "news_baseline_status": "warming_up",
-        "headlines": [],
+        "headlines": [
+          {
+            "title": "Can Neptune Insurance Beat Q3 Earnings on Higher Policies in Force?",
+            "published_at": "2026-10-15T13:29:00+00:00",
+            "publisher": "Zacks",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/neptune-insurance-beat-q3-earnings-132900763.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "NP",
+              "MET",
+              "PRU",
+              "WTW"
+            ]
+          },
+          {
+            "title": "JPMorgan Adjusts Price Target on MetLife to $110 From $108",
+            "published_at": "2026-10-15T09:18:30+00:00",
+            "publisher": "MT Newswires",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/jpmorgan-adjusts-price-target-metlife-091830376.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "MET"
+            ]
+          }
+        ],
         "events": [],
         "sector_context": {
           "scope": "market",
@@ -20695,7 +20752,41 @@
         "price_status": "available",
         "headline_status": "available",
         "news_baseline_status": "warming_up",
-        "headlines": [],
+        "headlines": [
+          {
+            "title": "MMM Q3 Earnings on Deck: How to Approach the Stock Now?",
+            "published_at": "2026-10-15T13:56:00+00:00",
+            "publisher": "Zacks",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/mmm-q3-earnings-deck-approach-135600863.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "MMM",
+              "CSL",
+              "GFF"
+            ]
+          },
+          {
+            "title": "Earnings Preview: Honeywell International Inc. (HON) Q3 Earnings Expected to Decline",
+            "published_at": "2026-10-15T13:00:14+00:00",
+            "publisher": "Zacks",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/earnings-preview-honeywell-international-inc-130014139.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "HON",
+              "MMM"
+            ]
+          },
+          {
+            "title": "Seeking Clues to 3M (MMM) Q3 Earnings? A Peek Into Wall Street Projections for Key Metrics",
+            "published_at": "2026-10-15T12:15:21+00:00",
+            "publisher": "Zacks",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/seeking-clues-3m-mmm-q3-121521359.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "MMM"
+            ]
+          }
+        ],
         "events": [],
         "sector_context": {
           "scope": "market",
@@ -20977,7 +21068,200 @@
         "price_status": "available",
         "headline_status": "available",
         "news_baseline_status": "warming_up",
-        "headlines": [],
+        "headlines": [
+          {
+            "title": "How Has Merck's Story Changed?",
+            "published_at": "2026-10-15T19:46:29+00:00",
+            "publisher": "Trefis",
+            "url": "https://finance.yahoo.com/healthcare/articles/mercks-story-changed-194629808.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "MRK",
+              "^GSPC",
+              "PFE",
+              "JNJ",
+              "LLY",
+              "ABBV",
+              "BMY"
+            ]
+          },
+          {
+            "title": "What Could Merck (MRK) Reveal At ESMO 2026 About Its Oncology Pipeline?",
+            "published_at": "2026-10-15T19:11:58+00:00",
+            "publisher": "Simply Wall St.",
+            "url": "https://finance.yahoo.com/healthcare/articles/could-merck-mrk-reveal-esmo-191158220.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "MRK"
+            ]
+          },
+          {
+            "title": "Why Healthcare Stocks Are Hot When the AI Trade Runs Cold",
+            "published_at": "2026-10-15T18:14:00+00:00",
+            "publisher": "Barrons.com",
+            "url": "https://finance.yahoo.com/m/a375414b-e74e-3611-9458-2340976c760a/why-healthcare-stocks-are-hot.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "^GSPC",
+              "CORT",
+              "MOH",
+              "MRK",
+              "XLV"
+            ]
+          },
+          {
+            "title": "Moderna Rallies 6% as Money Rotates Into Healthcare; BioNTech and Pfizer Edge Higher",
+            "published_at": "2026-10-15T16:55:05+00:00",
+            "publisher": "24/7 Wall St.",
+            "url": "https://finance.yahoo.com/healthcare/articles/moderna-rallies-6-money-rotates-165505631.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "MRNA",
+              "PFE",
+              "^GSPC",
+              "MRK",
+              "BNTX",
+              "IBB",
+              "SPY"
+            ]
+          },
+          {
+            "title": "AMGN vs. MRK: Which Pharma Giant\u2019s Dividend Actually Has Room to Grow",
+            "published_at": "2026-10-15T16:45:25+00:00",
+            "publisher": "24/7 Wall St.",
+            "url": "https://finance.yahoo.com/healthcare/articles/amgn-vs-mrk-pharma-giant-164525861.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "MRK",
+              "AMGN"
+            ]
+          },
+          {
+            "title": "Merck & Co., Inc. (MRK) Reports Promising Skin Cancer Trial Results for Keytruda and Personalized mRNA Vaccine",
+            "published_at": "2026-10-15T15:27:46+00:00",
+            "publisher": "Insider Monkey",
+            "url": "https://finance.yahoo.com/healthcare/articles/merck-co-inc-mrk-reports-152746893.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "MRK"
+            ]
+          },
+          {
+            "title": "Where Could Johnson & Johnson's Next Growth Come From?",
+            "published_at": "2026-10-15T13:09:29+00:00",
+            "publisher": "Trefis",
+            "url": "https://finance.yahoo.com/healthcare/articles/where-could-johnson-johnsons-next-130929550.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "JNJ",
+              "^GSPC",
+              "PFE",
+              "MRK",
+              "LLY",
+              "ABBV",
+              "MDT",
+              "SPGI"
+            ]
+          },
+          {
+            "title": "Moderna Stock Is Soaring on Cancer Vaccine Buzz. Is It Too Late to Get In?",
+            "published_at": "2026-10-15T12:20:48+00:00",
+            "publisher": "24/7 Wall St.",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/moderna-stock-soaring-cancer-vaccine-122048274.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "MRNA",
+              "MRK"
+            ]
+          },
+          {
+            "title": "Here is What to Know Beyond Why Merck & Co., Inc. (MRK) is a Trending Stock",
+            "published_at": "2026-10-15T12:00:08+00:00",
+            "publisher": "Zacks",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/know-beyond-why-merck-co-120008448.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "MRK",
+              "^GSPC"
+            ]
+          },
+          {
+            "title": "AI Fears Grip Markets as Tech Rotation Accelerates",
+            "published_at": "2026-10-15T11:02:20+00:00",
+            "publisher": "Barrons.com",
+            "url": "https://finance.yahoo.com/m/2a12e81c-8d97-3737-b173-dabf86031512/ai-fears-grip-markets-as-tech.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "^DJI",
+              "^IXIC",
+              "SKHY",
+              "UNH",
+              "MRK",
+              "WMT",
+              "Y=F",
+              "E=F",
+              "N=F"
+            ]
+          },
+          {
+            "title": "Why Eli Lilly Became Wall Street\u2019s Safe Haven on a Hot CPI Day",
+            "published_at": "2026-10-15T02:02:46+00:00",
+            "publisher": "TIKR",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/why-eli-lilly-became-wall-020246832.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "LLY",
+              "MRK",
+              "ABBV"
+            ]
+          },
+          {
+            "title": "How Much Downside Is Left In Liquidia Stock?",
+            "published_at": "2026-10-15T01:47:10+00:00",
+            "publisher": "Trefis",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/much-downside-left-liquidia-stock-014710370.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "LQDA",
+              "^GSPC",
+              "UTHR",
+              "INM",
+              "LLY",
+              "JNJ",
+              "MRK",
+              "PFE",
+              "SPGI"
+            ]
+          },
+          {
+            "title": "What Could Send Regeneron Stock Higher?",
+            "published_at": "2026-10-14T21:45:48+00:00",
+            "publisher": "Trefis",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/could-send-regeneron-stock-higher-214548853.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "REGN",
+              "SNY",
+              "AMGN",
+              "MRK",
+              "BMY",
+              "ABBV",
+              "PFE"
+            ]
+          },
+          {
+            "title": "Lilly, Merck, AbbVie Stocks Surge. Why Healthcare Is Rallying Today.",
+            "published_at": "2026-10-14T20:49:00+00:00",
+            "publisher": "Barrons.com",
+            "url": "https://finance.yahoo.com/m/30c53b34-cff0-396a-a36c-26664b546adc/lilly%2C-merck%2C-abbvie-stocks.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "LLY",
+              "MRK",
+              "ABBV"
+            ]
+          }
+        ],
         "events": [],
         "sector_context": {
           "scope": "market",
@@ -21361,7 +21645,207 @@
         "price_status": "available",
         "headline_status": "available",
         "news_baseline_status": "warming_up",
-        "headlines": [],
+        "headlines": [
+          {
+            "title": "Should You Buy The Dip In Marvell Stock?",
+            "published_at": "2026-10-15T18:11:01+00:00",
+            "publisher": "Trefis",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/buy-dip-marvell-stock-181101936.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "MRVL",
+              "AVGO",
+              "NVDA",
+              "AMD",
+              "QCOM",
+              "INTC"
+            ]
+          },
+          {
+            "title": "XCENA Showcases CXL Memory Innovations for AI Inference at OCP Global Summit 2026",
+            "published_at": "2026-10-15T18:00:00+00:00",
+            "publisher": "Business Wire",
+            "url": "https://finance.yahoo.com/technology/ai/articles/xcena-showcases-cxl-memory-innovations-180000292.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "SKHY",
+              "005930.KS",
+              "MRVL",
+              "MSFT",
+              "META",
+              "STX"
+            ]
+          },
+          {
+            "title": "Fantastic News for Marvell Stock Investors",
+            "published_at": "2026-10-15T15:58:02+00:00",
+            "publisher": "Motley Fool",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/fantastic-news-marvell-stock-investors-155802909.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "MRVL",
+              "NVDA"
+            ]
+          },
+          {
+            "title": "Better Artificial Intelligence Stock for 2026: Astera Labs vs. Marvell Technology",
+            "published_at": "2026-10-15T15:55:33+00:00",
+            "publisher": "Motley Fool",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/better-artificial-intelligence-stock-2026-155533482.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "ALAB",
+              "MRVL"
+            ]
+          },
+          {
+            "title": "Here Are the Tech Stocks Taking a Beating Today",
+            "published_at": "2026-10-15T14:11:42+00:00",
+            "publisher": "The Wall Street Journal",
+            "url": "https://finance.yahoo.com/m/8e8a15a9-8e24-3fc5-b65e-ff5436998a61/here-are-the-tech-stocks.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "ANTH.PVT",
+              "TSM",
+              "ASTS",
+              "SMCI",
+              "MRVL",
+              "SNDK",
+              "ORCL",
+              "INTC",
+              "SPCX",
+              "NVDA",
+              "CRWV",
+              "MU",
+              "AMD",
+              "NBIS"
+            ]
+          },
+          {
+            "title": "The Case For NVIDIA Stock Rests On One Thing",
+            "published_at": "2026-10-15T13:42:36+00:00",
+            "publisher": "Trefis",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/case-nvidia-stock-rests-one-134236405.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "NVDA",
+              "AMD",
+              "INTC",
+              "AVGO",
+              "QCOM",
+              "MRVL"
+            ]
+          },
+          {
+            "title": "Is There A Risk Hiding In AMD Stock's Big Run?",
+            "published_at": "2026-10-15T13:31:32+00:00",
+            "publisher": "Trefis",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/risk-hiding-amd-stocks-big-133132787.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "AMD",
+              "^GSPC",
+              "INTC",
+              "NVDA",
+              "AVGO",
+              "QCOM",
+              "MRVL",
+              "SPGI"
+            ]
+          },
+          {
+            "title": "Here's How Much a $1000 Investment in Marvell Technology Made 10 Years Ago Would Be Worth Today",
+            "published_at": "2026-10-15T11:30:04+00:00",
+            "publisher": "Zacks",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/heres-much-1000-investment-marvell-113004803.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "MRVL"
+            ]
+          },
+          {
+            "title": "1 Surging  Stock on Our Watchlist and 2 We Find Risky",
+            "published_at": "2026-10-15T11:20:27+00:00",
+            "publisher": "StockStory",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/1-surging-stock-watchlist-2-112027796.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "HLF",
+              "RDDT",
+              "MRVL",
+              "CCL"
+            ]
+          },
+          {
+            "title": "Review & Preview: Blistering in the Sun",
+            "published_at": "2026-10-14T23:55:00+00:00",
+            "publisher": "Barrons.com",
+            "url": "https://finance.yahoo.com/m/4d20f5d7-ca41-3488-9991-642d3ccb112c/review-%26-preview%3A-blistering.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "SOXX",
+              "^GSPC",
+              "^DJI",
+              "^IXIC",
+              "AMD",
+              "INTC",
+              "MRVL"
+            ]
+          },
+          {
+            "title": "Broadcom vs. Marvell Technology: Which Technology Stock Is a Better Buy in 2026?",
+            "published_at": "2026-10-14T22:22:09+00:00",
+            "publisher": "Motley Fool",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/broadcom-vs-marvell-technology-technology-222209867.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "AVGO",
+              "MRVL"
+            ]
+          },
+          {
+            "title": "Why Marvell Technology (MRVL) Dipped More Than Broader Market Today",
+            "published_at": "2026-10-14T20:50:02+00:00",
+            "publisher": "Zacks",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/why-marvell-technology-mrvl-dipped-205002775.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "MRVL",
+              "^GSPC",
+              "^DJI",
+              "^IXIC"
+            ]
+          },
+          {
+            "title": "AMD Stock Takes a Bigger Hit as Cracks Emerge in the AI Trade",
+            "published_at": "2026-10-14T20:46:00+00:00",
+            "publisher": "Barrons.com",
+            "url": "https://finance.yahoo.com/m/02b4e834-4dc3-3b57-9736-5c4291f5bfe7/amd-stock-takes-a-bigger-hit.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "AMD",
+              "AVGO",
+              "CRWV",
+              "MRVL",
+              "NVDA"
+            ]
+          },
+          {
+            "title": "AI stocks drop after hot inflation report bolsters bets for Fed rate hikes",
+            "published_at": "2026-10-14T20:12:17+00:00",
+            "publisher": "CNN Business",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/ai-stocks-drop-hot-inflation-201217922.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "DELL",
+              "^GSPC",
+              "MRVL",
+              "ORCL",
+              "^IXIC",
+              "NVDA"
+            ]
+          }
+        ],
         "events": [],
         "sector_context": {
           "scope": "market",
@@ -22599,7 +23083,109 @@
         "price_status": "available",
         "headline_status": "available",
         "news_baseline_status": "warming_up",
-        "headlines": [],
+        "headlines": [
+          {
+            "title": "NextEra Energy (NEE) Faces Uncertainty Over Its Proposed $67 Billion Acquisition",
+            "published_at": "2026-10-15T15:36:07+00:00",
+            "publisher": "Insider Monkey",
+            "url": "https://finance.yahoo.com/energy/articles/nextera-energy-nee-faces-uncertainty-153607015.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "NEE"
+            ]
+          },
+          {
+            "title": "Analysts Estimate PG&E (PCG) to Report a Decline in Earnings: What to Look Out for",
+            "published_at": "2026-10-15T13:00:16+00:00",
+            "publisher": "Zacks",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/analysts-estimate-pg-e-pcg-130016107.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "PCG",
+              "NEE"
+            ]
+          },
+          {
+            "title": "Former NextEra Veteran Joins AIB to Lead Public Affairs and Community Engagement",
+            "published_at": "2026-10-15T12:31:00+00:00",
+            "publisher": "GlobeNewswire",
+            "url": "https://finance.yahoo.com/technology/ai/articles/former-nextera-veteran-joins-aib-123100420.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "AIB",
+              "NEE"
+            ]
+          },
+          {
+            "title": "What State Street Utilities Select Sector SPDR ETF (XLU) Sold: NEE Leads on Tuesday",
+            "published_at": "2026-10-15T11:04:57+00:00",
+            "publisher": "GuruFocus.com",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/state-street-utilities-select-sector-110457241.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "XLU",
+              "NEE",
+              "CEG",
+              "AEP",
+              "DUK"
+            ]
+          },
+          {
+            "title": "ETFs Are Net Sellers of NextEra Energy (NEE) on Oct. 13",
+            "published_at": "2026-10-15T11:03:18+00:00",
+            "publisher": "GuruFocus.com",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/etfs-net-sellers-nextera-energy-110318108.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "NEE",
+              "SPY"
+            ]
+          },
+          {
+            "title": "AI Data Center Demand Puts Equinix Stock And Digital Realty Shares In Focus",
+            "published_at": "2026-10-15T06:16:25+00:00",
+            "publisher": "Simply Wall St.",
+            "url": "https://finance.yahoo.com/technology/ai/articles/ai-data-center-demand-puts-061625129.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "EQIX",
+              "BAM",
+              "NEE",
+              "DLR",
+              "IRM"
+            ]
+          },
+          {
+            "title": "Is GE Vernova Stock Still Telling You The Same Thing?",
+            "published_at": "2026-10-15T00:40:08+00:00",
+            "publisher": "Trefis",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/ge-vernova-stock-still-telling-004008280.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "GEV",
+              "^GSPC",
+              "ETN",
+              "HON",
+              "NEE",
+              "EMR",
+              "PWR",
+              "PSIX",
+              "GE",
+              "SPGI"
+            ]
+          },
+          {
+            "title": "Brookfield, NextEra to Build $100 Billion AI Hub on Cold War Nuclear Site",
+            "published_at": "2026-10-15T00:00:00+00:00",
+            "publisher": "Oilprice.com",
+            "url": "https://finance.yahoo.com/technology/ai/articles/brookfield-nextera-build-100-billion-000000019.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "NEE",
+              "BAM"
+            ]
+          }
+        ],
         "events": [],
         "sector_context": {
           "scope": "market",
@@ -24124,16 +24710,6 @@
               "VOLV-B.ST",
               "VOLCAR-B.ST"
             ]
-          },
-          {
-            "title": "Nvidia Stocks Fall 3.0% With Cash Conversion in Focus After Baird's Warning",
-            "published_at": "2026-10-15T18:50:11+00:00",
-            "publisher": "GuruFocus.com",
-            "url": "https://finance.yahoo.com/markets/stocks/articles/nvidia-stocks-fall-3-0-185011063.html",
-            "source": "Yahoo Finance",
-            "related_symbols": [
-              "NVDA"
-            ]
           }
         ],
         "events": [],
@@ -24371,36 +24947,7 @@
         "price_status": "available",
         "headline_status": "available",
         "news_baseline_status": "warming_up",
-        "headlines": [
-          {
-            "title": "Roth IRA vs Brokerage Account: 5 High-Yielding Dividend Stocks You Should Never Own Outside a Roth",
-            "published_at": "2026-10-15T12:11:13+00:00",
-            "publisher": "24/7 Wall St.",
-            "url": "https://finance.yahoo.com/markets/stocks/articles/roth-ira-vs-brokerage-account-121113897.html",
-            "source": "Yahoo Finance",
-            "related_symbols": [
-              "AGNC",
-              "ARCC",
-              "O",
-              "ET",
-              "MAIN"
-            ]
-          },
-          {
-            "title": "The IRS Hates This $500,000 Roth High-Yield Dividend Strategy",
-            "published_at": "2026-10-15T11:16:42+00:00",
-            "publisher": "24/7 Wall St.",
-            "url": "https://finance.yahoo.com/markets/stocks/articles/irs-hates-500-000-roth-111642769.html",
-            "source": "Yahoo Finance",
-            "related_symbols": [
-              "ARCC",
-              "ENB",
-              "MO",
-              "O",
-              "VZ"
-            ]
-          }
-        ],
+        "headlines": [],
         "events": [],
         "sector_context": {
           "scope": "market",
@@ -25375,67 +25922,7 @@
         "price_status": "available",
         "headline_status": "available",
         "news_baseline_status": "warming_up",
-        "headlines": [
-          {
-            "title": "Palo Alto Networks Stocks Fall 2% Although $440 Target Meets an Earnings Gap",
-            "published_at": "2026-10-15T19:07:36+00:00",
-            "publisher": "GuruFocus.com",
-            "url": "https://finance.yahoo.com/markets/stocks/articles/palo-alto-networks-stocks-fall-190736683.html",
-            "source": "Yahoo Finance",
-            "related_symbols": [
-              "PANW"
-            ]
-          },
-          {
-            "title": "Cybersecurity Stocks Retreat From Record Highs \u2014 Citi Raises CRWD, PANW, ZS Targets On Improving Spending Momentum",
-            "published_at": "2026-10-15T12:02:16+00:00",
-            "publisher": "Stocktwits",
-            "url": "https://finance.yahoo.com/markets/stocks/articles/cybersecurity-stocks-retreat-record-highs-120216160.html",
-            "source": "Yahoo Finance",
-            "related_symbols": [
-              "ZS",
-              "CRWD",
-              "PANW",
-              "FTNT",
-              "OKTA"
-            ]
-          },
-          {
-            "title": "Citigroup Adjusts Price Target on Palo Alto Networks to $440 From $410",
-            "published_at": "2026-10-15T09:31:01+00:00",
-            "publisher": "MT Newswires",
-            "url": "https://finance.yahoo.com/markets/stocks/articles/citigroup-adjusts-price-target-palo-093101619.html",
-            "source": "Yahoo Finance",
-            "related_symbols": [
-              "PANW"
-            ]
-          },
-          {
-            "title": "3 Cybersecurity Stocks With Market Caps Over $9 Billion",
-            "published_at": "2026-10-15T04:27:35+00:00",
-            "publisher": "Simply Wall St.",
-            "url": "https://finance.yahoo.com/markets/stocks/articles/3-cybersecurity-stocks-market-caps-042735483.html",
-            "source": "Yahoo Finance",
-            "related_symbols": [
-              "PANW",
-              "ANTH.PVT",
-              "CRWD",
-              "NTSK"
-            ]
-          },
-          {
-            "title": "Palo Alto Networks (PANW) Declines More Than Market: Some Information for Investors",
-            "published_at": "2026-10-14T20:45:02+00:00",
-            "publisher": "Zacks",
-            "url": "https://finance.yahoo.com/markets/stocks/articles/palo-alto-networks-panw-declines-204502672.html",
-            "source": "Yahoo Finance",
-            "related_symbols": [
-              "PANW",
-              "^GSPC",
-              "^DJI"
-            ]
-          }
-        ],
+        "headlines": [],
         "events": [],
         "sector_context": {
           "scope": "market",
@@ -25553,7 +26040,40 @@
         "price_status": "available",
         "headline_status": "available",
         "news_baseline_status": "warming_up",
-        "headlines": [],
+        "headlines": [
+          {
+            "title": "Paychex AGM Highlights AI Growth Strategy, Stock Split Debate and Shareholder Votes",
+            "published_at": "2026-10-15T16:03:31+00:00",
+            "publisher": "MarketBeat",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/paychex-agm-highlights-ai-growth-160331384.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "PAYX"
+            ]
+          },
+          {
+            "title": "Paychex Declares Quarterly Dividend",
+            "published_at": "2026-10-15T12:30:00+00:00",
+            "publisher": "GlobeNewswire",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/paychex-declares-quarterly-dividend-123000152.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "PAYX"
+            ]
+          },
+          {
+            "title": "Paychex Builds Fortress of Steady Dividend Growth While Stock Struggles",
+            "published_at": "2026-10-15T11:45:46+00:00",
+            "publisher": "24/7 Wall St.",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/paychex-builds-fortress-steady-dividend-114546386.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "PAYX",
+              "PAYC",
+              "ADP"
+            ]
+          }
+        ],
         "events": [],
         "sector_context": {
           "scope": "market",
@@ -30532,7 +31052,35 @@
         "price_status": "available",
         "headline_status": "available",
         "news_baseline_status": "warming_up",
-        "headlines": [],
+        "headlines": [
+          {
+            "title": "AI Bears March Down Wall Street Pre-Bell; Asia Down, Europe Off",
+            "published_at": "2026-10-15T11:26:05+00:00",
+            "publisher": "MT Newswires",
+            "url": "https://finance.yahoo.com/markets/articles/ai-bears-march-down-wall-112605419.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "CL=F",
+              "^GSPC",
+              "^IXIC",
+              "^DJI",
+              "CRWV",
+              "SMH"
+            ]
+          },
+          {
+            "title": "RBC Capital Markets Echoes Deutsche Bank In Asking Clients To Steer Clear Of Tech In Medium Term",
+            "published_at": "2026-10-14T20:34:47+00:00",
+            "publisher": "Stocktwits",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/rbc-capital-markets-echoes-deutsche-203447032.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "DB",
+              "SOXX",
+              "SMH"
+            ]
+          }
+        ],
         "events": [],
         "sector_context": {
           "scope": "market",
@@ -31206,7 +31754,23 @@
         "price_status": "available",
         "headline_status": "available",
         "news_baseline_status": "warming_up",
-        "headlines": [],
+        "headlines": [
+          {
+            "title": "A $600,000 Dividend Portfolio Has a $52,900 Tax Problem. Here\u2019s the Roth Solution",
+            "published_at": "2026-10-15T16:15:41+00:00",
+            "publisher": "24/7 Wall St.",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/600-000-dividend-portfolio-52-161541857.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "UPS",
+              "SPG",
+              "CCI",
+              "BEN",
+              "BMY",
+              "LYB"
+            ]
+          }
+        ],
         "events": [],
         "sector_context": {
           "scope": "market",
@@ -31975,9 +32539,258 @@
         "symbol": "SPY",
         "as_of": "2026-10-15",
         "price_status": "available",
-        "headline_status": "available",
-        "news_baseline_status": "warming_up",
-        "headlines": [],
+        "headline_status": "capped",
+        "news_baseline_status": "unavailable",
+        "headlines": [
+          {
+            "title": "DraftKings Is Down 44% in 2026: Is DKNG Stock Dead Money or Due for a Bounce?",
+            "published_at": "2026-10-15T18:20:01+00:00",
+            "publisher": "24/7 Wall St.",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/draftkings-down-44-2026-dkng-182001805.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "DKNG",
+              "FLUT",
+              "MGM",
+              "SPY"
+            ]
+          },
+          {
+            "title": "Starwood Property Trust (STWD) Earnings Fell 95%. Is the Stock Still Cheap?",
+            "published_at": "2026-10-15T18:18:08+00:00",
+            "publisher": "Insider Monkey",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/starwood-property-trust-stwd-earnings-181808410.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "STWD",
+              "SPY"
+            ]
+          },
+          {
+            "title": "Carnival Just Surged 17% in a Month: Take Profits, or Buy More?",
+            "published_at": "2026-10-15T18:17:03+00:00",
+            "publisher": "24/7 Wall St.",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/carnival-just-surged-17-month-181703916.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "CCL",
+              "RCL",
+              "NCLH",
+              "SPY",
+              "XLE"
+            ]
+          },
+          {
+            "title": "Rithm Capital (RITM) Trades at 0.76 Times Book Value. Should You Buy It?",
+            "published_at": "2026-10-15T18:16:46+00:00",
+            "publisher": "Insider Monkey",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/rithm-capital-ritm-trades-0-181646521.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "RITM",
+              "SPY"
+            ]
+          },
+          {
+            "title": "Dynex Capital (DX) Trades at 4 Times Last Year\u2019s Earnings and 8 Times Next Year\u2019s. Which is Right?",
+            "published_at": "2026-10-15T18:16:34+00:00",
+            "publisher": "Insider Monkey",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/dynex-capital-dx-trades-4-181634841.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "DX",
+              "SPY"
+            ]
+          },
+          {
+            "title": "Essent Group (ESNT): Good Investment or Just a Cheap One?",
+            "published_at": "2026-10-15T18:15:55+00:00",
+            "publisher": "Insider Monkey",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/essent-group-esnt-good-investment-181555122.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "ESNT",
+              "SPY"
+            ]
+          },
+          {
+            "title": "Is UWM Holdings (UWMC) the Most Expensive Cheap Stock in Mortgage Lending?",
+            "published_at": "2026-10-15T18:15:39+00:00",
+            "publisher": "Insider Monkey",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/uwm-holdings-uwmc-most-expensive-181539674.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "UWMC",
+              "SPY"
+            ]
+          },
+          {
+            "title": "Annaly Capital (NLY) Borrows $7 for Every $1 of Equity. What Does That Buy?",
+            "published_at": "2026-10-15T18:15:25+00:00",
+            "publisher": "Insider Monkey",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/annaly-capital-nly-borrows-7-181525249.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "NLY",
+              "SPY"
+            ]
+          },
+          {
+            "title": "MGIC Investment (MTG) Earns 80% Margins on Falling Revenue. Is the Stock Cheap Enough?",
+            "published_at": "2026-10-15T18:14:44+00:00",
+            "publisher": "Insider Monkey",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/mgic-investment-mtg-earns-80-181444068.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "MTG",
+              "SPY"
+            ]
+          },
+          {
+            "title": "AGNC Investment (AGNC) Is the Most Expensive Mortgage REIT on Book Value. Why?",
+            "published_at": "2026-10-15T18:14:24+00:00",
+            "publisher": "Insider Monkey",
+            "url": "https://finance.yahoo.com/real-estate/articles/agnc-investment-agnc-most-expensive-181424299.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "AGNC",
+              "SPY"
+            ]
+          },
+          {
+            "title": "Radian Group (RDN) Bought a Lloyd\u2019s Insurer. Is It Still a Mortgage Stock?",
+            "published_at": "2026-10-15T18:14:07+00:00",
+            "publisher": "Insider Monkey",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/radian-group-rdn-bought-lloyd-181407886.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "RDN",
+              "SPY"
+            ]
+          },
+          {
+            "title": "Why Does Rocket Companies (RKT) Earn Just 3% on Equity After Doubling Revenue?",
+            "published_at": "2026-10-15T18:13:25+00:00",
+            "publisher": "Insider Monkey",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/why-does-rocket-companies-rkt-181325911.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "RKT",
+              "SPY"
+            ]
+          },
+          {
+            "title": "USA Rare Earth Climbs 4% as Month-Long Selloff Pauses; MP Materials Ticks Up, United States Antimony Dips",
+            "published_at": "2026-10-15T17:53:14+00:00",
+            "publisher": "24/7 Wall St.",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/usa-rare-earth-climbs-4-175314635.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "USAR",
+              "MP",
+              "REMX",
+              "SPY",
+              "UAMY"
+            ]
+          },
+          {
+            "title": "Cleveland-Cliffs Drops 4% as Tariff Doubt Returns; Nucor and Steel Dynamics Slip",
+            "published_at": "2026-10-15T17:49:59+00:00",
+            "publisher": "24/7 Wall St.",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/cleveland-cliffs-drops-4-tariff-174959759.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "CLF",
+              "NUE",
+              "SLX",
+              "SPY",
+              "STLD"
+            ]
+          },
+          {
+            "title": "Bloom Energy Retreats 4% as AI Power Trade Unwinds; Caterpillar Slides 3%, Generac Slips",
+            "published_at": "2026-10-15T17:47:45+00:00",
+            "publisher": "24/7 Wall St.",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/bloom-energy-retreats-4-ai-174745233.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "BE",
+              "CAT",
+              "GNRC",
+              "SPY",
+              "XLI",
+              "^GSPC"
+            ]
+          },
+          {
+            "title": "The Fed Just Found AI Is Starting to Cost Jobs in 5 of Its 12 Districts",
+            "published_at": "2026-10-15T17:37:35+00:00",
+            "publisher": "24/7 Wall St.",
+            "url": "https://finance.yahoo.com/technology/ai/articles/fed-just-found-ai-starting-173735654.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "NVDA",
+              "RSP",
+              "SPY"
+            ]
+          },
+          {
+            "title": "eBay Jumps 5% on Takeover Speculation; Etsy Rallies 7%, Shopify Holds Flat",
+            "published_at": "2026-10-15T17:01:42+00:00",
+            "publisher": "24/7 Wall St.",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/ebay-jumps-5-takeover-speculation-170142651.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "EBAY",
+              "SHOP",
+              "SPY",
+              "GME",
+              "ETSY",
+              "IBUY"
+            ]
+          },
+          {
+            "title": "Moderna Rallies 6% as Money Rotates Into Healthcare; BioNTech and Pfizer Edge Higher",
+            "published_at": "2026-10-15T16:55:05+00:00",
+            "publisher": "24/7 Wall St.",
+            "url": "https://finance.yahoo.com/healthcare/articles/moderna-rallies-6-money-rotates-165505631.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "MRNA",
+              "PFE",
+              "^GSPC",
+              "MRK",
+              "BNTX",
+              "IBB",
+              "SPY"
+            ]
+          },
+          {
+            "title": "Simply Put, Palantir Remains a Valuation Trap",
+            "published_at": "2026-10-15T16:45:41+00:00",
+            "publisher": "24/7 Wall St.",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/simply-put-palantir-remains-valuation-164541520.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "PLTR",
+              "SPY"
+            ]
+          },
+          {
+            "title": "Skydance Rebounds 5% as Warrant Adjustment Selloff Fades; Netflix Rises 3%, Disney Advances 2%",
+            "published_at": "2026-10-15T16:01:43+00:00",
+            "publisher": "24/7 Wall St.",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/skydance-rebounds-5-warrant-adjustment-160143686.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "NFLX",
+              "DIS",
+              "SKYD",
+              "SPY",
+              "XLC"
+            ]
+          }
+        ],
         "events": [],
         "sector_context": {
           "scope": "market",
@@ -32085,7 +32898,7 @@
           ]
         },
         "warnings": [
-          "Fewer than five valid prior headline observations; headline bursts not assessed."
+          "Headline coverage capped; missing headlines are not evidence of no news."
         ]
       },
       {
@@ -35489,7 +36302,55 @@
         "price_status": "available",
         "headline_status": "available",
         "news_baseline_status": "warming_up",
-        "headlines": [],
+        "headlines": [
+          {
+            "title": "Forget Cystic Fibrosis: Vertex's Next Growth Engine Could Be Hormone Disorders",
+            "published_at": "2026-10-15T15:01:00+00:00",
+            "publisher": "Motley Fool",
+            "url": "https://finance.yahoo.com/healthcare/articles/forget-cystic-fibrosis-vertexs-next-150100851.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "VRTX",
+              "NVDA"
+            ]
+          },
+          {
+            "title": "What You Need to Know Ahead of Vertex Pharmaceuticals\u2019 Earnings Release",
+            "published_at": "2026-10-15T12:44:12+00:00",
+            "publisher": "Barchart",
+            "url": "https://finance.yahoo.com/healthcare/articles/know-ahead-vertex-pharmaceuticals-earnings-124412257.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "VRTX",
+              "^GSPC"
+            ]
+          },
+          {
+            "title": "What iShares Biotechnology ETF (IBB) Sold: Gilead Leads on Oct. 13",
+            "published_at": "2026-10-15T11:04:44+00:00",
+            "publisher": "GuruFocus.com",
+            "url": "https://finance.yahoo.com/healthcare/articles/ishares-biotechnology-etf-ibb-sold-110444540.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "GILD",
+              "AMGN",
+              "VRTX",
+              "REGN",
+              "MRNA",
+              "IBB"
+            ]
+          },
+          {
+            "title": "Goldman Sachs Adjusts Price Target on Vertex Pharmaceuticals to $654 From $653",
+            "published_at": "2026-10-15T10:34:35+00:00",
+            "publisher": "MT Newswires",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/goldman-sachs-adjusts-price-target-103435917.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "VRTX"
+            ]
+          }
+        ],
         "events": [],
         "sector_context": {
           "scope": "market",
@@ -35920,7 +36781,54 @@
         "price_status": "available",
         "headline_status": "available",
         "news_baseline_status": "warming_up",
-        "headlines": [],
+        "headlines": [
+          {
+            "title": "3 Reasons ServiceNow Stock Is Climbing When Tech Is Selling Off",
+            "published_at": "2026-10-15T18:35:00+00:00",
+            "publisher": "Barrons.com",
+            "url": "https://finance.yahoo.com/m/3c2543e1-6811-3219-a491-1ece7312b775/3-reasons-servicenow-stock-is.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "NOW",
+              "TEAM",
+              "^GSPC",
+              "CRM",
+              "WDAY"
+            ]
+          },
+          {
+            "title": "OneTrust Plans to Extend AI-Ready Governance to Workday Agent Passport Through Integration",
+            "published_at": "2026-10-15T16:00:00+00:00",
+            "publisher": "GlobeNewswire",
+            "url": "https://finance.yahoo.com/technology/ai/articles/onetrust-plans-extend-ai-ready-160000265.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "WDAY"
+            ]
+          },
+          {
+            "title": "Workday's Strategic Positioning in Agentic Space is Incrementally Positive, RBC Capital Markets Says",
+            "published_at": "2026-10-15T15:32:42+00:00",
+            "publisher": "MT Newswires",
+            "url": "https://finance.yahoo.com/technology/ai/articles/workday-apos-strategic-positioning-agentic-153242865.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "WDAY"
+            ]
+          },
+          {
+            "title": "Accenture (ACN) Is Up 10.4% After Dividend Hike And New AI Deals With Dell And Workday",
+            "published_at": "2026-10-14T21:11:23+00:00",
+            "publisher": "Simply Wall St.",
+            "url": "https://finance.yahoo.com/technology/ai/articles/accenture-acn-10-4-dividend-211123841.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "ACN",
+              "WDAY",
+              "DELL"
+            ]
+          }
+        ],
         "events": [],
         "sector_context": {
           "scope": "market",
@@ -37716,7 +38624,23 @@
         "price_status": "available",
         "headline_status": "available",
         "news_baseline_status": "warming_up",
-        "headlines": [],
+        "headlines": [
+          {
+            "title": "Bloom Energy Retreats 4% as AI Power Trade Unwinds; Caterpillar Slides 3%, Generac Slips",
+            "published_at": "2026-10-15T17:47:45+00:00",
+            "publisher": "24/7 Wall St.",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/bloom-energy-retreats-4-ai-174745233.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "BE",
+              "CAT",
+              "GNRC",
+              "SPY",
+              "XLI",
+              "^GSPC"
+            ]
+          }
+        ],
         "events": [],
         "sector_context": {
           "scope": "market",
@@ -38760,7 +39684,128 @@
         "price_status": "available",
         "headline_status": "available",
         "news_baseline_status": "warming_up",
-        "headlines": [],
+        "headlines": [
+          {
+            "title": "Sector Update: Healthcare Stocks Gain Late Afternoon",
+            "published_at": "2026-10-15T19:57:16+00:00",
+            "publisher": "MT Newswires",
+            "url": "https://finance.yahoo.com/healthcare/articles/sector-healthcare-stocks-gain-afternoon-195716572.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "XLV",
+              "SNY",
+              "AZN"
+            ]
+          },
+          {
+            "title": "Sector Update: Healthcare",
+            "published_at": "2026-10-15T19:30:23+00:00",
+            "publisher": "MT Newswires",
+            "url": "https://finance.yahoo.com/healthcare/articles/sector-healthcare-193023732.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "XLV",
+              "SNY"
+            ]
+          },
+          {
+            "title": "Why Healthcare Stocks Are Hot When the AI Trade Runs Cold",
+            "published_at": "2026-10-15T18:14:00+00:00",
+            "publisher": "Barrons.com",
+            "url": "https://finance.yahoo.com/m/a375414b-e74e-3611-9458-2340976c760a/why-healthcare-stocks-are-hot.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "^GSPC",
+              "CORT",
+              "MOH",
+              "MRK",
+              "XLV"
+            ]
+          },
+          {
+            "title": "Sector Update: Healthcare Stocks Gain Thursday Afternoon",
+            "published_at": "2026-10-15T17:54:07+00:00",
+            "publisher": "MT Newswires",
+            "url": "https://finance.yahoo.com/healthcare/articles/sector-healthcare-stocks-gain-thursday-175407519.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "XLV",
+              "VSTM",
+              "LLY",
+              "MRK.DE",
+              "LH",
+              "AZN"
+            ]
+          },
+          {
+            "title": "Sector Update: Healthcare",
+            "published_at": "2026-10-15T17:19:26+00:00",
+            "publisher": "MT Newswires",
+            "url": "https://finance.yahoo.com/healthcare/articles/sector-healthcare-171926154.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "XLV",
+              "VSTM"
+            ]
+          },
+          {
+            "title": "Sector Update: Healthcare Stocks Rise Pre-Bell Thursday",
+            "published_at": "2026-10-15T13:12:49+00:00",
+            "publisher": "MT Newswires",
+            "url": "https://finance.yahoo.com/healthcare/articles/sector-healthcare-stocks-rise-pre-131249541.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "OPK",
+              "TAK",
+              "LH",
+              "XLV",
+              "VHT",
+              "AZN"
+            ]
+          },
+          {
+            "title": "Sector Update: Healthcare",
+            "published_at": "2026-10-15T12:59:33+00:00",
+            "publisher": "MT Newswires",
+            "url": "https://finance.yahoo.com/healthcare/articles/sector-healthcare-125933040.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "XLV",
+              "VHT",
+              "AZN"
+            ]
+          },
+          {
+            "title": "Stock Market News for Oct 15, 2026",
+            "published_at": "2026-10-15T12:30:00+00:00",
+            "publisher": "Zacks",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/stock-market-news-oct-15-123000001.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "^DJI",
+              "^GSPC",
+              "^IXIC",
+              "XLK",
+              "XLV",
+              "XLC",
+              "XLY"
+            ]
+          },
+          {
+            "title": "State Street Health Care SPDR (XLV) Sells Medtronic and Eli Lilly on Oct. 13",
+            "published_at": "2026-10-15T11:05:41+00:00",
+            "publisher": "GuruFocus.com",
+            "url": "https://finance.yahoo.com/healthcare/articles/state-street-health-care-spdr-110541059.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "LLY",
+              "MDT",
+              "XLV",
+              "ABBV",
+              "JNJ"
+            ]
+          }
+        ],
         "events": [],
         "sector_context": {
           "scope": "market",
@@ -38878,7 +39923,103 @@
         "price_status": "available",
         "headline_status": "available",
         "news_baseline_status": "warming_up",
-        "headlines": [],
+        "headlines": [
+          {
+            "title": "Sector Update: Consumer Stocks Rise Late Afternoon",
+            "published_at": "2026-10-15T19:46:58+00:00",
+            "publisher": "MT Newswires",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/sector-consumer-stocks-rise-afternoon-194658079.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "TGT",
+              "PAG",
+              "GOOG",
+              "XLP",
+              "XLY"
+            ]
+          },
+          {
+            "title": "Sector Update: Consumer",
+            "published_at": "2026-10-15T19:32:56+00:00",
+            "publisher": "MT Newswires",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/sector-consumer-193256320.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "TGT",
+              "XLP",
+              "XLY"
+            ]
+          },
+          {
+            "title": "Sector Update: Consumer Stocks Rise Thursday Afternoon",
+            "published_at": "2026-10-15T17:35:20+00:00",
+            "publisher": "MT Newswires",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/sector-consumer-stocks-rise-thursday-173520814.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "PAG",
+              "XLP",
+              "XLY",
+              "KMB",
+              "CARG"
+            ]
+          },
+          {
+            "title": "Sector Update: Consumer",
+            "published_at": "2026-10-15T17:05:11+00:00",
+            "publisher": "MT Newswires",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/sector-consumer-170511822.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "PAG",
+              "XLP",
+              "XLY"
+            ]
+          },
+          {
+            "title": "Sector Update: Consumer Stocks Mixed Premarket Thursday",
+            "published_at": "2026-10-15T13:11:30+00:00",
+            "publisher": "MT Newswires",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/sector-consumer-stocks-mixed-premarket-131130204.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "KMB",
+              "XLP",
+              "PEP",
+              "MCD",
+              "MAR",
+              "XLY"
+            ]
+          },
+          {
+            "title": "Sector Update: Consumer",
+            "published_at": "2026-10-15T12:53:52+00:00",
+            "publisher": "MT Newswires",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/sector-consumer-125352099.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "KMB",
+              "XLP",
+              "XLY"
+            ]
+          },
+          {
+            "title": "Stock Market News for Oct 15, 2026",
+            "published_at": "2026-10-15T12:30:00+00:00",
+            "publisher": "Zacks",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/stock-market-news-oct-15-123000001.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "^DJI",
+              "^GSPC",
+              "^IXIC",
+              "XLK",
+              "XLV",
+              "XLC",
+              "XLY"
+            ]
+          }
+        ],
         "events": [],
         "sector_context": {
           "scope": "market",
@@ -39775,9 +40916,10 @@
     "baseline_days": 4,
     "baseline_ready": false,
     "ready_symbols": 0,
-    "valid_symbols": 190,
+    "valid_symbols": 189,
     "failed_symbols": [],
     "capped_symbols": [
+      "SPY",
       "MSFT",
       "GOOGL",
       "C"
@@ -39789,24 +40931,24 @@
       "window_start": "2026-10-14T20:00:00+00:00",
       "window_end": "2026-10-15T20:00:00+00:00",
       "requested_symbol_count": 193,
-      "observed_matched_item_count": 1520,
+      "observed_matched_item_count": 1646,
       "universe_zero_in_window_observed": false,
       "published_news_coverage_confirmed": false,
       "provider_http_error_symbol_count": 0,
       "symbols": {
         "SPY": {
-          "returned_item_count": 0,
-          "parsed_item_count": 0,
+          "returned_item_count": 50,
+          "parsed_item_count": 50,
           "parse_complete": true,
-          "matched_in_window_count": 0,
-          "oldest_returned_at": null,
-          "newest_returned_at": null,
-          "related_item_count": 0,
+          "matched_in_window_count": 48,
+          "oldest_returned_at": "2026-10-14T23:40:52+00:00",
+          "newest_returned_at": "2026-10-15T22:19:04+00:00",
+          "related_item_count": 50,
           "returned_newest_first": true,
           "sample_reaches_window_start": false,
-          "observed_zero_in_window": true,
+          "observed_zero_in_window": false,
           "published_news_coverage_confirmed": false,
-          "status": "empty_response",
+          "status": "capped",
           "error_type": null,
           "error_reason": null,
           "provider_response": {
@@ -39937,8 +41079,8 @@
           "parsed_item_count": 50,
           "parse_complete": true,
           "matched_in_window_count": 12,
-          "oldest_returned_at": "2026-10-08T19:23:14+00:00",
-          "newest_returned_at": "2026-10-15T19:43:12+00:00",
+          "oldest_returned_at": "2026-10-08T19:51:42+00:00",
+          "newest_returned_at": "2026-10-15T20:13:00+00:00",
           "related_item_count": 50,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -40002,18 +41144,18 @@
           }
         },
         "XLV": {
-          "returned_item_count": 0,
-          "parsed_item_count": 0,
+          "returned_item_count": 50,
+          "parsed_item_count": 50,
           "parse_complete": true,
-          "matched_in_window_count": 0,
-          "oldest_returned_at": null,
-          "newest_returned_at": null,
-          "related_item_count": 0,
+          "matched_in_window_count": 9,
+          "oldest_returned_at": "2026-10-07T17:46:41+00:00",
+          "newest_returned_at": "2026-10-15T19:57:16+00:00",
+          "related_item_count": 50,
           "returned_newest_first": true,
-          "sample_reaches_window_start": false,
-          "observed_zero_in_window": true,
+          "sample_reaches_window_start": true,
+          "observed_zero_in_window": false,
           "published_news_coverage_confirmed": false,
-          "status": "empty_response",
+          "status": "observed_in_window",
           "error_type": null,
           "error_reason": null,
           "provider_response": {
@@ -40025,18 +41167,18 @@
           }
         },
         "XLI": {
-          "returned_item_count": 0,
-          "parsed_item_count": 0,
+          "returned_item_count": 50,
+          "parsed_item_count": 50,
           "parse_complete": true,
-          "matched_in_window_count": 0,
-          "oldest_returned_at": null,
-          "newest_returned_at": null,
-          "related_item_count": 0,
+          "matched_in_window_count": 1,
+          "oldest_returned_at": "2026-08-10T08:58:59+00:00",
+          "newest_returned_at": "2026-10-15T17:47:45+00:00",
+          "related_item_count": 50,
           "returned_newest_first": true,
-          "sample_reaches_window_start": false,
-          "observed_zero_in_window": true,
+          "sample_reaches_window_start": true,
+          "observed_zero_in_window": false,
           "published_news_coverage_confirmed": false,
-          "status": "empty_response",
+          "status": "observed_in_window",
           "error_type": null,
           "error_reason": null,
           "provider_response": {
@@ -40048,18 +41190,18 @@
           }
         },
         "XLY": {
-          "returned_item_count": 0,
-          "parsed_item_count": 0,
+          "returned_item_count": 50,
+          "parsed_item_count": 50,
           "parse_complete": true,
-          "matched_in_window_count": 0,
-          "oldest_returned_at": null,
-          "newest_returned_at": null,
-          "related_item_count": 0,
+          "matched_in_window_count": 7,
+          "oldest_returned_at": "2026-10-06T17:05:25+00:00",
+          "newest_returned_at": "2026-10-15T19:46:58+00:00",
+          "related_item_count": 50,
           "returned_newest_first": true,
-          "sample_reaches_window_start": false,
-          "observed_zero_in_window": true,
+          "sample_reaches_window_start": true,
+          "observed_zero_in_window": false,
           "published_news_coverage_confirmed": false,
-          "status": "empty_response",
+          "status": "observed_in_window",
           "error_type": null,
           "error_reason": null,
           "provider_response": {
@@ -40163,18 +41305,18 @@
           }
         },
         "SMH": {
-          "returned_item_count": 0,
-          "parsed_item_count": 0,
+          "returned_item_count": 50,
+          "parsed_item_count": 50,
           "parse_complete": true,
-          "matched_in_window_count": 0,
-          "oldest_returned_at": null,
-          "newest_returned_at": null,
-          "related_item_count": 0,
+          "matched_in_window_count": 2,
+          "oldest_returned_at": "2026-09-26T01:35:00+00:00",
+          "newest_returned_at": "2026-10-15T11:26:05+00:00",
+          "related_item_count": 50,
           "returned_newest_first": true,
-          "sample_reaches_window_start": false,
-          "observed_zero_in_window": true,
+          "sample_reaches_window_start": true,
+          "observed_zero_in_window": false,
           "published_news_coverage_confirmed": false,
-          "status": "empty_response",
+          "status": "observed_in_window",
           "error_type": null,
           "error_reason": null,
           "provider_response": {
@@ -40282,8 +41424,8 @@
           "parsed_item_count": 50,
           "parse_complete": true,
           "matched_in_window_count": 2,
-          "oldest_returned_at": "2026-09-01T01:48:20+00:00",
-          "newest_returned_at": "2026-10-15T17:10:34+00:00",
+          "oldest_returned_at": "2026-09-01T05:01:00+00:00",
+          "newest_returned_at": "2026-10-15T22:30:09+00:00",
           "related_item_count": 50,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -40465,9 +41607,9 @@
           "returned_item_count": 47,
           "parsed_item_count": 47,
           "parse_complete": true,
-          "matched_in_window_count": 11,
-          "oldest_returned_at": "2026-10-15T18:50:11+00:00",
-          "newest_returned_at": "2026-10-15T23:01:00+00:00",
+          "matched_in_window_count": 10,
+          "oldest_returned_at": "2026-10-15T18:56:23+00:00",
+          "newest_returned_at": "2026-10-15T23:35:00+00:00",
           "related_item_count": 47,
           "returned_newest_first": true,
           "sample_reaches_window_start": false,
@@ -40508,18 +41650,18 @@
           }
         },
         "AMD": {
-          "returned_item_count": 0,
-          "parsed_item_count": 0,
+          "returned_item_count": 49,
+          "parsed_item_count": 49,
           "parse_complete": true,
-          "matched_in_window_count": 0,
-          "oldest_returned_at": null,
-          "newest_returned_at": null,
-          "related_item_count": 0,
+          "matched_in_window_count": 37,
+          "oldest_returned_at": "2026-10-14T16:45:18+00:00",
+          "newest_returned_at": "2026-10-15T20:33:00+00:00",
+          "related_item_count": 49,
           "returned_newest_first": true,
-          "sample_reaches_window_start": false,
-          "observed_zero_in_window": true,
+          "sample_reaches_window_start": true,
+          "observed_zero_in_window": false,
           "published_news_coverage_confirmed": false,
-          "status": "empty_response",
+          "status": "observed_in_window",
           "error_type": null,
           "error_reason": null,
           "provider_response": {
@@ -40738,18 +41880,18 @@
           }
         },
         "MRVL": {
-          "returned_item_count": 0,
-          "parsed_item_count": 0,
+          "returned_item_count": 50,
+          "parsed_item_count": 50,
           "parse_complete": true,
-          "matched_in_window_count": 0,
-          "oldest_returned_at": null,
-          "newest_returned_at": null,
-          "related_item_count": 0,
+          "matched_in_window_count": 14,
+          "oldest_returned_at": "2026-10-13T13:00:00+00:00",
+          "newest_returned_at": "2026-10-15T18:11:01+00:00",
+          "related_item_count": 50,
           "returned_newest_first": true,
-          "sample_reaches_window_start": false,
-          "observed_zero_in_window": true,
+          "sample_reaches_window_start": true,
+          "observed_zero_in_window": false,
           "published_news_coverage_confirmed": false,
-          "status": "empty_response",
+          "status": "observed_in_window",
           "error_type": null,
           "error_reason": null,
           "provider_response": {
@@ -40834,8 +41976,8 @@
           "parsed_item_count": 50,
           "parse_complete": true,
           "matched_in_window_count": 4,
-          "oldest_returned_at": "2026-10-07T13:29:48+00:00",
-          "newest_returned_at": "2026-10-15T20:21:47+00:00",
+          "oldest_returned_at": "2026-10-07T13:35:57+00:00",
+          "newest_returned_at": "2026-10-15T23:35:00+00:00",
           "related_item_count": 50,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -40968,18 +42110,18 @@
           }
         },
         "CRM": {
-          "returned_item_count": 50,
-          "parsed_item_count": 50,
+          "returned_item_count": 0,
+          "parsed_item_count": 0,
           "parse_complete": true,
-          "matched_in_window_count": 19,
-          "oldest_returned_at": "2026-10-12T20:51:19+00:00",
-          "newest_returned_at": "2026-10-15T23:01:44+00:00",
-          "related_item_count": 50,
+          "matched_in_window_count": 0,
+          "oldest_returned_at": null,
+          "newest_returned_at": null,
+          "related_item_count": 0,
           "returned_newest_first": true,
-          "sample_reaches_window_start": true,
-          "observed_zero_in_window": false,
+          "sample_reaches_window_start": false,
+          "observed_zero_in_window": true,
           "published_news_coverage_confirmed": false,
-          "status": "observed_in_window",
+          "status": "empty_response",
           "error_type": null,
           "error_reason": null,
           "provider_response": {
@@ -41083,18 +42225,18 @@
           }
         },
         "PANW": {
-          "returned_item_count": 50,
-          "parsed_item_count": 50,
+          "returned_item_count": 0,
+          "parsed_item_count": 0,
           "parse_complete": true,
-          "matched_in_window_count": 5,
-          "oldest_returned_at": "2026-10-08T02:14:14+00:00",
-          "newest_returned_at": "2026-10-15T20:44:34+00:00",
-          "related_item_count": 50,
+          "matched_in_window_count": 0,
+          "oldest_returned_at": null,
+          "newest_returned_at": null,
+          "related_item_count": 0,
           "returned_newest_first": true,
-          "sample_reaches_window_start": true,
-          "observed_zero_in_window": false,
+          "sample_reaches_window_start": false,
+          "observed_zero_in_window": true,
           "published_news_coverage_confirmed": false,
-          "status": "observed_in_window",
+          "status": "empty_response",
           "error_type": null,
           "error_reason": null,
           "provider_response": {
@@ -41152,18 +42294,18 @@
           }
         },
         "WDAY": {
-          "returned_item_count": 0,
-          "parsed_item_count": 0,
+          "returned_item_count": 49,
+          "parsed_item_count": 49,
           "parse_complete": true,
-          "matched_in_window_count": 0,
-          "oldest_returned_at": null,
-          "newest_returned_at": null,
-          "related_item_count": 0,
+          "matched_in_window_count": 4,
+          "oldest_returned_at": "2026-10-08T18:03:00+00:00",
+          "newest_returned_at": "2026-10-15T20:21:00+00:00",
+          "related_item_count": 49,
           "returned_newest_first": true,
-          "sample_reaches_window_start": false,
-          "observed_zero_in_window": true,
+          "sample_reaches_window_start": true,
+          "observed_zero_in_window": false,
           "published_news_coverage_confirmed": false,
-          "status": "empty_response",
+          "status": "observed_in_window",
           "error_type": null,
           "error_reason": null,
           "provider_response": {
@@ -41478,8 +42620,8 @@
           "parsed_item_count": 50,
           "parse_complete": true,
           "matched_in_window_count": 32,
-          "oldest_returned_at": "2026-10-14T12:22:54+00:00",
-          "newest_returned_at": "2026-10-15T22:52:03+00:00",
+          "oldest_returned_at": "2026-10-14T12:28:59+00:00",
+          "newest_returned_at": "2026-10-15T23:06:56+00:00",
           "related_item_count": 50,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -41593,8 +42735,8 @@
           "parsed_item_count": 50,
           "parse_complete": true,
           "matched_in_window_count": 8,
-          "oldest_returned_at": "2026-09-28T15:39:00+00:00",
-          "newest_returned_at": "2026-10-15T19:13:28+00:00",
+          "oldest_returned_at": "2026-09-29T11:58:31+00:00",
+          "newest_returned_at": "2026-10-15T23:20:52+00:00",
           "related_item_count": 50,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -41658,18 +42800,18 @@
           }
         },
         "CB": {
-          "returned_item_count": 0,
-          "parsed_item_count": 0,
+          "returned_item_count": 50,
+          "parsed_item_count": 50,
           "parse_complete": true,
-          "matched_in_window_count": 0,
-          "oldest_returned_at": null,
-          "newest_returned_at": null,
-          "related_item_count": 0,
+          "matched_in_window_count": 2,
+          "oldest_returned_at": "2026-09-23T13:00:07+00:00",
+          "newest_returned_at": "2026-10-15T12:15:15+00:00",
+          "related_item_count": 50,
           "returned_newest_first": true,
-          "sample_reaches_window_start": false,
-          "observed_zero_in_window": true,
+          "sample_reaches_window_start": true,
+          "observed_zero_in_window": false,
           "published_news_coverage_confirmed": false,
-          "status": "empty_response",
+          "status": "observed_in_window",
           "error_type": null,
           "error_reason": null,
           "provider_response": {
@@ -41704,18 +42846,18 @@
           }
         },
         "AIG": {
-          "returned_item_count": 0,
-          "parsed_item_count": 0,
+          "returned_item_count": 50,
+          "parsed_item_count": 50,
           "parse_complete": true,
-          "matched_in_window_count": 0,
-          "oldest_returned_at": null,
-          "newest_returned_at": null,
-          "related_item_count": 0,
+          "matched_in_window_count": 1,
+          "oldest_returned_at": "2026-08-14T18:05:00+00:00",
+          "newest_returned_at": "2026-10-15T17:39:45+00:00",
+          "related_item_count": 50,
           "returned_newest_first": true,
-          "sample_reaches_window_start": false,
-          "observed_zero_in_window": true,
+          "sample_reaches_window_start": true,
+          "observed_zero_in_window": false,
           "published_news_coverage_confirmed": false,
-          "status": "empty_response",
+          "status": "observed_in_window",
           "error_type": null,
           "error_reason": null,
           "provider_response": {
@@ -41727,18 +42869,18 @@
           }
         },
         "MET": {
-          "returned_item_count": 0,
-          "parsed_item_count": 0,
+          "returned_item_count": 50,
+          "parsed_item_count": 50,
           "parse_complete": true,
-          "matched_in_window_count": 0,
-          "oldest_returned_at": null,
-          "newest_returned_at": null,
-          "related_item_count": 0,
+          "matched_in_window_count": 2,
+          "oldest_returned_at": "2026-09-07T12:20:06+00:00",
+          "newest_returned_at": "2026-10-15T13:29:00+00:00",
+          "related_item_count": 50,
           "returned_newest_first": true,
-          "sample_reaches_window_start": false,
-          "observed_zero_in_window": true,
+          "sample_reaches_window_start": true,
+          "observed_zero_in_window": false,
           "published_news_coverage_confirmed": false,
-          "status": "empty_response",
+          "status": "observed_in_window",
           "error_type": null,
           "error_reason": null,
           "provider_response": {
@@ -41842,18 +42984,18 @@
           }
         },
         "JNJ": {
-          "returned_item_count": 49,
-          "parsed_item_count": 49,
+          "returned_item_count": 0,
+          "parsed_item_count": 0,
           "parse_complete": true,
-          "matched_in_window_count": 10,
-          "oldest_returned_at": "2026-10-13T19:24:23+00:00",
-          "newest_returned_at": "2026-10-15T21:23:00+00:00",
-          "related_item_count": 49,
+          "matched_in_window_count": 0,
+          "oldest_returned_at": null,
+          "newest_returned_at": null,
+          "related_item_count": 0,
           "returned_newest_first": true,
-          "sample_reaches_window_start": true,
-          "observed_zero_in_window": false,
+          "sample_reaches_window_start": false,
+          "observed_zero_in_window": true,
           "published_news_coverage_confirmed": false,
-          "status": "observed_in_window",
+          "status": "empty_response",
           "error_type": null,
           "error_reason": null,
           "provider_response": {
@@ -41869,8 +43011,8 @@
           "parsed_item_count": 50,
           "parse_complete": true,
           "matched_in_window_count": 9,
-          "oldest_returned_at": "2026-10-09T12:00:08+00:00",
-          "newest_returned_at": "2026-10-15T22:16:48+00:00",
+          "oldest_returned_at": "2026-10-09T12:09:21+00:00",
+          "newest_returned_at": "2026-10-15T23:21:33+00:00",
           "related_item_count": 50,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -41888,18 +43030,18 @@
           }
         },
         "MRK": {
-          "returned_item_count": 0,
-          "parsed_item_count": 0,
+          "returned_item_count": 49,
+          "parsed_item_count": 49,
           "parse_complete": true,
-          "matched_in_window_count": 0,
-          "oldest_returned_at": null,
-          "newest_returned_at": null,
-          "related_item_count": 0,
+          "matched_in_window_count": 14,
+          "oldest_returned_at": "2026-10-12T17:07:41+00:00",
+          "newest_returned_at": "2026-10-15T20:13:00+00:00",
+          "related_item_count": 49,
           "returned_newest_first": true,
-          "sample_reaches_window_start": false,
-          "observed_zero_in_window": true,
+          "sample_reaches_window_start": true,
+          "observed_zero_in_window": false,
           "published_news_coverage_confirmed": false,
-          "status": "empty_response",
+          "status": "observed_in_window",
           "error_type": null,
           "error_reason": null,
           "provider_response": {
@@ -42072,18 +43214,18 @@
           }
         },
         "VRTX": {
-          "returned_item_count": 0,
-          "parsed_item_count": 0,
+          "returned_item_count": 50,
+          "parsed_item_count": 50,
           "parse_complete": true,
-          "matched_in_window_count": 0,
-          "oldest_returned_at": null,
-          "newest_returned_at": null,
-          "related_item_count": 0,
+          "matched_in_window_count": 4,
+          "oldest_returned_at": "2026-09-22T13:31:00+00:00",
+          "newest_returned_at": "2026-10-15T21:00:06+00:00",
+          "related_item_count": 50,
           "returned_newest_first": true,
-          "sample_reaches_window_start": false,
-          "observed_zero_in_window": true,
+          "sample_reaches_window_start": true,
+          "observed_zero_in_window": false,
           "published_news_coverage_confirmed": false,
-          "status": "empty_response",
+          "status": "observed_in_window",
           "error_type": null,
           "error_reason": null,
           "provider_response": {
@@ -42192,7 +43334,7 @@
           "parse_complete": true,
           "matched_in_window_count": 12,
           "oldest_returned_at": "2026-10-05T20:50:04+00:00",
-          "newest_returned_at": "2026-10-15T21:18:00+00:00",
+          "newest_returned_at": "2026-10-15T21:01:11+00:00",
           "related_item_count": 50,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -42210,18 +43352,18 @@
           }
         },
         "CI": {
-          "returned_item_count": 50,
-          "parsed_item_count": 50,
+          "returned_item_count": 0,
+          "parsed_item_count": 0,
           "parse_complete": true,
-          "matched_in_window_count": 2,
-          "oldest_returned_at": "2026-09-09T10:00:00+00:00",
-          "newest_returned_at": "2026-10-15T22:11:24+00:00",
-          "related_item_count": 50,
+          "matched_in_window_count": 0,
+          "oldest_returned_at": null,
+          "newest_returned_at": null,
+          "related_item_count": 0,
           "returned_newest_first": true,
-          "sample_reaches_window_start": true,
-          "observed_zero_in_window": false,
+          "sample_reaches_window_start": false,
+          "observed_zero_in_window": true,
           "published_news_coverage_confirmed": false,
-          "status": "observed_in_window",
+          "status": "empty_response",
           "error_type": null,
           "error_reason": null,
           "provider_response": {
@@ -42513,7 +43655,7 @@
           "parsed_item_count": 49,
           "parse_complete": true,
           "matched_in_window_count": 14,
-          "oldest_returned_at": "2026-10-12T14:36:00+00:00",
+          "oldest_returned_at": "2026-10-12T14:41:00+00:00",
           "newest_returned_at": "2026-10-15T22:01:57+00:00",
           "related_item_count": 49,
           "returned_newest_first": true,
@@ -42536,7 +43678,7 @@
           "parsed_item_count": 49,
           "parse_complete": true,
           "matched_in_window_count": 9,
-          "oldest_returned_at": "2026-10-11T11:57:36+00:00",
+          "oldest_returned_at": "2026-10-11T12:43:09+00:00",
           "newest_returned_at": "2026-10-15T22:01:57+00:00",
           "related_item_count": 49,
           "returned_newest_first": true,
@@ -42762,18 +43904,18 @@
           }
         },
         "HON": {
-          "returned_item_count": 0,
-          "parsed_item_count": 0,
+          "returned_item_count": 50,
+          "parsed_item_count": 50,
           "parse_complete": true,
-          "matched_in_window_count": 0,
-          "oldest_returned_at": null,
-          "newest_returned_at": null,
-          "related_item_count": 0,
+          "matched_in_window_count": 5,
+          "oldest_returned_at": "2026-10-01T16:47:00+00:00",
+          "newest_returned_at": "2026-10-15T20:30:57+00:00",
+          "related_item_count": 50,
           "returned_newest_first": true,
-          "sample_reaches_window_start": false,
-          "observed_zero_in_window": true,
+          "sample_reaches_window_start": true,
+          "observed_zero_in_window": false,
           "published_news_coverage_confirmed": false,
-          "status": "empty_response",
+          "status": "observed_in_window",
           "error_type": null,
           "error_reason": null,
           "provider_response": {
@@ -42812,8 +43954,8 @@
           "parsed_item_count": 50,
           "parse_complete": true,
           "matched_in_window_count": 10,
-          "oldest_returned_at": "2026-10-09T23:56:14+00:00",
-          "newest_returned_at": "2026-10-15T22:24:26+00:00",
+          "oldest_returned_at": "2026-10-10T02:00:22+00:00",
+          "newest_returned_at": "2026-10-15T23:18:18+00:00",
           "related_item_count": 50,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -43061,18 +44203,18 @@
           }
         },
         "ITW": {
-          "returned_item_count": 0,
-          "parsed_item_count": 0,
+          "returned_item_count": 50,
+          "parsed_item_count": 50,
           "parse_complete": true,
-          "matched_in_window_count": 0,
-          "oldest_returned_at": null,
-          "newest_returned_at": null,
-          "related_item_count": 0,
+          "matched_in_window_count": 1,
+          "oldest_returned_at": "2026-07-29T12:39:05+00:00",
+          "newest_returned_at": "2026-10-15T16:20:00+00:00",
+          "related_item_count": 50,
           "returned_newest_first": true,
-          "sample_reaches_window_start": false,
-          "observed_zero_in_window": true,
+          "sample_reaches_window_start": true,
+          "observed_zero_in_window": false,
           "published_news_coverage_confirmed": false,
-          "status": "empty_response",
+          "status": "observed_in_window",
           "error_type": null,
           "error_reason": null,
           "provider_response": {
@@ -43084,18 +44226,18 @@
           }
         },
         "MMM": {
-          "returned_item_count": 0,
-          "parsed_item_count": 0,
+          "returned_item_count": 50,
+          "parsed_item_count": 50,
           "parse_complete": true,
-          "matched_in_window_count": 0,
-          "oldest_returned_at": null,
-          "newest_returned_at": null,
-          "related_item_count": 0,
+          "matched_in_window_count": 3,
+          "oldest_returned_at": "2026-09-01T14:15:00+00:00",
+          "newest_returned_at": "2026-10-15T13:56:00+00:00",
+          "related_item_count": 50,
           "returned_newest_first": true,
-          "sample_reaches_window_start": false,
-          "observed_zero_in_window": true,
+          "sample_reaches_window_start": true,
+          "observed_zero_in_window": false,
           "published_news_coverage_confirmed": false,
-          "status": "empty_response",
+          "status": "observed_in_window",
           "error_type": null,
           "error_reason": null,
           "provider_response": {
@@ -43130,18 +44272,18 @@
           }
         },
         "CARR": {
-          "returned_item_count": 0,
-          "parsed_item_count": 0,
+          "returned_item_count": 50,
+          "parsed_item_count": 50,
           "parse_complete": true,
-          "matched_in_window_count": 0,
-          "oldest_returned_at": null,
-          "newest_returned_at": null,
-          "related_item_count": 0,
+          "matched_in_window_count": 1,
+          "oldest_returned_at": "2026-08-10T13:40:03+00:00",
+          "newest_returned_at": "2026-10-15T10:37:09+00:00",
+          "related_item_count": 50,
           "returned_newest_first": true,
-          "sample_reaches_window_start": false,
-          "observed_zero_in_window": true,
+          "sample_reaches_window_start": true,
+          "observed_zero_in_window": false,
           "published_news_coverage_confirmed": false,
-          "status": "empty_response",
+          "status": "observed_in_window",
           "error_type": null,
           "error_reason": null,
           "provider_response": {
@@ -43268,18 +44410,18 @@
           }
         },
         "EOG": {
-          "returned_item_count": 50,
-          "parsed_item_count": 50,
+          "returned_item_count": 0,
+          "parsed_item_count": 0,
           "parse_complete": true,
-          "matched_in_window_count": 3,
-          "oldest_returned_at": "2026-08-24T14:11:00+00:00",
-          "newest_returned_at": "2026-10-15T15:26:00+00:00",
-          "related_item_count": 50,
+          "matched_in_window_count": 0,
+          "oldest_returned_at": null,
+          "newest_returned_at": null,
+          "related_item_count": 0,
           "returned_newest_first": true,
-          "sample_reaches_window_start": true,
-          "observed_zero_in_window": false,
+          "sample_reaches_window_start": false,
+          "observed_zero_in_window": true,
           "published_news_coverage_confirmed": false,
-          "status": "observed_in_window",
+          "status": "empty_response",
           "error_type": null,
           "error_reason": null,
           "provider_response": {
@@ -43360,18 +44502,18 @@
           }
         },
         "WMB": {
-          "returned_item_count": 50,
-          "parsed_item_count": 50,
+          "returned_item_count": 0,
+          "parsed_item_count": 0,
           "parse_complete": true,
           "matched_in_window_count": 0,
-          "oldest_returned_at": "2026-09-08T14:56:49+00:00",
-          "newest_returned_at": "2026-10-14T09:53:13+00:00",
-          "related_item_count": 50,
+          "oldest_returned_at": null,
+          "newest_returned_at": null,
+          "related_item_count": 0,
           "returned_newest_first": true,
-          "sample_reaches_window_start": true,
+          "sample_reaches_window_start": false,
           "observed_zero_in_window": true,
           "published_news_coverage_confirmed": false,
-          "status": "no_items_in_window",
+          "status": "empty_response",
           "error_type": null,
           "error_reason": null,
           "provider_response": {
@@ -43406,18 +44548,18 @@
           }
         },
         "LIN": {
-          "returned_item_count": 50,
-          "parsed_item_count": 50,
+          "returned_item_count": 0,
+          "parsed_item_count": 0,
           "parse_complete": true,
-          "matched_in_window_count": 5,
-          "oldest_returned_at": "2026-08-11T11:51:10+00:00",
-          "newest_returned_at": "2026-10-15T21:17:10+00:00",
-          "related_item_count": 50,
+          "matched_in_window_count": 0,
+          "oldest_returned_at": null,
+          "newest_returned_at": null,
+          "related_item_count": 0,
           "returned_newest_first": true,
-          "sample_reaches_window_start": true,
-          "observed_zero_in_window": false,
+          "sample_reaches_window_start": false,
+          "observed_zero_in_window": true,
           "published_news_coverage_confirmed": false,
-          "status": "observed_in_window",
+          "status": "empty_response",
           "error_type": null,
           "error_reason": null,
           "provider_response": {
@@ -43567,18 +44709,18 @@
           }
         },
         "NEE": {
-          "returned_item_count": 0,
-          "parsed_item_count": 0,
+          "returned_item_count": 50,
+          "parsed_item_count": 50,
           "parse_complete": true,
-          "matched_in_window_count": 0,
-          "oldest_returned_at": null,
-          "newest_returned_at": null,
-          "related_item_count": 0,
+          "matched_in_window_count": 8,
+          "oldest_returned_at": "2026-10-07T14:37:43+00:00",
+          "newest_returned_at": "2026-10-15T20:52:31+00:00",
+          "related_item_count": 50,
           "returned_newest_first": true,
-          "sample_reaches_window_start": false,
-          "observed_zero_in_window": true,
+          "sample_reaches_window_start": true,
+          "observed_zero_in_window": false,
           "published_news_coverage_confirmed": false,
-          "status": "empty_response",
+          "status": "observed_in_window",
           "error_type": null,
           "error_reason": null,
           "provider_response": {
@@ -43590,18 +44732,18 @@
           }
         },
         "DUK": {
-          "returned_item_count": 0,
-          "parsed_item_count": 0,
+          "returned_item_count": 50,
+          "parsed_item_count": 50,
           "parse_complete": true,
-          "matched_in_window_count": 0,
-          "oldest_returned_at": null,
-          "newest_returned_at": null,
-          "related_item_count": 0,
+          "matched_in_window_count": 4,
+          "oldest_returned_at": "2026-10-02T12:45:13+00:00",
+          "newest_returned_at": "2026-10-15T20:52:31+00:00",
+          "related_item_count": 50,
           "returned_newest_first": true,
-          "sample_reaches_window_start": false,
-          "observed_zero_in_window": true,
+          "sample_reaches_window_start": true,
+          "observed_zero_in_window": false,
           "published_news_coverage_confirmed": false,
-          "status": "empty_response",
+          "status": "observed_in_window",
           "error_type": null,
           "error_reason": null,
           "provider_response": {
@@ -43751,29 +44893,6 @@
           }
         },
         "EQIX": {
-          "returned_item_count": 50,
-          "parsed_item_count": 50,
-          "parse_complete": true,
-          "matched_in_window_count": 4,
-          "oldest_returned_at": "2026-09-11T21:09:17+00:00",
-          "newest_returned_at": "2026-10-15T15:49:30+00:00",
-          "related_item_count": 50,
-          "returned_newest_first": true,
-          "sample_reaches_window_start": true,
-          "observed_zero_in_window": false,
-          "published_news_coverage_confirmed": false,
-          "status": "observed_in_window",
-          "error_type": null,
-          "error_reason": null,
-          "provider_response": {
-            "http_status": 200,
-            "http_success": true,
-            "backend": "yahoo_search",
-            "sample_limit": 50,
-            "payload_valid": true
-          }
-        },
-        "SPG": {
           "returned_item_count": 0,
           "parsed_item_count": 0,
           "parse_complete": true,
@@ -43796,14 +44915,14 @@
             "payload_valid": true
           }
         },
-        "O": {
+        "SPG": {
           "returned_item_count": 50,
           "parsed_item_count": 50,
           "parse_complete": true,
-          "matched_in_window_count": 2,
-          "oldest_returned_at": "2026-10-08T06:32:00+00:00",
-          "newest_returned_at": "2026-10-15T12:11:13+00:00",
-          "related_item_count": 50,
+          "matched_in_window_count": 1,
+          "oldest_returned_at": "2026-09-04T23:15:00+00:00",
+          "newest_returned_at": "2026-10-15T20:38:11+00:00",
+          "related_item_count": 48,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
           "observed_zero_in_window": false,
@@ -43819,13 +44938,36 @@
             "payload_valid": true
           }
         },
+        "O": {
+          "returned_item_count": 0,
+          "parsed_item_count": 0,
+          "parse_complete": true,
+          "matched_in_window_count": 0,
+          "oldest_returned_at": null,
+          "newest_returned_at": null,
+          "related_item_count": 0,
+          "returned_newest_first": true,
+          "sample_reaches_window_start": false,
+          "observed_zero_in_window": true,
+          "published_news_coverage_confirmed": false,
+          "status": "empty_response",
+          "error_type": null,
+          "error_reason": null,
+          "provider_response": {
+            "http_status": 200,
+            "http_success": true,
+            "backend": "yahoo_search",
+            "sample_limit": 50,
+            "payload_valid": true
+          }
+        },
         "CCI": {
           "returned_item_count": 50,
           "parsed_item_count": 50,
           "parse_complete": true,
           "matched_in_window_count": 5,
-          "oldest_returned_at": "2026-09-10T13:45:30+00:00",
-          "newest_returned_at": "2026-10-15T20:28:25+00:00",
+          "oldest_returned_at": "2026-09-14T09:21:23+00:00",
+          "newest_returned_at": "2026-10-15T23:20:55+00:00",
           "related_item_count": 50,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -43846,9 +44988,9 @@
           "returned_item_count": 45,
           "parsed_item_count": 45,
           "parse_complete": true,
-          "matched_in_window_count": 37,
-          "oldest_returned_at": "2026-10-15T08:04:02+00:00",
-          "newest_returned_at": "2026-10-15T23:01:44+00:00",
+          "matched_in_window_count": 36,
+          "oldest_returned_at": "2026-10-15T08:17:36+00:00",
+          "newest_returned_at": "2026-10-15T23:38:18+00:00",
           "related_item_count": 45,
           "returned_newest_first": true,
           "sample_reaches_window_start": false,
@@ -43935,18 +45077,18 @@
           }
         },
         "CMCSA": {
-          "returned_item_count": 0,
-          "parsed_item_count": 0,
+          "returned_item_count": 50,
+          "parsed_item_count": 50,
           "parse_complete": true,
-          "matched_in_window_count": 0,
-          "oldest_returned_at": null,
-          "newest_returned_at": null,
-          "related_item_count": 0,
+          "matched_in_window_count": 5,
+          "oldest_returned_at": "2026-10-06T03:10:48+00:00",
+          "newest_returned_at": "2026-10-15T22:22:26+00:00",
+          "related_item_count": 50,
           "returned_newest_first": true,
-          "sample_reaches_window_start": false,
-          "observed_zero_in_window": true,
+          "sample_reaches_window_start": true,
+          "observed_zero_in_window": false,
           "published_news_coverage_confirmed": false,
-          "status": "empty_response",
+          "status": "observed_in_window",
           "error_type": null,
           "error_reason": null,
           "provider_response": {
@@ -44096,18 +45238,18 @@
           }
         },
         "ADP": {
-          "returned_item_count": 0,
-          "parsed_item_count": 0,
+          "returned_item_count": 45,
+          "parsed_item_count": 45,
           "parse_complete": true,
-          "matched_in_window_count": 0,
-          "oldest_returned_at": null,
-          "newest_returned_at": null,
-          "related_item_count": 0,
+          "matched_in_window_count": 2,
+          "oldest_returned_at": "2026-09-28T06:18:00+00:00",
+          "newest_returned_at": "2026-10-15T13:15:04+00:00",
+          "related_item_count": 45,
           "returned_newest_first": true,
-          "sample_reaches_window_start": false,
-          "observed_zero_in_window": true,
+          "sample_reaches_window_start": true,
+          "observed_zero_in_window": false,
           "published_news_coverage_confirmed": false,
-          "status": "empty_response",
+          "status": "observed_in_window",
           "error_type": null,
           "error_reason": null,
           "provider_response": {
@@ -44119,18 +45261,18 @@
           }
         },
         "PAYX": {
-          "returned_item_count": 0,
-          "parsed_item_count": 0,
+          "returned_item_count": 50,
+          "parsed_item_count": 50,
           "parse_complete": true,
-          "matched_in_window_count": 0,
-          "oldest_returned_at": null,
-          "newest_returned_at": null,
-          "related_item_count": 0,
+          "matched_in_window_count": 3,
+          "oldest_returned_at": "2026-09-23T21:00:37+00:00",
+          "newest_returned_at": "2026-10-15T16:03:31+00:00",
+          "related_item_count": 50,
           "returned_newest_first": true,
-          "sample_reaches_window_start": false,
-          "observed_zero_in_window": true,
+          "sample_reaches_window_start": true,
+          "observed_zero_in_window": false,
           "published_news_coverage_confirmed": false,
-          "status": "empty_response",
+          "status": "observed_in_window",
           "error_type": null,
           "error_reason": null,
           "provider_response": {
@@ -44215,8 +45357,8 @@
           "parsed_item_count": 48,
           "parse_complete": true,
           "matched_in_window_count": 10,
-          "oldest_returned_at": "2026-09-28T11:13:37+00:00",
-          "newest_returned_at": "2026-10-15T20:57:00+00:00",
+          "oldest_returned_at": "2026-09-28T11:55:38+00:00",
+          "newest_returned_at": "2026-10-15T21:55:00+00:00",
           "related_item_count": 48,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -44244,8 +45386,8 @@
     "loaded": 195
   },
   "batch_metrics": {
-    "session_article_count": 1465,
-    "symbols_with_articles": 152,
+    "session_article_count": 1563,
+    "symbols_with_articles": 167,
     "headline_symbols_requested": 193,
     "price_bars": {
       "universe": {
@@ -44260,10 +45402,10 @@
   },
   "news_health": {
     "status": "partial",
-    "session_article_count": 1465,
-    "symbols_with_articles": 152,
+    "session_article_count": 1563,
+    "symbols_with_articles": 167,
     "failed_symbols": 0,
-    "capped_symbols": 3,
+    "capped_symbols": 4,
     "universe_zero_in_window_observed": false,
     "note": "Report only. Does not change healthy, status, per-symbol headline_status, events or baselines; a zero is not evidence of no published news."
   },
