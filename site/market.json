@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "rules_version": 2,
-  "updated_at": "2026-11-05T02:32:24+00:00",
+  "updated_at": "2026-11-05T09:36:24+00:00",
   "as_of": "2026-11-04",
   "session_close": "2026-11-04T21:00:00+00:00",
   "expires_at": "2026-11-05T22:30:00+00:00",
@@ -10,7 +10,7 @@
   "status": "complete_with_warnings",
   "errors": [],
   "warnings": [
-    "Headline sample limit reached for MSFT, NVDA, SMCI, GOOGL, SPGI; excluded from baseline"
+    "Headline sample limit reached for MSFT, NVDA, SMCI, GOOGL, ORCL, SPGI; excluded from baseline"
   ],
   "risk": {
     "word": "risk-on",
@@ -635,7 +635,6 @@
         "NXPI",
         "O",
         "ON",
-        "ORCL",
         "ORLY",
         "OXY",
         "PANW",
@@ -711,6 +710,7 @@
         "GOOGL",
         "MSFT",
         "NVDA",
+        "ORCL",
         "SMCI",
         "SPGI"
       ],
@@ -718,12 +718,13 @@
         "GOOGL",
         "MSFT",
         "NVDA",
+        "ORCL",
         "SMCI",
         "SPGI"
       ]
     },
     "warnings": [
-      "Incomplete headline coverage for 5 symbols."
+      "Incomplete headline coverage for 6 symbols."
     ],
     "findings": [
       {
@@ -1007,7 +1008,7 @@
             "move_atr": 2.08,
             "move_pct": 5.31,
             "gap_pct": 2.91,
-            "headlines_today": 33,
+            "headlines_today": 30,
             "headlines_usual": 6.76,
             "news_assessment": "assessed"
           }
@@ -4326,7 +4327,7 @@
             "move_atr": 1.64,
             "move_pct": 6.12,
             "gap_pct": 5.64,
-            "headlines_today": 34,
+            "headlines_today": 23,
             "headlines_usual": 6.41,
             "news_assessment": "assessed"
           }
@@ -8963,7 +8964,76 @@
         "price_status": "available",
         "headline_status": "available",
         "news_baseline_status": "ready",
-        "headlines": [],
+        "headlines": [
+          {
+            "title": "This Little-Known ETF Lets a Computer Hunt for the Cheapest Quality Stocks",
+            "published_at": "2026-11-04T20:39:46+00:00",
+            "publisher": "24/7 Wall St.",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/little-known-etf-lets-computer-203946936.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "QVAL",
+              "VTV",
+              "CMCSA",
+              "MO",
+              "CF"
+            ]
+          },
+          {
+            "title": "If AT&T's Debt Stays High, What Happens To Your AT&T Stock?",
+            "published_at": "2026-11-04T12:55:47+00:00",
+            "publisher": "Trefis",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/ts-debt-stays-high-happens-125547374.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "T",
+              "ECHO",
+              "VZ",
+              "TMUS",
+              "CMCSA",
+              "CHTR",
+              "LUMN"
+            ]
+          },
+          {
+            "title": "State Street Comm Services SPDR (XLC) Sells $38.1 Million of Meta on Nov. 2",
+            "published_at": "2026-11-04T11:05:33+00:00",
+            "publisher": "GuruFocus.com",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/state-street-comm-services-spdr-110533515.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "GOOG",
+              "META",
+              "XLC",
+              "CMCSA"
+            ]
+          },
+          {
+            "title": "Should You Buy Comcast Stock For Its Cash?",
+            "published_at": "2026-11-04T09:43:39+00:00",
+            "publisher": "Trefis",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/buy-comcast-stock-cash-094339601.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "CMCSA",
+              "CHTR",
+              "T",
+              "VZ",
+              "DIS",
+              "TMUS"
+            ]
+          },
+          {
+            "title": "Comcast sends wake-up call to employees as customers cut services",
+            "published_at": "2026-11-03T23:07:00+00:00",
+            "publisher": "TheStreet",
+            "url": "https://finance.yahoo.com/media-advertising/articles/comcast-sends-wake-call-employees-230700339.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "CMCSA"
+            ]
+          }
+        ],
         "events": [],
         "sector_context": {
           "scope": "market",
@@ -15799,7 +15869,202 @@
         "price_status": "available",
         "headline_status": "available",
         "news_baseline_status": "ready",
-        "headlines": [],
+        "headlines": [
+          {
+            "title": "Ford and GM see savings drivers may pay for later",
+            "published_at": "2026-11-04T19:17:00+00:00",
+            "publisher": "TheStreet",
+            "url": "https://finance.yahoo.com/economy/policy/articles/ford-gm-see-savings-drivers-191700785.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "F",
+              "GM"
+            ]
+          },
+          {
+            "title": "At 70 He\u2019ll Get a Letter Saying His Company Is Handing His Pension to an Insurance Company. The Check Stays the Same, but the Federal Safety Net Behind It Doesn\u2019t",
+            "published_at": "2026-11-04T17:19:22+00:00",
+            "publisher": "24/7 Wall St.",
+            "url": "https://finance.yahoo.com/markets/options/articles/70-ll-letter-saying-company-171922025.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "GM",
+              "LMT",
+              "PRU",
+              "T",
+              "VZ"
+            ]
+          },
+          {
+            "title": "Tesla\u2019s Five Year Stock Price Turns Negative",
+            "published_at": "2026-11-04T16:46:03+00:00",
+            "publisher": "24/7 Wall St.",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/tesla-five-stock-price-turns-164603219.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "TSLA",
+              "^GSPC",
+              "F",
+              "GM"
+            ]
+          },
+          {
+            "title": "Nucor: 3 Key Takeaways for Long-Term Investors",
+            "published_at": "2026-11-04T16:22:13+00:00",
+            "publisher": "Motley Fool",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/nucor-3-key-takeaways-long-162213998.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "NUE",
+              "GM"
+            ]
+          },
+          {
+            "title": "The Next Oil Field Is in the Nevada Desert. It Just Doesn\u2019t Pump Oil.",
+            "published_at": "2026-11-04T14:25:00+00:00",
+            "publisher": "GlobeNewswire",
+            "url": "https://finance.yahoo.com/energy/articles/next-oil-field-nevada-desert-142500022.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "GM",
+              "LAC"
+            ]
+          },
+          {
+            "title": "Vehicle Tech Week North America Unites the U.S. Auto Industry to Shape the Complete Vehicle of the Future",
+            "published_at": "2026-11-04T14:00:00+00:00",
+            "publisher": "PR Newswire",
+            "url": "https://finance.yahoo.com/technology/articles/vehicle-tech-week-north-america-140000971.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "TSLA",
+              "STLA",
+              "GM",
+              "F",
+              "TM"
+            ]
+          },
+          {
+            "title": "SpaceX Declines 6%, Tesla Falls 5% as Democratic Sweep Raises Merger and Regulatory Risks; General Motors Rises 2%",
+            "published_at": "2026-11-04T13:49:49+00:00",
+            "publisher": "24/7 Wall St.",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/spacex-declines-6-tesla-falls-134949443.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "TSLA",
+              "SPCX",
+              "GM",
+              "F"
+            ]
+          },
+          {
+            "title": "Will Ford's Gen-1 Cost Reductions Drive Further Model e Improvements?",
+            "published_at": "2026-11-04T13:22:00+00:00",
+            "publisher": "Zacks",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/fords-gen-1-cost-reductions-132200669.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "F",
+              "GM",
+              "STLA"
+            ]
+          },
+          {
+            "title": "What Is The Best Case For General Motors Stock?",
+            "published_at": "2026-11-04T11:06:35+00:00",
+            "publisher": "Trefis",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/best-case-general-motors-stock-110635954.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "GM",
+              "F",
+              "TSLA",
+              "RIVN",
+              "ALLY",
+              "LCID"
+            ]
+          },
+          {
+            "title": "Is Rivian Stock Still Worth Owning After Its Quarter?",
+            "published_at": "2026-11-04T11:06:23+00:00",
+            "publisher": "Trefis",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/rivian-stock-still-worth-owning-110623659.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "RIVN",
+              "^GSPC",
+              "TSLA",
+              "F",
+              "GM",
+              "LCID",
+              "GPI",
+              "SPGI"
+            ]
+          },
+          {
+            "title": "What Could Surprise Tesla Stock Investors On The Upside?",
+            "published_at": "2026-11-04T11:06:20+00:00",
+            "publisher": "Trefis",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/could-surprise-tesla-stock-investors-110620452.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "TSLA",
+              "GM",
+              "F",
+              "RIVN",
+              "LCID",
+              "RUN"
+            ]
+          },
+          {
+            "title": "Can Ford Blue Achieve Its $5.5 Billion EBIT Target in 2026?",
+            "published_at": "2026-11-04T11:06:00+00:00",
+            "publisher": "Zacks",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/ford-blue-achieve-5-5-110600416.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "F",
+              "GM",
+              "STLA"
+            ]
+          },
+          {
+            "title": "Ross Perot Left IBM in 1962 and Started a Company With $1,000. In 1984, General Motors Bought It for $2.5 Billion",
+            "published_at": "2026-11-04T09:04:16+00:00",
+            "publisher": "24/7 Wall St.",
+            "url": "https://finance.yahoo.com/small-business/articles/ross-perot-left-ibm-1962-090416821.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "IBM",
+              "GM"
+            ]
+          },
+          {
+            "title": "Stock Market Today, Nov. 3: Stellantis Falls on Reports of Chip Shortage Disrupting Fiat Output",
+            "published_at": "2026-11-03T22:24:16+00:00",
+            "publisher": "Motley Fool",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/stock-market-today-nov-3-222416421.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "STLA",
+              "GM",
+              "F",
+              "^IXIC",
+              "^GSPC"
+            ]
+          },
+          {
+            "title": "GM Financial Announces Transfer of Stock Exchange Listing to Nasdaq",
+            "published_at": "2026-11-03T21:08:00+00:00",
+            "publisher": "Business Wire",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/gm-financial-announces-transfer-stock-210800766.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "^IXIC",
+              "GM"
+            ]
+          }
+        ],
         "events": [],
         "sector_context": {
           "scope": "market",
@@ -15915,20 +16180,7 @@
         "price_status": "available",
         "headline_status": "capped",
         "news_baseline_status": "unavailable",
-        "headlines": [
-          {
-            "title": "UBER Q3 Earnings Miss Estimates on Investment Loss, Revenue Beat",
-            "published_at": "2026-11-04T18:06:00+00:00",
-            "publisher": "Zacks",
-            "url": "https://finance.yahoo.com/markets/stocks/articles/uber-q3-earnings-miss-estimates-180600289.html",
-            "source": "Yahoo Finance",
-            "related_symbols": [
-              "UBER",
-              "GOOGL",
-              "LYFT"
-            ]
-          }
-        ],
+        "headlines": [],
         "events": [],
         "sector_context": {
           "scope": "market",
@@ -19366,7 +19618,43 @@
         "price_status": "available",
         "headline_status": "available",
         "news_baseline_status": "ready",
-        "headlines": [],
+        "headlines": [
+          {
+            "title": "Is Kimberly-Clark the Safest Dividend Stock You Can Buy Now?",
+            "published_at": "2026-11-04T19:35:00+00:00",
+            "publisher": "Motley Fool",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/kimberly-clark-safest-dividend-stock-193500624.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "KMB",
+              "NVDA"
+            ]
+          },
+          {
+            "title": "Bear of the Day: KimberlyClark (KMB)",
+            "published_at": "2026-11-04T08:30:00+00:00",
+            "publisher": "Zacks",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/bear-day-kimberlyclark-kmb-083000782.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "KVUE",
+              "^GSPC",
+              "KMB"
+            ]
+          },
+          {
+            "title": "Texas Instruments and KimberlyClark have been highlighted as Zacks Bull and Bear of the Day",
+            "published_at": "2026-11-04T07:28:00+00:00",
+            "publisher": "Zacks",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/texas-instruments-kimberlyclark-highlighted-zacks-072800436.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "TXN",
+              "PLTR",
+              "KMB"
+            ]
+          }
+        ],
         "events": [],
         "sector_context": {
           "scope": "market",
@@ -21610,14 +21898,252 @@
         "price_status": "available",
         "headline_status": "available",
         "news_baseline_status": "ready",
-        "headlines": [],
+        "headlines": [
+          {
+            "title": "Sector Update: Consumer Stocks Gain Late Afternoon",
+            "published_at": "2026-11-04T20:53:38+00:00",
+            "publisher": "MT Newswires",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/sector-consumer-stocks-gain-afternoon-205338604.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "HELE",
+              "XLP",
+              "XLY",
+              "MCD",
+              "UBER"
+            ]
+          },
+          {
+            "title": "US large-cap dividend hike watch: 10 stocks with the longest growth streaks",
+            "published_at": "2026-11-04T20:01:11+00:00",
+            "publisher": "Investing.com",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/us-large-cap-dividend-hike-200111452.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "ATO",
+              "MCD",
+              "MKC",
+              "NEE",
+              "LMT",
+              "UNM",
+              "BR",
+              "ITW"
+            ]
+          },
+          {
+            "title": "McDonald\u2019s Puts Focus on Entry-Level Value to Lift Sluggish Sales",
+            "published_at": "2026-11-04T19:49:41+00:00",
+            "publisher": "QSR",
+            "url": "https://finance.yahoo.com/small-business/articles/mcdonald-puts-focus-entry-level-194941031.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "MCD"
+            ]
+          },
+          {
+            "title": "McDonald's (MCD) Q3 2026 Earnings Call Transcript",
+            "published_at": "2026-11-04T19:16:26+00:00",
+            "publisher": "Motley Fool",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/mcdonalds-mcd-q3-2026-earnings-191626442.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "MCD"
+            ]
+          },
+          {
+            "title": "McDonald\u2019s Soars 6% on Earnings Beat as CEO Calls Entry-Level Value the \u201cFinal Piece That\u2019s Missing\u201d",
+            "published_at": "2026-11-04T19:05:26+00:00",
+            "publisher": "TIKR",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/mcdonald-soars-6-earnings-beat-190526971.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "MCD",
+              "QSR",
+              "CMG"
+            ]
+          },
+          {
+            "title": "McDonald's Corporation Q3 2026 Earnings Call Summary",
+            "published_at": "2026-11-04T18:57:34+00:00",
+            "publisher": "Moby",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/mcdonalds-corporation-q3-2026-earnings-185734099.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "NVDA",
+              "MCD"
+            ]
+          },
+          {
+            "title": "Sector Update: Consumer Stocks Higher Wednesday Afternoon",
+            "published_at": "2026-11-04T18:54:32+00:00",
+            "publisher": "MT Newswires",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/sector-consumer-stocks-higher-wednesday-185432259.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "HELE",
+              "UBER",
+              "XLP",
+              "XLY",
+              "MCD"
+            ]
+          },
+          {
+            "title": "Sector Update: Consumer",
+            "published_at": "2026-11-04T18:24:35+00:00",
+            "publisher": "MT Newswires",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/sector-consumer-182435468.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "XLP",
+              "XLY",
+              "MCD"
+            ]
+          },
+          {
+            "title": "Starbucks Served Up a 54% Earnings Jump. The SBUX Comeback Story Is Brewing.",
+            "published_at": "2026-11-04T18:12:46+00:00",
+            "publisher": "Barchart",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/starbucks-served-54-earnings-jump-181246225.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "SBUX",
+              "BROS",
+              "MCD"
+            ]
+          },
+          {
+            "title": "McDonald\u2019s earnings analysis: questions answered and next catalysts",
+            "published_at": "2026-11-04T18:12:19+00:00",
+            "publisher": "Investing.com",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/mcdonald-earnings-analysis-questions-answered-181219203.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "MCD"
+            ]
+          },
+          {
+            "title": "Bloomin' Brands to Report Q3 Earnings: Buy, Sell or Hold the Stock?",
+            "published_at": "2026-11-04T17:20:00+00:00",
+            "publisher": "Zacks",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/bloomin-brands-report-q3-earnings-172000821.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "BLMN",
+              "MCD",
+              "DRI",
+              "SHAK"
+            ]
+          },
+          {
+            "title": "McDonald's Beats Earnings, but US Sales Tell Another Story",
+            "published_at": "2026-11-04T16:59:07+00:00",
+            "publisher": "GuruFocus.com",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/mcdonalds-beats-earnings-us-sales-165907425.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "MCD"
+            ]
+          },
+          {
+            "title": "Wells Fargo Adjusts McDonald's Price Target to $300 From $270",
+            "published_at": "2026-11-04T16:33:09+00:00",
+            "publisher": "MT Newswires",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/wells-fargo-adjusts-mcdonald-apos-163309432.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "MCD"
+            ]
+          },
+          {
+            "title": "McDonald\u2019s Stock Rises After Revenue Miss. Hopes Are for Its NEXT Strategy to Power a Rebound.",
+            "published_at": "2026-11-04T16:30:00+00:00",
+            "publisher": "Barrons.com",
+            "url": "https://finance.yahoo.com/m/7ff6fcd2-2624-3c8f-9f3e-2efe4906ce42/mcdonald%E2%80%99s-stock-rises-after.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "MCD"
+            ]
+          },
+          {
+            "title": "Even McDonald\u2019s Can\u2019t Escape America\u2019s Spending Squeeze",
+            "published_at": "2026-11-04T16:29:50+00:00",
+            "publisher": "Moby",
+            "url": "https://finance.yahoo.com/economy/articles/even-mcdonald-t-escape-america-162950388.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "NVDA",
+              "MCD"
+            ]
+          },
+          {
+            "title": "McDonald's Q3 Earnings Beat on Franchised Margins, Revenues Miss",
+            "published_at": "2026-11-04T16:17:00+00:00",
+            "publisher": "Zacks",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/mcdonalds-q3-earnings-beat-franchised-161700300.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "MCD",
+              "SBUX",
+              "CMG",
+              "DPZ"
+            ]
+          },
+          {
+            "title": "McDonald\u2019s Rises 5% as Earnings Beat Outweighs U.S. Sales Dip; Chipotle Climbs 4%, Starbucks Gains 3%",
+            "published_at": "2026-11-04T16:04:48+00:00",
+            "publisher": "24/7 Wall St.",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/mcdonald-rises-5-earnings-beat-160448146.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "MCD",
+              "CMG",
+              "SBUX",
+              "YUM"
+            ]
+          },
+          {
+            "title": "Roth IRA vs. Taxable Account: How Much of $13,467 in Dividends Would You Keep?",
+            "published_at": "2026-11-04T15:47:49+00:00",
+            "publisher": "24/7 Wall St.",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/roth-ira-vs-taxable-account-154749098.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "JNJ",
+              "PEP",
+              "ADP",
+              "KO",
+              "MCD",
+              "PG"
+            ]
+          },
+          {
+            "title": "McDonald's Q3 sales growth slows amid tough consumer backdrop, new drinks push",
+            "published_at": "2026-11-04T15:47:46+00:00",
+            "publisher": "Yahoo Finance",
+            "url": "https://finance.yahoo.com/markets/stocks/article/mcdonalds-q3-sales-growth-slows-amid-tough-consumer-backdrop-new-drinks-push-120508551.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "MCD"
+            ]
+          },
+          {
+            "title": "McDonald's Third-Quarter Earnings, Comparable Sales Beat Estimates",
+            "published_at": "2026-11-04T15:47:33+00:00",
+            "publisher": "MT Newswires",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/mcdonald-apos-third-quarter-earnings-154733336.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "MCD"
+            ]
+          }
+        ],
         "events": [
           {
-            "kind": "move",
+            "kind": "move+news",
             "move_atr": 2.89,
             "move_pct": 6.53,
             "gap_pct": 2.19,
-            "headlines_today": 0,
+            "headlines_today": 38,
             "headlines_usual": 7.0,
             "news_assessment": "assessed"
           }
@@ -22434,8 +22960,7 @@
             "source": "Yahoo Finance",
             "related_symbols": [
               "UBER",
-              "META",
-              "OPAI.PVT"
+              "META"
             ]
           },
           {
@@ -22642,7 +23167,7 @@
             "move_atr": 0.4,
             "move_pct": 1.44,
             "gap_pct": 3.24,
-            "headlines_today": 33,
+            "headlines_today": 28,
             "headlines_usual": 4.82,
             "news_assessment": "assessed"
           }
@@ -23129,8 +23654,257 @@
         "price_status": "available",
         "headline_status": "available",
         "news_baseline_status": "ready",
-        "headlines": [],
-        "events": [],
+        "headlines": [
+          {
+            "title": "Marathon Petroleum Sinks 10%, Valero Down 8% as Oil Stocks Slide After Democrats Win the Senate",
+            "published_at": "2026-11-04T20:03:04+00:00",
+            "publisher": "TIKR",
+            "url": "https://finance.yahoo.com/energy/articles/marathon-petroleum-sinks-10-valero-200304712.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "MPC",
+              "VLO",
+              "DINO",
+              "PSX"
+            ]
+          },
+          {
+            "title": "The 10-Year Treasury Yields 4.91%. These 4 Dividend Stocks Pay More",
+            "published_at": "2026-11-04T16:47:02+00:00",
+            "publisher": "24/7 Wall St.",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/10-treasury-yields-4-91-164702607.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "MPC",
+              "MO",
+              "EPD",
+              "MPLX",
+              "VICI"
+            ]
+          },
+          {
+            "title": "How to Play MPC Stock After Its Compelling 795% YoY Earnings Surge?",
+            "published_at": "2026-11-04T16:37:00+00:00",
+            "publisher": "Zacks",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/play-mpc-stock-compelling-795-163700818.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "MPC",
+              "VLO",
+              "PSX"
+            ]
+          },
+          {
+            "title": "MPC Q3 Earnings Beat Estimates on Strong Refining Margins",
+            "published_at": "2026-11-04T16:24:00+00:00",
+            "publisher": "Zacks",
+            "url": "https://finance.yahoo.com/energy/articles/mpc-q3-earnings-beat-estimates-162400083.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "MPC",
+              "VLO",
+              "PSX",
+              "MPLX"
+            ]
+          },
+          {
+            "title": "Will ExxonMobil's 100,000-BPD Diesel Expansion Boost Refining Profit?",
+            "published_at": "2026-11-04T15:29:00+00:00",
+            "publisher": "Zacks",
+            "url": "https://finance.yahoo.com/energy/articles/exxonmobils-100-000-bpd-diesel-152900784.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "XOM",
+              "CL=F",
+              "VLO",
+              "MPC"
+            ]
+          },
+          {
+            "title": "Raymond James Adjusts Marathon Petroleum Price Target to $550 From $560",
+            "published_at": "2026-11-04T15:21:26+00:00",
+            "publisher": "MT Newswires",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/raymond-james-adjusts-marathon-petroleum-152126199.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "MPC"
+            ]
+          },
+          {
+            "title": "Marathon Petroleum (MPC) Agrees $4.2 Billion Refinery Deal To Refocus Its Footprint",
+            "published_at": "2026-11-04T14:12:34+00:00",
+            "publisher": "Simply Wall St.",
+            "url": "https://finance.yahoo.com/energy/articles/marathon-petroleum-mpc-agrees-4-141234245.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "MPC"
+            ]
+          },
+          {
+            "title": "MPC Q3 Earnings Call Highlights Refining Strength and Asset Sales",
+            "published_at": "2026-11-04T14:10:00+00:00",
+            "publisher": "Zacks",
+            "url": "https://finance.yahoo.com/energy/articles/mpc-q3-earnings-call-highlights-141000420.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "MPC"
+            ]
+          },
+          {
+            "title": "Diamondback Q3 Earnings Beat on Higher Oil Prices and Production",
+            "published_at": "2026-11-04T13:47:00+00:00",
+            "publisher": "Zacks",
+            "url": "https://finance.yahoo.com/energy/articles/diamondback-q3-earnings-beat-higher-134700228.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "FANG",
+              "DK",
+              "CNQ",
+              "MPC"
+            ]
+          },
+          {
+            "title": "Valero's $320.5M Houston Refinery Deal: A Growth Catalyst for VLO?",
+            "published_at": "2026-11-04T13:45:00+00:00",
+            "publisher": "Zacks",
+            "url": "https://finance.yahoo.com/energy/articles/valeros-320-5m-houston-refinery-134500912.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "VLO",
+              "CL=F",
+              "MPC",
+              "PSX"
+            ]
+          },
+          {
+            "title": "Chevron Advances Iraq Oilfield Deal, Expands Growth Prospects",
+            "published_at": "2026-11-04T13:29:00+00:00",
+            "publisher": "Zacks",
+            "url": "https://finance.yahoo.com/energy/articles/chevron-advances-iraq-oilfield-deal-132900779.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "CVX",
+              "CL=F",
+              "DK",
+              "CNQ",
+              "MPC"
+            ]
+          },
+          {
+            "title": "Shell Agrees to $1.45 Billion Sale of North West Shelf Stake",
+            "published_at": "2026-11-04T13:14:00+00:00",
+            "publisher": "Zacks",
+            "url": "https://finance.yahoo.com/energy/articles/shell-agrees-1-45-billion-131400373.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "SHEL",
+              "NG=F",
+              "SHEL",
+              "BP",
+              "CVX",
+              "MPC"
+            ]
+          },
+          {
+            "title": "Morgan Stanley Adjusts Price Target on Marathon Petroleum to $458 From $453",
+            "published_at": "2026-11-04T11:36:32+00:00",
+            "publisher": "MT Newswires",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/morgan-stanley-adjusts-price-target-113632157.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "MPC"
+            ]
+          },
+          {
+            "title": "Marathon Petroleum Corp (MPC) Q3 2026 Earnings Call Highlights: Record 100% Refinery ...",
+            "published_at": "2026-11-04T11:05:01+00:00",
+            "publisher": "GuruFocus.com",
+            "url": "https://finance.yahoo.com/energy/articles/marathon-petroleum-corp-mpc-q3-110501543.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "MPC"
+            ]
+          },
+          {
+            "title": "JPMorgan Adjusts Price Target on Marathon Petroleum to $430 From $448",
+            "published_at": "2026-11-04T10:56:52+00:00",
+            "publisher": "MT Newswires",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/jpmorgan-adjusts-price-target-marathon-105652808.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "MPC"
+            ]
+          },
+          {
+            "title": "CVR Energy Prices $500 Million Common Stock Offering at $47.55 a Share",
+            "published_at": "2026-11-04T09:16:31+00:00",
+            "publisher": "MT Newswires",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/cvr-energy-prices-500-million-091631857.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "CVI",
+              "MPC",
+              "MPLX"
+            ]
+          },
+          {
+            "title": "CVR Energy to acquire two US refineries from Marathon for $4.2bn",
+            "published_at": "2026-11-04T08:15:23+00:00",
+            "publisher": "Offshore Technology",
+            "url": "https://finance.yahoo.com/news/cvr-energy-acquire-two-us-081523522.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "CVI",
+              "CL=F",
+              "MPC"
+            ]
+          },
+          {
+            "title": "What Marathon Petroleum (MPC) Said on Its Q3 Earnings Call",
+            "published_at": "2026-11-04T06:14:15+00:00",
+            "publisher": "MarketBeat",
+            "url": "https://finance.yahoo.com/energy/articles/marathon-petroleum-mpc-said-q3-061415963.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "MPC",
+              "CVI"
+            ]
+          },
+          {
+            "title": "Mplx Q3 Earnings Call Highlights",
+            "published_at": "2026-11-04T06:14:15+00:00",
+            "publisher": "MarketBeat",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/mplx-q3-earnings-call-highlights-061415070.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "MPLX",
+              "MPC"
+            ]
+          },
+          {
+            "title": "Marathon Petroleum Corporation Q3 2026 Earnings Call Summary",
+            "published_at": "2026-11-03T22:29:54+00:00",
+            "publisher": "Moby",
+            "url": "https://finance.yahoo.com/energy/articles/marathon-petroleum-corporation-q3-2026-222954479.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "NVDA",
+              "MPC",
+              "CVI"
+            ]
+          }
+        ],
+        "events": [
+          {
+            "kind": "news",
+            "move_atr": -1.61,
+            "move_pct": -8.11,
+            "gap_pct": -2.21,
+            "headlines_today": 24,
+            "headlines_usual": 6.47,
+            "news_assessment": "assessed"
+          }
+        ],
         "sector_context": {
           "scope": "market",
           "as_of": "2026-11-04",
@@ -27307,8 +28081,8 @@
         "symbol": "ORCL",
         "as_of": "2026-11-04",
         "price_status": "available",
-        "headline_status": "available",
-        "news_baseline_status": "ready",
+        "headline_status": "capped",
+        "news_baseline_status": "unavailable",
         "headlines": [
           {
             "title": "Sector Update: Tech Stocks Mixed Late Afternoon",
@@ -27670,7 +28444,9 @@
             }
           ]
         },
-        "warnings": []
+        "warnings": [
+          "Headline coverage capped; missing headlines are not evidence of no news."
+        ]
       },
       {
         "id": "2026-11-04:ORLY",
@@ -30672,38 +31448,6 @@
               "MCD",
               "UBER"
             ]
-          },
-          {
-            "title": "Where Could NVIDIA's Next Growth Come From?",
-            "published_at": "2026-11-04T10:31:36+00:00",
-            "publisher": "Trefis",
-            "url": "https://finance.yahoo.com/markets/stocks/articles/where-could-nvidias-next-growth-103136442.html",
-            "source": "Yahoo Finance",
-            "related_symbols": [
-              "NVDA",
-              "AMD",
-              "INTC",
-              "AVGO",
-              "QCOM",
-              "MRVL",
-              "QTWO"
-            ]
-          },
-          {
-            "title": "What Could Go Wrong At Intel From Here?",
-            "published_at": "2026-11-04T10:24:43+00:00",
-            "publisher": "Trefis",
-            "url": "https://finance.yahoo.com/markets/stocks/articles/could-wrong-intel-102443354.html",
-            "source": "Yahoo Finance",
-            "related_symbols": [
-              "INTC",
-              "AMD",
-              "NVDA",
-              "QCOM",
-              "AVGO",
-              "MU",
-              "CNXN"
-            ]
           }
         ],
         "events": [],
@@ -33684,80 +34428,7 @@
         "price_status": "available",
         "headline_status": "available",
         "news_baseline_status": "ready",
-        "headlines": [
-          {
-            "title": "5 Large Cap Tech Stocks to Buy According to Billionaires",
-            "published_at": "2026-11-04T17:59:41+00:00",
-            "publisher": "Insider Monkey",
-            "url": "https://finance.yahoo.com/markets/stocks/articles/5-large-cap-tech-stocks-175941681.html",
-            "source": "Yahoo Finance",
-            "related_symbols": [
-              "FTNT",
-              "NOW",
-              "SNPS",
-              "DDOG",
-              "HPE",
-              "NET",
-              "INTU"
-            ]
-          },
-          {
-            "title": "Has Cadence Stock Fallen Like This Before?",
-            "published_at": "2026-11-04T13:49:46+00:00",
-            "publisher": "Trefis",
-            "url": "https://finance.yahoo.com/markets/stocks/articles/cadence-stock-fallen-134946577.html",
-            "source": "Yahoo Finance",
-            "related_symbols": [
-              "CDNS",
-              "^GSPC",
-              "SNPS",
-              "KEYS",
-              "ADSK",
-              "RMBS",
-              "CEVA",
-              "SPGI"
-            ]
-          },
-          {
-            "title": "CDW Q3 Earnings Beat, Revenues Jump 18% Y/Y Despite Margin Compression",
-            "published_at": "2026-11-04T13:32:00+00:00",
-            "publisher": "Zacks",
-            "url": "https://finance.yahoo.com/markets/stocks/articles/cdw-q3-earnings-beat-revenues-133200423.html",
-            "source": "Yahoo Finance",
-            "related_symbols": [
-              "CDW",
-              "SNPS",
-              "CDNS",
-              "PRGS"
-            ]
-          },
-          {
-            "title": "Rothschild & Co Redburn Adjusts Price Target on Synopsys to $615 From $550",
-            "published_at": "2026-11-04T11:03:29+00:00",
-            "publisher": "MT Newswires",
-            "url": "https://finance.yahoo.com/markets/stocks/articles/rothschild-co-redburn-adjusts-price-110329908.html",
-            "source": "Yahoo Finance",
-            "related_symbols": [
-              "SNPS"
-            ]
-          },
-          {
-            "title": "Should You Pick Autodesk Stock Over Its Competitors?",
-            "published_at": "2026-11-04T09:59:11+00:00",
-            "publisher": "Trefis",
-            "url": "https://finance.yahoo.com/markets/stocks/articles/pick-autodesk-stock-over-competitors-095911551.html",
-            "source": "Yahoo Finance",
-            "related_symbols": [
-              "ADSK",
-              "PTC",
-              "ADBE",
-              "SNPS",
-              "TRMB",
-              "BSY",
-              "PTCT"
-            ]
-          }
-        ],
+        "headlines": [],
         "events": [],
         "sector_context": {
           "scope": "market",
@@ -37650,8 +38321,7 @@
             "source": "Yahoo Finance",
             "related_symbols": [
               "UBER",
-              "META",
-              "OPAI.PVT"
+              "META"
             ]
           },
           {
@@ -37771,7 +38441,7 @@
             "move_atr": 1.73,
             "move_pct": 4.91,
             "gap_pct": 2.52,
-            "headlines_today": 39,
+            "headlines_today": 37,
             "headlines_usual": 8.94,
             "news_assessment": "assessed"
           }
@@ -38419,19 +39089,7 @@
         "price_status": "available",
         "headline_status": "available",
         "news_baseline_status": "ready",
-        "headlines": [
-          {
-            "title": "Hyperfine to Participate in Jefferies London and BTIG Tech-Enabled Healthcare Conferences",
-            "published_at": "2026-11-03T21:05:00+00:00",
-            "publisher": "Business Wire",
-            "url": "https://finance.yahoo.com/healthcare/articles/hyperfine-participate-jefferies-london-btig-210500930.html",
-            "source": "Yahoo Finance",
-            "related_symbols": [
-              "HYPR",
-              "USB"
-            ]
-          }
-        ],
+        "headlines": [],
         "events": [],
         "sector_context": {
           "scope": "market",
@@ -40755,6 +41413,16 @@
             ]
           },
           {
+            "title": "Why Energy Could be a Sector to Target Via Options-Income ETFs",
+            "published_at": "2026-11-04T05:01:00+00:00",
+            "publisher": "MoneyShow",
+            "url": "https://finance.yahoo.com/markets/options/articles/why-energy-could-sector-target-050100445.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "XLE"
+            ]
+          },
+          {
             "title": "Sector Update: Energy Stocks Fall Late Afternoon",
             "published_at": "2026-11-03T21:03:14+00:00",
             "publisher": "MT Newswires",
@@ -40886,7 +41554,114 @@
         "price_status": "available",
         "headline_status": "available",
         "news_baseline_status": "ready",
-        "headlines": [],
+        "headlines": [
+          {
+            "title": "Sector Update: Financial Stocks Rise Late Afternoon",
+            "published_at": "2026-11-04T20:51:00+00:00",
+            "publisher": "MT Newswires",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/sector-financial-stocks-rise-afternoon-205100340.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "BTC-USD",
+              "XLRE",
+              "XLF"
+            ]
+          },
+          {
+            "title": "Sector Update: Financial",
+            "published_at": "2026-11-04T20:26:50+00:00",
+            "publisher": "MT Newswires",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/sector-financial-202650051.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "BTC-USD",
+              "XLRE",
+              "XLF"
+            ]
+          },
+          {
+            "title": "Sector Update: Financial Stocks Rise in Afternoon Trading",
+            "published_at": "2026-11-04T18:52:58+00:00",
+            "publisher": "MT Newswires",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/sector-financial-stocks-rise-afternoon-185258307.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "BTC-USD",
+              "XLRE",
+              "XLF"
+            ]
+          },
+          {
+            "title": "Sector Update: Financial",
+            "published_at": "2026-11-04T18:16:29+00:00",
+            "publisher": "MT Newswires",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/sector-financial-181629518.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "BTC-USD",
+              "XLRE",
+              "XLF"
+            ]
+          },
+          {
+            "title": "Exchange-Traded Funds Higher as US Equities Advance After Midday",
+            "published_at": "2026-11-04T18:09:14+00:00",
+            "publisher": "MT Newswires",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/exchange-traded-funds-higher-us-180914189.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "QQQ",
+              "XLK",
+              "IVV",
+              "IYW",
+              "XLF",
+              "FAS",
+              "XLE",
+              "IGM",
+              "FAZ",
+              "CL=F"
+            ]
+          },
+          {
+            "title": "Sector Update: Financial Stocks Edge Higher Pre-Bell Wednesday",
+            "published_at": "2026-11-04T14:19:58+00:00",
+            "publisher": "MT Newswires",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/sector-financial-stocks-edge-higher-141958166.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "BX",
+              "BXSL",
+              "FAS",
+              "XLF",
+              "FAZ"
+            ]
+          },
+          {
+            "title": "Sector Update: Financial",
+            "published_at": "2026-11-04T14:08:26+00:00",
+            "publisher": "MT Newswires",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/sector-financial-140826997.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "BX",
+              "FAS",
+              "XLF",
+              "FAZ"
+            ]
+          },
+          {
+            "title": "What Are Wall Street Analysts' Target Price for American International Group Stock?",
+            "published_at": "2026-11-04T10:37:08+00:00",
+            "publisher": "Barchart",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/wall-street-analysts-target-price-103708847.html",
+            "source": "Yahoo Finance",
+            "related_symbols": [
+              "AIG",
+              "XLF",
+              "^GSPC"
+            ]
+          }
+        ],
         "events": [],
         "sector_context": {
           "scope": "market",
@@ -43380,18 +44155,22 @@
     {
       "date": "2026-11-04",
       "symbol": "MCD",
-      "kind": "move",
+      "kind": "move+news",
       "rules_version": 2,
       "direction": "up",
       "move_pct": 6.53,
       "move_atr": 2.89,
       "gap_pct": 2.19,
       "close": 280.22,
-      "headlines_today": 0,
+      "headlines_today": 38,
       "headlines_usual": 7.0,
       "news_assessment": "assessed",
       "news_method": "yahoo_search_returned_items_v1",
-      "top_headlines": [],
+      "top_headlines": [
+        "Sector Update: Consumer Stocks Gain Late Afternoon",
+        "US large-cap dividend hike watch: 10 stocks with the longest growth streaks",
+        "McDonald\u2019s Puts Focus on Entry-Level Value to Lift Sluggish Sales"
+      ],
       "follow": {}
     },
     {
@@ -43529,7 +44308,7 @@
       "move_atr": 2.08,
       "gap_pct": 2.91,
       "close": 349.51,
-      "headlines_today": 33,
+      "headlines_today": 30,
       "headlines_usual": 6.76,
       "news_assessment": "assessed",
       "news_method": "yahoo_search_returned_items_v1",
@@ -43592,7 +44371,7 @@
       "move_atr": 1.73,
       "gap_pct": 2.52,
       "close": 69.87,
-      "headlines_today": 39,
+      "headlines_today": 37,
       "headlines_usual": 8.94,
       "news_assessment": "assessed",
       "news_method": "yahoo_search_returned_items_v1",
@@ -43695,7 +44474,7 @@
       "move_atr": 1.64,
       "gap_pct": 5.64,
       "close": 266.03,
-      "headlines_today": 34,
+      "headlines_today": 23,
       "headlines_usual": 6.41,
       "news_assessment": "assessed",
       "news_method": "yahoo_search_returned_items_v1",
@@ -43703,6 +44482,27 @@
         "Alphabet, Amazon, and Microsoft All Surged Today. You Can Thank the Big Blue Wave.",
         "Dow Heads for Best Post-Midterm Peformance in Decades",
         "Ironically, the Blue Wave Could Make Hyperscalers \u201cGood Businesses Again\u201d by Forcing Capex Discipline"
+      ],
+      "follow": {}
+    },
+    {
+      "date": "2026-11-04",
+      "symbol": "MPC",
+      "kind": "news",
+      "rules_version": 2,
+      "direction": "down",
+      "move_pct": -8.11,
+      "move_atr": -1.61,
+      "gap_pct": -2.21,
+      "close": 392.68,
+      "headlines_today": 24,
+      "headlines_usual": 6.47,
+      "news_assessment": "assessed",
+      "news_method": "yahoo_search_returned_items_v1",
+      "top_headlines": [
+        "Marathon Petroleum Sinks 10%, Valero Down 8% as Oil Stocks Slide After Democrats Win the Senate",
+        "The 10-Year Treasury Yields 4.91%. These 4 Dividend Stocks Pay More",
+        "How to Play MPC Stock After Its Compelling 795% YoY Earnings Surge?"
       ],
       "follow": {}
     },
@@ -43819,7 +44619,7 @@
       "move_atr": 0.4,
       "gap_pct": 3.24,
       "close": 630.0,
-      "headlines_today": 33,
+      "headlines_today": 28,
       "headlines_usual": 4.82,
       "news_assessment": "assessed",
       "news_method": "yahoo_search_returned_items_v1",
@@ -43918,9 +44718,9 @@
       },
       {
         "group": "move / up / rules 2 / news assessed / method yahoo_search_returned_items_v1",
-        "events": 6,
+        "events": 5,
         "distinct_dates": 2,
-        "distinct_symbols": 6,
+        "distinct_symbols": 5,
         "after_1d": {
           "n": 2,
           "note": "not enough data (2 of 20)",
@@ -43950,9 +44750,9 @@
       },
       {
         "group": "move+news / up / rules 2 / news assessed / method yahoo_search_returned_items_v1",
-        "events": 6,
+        "events": 7,
         "distinct_dates": 4,
-        "distinct_symbols": 6,
+        "distinct_symbols": 7,
         "after_1d": {
           "n": 4,
           "note": "not enough data (4 of 20)",
@@ -44015,13 +44815,14 @@
     "baseline_days": 18,
     "baseline_ready": true,
     "ready_symbols": 193,
-    "valid_symbols": 188,
+    "valid_symbols": 187,
     "failed_symbols": [],
     "capped_symbols": [
       "MSFT",
       "NVDA",
       "SMCI",
       "GOOGL",
+      "ORCL",
       "SPGI"
     ],
     "method": "yahoo_search_returned_items_v1",
@@ -44031,7 +44832,7 @@
       "window_start": "2026-11-03T21:00:00+00:00",
       "window_end": "2026-11-04T21:00:00+00:00",
       "requested_symbol_count": 193,
-      "observed_matched_item_count": 1878,
+      "observed_matched_item_count": 1896,
       "universe_zero_in_window_observed": false,
       "published_news_coverage_confirmed": false,
       "provider_http_error_symbol_count": 0,
@@ -44064,8 +44865,8 @@
           "parsed_item_count": 49,
           "parse_complete": true,
           "matched_in_window_count": 30,
-          "oldest_returned_at": "2026-11-03T04:50:29+00:00",
-          "newest_returned_at": "2026-11-05T01:03:00+00:00",
+          "oldest_returned_at": "2026-11-03T08:15:08+00:00",
+          "newest_returned_at": "2026-11-05T08:48:28+00:00",
           "related_item_count": 49,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -44179,8 +44980,8 @@
           "parsed_item_count": 50,
           "parse_complete": true,
           "matched_in_window_count": 13,
-          "oldest_returned_at": "2026-10-29T17:08:39+00:00",
-          "newest_returned_at": "2026-11-04T20:45:28+00:00",
+          "oldest_returned_at": "2026-10-29T17:13:19+00:00",
+          "newest_returned_at": "2026-11-05T05:21:00+00:00",
           "related_item_count": 50,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -44198,18 +44999,18 @@
           }
         },
         "XLF": {
-          "returned_item_count": 0,
-          "parsed_item_count": 0,
+          "returned_item_count": 50,
+          "parsed_item_count": 50,
           "parse_complete": true,
-          "matched_in_window_count": 0,
-          "oldest_returned_at": null,
-          "newest_returned_at": null,
-          "related_item_count": 0,
+          "matched_in_window_count": 8,
+          "oldest_returned_at": "2026-10-28T18:13:31+00:00",
+          "newest_returned_at": "2026-11-04T20:51:00+00:00",
+          "related_item_count": 50,
           "returned_newest_first": true,
-          "sample_reaches_window_start": false,
-          "observed_zero_in_window": true,
+          "sample_reaches_window_start": true,
+          "observed_zero_in_window": false,
           "published_news_coverage_confirmed": false,
-          "status": "empty_response",
+          "status": "observed_in_window",
           "error_type": null,
           "error_reason": null,
           "provider_response": {
@@ -44224,9 +45025,9 @@
           "returned_item_count": 50,
           "parsed_item_count": 50,
           "parse_complete": true,
-          "matched_in_window_count": 11,
-          "oldest_returned_at": "2026-10-29T11:04:16+00:00",
-          "newest_returned_at": "2026-11-04T22:07:08+00:00",
+          "matched_in_window_count": 12,
+          "oldest_returned_at": "2026-10-29T13:24:42+00:00",
+          "newest_returned_at": "2026-11-05T05:21:00+00:00",
           "related_item_count": 50,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -44248,8 +45049,8 @@
           "parsed_item_count": 50,
           "parse_complete": true,
           "matched_in_window_count": 8,
-          "oldest_returned_at": "2026-10-28T13:08:57+00:00",
-          "newest_returned_at": "2026-11-04T21:42:00+00:00",
+          "oldest_returned_at": "2026-10-28T17:47:11+00:00",
+          "newest_returned_at": "2026-11-05T06:45:00+00:00",
           "related_item_count": 50,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -44409,8 +45210,8 @@
           "parsed_item_count": 50,
           "parse_complete": true,
           "matched_in_window_count": 3,
-          "oldest_returned_at": "2026-10-14T20:34:47+00:00",
-          "newest_returned_at": "2026-11-04T23:32:33+00:00",
+          "oldest_returned_at": "2026-10-15T21:00:04+00:00",
+          "newest_returned_at": "2026-11-05T06:37:01+00:00",
           "related_item_count": 50,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -44428,18 +45229,18 @@
           }
         },
         "IBB": {
-          "returned_item_count": 0,
-          "parsed_item_count": 0,
+          "returned_item_count": 44,
+          "parsed_item_count": 44,
           "parse_complete": true,
           "matched_in_window_count": 0,
-          "oldest_returned_at": null,
-          "newest_returned_at": null,
-          "related_item_count": 0,
+          "oldest_returned_at": "2026-08-11T16:50:26+00:00",
+          "newest_returned_at": "2026-11-03T19:18:30+00:00",
+          "related_item_count": 44,
           "returned_newest_first": true,
-          "sample_reaches_window_start": false,
+          "sample_reaches_window_start": true,
           "observed_zero_in_window": true,
           "published_news_coverage_confirmed": false,
-          "status": "empty_response",
+          "status": "no_items_in_window",
           "error_type": null,
           "error_reason": null,
           "provider_response": {
@@ -44658,13 +45459,13 @@
           }
         },
         "AAPL": {
-          "returned_item_count": 47,
-          "parsed_item_count": 47,
+          "returned_item_count": 48,
+          "parsed_item_count": 48,
           "parse_complete": true,
-          "matched_in_window_count": 33,
-          "oldest_returned_at": "2026-11-04T15:02:35+00:00",
-          "newest_returned_at": "2026-11-05T02:17:51+00:00",
-          "related_item_count": 47,
+          "matched_in_window_count": 30,
+          "oldest_returned_at": "2026-11-04T15:20:50+00:00",
+          "newest_returned_at": "2026-11-05T09:25:00+00:00",
+          "related_item_count": 48,
           "returned_newest_first": true,
           "sample_reaches_window_start": false,
           "observed_zero_in_window": false,
@@ -44684,9 +45485,9 @@
           "returned_item_count": 50,
           "parsed_item_count": 50,
           "parse_complete": true,
-          "matched_in_window_count": 33,
-          "oldest_returned_at": "2026-11-04T15:45:00+00:00",
-          "newest_returned_at": "2026-11-05T02:17:51+00:00",
+          "matched_in_window_count": 22,
+          "oldest_returned_at": "2026-11-04T17:06:03+00:00",
+          "newest_returned_at": "2026-11-05T09:21:14+00:00",
           "related_item_count": 50,
           "returned_newest_first": true,
           "sample_reaches_window_start": false,
@@ -44708,8 +45509,8 @@
           "parsed_item_count": 50,
           "parse_complete": true,
           "matched_in_window_count": 0,
-          "oldest_returned_at": "2026-11-04T22:17:28+00:00",
-          "newest_returned_at": "2026-11-05T02:20:00+00:00",
+          "oldest_returned_at": "2026-11-04T23:15:12+00:00",
+          "newest_returned_at": "2026-11-05T09:29:00+00:00",
           "related_item_count": 50,
           "returned_newest_first": true,
           "sample_reaches_window_start": false,
@@ -44750,13 +45551,13 @@
           }
         },
         "AMD": {
-          "returned_item_count": 45,
-          "parsed_item_count": 45,
+          "returned_item_count": 47,
+          "parsed_item_count": 47,
           "parse_complete": true,
-          "matched_in_window_count": 36,
-          "oldest_returned_at": "2026-11-04T14:20:48+00:00",
-          "newest_returned_at": "2026-11-05T00:14:01+00:00",
-          "related_item_count": 45,
+          "matched_in_window_count": 28,
+          "oldest_returned_at": "2026-11-04T15:48:00+00:00",
+          "newest_returned_at": "2026-11-05T08:48:28+00:00",
+          "related_item_count": 47,
           "returned_newest_first": true,
           "sample_reaches_window_start": false,
           "observed_zero_in_window": false,
@@ -44773,15 +45574,15 @@
           }
         },
         "QCOM": {
-          "returned_item_count": 47,
-          "parsed_item_count": 47,
+          "returned_item_count": 48,
+          "parsed_item_count": 48,
           "parse_complete": true,
-          "matched_in_window_count": 26,
-          "oldest_returned_at": "2026-11-03T14:45:04+00:00",
-          "newest_returned_at": "2026-11-05T01:14:19+00:00",
-          "related_item_count": 47,
+          "matched_in_window_count": 18,
+          "oldest_returned_at": "2026-11-04T11:14:14+00:00",
+          "newest_returned_at": "2026-11-05T07:15:07+00:00",
+          "related_item_count": 48,
           "returned_newest_first": true,
-          "sample_reaches_window_start": true,
+          "sample_reaches_window_start": false,
           "observed_zero_in_window": false,
           "published_news_coverage_confirmed": false,
           "status": "observed_in_window",
@@ -44800,8 +45601,8 @@
           "parsed_item_count": 50,
           "parse_complete": true,
           "matched_in_window_count": 9,
-          "oldest_returned_at": "2026-10-27T11:30:02+00:00",
-          "newest_returned_at": "2026-11-04T19:40:00+00:00",
+          "oldest_returned_at": "2026-10-27T12:35:01+00:00",
+          "newest_returned_at": "2026-11-05T08:00:00+00:00",
           "related_item_count": 50,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -44819,13 +45620,13 @@
           }
         },
         "INTC": {
-          "returned_item_count": 48,
-          "parsed_item_count": 48,
+          "returned_item_count": 49,
+          "parsed_item_count": 49,
           "parse_complete": true,
-          "matched_in_window_count": 45,
-          "oldest_returned_at": "2026-11-03T21:29:12+00:00",
-          "newest_returned_at": "2026-11-05T00:37:00+00:00",
-          "related_item_count": 48,
+          "matched_in_window_count": 41,
+          "oldest_returned_at": "2026-11-03T23:12:02+00:00",
+          "newest_returned_at": "2026-11-05T08:50:32+00:00",
+          "related_item_count": 49,
           "returned_newest_first": true,
           "sample_reaches_window_start": false,
           "observed_zero_in_window": false,
@@ -44845,9 +45646,9 @@
           "returned_item_count": 49,
           "parsed_item_count": 49,
           "parse_complete": true,
-          "matched_in_window_count": 36,
-          "oldest_returned_at": "2026-11-04T07:32:00+00:00",
-          "newest_returned_at": "2026-11-05T02:11:22+00:00",
+          "matched_in_window_count": 29,
+          "oldest_returned_at": "2026-11-04T11:04:51+00:00",
+          "newest_returned_at": "2026-11-05T07:18:37+00:00",
           "related_item_count": 49,
           "returned_newest_first": true,
           "sample_reaches_window_start": false,
@@ -44892,8 +45693,8 @@
           "parsed_item_count": 48,
           "parse_complete": true,
           "matched_in_window_count": 4,
-          "oldest_returned_at": "2026-10-27T17:03:00+00:00",
-          "newest_returned_at": "2026-11-05T00:46:39+00:00",
+          "oldest_returned_at": "2026-10-28T07:50:00+00:00",
+          "newest_returned_at": "2026-11-05T02:35:05+00:00",
           "related_item_count": 48,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -44938,8 +45739,8 @@
           "parsed_item_count": 50,
           "parse_complete": true,
           "matched_in_window_count": 7,
-          "oldest_returned_at": "2026-10-26T14:25:00+00:00",
-          "newest_returned_at": "2026-11-04T22:00:01+00:00",
+          "oldest_returned_at": "2026-10-27T11:04:22+00:00",
+          "newest_returned_at": "2026-11-05T07:21:26+00:00",
           "related_item_count": 50,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -44980,13 +45781,13 @@
           }
         },
         "MRVL": {
-          "returned_item_count": 48,
-          "parsed_item_count": 48,
+          "returned_item_count": 49,
+          "parsed_item_count": 49,
           "parse_complete": true,
           "matched_in_window_count": 28,
-          "oldest_returned_at": "2026-11-03T15:51:19+00:00",
-          "newest_returned_at": "2026-11-05T02:23:29+00:00",
-          "related_item_count": 48,
+          "oldest_returned_at": "2026-11-03T18:07:00+00:00",
+          "newest_returned_at": "2026-11-05T08:48:28+00:00",
+          "related_item_count": 49,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
           "observed_zero_in_window": false,
@@ -45026,18 +45827,18 @@
           }
         },
         "SNPS": {
-          "returned_item_count": 50,
-          "parsed_item_count": 50,
+          "returned_item_count": 0,
+          "parsed_item_count": 0,
           "parse_complete": true,
-          "matched_in_window_count": 5,
-          "oldest_returned_at": "2026-10-17T11:00:00+00:00",
-          "newest_returned_at": "2026-11-05T00:31:19+00:00",
-          "related_item_count": 50,
+          "matched_in_window_count": 0,
+          "oldest_returned_at": null,
+          "newest_returned_at": null,
+          "related_item_count": 0,
           "returned_newest_first": true,
-          "sample_reaches_window_start": true,
-          "observed_zero_in_window": false,
+          "sample_reaches_window_start": false,
+          "observed_zero_in_window": true,
           "published_news_coverage_confirmed": false,
-          "status": "observed_in_window",
+          "status": "empty_response",
           "error_type": null,
           "error_reason": null,
           "provider_response": {
@@ -45076,8 +45877,8 @@
           "parsed_item_count": 49,
           "parse_complete": true,
           "matched_in_window_count": 43,
-          "oldest_returned_at": "2026-11-03T14:30:09+00:00",
-          "newest_returned_at": "2026-11-05T01:14:57+00:00",
+          "oldest_returned_at": "2026-11-03T17:24:30+00:00",
+          "newest_returned_at": "2026-11-05T07:17:30+00:00",
           "related_item_count": 49,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -45098,9 +45899,9 @@
           "returned_item_count": 50,
           "parsed_item_count": 50,
           "parse_complete": true,
-          "matched_in_window_count": 49,
-          "oldest_returned_at": "2026-11-03T21:38:00+00:00",
-          "newest_returned_at": "2026-11-05T02:13:18+00:00",
+          "matched_in_window_count": 47,
+          "oldest_returned_at": "2026-11-03T21:43:20+00:00",
+          "newest_returned_at": "2026-11-05T07:17:30+00:00",
           "related_item_count": 50,
           "returned_newest_first": true,
           "sample_reaches_window_start": false,
@@ -45121,13 +45922,13 @@
           "returned_item_count": 50,
           "parsed_item_count": 50,
           "parse_complete": true,
-          "matched_in_window_count": 1,
-          "oldest_returned_at": "2026-11-04T17:07:54+00:00",
-          "newest_returned_at": "2026-11-05T02:17:51+00:00",
-          "related_item_count": 3,
+          "matched_in_window_count": 0,
+          "oldest_returned_at": "2026-11-04T18:10:05+00:00",
+          "newest_returned_at": "2026-11-05T08:11:06+00:00",
+          "related_item_count": 2,
           "returned_newest_first": true,
           "sample_reaches_window_start": false,
-          "observed_zero_in_window": false,
+          "observed_zero_in_window": true,
           "published_news_coverage_confirmed": false,
           "status": "capped",
           "error_type": null,
@@ -45141,13 +45942,13 @@
           }
         },
         "META": {
-          "returned_item_count": 46,
-          "parsed_item_count": 46,
+          "returned_item_count": 45,
+          "parsed_item_count": 45,
           "parse_complete": true,
-          "matched_in_window_count": 33,
-          "oldest_returned_at": "2026-11-04T12:44:38+00:00",
-          "newest_returned_at": "2026-11-05T02:17:51+00:00",
-          "related_item_count": 46,
+          "matched_in_window_count": 28,
+          "oldest_returned_at": "2026-11-04T13:13:27+00:00",
+          "newest_returned_at": "2026-11-05T07:14:39+00:00",
+          "related_item_count": 45,
           "returned_newest_first": true,
           "sample_reaches_window_start": false,
           "observed_zero_in_window": false,
@@ -45167,9 +45968,9 @@
           "returned_item_count": 47,
           "parsed_item_count": 47,
           "parse_complete": true,
-          "matched_in_window_count": 34,
-          "oldest_returned_at": "2026-11-04T15:24:02+00:00",
-          "newest_returned_at": "2026-11-05T02:17:51+00:00",
+          "matched_in_window_count": 23,
+          "oldest_returned_at": "2026-11-04T16:58:39+00:00",
+          "newest_returned_at": "2026-11-05T09:24:59+00:00",
           "related_item_count": 47,
           "returned_newest_first": true,
           "sample_reaches_window_start": false,
@@ -45236,15 +46037,15 @@
           "returned_item_count": 50,
           "parsed_item_count": 50,
           "parse_complete": true,
-          "matched_in_window_count": 44,
-          "oldest_returned_at": "2026-11-03T19:55:27+00:00",
-          "newest_returned_at": "2026-11-04T22:20:02+00:00",
+          "matched_in_window_count": 42,
+          "oldest_returned_at": "2026-11-03T23:49:36+00:00",
+          "newest_returned_at": "2026-11-05T08:26:19+00:00",
           "related_item_count": 50,
           "returned_newest_first": true,
-          "sample_reaches_window_start": true,
+          "sample_reaches_window_start": false,
           "observed_zero_in_window": false,
           "published_news_coverage_confirmed": false,
-          "status": "observed_in_window",
+          "status": "capped",
           "error_type": null,
           "error_reason": null,
           "provider_response": {
@@ -45283,8 +46084,8 @@
           "parsed_item_count": 45,
           "parse_complete": true,
           "matched_in_window_count": 11,
-          "oldest_returned_at": "2026-11-01T07:50:00+00:00",
-          "newest_returned_at": "2026-11-04T17:59:41+00:00",
+          "oldest_returned_at": "2026-11-01T19:00:00+00:00",
+          "newest_returned_at": "2026-11-05T04:30:00+00:00",
           "related_item_count": 45,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -45306,8 +46107,8 @@
           "parsed_item_count": 49,
           "parse_complete": true,
           "matched_in_window_count": 2,
-          "oldest_returned_at": "2026-10-20T20:50:05+00:00",
-          "newest_returned_at": "2026-11-05T01:50:01+00:00",
+          "oldest_returned_at": "2026-10-20T21:57:50+00:00",
+          "newest_returned_at": "2026-11-05T04:39:52+00:00",
           "related_item_count": 49,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -45352,8 +46153,8 @@
           "parsed_item_count": 50,
           "parse_complete": true,
           "matched_in_window_count": 8,
-          "oldest_returned_at": "2026-10-27T16:03:00+00:00",
-          "newest_returned_at": "2026-11-04T15:33:18+00:00",
+          "oldest_returned_at": "2026-10-27T16:57:07+00:00",
+          "newest_returned_at": "2026-11-05T09:08:25+00:00",
           "related_item_count": 50,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -45375,8 +46176,8 @@
           "parsed_item_count": 50,
           "parse_complete": true,
           "matched_in_window_count": 34,
-          "oldest_returned_at": "2026-10-30T14:42:00+00:00",
-          "newest_returned_at": "2026-11-04T21:06:36+00:00",
+          "oldest_returned_at": "2026-10-30T16:17:38+00:00",
+          "newest_returned_at": "2026-11-05T02:33:54+00:00",
           "related_item_count": 50,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -45444,8 +46245,8 @@
           "parsed_item_count": 48,
           "parse_complete": true,
           "matched_in_window_count": 23,
-          "oldest_returned_at": "2026-11-03T15:01:20+00:00",
-          "newest_returned_at": "2026-11-04T23:17:21+00:00",
+          "oldest_returned_at": "2026-11-03T15:16:54+00:00",
+          "newest_returned_at": "2026-11-05T04:19:40+00:00",
           "related_item_count": 48,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -45466,9 +46267,9 @@
           "returned_item_count": 47,
           "parsed_item_count": 47,
           "parse_complete": true,
-          "matched_in_window_count": 39,
-          "oldest_returned_at": "2026-11-04T11:56:08+00:00",
-          "newest_returned_at": "2026-11-05T02:19:01+00:00",
+          "matched_in_window_count": 37,
+          "oldest_returned_at": "2026-11-04T12:06:28+00:00",
+          "newest_returned_at": "2026-11-05T05:09:41+00:00",
           "related_item_count": 47,
           "returned_newest_first": true,
           "sample_reaches_window_start": false,
@@ -45490,8 +46291,8 @@
           "parsed_item_count": 49,
           "parse_complete": true,
           "matched_in_window_count": 10,
-          "oldest_returned_at": "2026-10-23T18:08:28+00:00",
-          "newest_returned_at": "2026-11-05T01:14:18+00:00",
+          "oldest_returned_at": "2026-10-24T21:03:00+00:00",
+          "newest_returned_at": "2026-11-05T08:25:14+00:00",
           "related_item_count": 49,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -45559,8 +46360,8 @@
           "parsed_item_count": 50,
           "parse_complete": true,
           "matched_in_window_count": 10,
-          "oldest_returned_at": "2026-10-30T11:33:47+00:00",
-          "newest_returned_at": "2026-11-04T18:47:00+00:00",
+          "oldest_returned_at": "2026-10-30T12:50:37+00:00",
+          "newest_returned_at": "2026-11-05T07:48:01+00:00",
           "related_item_count": 50,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -45582,8 +46383,8 @@
           "parsed_item_count": 50,
           "parse_complete": true,
           "matched_in_window_count": 8,
-          "oldest_returned_at": "2026-10-23T12:50:03+00:00",
-          "newest_returned_at": "2026-11-04T17:00:00+00:00",
+          "oldest_returned_at": "2026-10-23T16:09:59+00:00",
+          "newest_returned_at": "2026-11-05T08:01:00+00:00",
           "related_item_count": 50,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -45605,8 +46406,8 @@
           "parsed_item_count": 50,
           "parse_complete": true,
           "matched_in_window_count": 10,
-          "oldest_returned_at": "2026-10-29T11:02:48+00:00",
-          "newest_returned_at": "2026-11-04T20:37:21+00:00",
+          "oldest_returned_at": "2026-10-29T11:04:30+00:00",
+          "newest_returned_at": "2026-11-05T08:50:00+00:00",
           "related_item_count": 50,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -45651,8 +46452,8 @@
           "parsed_item_count": 50,
           "parse_complete": true,
           "matched_in_window_count": 7,
-          "oldest_returned_at": "2026-10-29T13:09:48+00:00",
-          "newest_returned_at": "2026-11-04T21:05:00+00:00",
+          "oldest_returned_at": "2026-10-29T13:14:57+00:00",
+          "newest_returned_at": "2026-11-05T05:18:29+00:00",
           "related_item_count": 50,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -45674,8 +46475,8 @@
           "parsed_item_count": 44,
           "parse_complete": true,
           "matched_in_window_count": 3,
-          "oldest_returned_at": "2026-10-26T11:10:00+00:00",
-          "newest_returned_at": "2026-11-04T12:17:17+00:00",
+          "oldest_returned_at": "2026-10-26T13:35:00+00:00",
+          "newest_returned_at": "2026-11-05T04:40:45+00:00",
           "related_item_count": 44,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -45697,8 +46498,8 @@
           "parsed_item_count": 47,
           "parse_complete": true,
           "matched_in_window_count": 8,
-          "oldest_returned_at": "2026-10-29T16:30:00+00:00",
-          "newest_returned_at": "2026-11-04T23:19:01+00:00",
+          "oldest_returned_at": "2026-10-29T17:33:00+00:00",
+          "newest_returned_at": "2026-11-05T02:22:00+00:00",
           "related_item_count": 47,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -45766,8 +46567,8 @@
           "parsed_item_count": 50,
           "parse_complete": true,
           "matched_in_window_count": 17,
-          "oldest_returned_at": "2026-10-31T13:35:00+00:00",
-          "newest_returned_at": "2026-11-05T01:59:00+00:00",
+          "oldest_returned_at": "2026-11-02T09:13:00+00:00",
+          "newest_returned_at": "2026-11-05T04:14:25+00:00",
           "related_item_count": 50,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -45789,8 +46590,8 @@
           "parsed_item_count": 50,
           "parse_complete": true,
           "matched_in_window_count": 13,
-          "oldest_returned_at": "2026-10-30T18:50:04+00:00",
-          "newest_returned_at": "2026-11-04T23:19:01+00:00",
+          "oldest_returned_at": "2026-10-30T23:13:42+00:00",
+          "newest_returned_at": "2026-11-05T03:21:41+00:00",
           "related_item_count": 50,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -45812,8 +46613,8 @@
           "parsed_item_count": 49,
           "parse_complete": true,
           "matched_in_window_count": 13,
-          "oldest_returned_at": "2026-10-28T16:07:03+00:00",
-          "newest_returned_at": "2026-11-05T02:00:00+00:00",
+          "oldest_returned_at": "2026-10-28T17:05:18+00:00",
+          "newest_returned_at": "2026-11-05T08:26:50+00:00",
           "related_item_count": 49,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -45835,8 +46636,8 @@
           "parsed_item_count": 50,
           "parse_complete": true,
           "matched_in_window_count": 2,
-          "oldest_returned_at": "2026-10-21T11:40:00+00:00",
-          "newest_returned_at": "2026-11-04T23:05:00+00:00",
+          "oldest_returned_at": "2026-10-21T11:42:01+00:00",
+          "newest_returned_at": "2026-11-05T08:30:00+00:00",
           "related_item_count": 50,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -45854,18 +46655,18 @@
           }
         },
         "USB": {
-          "returned_item_count": 50,
-          "parsed_item_count": 50,
+          "returned_item_count": 0,
+          "parsed_item_count": 0,
           "parse_complete": true,
-          "matched_in_window_count": 1,
-          "oldest_returned_at": "2026-10-15T11:53:50+00:00",
-          "newest_returned_at": "2026-11-04T21:01:31+00:00",
-          "related_item_count": 50,
+          "matched_in_window_count": 0,
+          "oldest_returned_at": null,
+          "newest_returned_at": null,
+          "related_item_count": 0,
           "returned_newest_first": true,
-          "sample_reaches_window_start": true,
-          "observed_zero_in_window": false,
+          "sample_reaches_window_start": false,
+          "observed_zero_in_window": true,
           "published_news_coverage_confirmed": false,
-          "status": "observed_in_window",
+          "status": "empty_response",
           "error_type": null,
           "error_reason": null,
           "provider_response": {
@@ -45973,8 +46774,8 @@
           "parsed_item_count": 50,
           "parse_complete": true,
           "matched_in_window_count": 2,
-          "oldest_returned_at": "2026-10-06T14:20:06+00:00",
-          "newest_returned_at": "2026-11-04T21:53:42+00:00",
+          "oldest_returned_at": "2026-10-06T19:04:16+00:00",
+          "newest_returned_at": "2026-11-05T01:30:01+00:00",
           "related_item_count": 50,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -45996,8 +46797,8 @@
           "parsed_item_count": 49,
           "parse_complete": true,
           "matched_in_window_count": 21,
-          "oldest_returned_at": "2026-11-03T12:00:00+00:00",
-          "newest_returned_at": "2026-11-04T23:19:01+00:00",
+          "oldest_returned_at": "2026-11-03T12:15:02+00:00",
+          "newest_returned_at": "2026-11-05T08:58:40+00:00",
           "related_item_count": 49,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -46042,8 +46843,8 @@
           "parsed_item_count": 50,
           "parse_complete": true,
           "matched_in_window_count": 6,
-          "oldest_returned_at": "2026-10-26T14:56:49+00:00",
-          "newest_returned_at": "2026-11-04T23:21:05+00:00",
+          "oldest_returned_at": "2026-10-26T15:25:03+00:00",
+          "newest_returned_at": "2026-11-05T03:17:02+00:00",
           "related_item_count": 50,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -46065,8 +46866,8 @@
           "parsed_item_count": 49,
           "parse_complete": true,
           "matched_in_window_count": 16,
-          "oldest_returned_at": "2026-11-02T08:35:10+00:00",
-          "newest_returned_at": "2026-11-04T21:56:24+00:00",
+          "oldest_returned_at": "2026-11-02T11:01:19+00:00",
+          "newest_returned_at": "2026-11-05T07:00:00+00:00",
           "related_item_count": 49,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -46134,8 +46935,8 @@
           "parsed_item_count": 50,
           "parse_complete": true,
           "matched_in_window_count": 11,
-          "oldest_returned_at": "2026-10-31T22:03:00+00:00",
-          "newest_returned_at": "2026-11-04T23:12:57+00:00",
+          "oldest_returned_at": "2026-11-01T17:03:00+00:00",
+          "newest_returned_at": "2026-11-05T03:23:27+00:00",
           "related_item_count": 50,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -46157,8 +46958,8 @@
           "parsed_item_count": 50,
           "parse_complete": true,
           "matched_in_window_count": 21,
-          "oldest_returned_at": "2026-11-03T14:22:00+00:00",
-          "newest_returned_at": "2026-11-05T02:10:04+00:00",
+          "oldest_returned_at": "2026-11-03T14:37:00+00:00",
+          "newest_returned_at": "2026-11-05T09:00:00+00:00",
           "related_item_count": 50,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -46226,8 +47027,8 @@
           "parsed_item_count": 50,
           "parse_complete": true,
           "matched_in_window_count": 11,
-          "oldest_returned_at": "2026-10-22T09:47:00+00:00",
-          "newest_returned_at": "2026-11-04T17:38:53+00:00",
+          "oldest_returned_at": "2026-10-22T09:53:38+00:00",
+          "newest_returned_at": "2026-11-05T06:20:23+00:00",
           "related_item_count": 50,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -46272,8 +47073,8 @@
           "parsed_item_count": 49,
           "parse_complete": true,
           "matched_in_window_count": 6,
-          "oldest_returned_at": "2026-10-29T07:55:56+00:00",
-          "newest_returned_at": "2026-11-04T23:12:57+00:00",
+          "oldest_returned_at": "2026-10-29T20:02:00+00:00",
+          "newest_returned_at": "2026-11-05T09:14:28+00:00",
           "related_item_count": 49,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -46318,8 +47119,8 @@
           "parsed_item_count": 50,
           "parse_complete": true,
           "matched_in_window_count": 5,
-          "oldest_returned_at": "2026-10-30T11:15:53+00:00",
-          "newest_returned_at": "2026-11-04T21:06:00+00:00",
+          "oldest_returned_at": "2026-10-30T12:32:45+00:00",
+          "newest_returned_at": "2026-11-05T07:18:00+00:00",
           "related_item_count": 50,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -46479,8 +47280,8 @@
           "parsed_item_count": 50,
           "parse_complete": true,
           "matched_in_window_count": 7,
-          "oldest_returned_at": "2026-10-26T14:50:02+00:00",
-          "newest_returned_at": "2026-11-04T18:56:44+00:00",
+          "oldest_returned_at": "2026-10-26T20:57:18+00:00",
+          "newest_returned_at": "2026-11-05T08:27:45+00:00",
           "related_item_count": 50,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -46525,8 +47326,8 @@
           "parsed_item_count": 46,
           "parse_complete": true,
           "matched_in_window_count": 11,
-          "oldest_returned_at": "2026-10-30T15:30:08+00:00",
-          "newest_returned_at": "2026-11-04T21:45:02+00:00",
+          "oldest_returned_at": "2026-10-30T16:17:34+00:00",
+          "newest_returned_at": "2026-11-05T06:35:00+00:00",
           "related_item_count": 46,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -46548,8 +47349,8 @@
           "parsed_item_count": 49,
           "parse_complete": true,
           "matched_in_window_count": 13,
-          "oldest_returned_at": "2026-10-26T11:02:05+00:00",
-          "newest_returned_at": "2026-11-04T23:45:02+00:00",
+          "oldest_returned_at": "2026-10-26T11:04:37+00:00",
+          "newest_returned_at": "2026-11-05T03:26:39+00:00",
           "related_item_count": 49,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -46571,8 +47372,8 @@
           "parsed_item_count": 48,
           "parse_complete": true,
           "matched_in_window_count": 5,
-          "oldest_returned_at": "2026-10-15T18:20:03+00:00",
-          "newest_returned_at": "2026-11-04T22:00:29+00:00",
+          "oldest_returned_at": "2026-10-16T10:46:00+00:00",
+          "newest_returned_at": "2026-11-05T07:14:18+00:00",
           "related_item_count": 48,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -46594,8 +47395,8 @@
           "parsed_item_count": 45,
           "parse_complete": true,
           "matched_in_window_count": 10,
-          "oldest_returned_at": "2026-10-29T19:52:53+00:00",
-          "newest_returned_at": "2026-11-04T18:50:00+00:00",
+          "oldest_returned_at": "2026-10-29T20:45:03+00:00",
+          "newest_returned_at": "2026-11-05T05:17:31+00:00",
           "related_item_count": 45,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -46613,13 +47414,13 @@
           }
         },
         "NKE": {
-          "returned_item_count": 47,
-          "parsed_item_count": 47,
+          "returned_item_count": 49,
+          "parsed_item_count": 49,
           "parse_complete": true,
           "matched_in_window_count": 11,
           "oldest_returned_at": "2026-10-29T14:24:04+00:00",
-          "newest_returned_at": "2026-11-05T00:12:01+00:00",
-          "related_item_count": 47,
+          "newest_returned_at": "2026-11-05T05:11:36+00:00",
+          "related_item_count": 49,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
           "observed_zero_in_window": false,
@@ -46659,18 +47460,18 @@
           }
         },
         "MCD": {
-          "returned_item_count": 0,
-          "parsed_item_count": 0,
+          "returned_item_count": 47,
+          "parsed_item_count": 47,
           "parse_complete": true,
-          "matched_in_window_count": 0,
-          "oldest_returned_at": null,
-          "newest_returned_at": null,
-          "related_item_count": 0,
+          "matched_in_window_count": 38,
+          "oldest_returned_at": "2026-11-04T12:10:39+00:00",
+          "newest_returned_at": "2026-11-05T05:06:01+00:00",
+          "related_item_count": 47,
           "returned_newest_first": true,
           "sample_reaches_window_start": false,
-          "observed_zero_in_window": true,
+          "observed_zero_in_window": false,
           "published_news_coverage_confirmed": false,
-          "status": "empty_response",
+          "status": "observed_in_window",
           "error_type": null,
           "error_reason": null,
           "provider_response": {
@@ -46686,8 +47487,8 @@
           "parsed_item_count": 42,
           "parse_complete": true,
           "matched_in_window_count": 5,
-          "oldest_returned_at": "2026-10-29T12:04:51+00:00",
-          "newest_returned_at": "2026-11-04T21:18:33+00:00",
+          "oldest_returned_at": "2026-10-29T12:30:00+00:00",
+          "newest_returned_at": "2026-11-05T07:25:00+00:00",
           "related_item_count": 42,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -46755,8 +47556,8 @@
           "parsed_item_count": 49,
           "parse_complete": true,
           "matched_in_window_count": 16,
-          "oldest_returned_at": "2026-10-30T20:25:16+00:00",
-          "newest_returned_at": "2026-11-04T22:56:31+00:00",
+          "oldest_returned_at": "2026-10-30T22:00:11+00:00",
+          "newest_returned_at": "2026-11-05T08:35:00+00:00",
           "related_item_count": 49,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -46801,8 +47602,8 @@
           "parsed_item_count": 49,
           "parse_complete": true,
           "matched_in_window_count": 3,
-          "oldest_returned_at": "2026-10-21T11:44:00+00:00",
-          "newest_returned_at": "2026-11-04T18:17:56+00:00",
+          "oldest_returned_at": "2026-10-21T12:05:38+00:00",
+          "newest_returned_at": "2026-11-05T09:00:00+00:00",
           "related_item_count": 49,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -46847,8 +47648,8 @@
           "parsed_item_count": 50,
           "parse_complete": true,
           "matched_in_window_count": 13,
-          "oldest_returned_at": "2026-10-30T17:26:00+00:00",
-          "newest_returned_at": "2026-11-05T01:26:32+00:00",
+          "oldest_returned_at": "2026-10-30T18:13:29+00:00",
+          "newest_returned_at": "2026-11-05T04:24:42+00:00",
           "related_item_count": 50,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -46866,18 +47667,18 @@
           }
         },
         "KMB": {
-          "returned_item_count": 0,
-          "parsed_item_count": 0,
+          "returned_item_count": 50,
+          "parsed_item_count": 50,
           "parse_complete": true,
-          "matched_in_window_count": 0,
-          "oldest_returned_at": null,
-          "newest_returned_at": null,
-          "related_item_count": 0,
+          "matched_in_window_count": 3,
+          "oldest_returned_at": "2026-10-19T22:37:00+00:00",
+          "newest_returned_at": "2026-11-04T19:35:00+00:00",
+          "related_item_count": 50,
           "returned_newest_first": true,
-          "sample_reaches_window_start": false,
-          "observed_zero_in_window": true,
+          "sample_reaches_window_start": true,
+          "observed_zero_in_window": false,
           "published_news_coverage_confirmed": false,
-          "status": "empty_response",
+          "status": "observed_in_window",
           "error_type": null,
           "error_reason": null,
           "provider_response": {
@@ -46981,18 +47782,18 @@
           }
         },
         "DE": {
-          "returned_item_count": 0,
-          "parsed_item_count": 0,
+          "returned_item_count": 49,
+          "parsed_item_count": 49,
           "parse_complete": true,
           "matched_in_window_count": 0,
-          "oldest_returned_at": null,
-          "newest_returned_at": null,
+          "oldest_returned_at": "2026-11-05T00:00:00+00:00",
+          "newest_returned_at": "2026-11-05T09:29:00+00:00",
           "related_item_count": 0,
           "returned_newest_first": true,
           "sample_reaches_window_start": false,
           "observed_zero_in_window": true,
           "published_news_coverage_confirmed": false,
-          "status": "empty_response",
+          "status": "no_items_in_window",
           "error_type": null,
           "error_reason": null,
           "provider_response": {
@@ -47032,7 +47833,7 @@
           "parse_complete": true,
           "matched_in_window_count": 7,
           "oldest_returned_at": "2026-10-28T20:50:44+00:00",
-          "newest_returned_at": "2026-11-05T02:17:51+00:00",
+          "newest_returned_at": "2026-11-05T08:27:23+00:00",
           "related_item_count": 50,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -47054,8 +47855,8 @@
           "parsed_item_count": 49,
           "parse_complete": true,
           "matched_in_window_count": 19,
-          "oldest_returned_at": "2026-10-30T19:25:37+00:00",
-          "newest_returned_at": "2026-11-04T21:27:49+00:00",
+          "oldest_returned_at": "2026-10-30T20:51:29+00:00",
+          "newest_returned_at": "2026-11-05T09:16:28+00:00",
           "related_item_count": 49,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -47077,8 +47878,8 @@
           "parsed_item_count": 50,
           "parse_complete": true,
           "matched_in_window_count": 25,
-          "oldest_returned_at": "2026-10-31T00:19:48+00:00",
-          "newest_returned_at": "2026-11-04T22:12:48+00:00",
+          "oldest_returned_at": "2026-10-31T11:17:50+00:00",
+          "newest_returned_at": "2026-11-05T07:19:00+00:00",
           "related_item_count": 50,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -47119,13 +47920,13 @@
           }
         },
         "NOC": {
-          "returned_item_count": 49,
-          "parsed_item_count": 49,
+          "returned_item_count": 50,
+          "parsed_item_count": 50,
           "parse_complete": true,
           "matched_in_window_count": 12,
           "oldest_returned_at": "2026-10-27T10:23:30+00:00",
           "newest_returned_at": "2026-11-04T22:12:48+00:00",
-          "related_item_count": 49,
+          "related_item_count": 50,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
           "observed_zero_in_window": false,
@@ -47422,8 +48223,8 @@
           "parsed_item_count": 50,
           "parse_complete": true,
           "matched_in_window_count": 15,
-          "oldest_returned_at": "2026-11-02T12:45:00+00:00",
-          "newest_returned_at": "2026-11-04T22:07:08+00:00",
+          "oldest_returned_at": "2026-11-02T13:04:53+00:00",
+          "newest_returned_at": "2026-11-05T04:23:10+00:00",
           "related_item_count": 50,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -47468,8 +48269,8 @@
           "parsed_item_count": 49,
           "parse_complete": true,
           "matched_in_window_count": 7,
-          "oldest_returned_at": "2026-10-27T17:33:08+00:00",
-          "newest_returned_at": "2026-11-04T21:31:23+00:00",
+          "oldest_returned_at": "2026-10-28T11:05:03+00:00",
+          "newest_returned_at": "2026-11-05T07:24:00+00:00",
           "related_item_count": 49,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -47556,18 +48357,18 @@
           }
         },
         "MPC": {
-          "returned_item_count": 0,
-          "parsed_item_count": 0,
+          "returned_item_count": 50,
+          "parsed_item_count": 50,
           "parse_complete": true,
-          "matched_in_window_count": 0,
-          "oldest_returned_at": null,
-          "newest_returned_at": null,
-          "related_item_count": 0,
+          "matched_in_window_count": 24,
+          "oldest_returned_at": "2026-11-03T08:35:17+00:00",
+          "newest_returned_at": "2026-11-04T23:00:02+00:00",
+          "related_item_count": 50,
           "returned_newest_first": true,
-          "sample_reaches_window_start": false,
-          "observed_zero_in_window": true,
+          "sample_reaches_window_start": true,
+          "observed_zero_in_window": false,
           "published_news_coverage_confirmed": false,
-          "status": "empty_response",
+          "status": "observed_in_window",
           "error_type": null,
           "error_reason": null,
           "provider_response": {
@@ -47606,8 +48407,8 @@
           "parsed_item_count": 50,
           "parse_complete": true,
           "matched_in_window_count": 6,
-          "oldest_returned_at": "2026-10-06T15:28:49+00:00",
-          "newest_returned_at": "2026-11-04T19:08:23+00:00",
+          "oldest_returned_at": "2026-10-06T19:53:45+00:00",
+          "newest_returned_at": "2026-11-05T09:03:24+00:00",
           "related_item_count": 50,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -47721,8 +48522,8 @@
           "parsed_item_count": 50,
           "parse_complete": true,
           "matched_in_window_count": 7,
-          "oldest_returned_at": "2026-10-23T08:44:54+00:00",
-          "newest_returned_at": "2026-11-04T18:30:02+00:00",
+          "oldest_returned_at": "2026-10-23T11:03:00+00:00",
+          "newest_returned_at": "2026-11-05T09:07:46+00:00",
           "related_item_count": 50,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -47767,8 +48568,8 @@
           "parsed_item_count": 50,
           "parse_complete": true,
           "matched_in_window_count": 4,
-          "oldest_returned_at": "2026-10-20T21:25:42+00:00",
-          "newest_returned_at": "2026-11-04T19:49:29+00:00",
+          "oldest_returned_at": "2026-10-21T13:00:00+00:00",
+          "newest_returned_at": "2026-11-05T07:19:00+00:00",
           "related_item_count": 50,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -47813,8 +48614,8 @@
           "parsed_item_count": 50,
           "parse_complete": true,
           "matched_in_window_count": 6,
-          "oldest_returned_at": "2026-10-26T11:55:55+00:00",
-          "newest_returned_at": "2026-11-04T22:05:49+00:00",
+          "oldest_returned_at": "2026-10-26T13:09:31+00:00",
+          "newest_returned_at": "2026-11-05T03:35:00+00:00",
           "related_item_count": 50,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -47836,8 +48637,8 @@
           "parsed_item_count": 50,
           "parse_complete": true,
           "matched_in_window_count": 9,
-          "oldest_returned_at": "2026-10-27T10:26:14+00:00",
-          "newest_returned_at": "2026-11-04T22:05:49+00:00",
+          "oldest_returned_at": "2026-10-27T13:29:00+00:00",
+          "newest_returned_at": "2026-11-05T08:14:50+00:00",
           "related_item_count": 50,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -47882,8 +48683,8 @@
           "parsed_item_count": 49,
           "parse_complete": true,
           "matched_in_window_count": 2,
-          "oldest_returned_at": "2026-10-20T11:37:00+00:00",
-          "newest_returned_at": "2026-11-04T22:05:49+00:00",
+          "oldest_returned_at": "2026-10-20T15:32:22+00:00",
+          "newest_returned_at": "2026-11-05T03:35:00+00:00",
           "related_item_count": 49,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -48088,9 +48889,9 @@
           "returned_item_count": 49,
           "parsed_item_count": 49,
           "parse_complete": true,
-          "matched_in_window_count": 39,
-          "oldest_returned_at": "2026-11-04T15:14:13+00:00",
-          "newest_returned_at": "2026-11-05T00:30:14+00:00",
+          "matched_in_window_count": 33,
+          "oldest_returned_at": "2026-11-04T15:45:00+00:00",
+          "newest_returned_at": "2026-11-05T05:22:12+00:00",
           "related_item_count": 49,
           "returned_newest_first": true,
           "sample_reaches_window_start": false,
@@ -48108,18 +48909,18 @@
           }
         },
         "GM": {
-          "returned_item_count": 0,
-          "parsed_item_count": 0,
+          "returned_item_count": 47,
+          "parsed_item_count": 47,
           "parse_complete": true,
-          "matched_in_window_count": 0,
-          "oldest_returned_at": null,
-          "newest_returned_at": null,
-          "related_item_count": 0,
+          "matched_in_window_count": 15,
+          "oldest_returned_at": "2026-10-29T17:28:51+00:00",
+          "newest_returned_at": "2026-11-05T05:16:52+00:00",
+          "related_item_count": 47,
           "returned_newest_first": true,
-          "sample_reaches_window_start": false,
-          "observed_zero_in_window": true,
+          "sample_reaches_window_start": true,
+          "observed_zero_in_window": false,
           "published_news_coverage_confirmed": false,
-          "status": "empty_response",
+          "status": "observed_in_window",
           "error_type": null,
           "error_reason": null,
           "provider_response": {
@@ -48135,8 +48936,8 @@
           "parsed_item_count": 47,
           "parse_complete": true,
           "matched_in_window_count": 15,
-          "oldest_returned_at": "2026-10-30T17:38:35+00:00",
-          "newest_returned_at": "2026-11-04T23:00:26+00:00",
+          "oldest_returned_at": "2026-10-30T18:05:45+00:00",
+          "newest_returned_at": "2026-11-05T05:16:52+00:00",
           "related_item_count": 47,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -48177,18 +48978,18 @@
           }
         },
         "CMCSA": {
-          "returned_item_count": 0,
-          "parsed_item_count": 0,
+          "returned_item_count": 48,
+          "parsed_item_count": 48,
           "parse_complete": true,
-          "matched_in_window_count": 0,
-          "oldest_returned_at": null,
-          "newest_returned_at": null,
-          "related_item_count": 0,
+          "matched_in_window_count": 5,
+          "oldest_returned_at": "2026-10-24T16:17:00+00:00",
+          "newest_returned_at": "2026-11-04T20:39:46+00:00",
+          "related_item_count": 48,
           "returned_newest_first": true,
-          "sample_reaches_window_start": false,
-          "observed_zero_in_window": true,
+          "sample_reaches_window_start": true,
+          "observed_zero_in_window": false,
           "published_news_coverage_confirmed": false,
-          "status": "empty_response",
+          "status": "observed_in_window",
           "error_type": null,
           "error_reason": null,
           "provider_response": {
@@ -48204,8 +49005,8 @@
           "parsed_item_count": 48,
           "parse_complete": true,
           "matched_in_window_count": 25,
-          "oldest_returned_at": "2026-11-02T14:03:00+00:00",
-          "newest_returned_at": "2026-11-04T23:04:43+00:00",
+          "oldest_returned_at": "2026-11-02T14:05:29+00:00",
+          "newest_returned_at": "2026-11-05T06:07:17+00:00",
           "related_item_count": 48,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -48250,8 +49051,8 @@
           "parsed_item_count": 48,
           "parse_complete": true,
           "matched_in_window_count": 17,
-          "oldest_returned_at": "2026-10-31T15:07:00+00:00",
-          "newest_returned_at": "2026-11-04T18:42:42+00:00",
+          "oldest_returned_at": "2026-10-31T20:30:04+00:00",
+          "newest_returned_at": "2026-11-05T07:16:52+00:00",
           "related_item_count": 48,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -48388,8 +49189,8 @@
           "parsed_item_count": 50,
           "parse_complete": true,
           "matched_in_window_count": 0,
-          "oldest_returned_at": "2026-09-25T15:14:52+00:00",
-          "newest_returned_at": "2026-11-03T13:18:30+00:00",
+          "oldest_returned_at": "2026-09-25T17:57:23+00:00",
+          "newest_returned_at": "2026-11-05T05:11:36+00:00",
           "related_item_count": 50,
           "returned_newest_first": true,
           "sample_reaches_window_start": true,
@@ -48486,8 +49287,8 @@
     "loaded": 195
   },
   "batch_metrics": {
-    "session_article_count": 1811,
-    "symbols_with_articles": 169,
+    "session_article_count": 1820,
+    "symbols_with_articles": 172,
     "headline_symbols_requested": 193,
     "price_bars": {
       "universe": {
@@ -48502,12 +49303,12 @@
   },
   "news_health": {
     "status": "partial",
-    "session_article_count": 1811,
-    "symbols_with_articles": 169,
+    "session_article_count": 1820,
+    "symbols_with_articles": 172,
     "failed_symbols": 0,
-    "capped_symbols": 5,
+    "capped_symbols": 6,
     "universe_zero_in_window_observed": false,
     "note": "Report only. Does not change healthy, status, per-symbol headline_status, events or baselines; a zero is not evidence of no published news."
   },
-  "brief": "Market read for 2026-11-04: RISK-ON (4 of 4 checks).\nSPY is in an uptrend, +5.5% from its 200-day and -1.6% from its 52-week high; -0.7% over 5 sessions, -1.6% over 21.\nBreadth is broad: 73% of 193 watchlist names are above their 200-day, 69% above their 50-day; 97 made a 20-day high today, 20 a 20-day low.\nVIX 16.6 (normal, -2% over 5 sessions); SPY's realized volatility is 13% annualized and rising.\nLeading sectors over 21 sessions versus SPY: Health care (+15.1%), Consumer staples (+14.0%), Real estate (+11.4%). Lagging: Industrials (+0.3%), Communication (-4.4%), Technology (-11.1%).\n23 event(s) recorded today: MMM +9.6% (move+news), MCD +6.5% (move), DIA +3.1% (move+news), LOW +7.5% (move), HCA +10.3% (move) and more.\nThe record holds 313 event(s); 199 have five-day follow-through."
+  "brief": "Market read for 2026-11-04: RISK-ON (4 of 4 checks).\nSPY is in an uptrend, +5.5% from its 200-day and -1.6% from its 52-week high; -0.7% over 5 sessions, -1.6% over 21.\nBreadth is broad: 73% of 193 watchlist names are above their 200-day, 69% above their 50-day; 97 made a 20-day high today, 20 a 20-day low.\nVIX 16.6 (normal, -2% over 5 sessions); SPY's realized volatility is 13% annualized and rising.\nLeading sectors over 21 sessions versus SPY: Health care (+15.1%), Consumer staples (+14.0%), Real estate (+11.4%). Lagging: Industrials (+0.3%), Communication (-4.4%), Technology (-11.1%).\n24 event(s) recorded today: MMM +9.6% (move+news), MCD +6.5% (move+news), DIA +3.1% (move+news), LOW +7.5% (move), HCA +10.3% (move) and more.\nThe record holds 313 event(s); 199 have five-day follow-through."
 }
